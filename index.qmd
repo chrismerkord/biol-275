@@ -1,0 +1,12 @@
+---
+title: "BIOL 275: Biostatistics"
+---
+
+## Welcome
+
+This site contains materials for BIOL 275.
+
+-   Syllabus
+-   Labs
+-   Assignments
+-   Resources
