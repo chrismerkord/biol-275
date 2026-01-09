@@ -13,3 +13,4 @@ format:
   html:
     toc: true
     theme: default
+    css: tlm-styles/styles.scss
