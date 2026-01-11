@@ -2,15 +2,36 @@ project:
   type: website
   output-dir: _site
 
+resources:
+  - "**/*.pdf"
+
 website:
-  title: "BIOL 275: Biostatistics"
+  title: "BIOL 275 Biostatistics"
   navbar:
+    search: true
     left:
       - href: index.qmd
         text: Home
-
+      - href: syllabus/index.qmd
+        text: Syllabus
+      - href: schedule/index.qmd
+        text: Schedule
+  sidebar:
+    style: "docked"
+    search: true
+    contents: 
+      - href: index.qmd
+        text: Home
+      - href: syllabus/index.qmd
+      - href: schedule/index.qmd
+        
 format:
   html:
     toc: true
     theme: default
     css: tlm-styles/styles.scss
+
+execute:
+  echo: false
+  warning: false
+  message: false

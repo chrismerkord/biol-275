@@ -1,0 +1,149 @@
+---
+title: "Class Schedule"
+format:
+  html:
+    toc: true
+    page-layout: full
+---
+
+Spring 2026 class schedule.
+
+```{r}
+
+library(readr)
+library(dplyr)
+library(lubridate)
+library(reactable)
+library(htmltools)
+
+# Read canonical schedule data (week is computed from dates; no week column needed in CSV)
+sched <- read_csv("schedule.csv", show_col_types = FALSE) |>
+  mutate(date = as.Date(date)) |>
+  arrange(date)
+
+# Week numbering rule:
+# - A "week" is Monday–Friday
+# - Week 1 is the Monday–Friday block that contains the first row's date
+week1_start <- floor_date(min(sched$date, na.rm = TRUE), unit = "week", week_start = 1)
+
+sched <- sched |>
+  mutate(
+    week = as.integer((floor_date(date, unit = "week", week_start = 1) - week1_start) / 7) + 1,
+    .before = date
+  ) |> 
+  mutate(
+    rel_date = Sys.Date()-date,
+    when = case_when(
+      rel_date > 0 ~ "Past",
+      rel_date == 0 ~ "Today",
+      rel_date < 0 ~ "Upcoming"
+    ),
+    .after = date
+  ) |> 
+  mutate(
+    type = case_when(
+      is_noclass ~ "No class",
+      is_exam ~ "Exam",
+      meeting == "lab" ~ "Lab",
+      TRUE ~ "Lecture"
+    )
+  ) |>
+  arrange(date)
+
+reactable(
+  sched,
+  pagination = FALSE,
+  searchable = TRUE,
+  filterable = TRUE,
+  highlight = TRUE,
+  defaultSorted = "date",
+  columns = list(
+    week = colDef(name = "Week"),
+    date = colDef(
+      name = "Date",
+      cell = function(value) format(as.Date(value), "%a, %b %d"),
+      width = 120,
+      filterable = FALSE
+    ),
+    type = colDef(
+      name = "",
+      width = 90,
+      cell = function(value) {
+        if (value == "Exam") {
+          div(class = "badge exam-badge", "Exam")
+        } else if (value == "Lab") {
+          div(class = "badge lab-badge", "Lab")
+        } else if (value == "No class") {
+          div(class = "badge noclass-badge", "No class")
+        } else {
+          ""
+        }
+      }
+    ),
+    title = colDef(name = "Title"),
+    topic = colDef(name = "Topic"),
+    reading = colDef(name = "Reading"),
+    deliverable = colDef(
+      name = "Deliverable",
+      cell = function(value) {
+        if (!is.na(value) && value != "") {
+          div(class = "deliverable", value)
+        } else {
+          ""
+        }
+      }
+    ),
+    when = colDef(show = FALSE),
+    rel_date = colDef(show = FALSE),
+    materials_url = colDef(show = FALSE),
+    meeting = colDef(show = FALSE),
+    notes = colDef(show = FALSE),
+    is_exam = colDef(show = FALSE),
+    is_noclass = colDef(show = FALSE)
+  ),
+  rowStyle = function(index) {
+    row <- sched[index, ]
+    if (row$is_exam) {
+      list(background = "#fdecea")
+    } else if (row$is_noclass) {
+      list(color = "#6c757d", fontStyle = "italic")
+    } else if (row$meeting == "lab") {
+      list(borderLeft = "6px solid #0d6efd")
+    } else {
+      NULL
+    }
+  }
+)
+```
+
+<style>
+.badge {
+  padding: 0.25em 0.5em;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.exam-badge {
+  background-color: #c62828;
+  color: #ffffff;
+}
+
+.lab-badge {
+  background-color: #0d6efd;
+  color: #ffffff;
+}
+
+.noclass-badge {
+  background-color: #adb5bd;
+  color: #212529;
+}
+
+.deliverable {
+  background-color: #fff3cd;
+  padding: 0.25em 0.4em;
+  border-radius: 0.25rem;
+  font-weight: 600;
+}
+</style>

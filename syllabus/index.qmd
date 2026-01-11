@@ -1,0 +1,239 @@
+---
+title: "Course Syllabus"
+format:
+  html:
+    toc: true
+    page-layout: full
+  pdf:
+    pdf-engine: xelatex
+    toc: true
+---
+
+BIOL 275 Biostatistics — Spring 2026
+
+Updated 2026-01-11
+
+## Instructor
+
+Dr. Chris Merkord, Associate Professor, Department of Biosciences, Minnesota State University Moorhead
+
+See D2L for email contact information, office hours, and meeting scheduling.
+
+## Course Description
+
+The application of mathematics and statistics to biology. With labs that will emphasize computer applications.
+
+Prerequisites: BIOL 111 Cell Biology, BIOL 115 Organismal Biology, MATH 127 College Algebra.
+
+Credits: 4
+
+### Class Meetings
+
+Lecture:
+
+-   Monday, Wednesday, Friday 9:00-9:50 AM in Langseth Hall room 104
+
+Lab:
+
+-   Section 01: Tuesday and Thursday 10:30-11:45 AM in Lommen Hall room 90
+-   Section 02: Tuesday and Thursday 12:00-1:15 PM in Lommen Hall room 90
+
+See the Class Schedule page for weekly topics, lab activities, and exam dates. See D2L for assignment deadlines.
+
+### Communicating with the instructor
+
+All email correspondence to course instructors much originate from your university email account, have your full name in the body of the email, and contain the course number “BIOL 275” in the subject line. E-mails not meeting these requirements may not be recognized by the instructor’s email filter and thus may not be answered. The easiest way to meet these requirements is to use the email function in D2L (the envelope icon at the top of the page).
+
+I generally answer messages within 24 hours, Monday through Friday 9 AM-5 PM (except holidays). when other circumstances arise, for example when I am traveling for a conference or travel course, the time will be longer. Those situations will be announced on D2L ahead of time.
+
+I expect students to check D2L and their university email address once per day.
+
+### Required Texts
+
+#### Lecture
+
+Michael C. Whitlock and Dolph Schluter. 2020. The analysis of biological data. Third edition. Roberts and Company Publishers, Greenwood Village, Colorado, USA. ISBN 9781319226237 (hardcover) 9781319226299 (ebook). https://whitlockschluter3e.zoology.ubc.ca/
+
+This is the 3rd edition of the book. The book was completely redone for the second edition (2015) with new content and completely new practice problems. The book was updated to a lesser degree for the 3rd edition, which we use in class. The second edition may suffice, but I make no guarantees. The first edition would not be a good choice for this course.
+
+#### Lab
+
+Wickham, H., M. Çetinkaya-Rundel, and G. Grolemund. 2023. R for data science: import, tidy, transform, visualize, and model data. Second edition. O’Reilly Media, Inc., Sabastopol, California, USA. https://r4ds.hadley.nz/ We will use the online version of the book, which is free, available at https://r4ds.hadley.nz/.
+
+The online version will be the only one most of you need, but if you want a printed copy you can print the required sections each week as we go. A paperback version was published in 2023 and is available on Amazon, but it will lack any updates made to the website since that time.
+
+### Course Objectives/Student Learning Outcomes
+
+1.  To learn quantitative vocabulary in biology applications
+2.  To understand how mathematical functions interface with biology
+3.  To expose students to computer applications for common math and statistics
+4.  To communicate quantitative ideas effectively in writing, and in the construction of figures and tables
+5.  To be able to choose appropriate statistical methods for applied biological problems
+6.  To assist students in understanding mathematics and statistics in peer-reviewed biology papers
+7.  To prepare students for quantitative assignments in advanced biology courses.
+
+### Outline of Major Content Areas
+
+-   Statistics and samples
+-   Data Types
+-   Estimating with uncertainty
+-   Probability
+-   Hypothesis testing
+-    Analyzing proportions
+-   Chi-square goodness of fit
+-   Contingency analysis
+-   The normal distribution
+-   Inference for normal population
+-   Comparing two means
+-   Handling violations of assumptions
+-   Designing experiments
+-   Comparing means of more than two groups
+-   Correlation between numerical variables
+-   Regression
+-   Multiple explanatory variables
+-    Finding and using publicly available data
+-   Exploratory data analysis
+-   Communicating scientific results
+-   Coding (R programming language)
+    -   Data import (CSV, Excel, Google Sheets)
+    -   Data wrangling
+    -   Data summarizing
+    -   Data visualization
+    -   Reports (Quarto)
+-   Project management
+-   Using an integrated development environment (RStudio)
+-   Communicating scientific results in writing and graphs
+-   Presenting Scientific Results
+
+## Course Policies
+
+## Instructional Strategies
+
+The course is broadly divided into two parts, lecture that meets three times per week and lab that meets two times per week. Research has shown that student learning of technical concepts is reinforced by consistent, daily reinforcement.
+
+### Lecture
+
+-   Lectures consist of oral presentation of slideshows by the instructor.
+
+-   Slides will be posted on D2L after each lecture.
+
+-   A schedule of lecture topics and associated readings from the textbook are available on the Class Schedule. Students are expected to read the textbook ahead of time.
+
+-   Students are strongly encouraged to take notes during lecture. One benefit of taking notes during lecture, other than improved understanding and retention, is that students may use their notes during the quizzes and exams.
+
+-   Some lectures may include in-class activities. These may or may not be announced ahead of time. Activities will not be graded and attendance will not be taken. To avoid missing a helpful activity, plan on coming to every class.
+
+### Laboratory
+
+-   There will be regular in-person laboratory activities in a computer lab.
+
+-   Each lab section will meet twice per week, for 75 minutes each time.
+
+-   Approximately half of the lab meetings will involve tutorial-style labs that will be provided at the time of the lab. Students will work in pairs to complete the labs, with the instructor available to answer questions. Work will entail using the computer software program RStudio (via Posit Cloud) to learn basic data science skills such as data management, exploratory data analyses, statistical hypothesis testing, and data visualization.
+
+-   Students are expected to attend labs and complete assignments during class. Some leeway is afforded if you do not finish during class, with lab assignment due dates occurring on Friday. Attempting labs completely on your own time without the help of the instructor is not supported because of the likelihood of encountering technical difficulties. The instructor will not be available to help with lab questions outside of lab time, except during office hours.
+
+-   Learning Assistants will be present to assist with student learning. They are present for student support. Students should ask the Learning Assistants when they have any questions about a lab assignment.
+
+### Group Project
+
+-   The other half of lab meetings will be devoted to a group project. Students will work in groups of 3 or 4 to design and conduct an Exploratory Data Analysis (EDA) of a data set of their choice. The goal of the project is to give students an opportunity to hone their skills on a topic they are personally interested in.
+
+-   The project will involve in-class and out-of-class work. In-class activities will include proposal writing, presentations to the class, feedback on others’ presentations, and poster preparation. Out-of-class activities will include meeting with team members, conducting analyses, and preparing your poster for the Student Academic Conference (SAC).
+
+-   Each group will present the results of their EDA in poster format at the Student Academic Conference in April. Presenting in person at the SAC is required. See the course schedule for the date. The time of day will vary depending on which poster session you are assigned by the SAC organizers but will be known several weeks ahead of time. Please arrange to be at your poster at your designated time.
+
+-   To present at the SAC, you must first submit an abstract to the SAC committee in February. The date and instructions will be provided by the instructor. Failure to submit your group’s proposal by the deadline will result in your group being unable to present at the SAC and therefore unable to earn the course points associated with presenting.
+
+### Technology
+
+The following technology will be required in this course:
+
+1.  **D2L.** This is the primary method the instructor will use to communicate announcements to the class, and the method of delivery for quizzes and assignments in lecture and lab, as well as posting of grades. Students may want to turn on notifications in D2L and to install the Pulse app on their mobile device, to make receiving notifications easier.
+
+2.  **Email.** MSUM email is the [OFFICIAL communication method for Minnesota State University Moorhead](https://www.mnstate.edu/about/policies-procedures/list/student-email/ "OFFICIAL communication method for Minnesota State University Moorhead"). This is the primary method the instructor will use to contact you with private messages, for example about your assignments or grades.
+
+    For information about your MSUM email including login information, setup on computers and mobile devices, and multi-factor authentication, see this Knowledge Base page: <https://support.mnstate.edu/TDClient/297/Portal/KB/?CategoryID=1198>
+
+3.  **Microsoft Office 365.** Office 365 is a collection of Microsoft applications in cloud-based services allowing users to access a catalog of software using any web browser on virtually any device as long as an Internet connection is available. There are no installations, no updates, and nothing required from the user other than logging into the service. Lab experiments and group project assignments will necessitate the use of some of these products such Word, PowerPoint, and Excel for creating and sharing documents. This page has instructions for logging on from any computer including campus computer labs, and for installing Office 365 on your personal device: <https://support.mnstate.edu/TDClient/297/Portal/KB/ArticleDet?ID=4485>
+
+4.  **Posit Cloud.** Posit Cloud https://posit.cloud is a web-based platform for conducting analyses using the R software for statistical comuputing in the RStudio integrated development environment. Students are required to create an account on Posit Cloud and sign up for the Cloud Free plan. Please use your university email address for this account. The instructor will add students to the course work space where lab content will be delivered.
+
+    Students are able to access their Posit Cloud account and any associated lab- or lecture-related materials from any computer using a web browser by signing in to Posit Cloud https://posit.cloud. While it is possible to install R and RStudio on your device directly, this is not the supported delivery method for instruction in this course.
+
+## Grades and Assessment
+
+Grades will be assigned using an A, B, C, D, F scale based on the percentage of total points earned, as follows:
+
+-   A 90–100 %
+-   B 80–89.99 %
+-   C 70–79.99 %
+-   D 60–69.99 %
+-   F less than 60 %
+
+Grades for individual quizzes, exams, assignments, etc. will be graded using a minimum grade approach to ensure equitable outcomes for all students. For any assignment, if you earn a grade less than 50%, your grade will be adjusted up to 50%. This applies even if you do not complete an assignment. A 50% is still a failing grade. This approach makes it easier for students to overcome some missing assignments or poor exam scores by grading assignments on a scale more similar to the 4.0 scale used for the course as a whole.
+
+The course grade will be calculated using a weighted system with percentages assigned to categories as follows:
+
+-   20% Quizzes (quizzes weighted based on length and difficulty)
+-   21% Exams (3 exams)
+-   12% Final Exam
+-   20% Lab Activities (labs weighted based on length and difficulty)
+-   20% Lab Project (points spread across sub-assignments)
+-    5% Lab Practical
+
+[Quizzes]{.underline}: Quizzes will be on D2L and will consist of multiple choice, short answer, matching, or similar types of questions. You will need a calculator to answer some questions. They will cover material presented in either lecture or lab, and each quiz will say what it covers so you know what to study before taking it. There will approximately one quizzes per week depending on the content we are learning that week. Each quiz will be announced in class and on D2L at least five days (not counting weekends and holidays) before it is due. You will take quizzes outside of class on your own time and you are expected to work on your own when taking them, unless otherwise instructed. You may retake each quiz an unlimited number of times. You will be able to see which questions you answered correctly and incorrectly after each attempt. Deadline extensions will only be granted in cases of extended university-approved excused absence.
+
+[Exams]{.underline}: There will be three exams and a final exam. Exams will cover material from the lectures and the textbook. Exam 1 will cover the first quarter of the course, Exam 2 will cover the second qaurter of the course, and Exam 3 will cover the third quarter of the course. The Final Exam will be cumulative, covering everything in the course. Exams will be given during class using scantron answer sheets and written short answers. Each exam will consist of multiple choice, short answer, matching, or similar types of questions, similar to the quizzes. You are encouraged to work together in groups of five or fewer to find the answers. If there is disagreement within your group on the answer to a question, you are not required to give the same answer as your collaborators. During the exam you are allowed to use your textbook, the lecture slides, and your notes. You are not allowed to use any internet-connected app including a web browser or mobile app to conduct internet searches or use AI chatbots.
+
+[Lab Activities]{.underline}: There will be several lab assignments throughout the semester. For each one, I will provide a handout or online instructions detailing the activity and describing how you will be assessed for it. Some labs will be assessed during class by visual inspection of the lab handout, others will be assessed based on your submitted lab report.
+
+[Lab Project]{.underline}: Points will be awarded for various stages of the group lab project including but not limited to a written project proposal, a proposal presentation, conducting the experiment, data entry and analysis, a final written or oral report, presentation of a poster at the Student Academic Conference, and a post-conference reflection.
+
+[Lab Practical]{.underline}: The lab practical will involve coding in R to show your ability to import, manipulate, and summarize data, choose appropriate statistical methods for descriptive and inferential analysis, perform those methods, and convey the results using accurate and effective text and visual outputs. You are allowed to work in groups of 3-4 to write the code. If there is disagreement within your group on how to solve the problem, you are not required to have the same code as your collaborators. You will submit a report of your assignment via D2L. Your score will be determined based on the product you submit. A grading rubric will be passed out ahead of time.
+
+## University Policies
+
+The following policies are established by MSUM and the Minnesota State system and updated slightly where appropriate to be specific to this course.
+
+### Rules and Expectations of Conduct
+
+Academic Dishonesty. Cheating or plagiarism on any assignment, paper, or exam will result in a grade of zero on that work, and a report to the college administration. A second incidence of cheating will result in a failing grade for the course. See the MSUM student handbook online, <http://www.mnstate.edu/sthandbook/scc/definitions.cfm>, for definitions of cheating and plagiarism. If you aren’t sure about what is permissible, the best thing is to ask.
+
+Examples of plagiarism include: copying text from the internet, a book, or some other source, for example on a writing assignment or exam.
+
+### Attendance Policy
+
+The MSUM Student Absence Policy can be found online at <https://www.mnstate.edu/policies/absences.aspx>
+
+Try not to miss class because we will be doing activities and having discussions most of the time, and these experiences are almost impossible to make up or recreate outside of class.
+
+In the case of extended illnesses or other extreme situations, please schedule a meeting to make special arrangements regarding the following policies.
+
+### Academic Progress Checks
+
+Academic Progress Checks: At weeks 5 and 10 during the semester (earlier if necessary), I will enter point in time course progress into the campus Early Alert System for all students in this class. These progress checks are an opportunity to connect you with a support staff member who can offer additional support and suggest resources if you need assistance. Support staff will reach out to you directly via email, call, or text if there are any concerns.
+
+### Accessibility Statement
+
+Minnesota State University Moorhead (MSUM) is committed to providing equitable access to learning opportunities for all students and strives to make courses inclusive and accessible in accordance with sections 504 and 508 of the 1973 Rehabilitation Act and the Americans with Disabilities Act (ADA). The University will make reasonable accommodations for students with documented disabilities.
+
+Accessibility Resources (AR) is available to facilitate a range of academic support services and accommodations for students with disabilities. If you have a disability, you can request assistance by contacting AR at 218-477-2167 (voice), 218-477-2420 (fax) or [accessibility\@mnstate.edu](mailto:accessibility@mnstate.edu) (email). Once eligibility has been determined, students register with AR every semester to activate their approved accommodations. Although a student may request an accommodation at any time, it is best to initiate the application process at least four weeks before a student wishes to receive an accommodation. Students may begin the accommodation process by submitting a Request for Accommodations form online at <https://www.mnstate.edu/student-life/student-services/accessibility/request-accommodations/form/> or by contacting Accessibility Resources.
+
+The Director of Accessibility Resources, Chuck Eade, serves as MSUM’s ADA Coordinator for students. He can be reached at [Charles.Eade\@mnstate.edu](mailto:Charles.Eade@mnstate.edu). Additional information is available on the AR website: [http://www.mnstate.edu/accessibility](https://nam02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.mnstate.edu%2Faccessibility&data=02%7C01%7Ccharles.eade%40mnstate.edu%7C7497efa1cdcf4b6d50aa08d7cf46ede3%7C5011c7c60ab446ab9ef4fae74a921a7f%7C0%7C0%7C637205775849405764&sdata=TjCP04mSmSEhrAk0ImJqR3sh1B5fJTEKj3hDWT59Wwk%3D&reserved=0).
+
+### Sexual Violence Prevention Statement
+
+Acts of sexual violence are intolerable. MSUM expects all members of the campus community to act in a manner that does not infringe on the rights of others. We are committed to eliminating all acts of sexual violence.
+
+MSUM faculty and staff are concerned about the well-being and development of our students. We are obligated to share information with the MSUM Title IX Coordinator in certain situations to help ensure that the students’ safety and welfare is being addressed, consistent with the requirements of the law. These disclosures include but are not limited to reports of sexual assault, relationship violence, and stalking.
+
+If you have experienced or know someone who has experienced sexual violence, services and resources are available. You may also choose to file a report. For further information, contact Lynn Peterson, Title IX Coordinator, [petrsnly\@mnstate.edu](mailto:petrsnly@mnstate.edu); 218-477-2967, or Ashley Atteberry, Director of Student Conduct & Resolution; [ashley.atteberry\@mnstate.edu](mailto:ashley.atteberry@mnstate.edu), 218-477-2174; both located in Flora Frick 153. Additional information is available at: [www.mnstate.edu/titleix](http://www.mnstate.edu/titleix)
+
+### Bias Incident Statement
+
+A bias incident is an act of bigotry, harassment, or intimidation that is motivated in whole or in part by bias based on an individual’s or group’s actual or perceived race, color, creed, religion, national origin, sex, gender, age, marital status, disability, public assistance status, veteran status, sexual orientation, or familial status. If you are a student who has experienced or witnessed a hate or bias incident, we want to address the incident and provide you with resources. Contact the Campus Diversity Officer, Jered Pigeon, [jered.pigeon\@mnstate.edu](mailto:jered.pigeon@mnstate.edu) 218-477-2047, 114 CMU, or Dean of Students, Kara Gravley-Stack, [kara.gravleystack\@mnstate.edu](mailto:kara.gravleystack@mnstate.edu) 218-477-4222, 153 Flora Frick Hall
+
+### Building Emergency Plan
+
+Building floor plans showing emergency exit routes, fire extinguisher locations and fire alarm pull stations are conspicuously located in classrooms, labs, conference rooms, departmental main offices and residence halls. The Emergency Preparedness Guides (flip style booklets) are located with the maps. Please review the floor plans as well as the guide so you know how to respond in an emergency situation to help protect yourself and others. If you have questions, please contact Ryan Nelson, Director of Public Safety, at ryan.nelson\@mnstate.edu or 218-477-5869. <https://www.mnstate.edu/publicsafety/>
