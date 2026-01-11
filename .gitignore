@@ -1,13 +1,12 @@
 # RStudio / R artifacts
-**/.Rproj.user/
-**/.Rhistory
-**/.RData
-**/.Ruserdata
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
 
 # Quarto rendered site output
 /_site/
 
 # Quarto caches
 /.quarto/
-/.quarto_cache/
-
+**/*.quarto_ipynb
