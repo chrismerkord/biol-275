@@ -1,5 +1,8 @@
 ---
-title: "Statistics and Samples"
+title: |
+  | Lecture 1
+  | Statistics and Samples
+subtitle: "ABD 3e Chapter 1"
 author: "Chris Merkord"
 tbl-cap-location: bottom
 format: 
