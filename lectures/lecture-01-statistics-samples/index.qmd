@@ -1,0 +1,227 @@
+---
+title: "Statistics and Samples"
+author: "Chris Merkord"
+tbl-cap-location: bottom
+format: 
+  revealjs:
+    fig-align: center
+    cap-location: bottom
+    slide-number: true
+    toc: false
+    controls: true
+    progress: true
+    hash: true
+    center: false
+    chalkboard: true
+    logo: ../../tlm-styles/logos/m-symbol-black.png
+    footer: "BIOL 275 Biostatistics | Spring 2026"
+    theme:
+      - default
+      - brand
+      - ../../tlm-styles/tlm-theme.scss
+      - ../../styles.scss
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://use.typekit.net/tag1lvz.css">
+lightbox: auto
+editor: visual
+---
+
+## Learning Objectives
+
+1.  Understand the major goal of statistics
+
+2.  Distinguish between a sample and a population
+
+3.  Distinguish between an estimate and a parameter
+
+4.  Identify why estimates from samples may deviate from parameters of populations
+
+5.  Identify the properties of a good sample
+
+## What’s the point of statistics?
+
+-   **Goal:** We want to learn about the world.
+
+-   **Challenge:** We can’t look at the whole world.
+
+-   **Solution:** Take a sample and generalize outward.
+
+-   **New Challenge:** Samples deviate from the populations by Bad luck (sampling error) or Unrepresentative sampling (sampling bias)
+
+## Statistics’ fundamental obsession
+
+**Question:**
+
+How do we make inferences about the WORLD from our finite observations?
+
+**Answer:**
+
+Make models to account for the process of sampling and the associated hazards
+
+## [Populations]{.keyword} and [samples]{.keyword}
+
+::::: columns
+::: {.column width="40%"}
+-   A [population]{.keyword} contains all the individuals units of interest
+
+-   A [sample]{.keyword} is a subset of units taken from the population that we collect and analyze to learn about a population
+:::
+
+::: {.column width="60%"}
+![](images/clipboard-1527548031.png){style="margin:2em;"}
+:::
+:::::
+
+## [Sample Units]{.keyword} can be almost anything
+
+::::: columns
+::: {.column width="60%"}
+Units are often individual organisms, but not always
+
+Could be:
+
+-   Groups of organisms (e.g. familes)
+
+-   Similar parts on a single organisms (e.g. trichomes on a leaf)
+
+-   Single parts across multiple organisms (e.g. beaks on birds)
+
+-   Areas of land (e.g. vegetation quadrats)
+
+-   Etc.
+:::
+
+::: {.column width="40%"}
+![](images/clipboard-2602757697.png)
+:::
+:::::
+
+## Parameters versus Estimates (1 of 2)
+
+::::: columns
+::: {.column width="50%"}
+### [Parameters]{.keyword}
+
+-   Describe **populations**
+-   Only known if you measure entire population
+-   Parameters are **fixed**
+-   Parameters are **the world**
+-   Parameters are **the truth**
+:::
+
+::: {.column width="50%"}
+### [Statistics]{.keyword}
+
+-   **Estimates** of parameters
+-   Inferred **from samples**
+-   Are **random variables**
+-   Change from one sample to the next
+:::
+:::::
+
+## [Sampling Bias]{.keyword} and [Sampling Error]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+[Sampling bias]{.keyword}
+
+Systematic difference between estimates and parameters
+
+[Sampling error]{.keyword}
+
+Undirected deviation of estimates away from parameters.
+
+[Precision]{.keyword}
+
+How close estimates are to each other
+:::
+
+::: {.column width="50%"}
+![Colored points are estimates from a sample. The [**Red X**]{style="color: red;"} is the true parameter value.](images/clipboard-537756050.png)
+:::
+:::::
+
+## [Sampling bias]{.keyword}
+
+::::: columns
+::: {.column width="40%"}
+-   Systematic difference between a parameter and its estimate
+
+-   Estimates from multiple samples tend to deviate from parameters in the same direction
+
+-   Arises when samples aren’t representative
+:::
+
+::: {.column width="60%"}
+![Source: Kevin C at https://skepticalscience.com/print.php?n=1366](images/clipboard-1576613097.png)
+:::
+:::::
+
+## [Volunteer Bias]{.keyword}
+
+Volunteers for a study are likely to be different, on average, from the population.
+
+Examples:
+
+-   Volunteers for sex surveys are more likely to be open about sex.
+
+-   Volunteers for medical studies may be sicker than the general population.
+
+-   Animals that are caught may be slower or more docile than those that are not.
+
+Taking random samples is hard and requires effort
+
+## A random sample is a good sample
+
+::::: columns
+::: {.column width="50%"}
+When units are chosen at random from a population, it is called a [random sample]{.keyword}
+
+Random sampling minimizes bias and allows for estimation of sampling error
+
+Rules:
+
+-   Each unit should have an equal chance of being included in a sample
+
+-   Selection of units must be independent
+
+**All statistics we do assumes a random sample**
+:::
+
+::: {.column width="50%"}
+[Convenience sample]{.keyword}: easy but biased; not random, not independent
+
+![](images/clipboard-4135496332.png)
+:::
+:::::
+
+## How to get a [random sample]{.keyword}
+
+Carefully characterize a population and use computer code (e.g. the `sample()` function in R) to select participants randomly.
+
+![](images/clipboard-333877456.png)
+
+## Sampling Error
+
+[Sampling Error]{.keyword}:
+
+-   The difference between the estimate and its true parameter value.
+
+Even if you sample perfectly, by the book, your estimates will differ from the true parameter by chance.
+
+## Estimates are random variables
+
+Because an estimate is a random variable, the value of an estimate is influenced by chance
+
+## **Sampling error declines with sample size**
+
+::::: columns
+::: {.column width="30%"}
+-   Larger sample -\> smaller sampling error
+:::
+
+::: {.column width="70%"}
+![](images/clipboard-4084721917.png)
+:::
+:::::
