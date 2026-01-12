@@ -1,6 +1,8 @@
 project:
   type: website
 
+brand: tlm-styles/_brand.yml
+
 resources:
   - "**/*.pdf"
 
@@ -33,8 +35,13 @@ website:
 format:
   html:
     toc: true
-    theme: default
-    css: tlm-styles/styles.scss
+    theme: 
+      - cosmo
+      - brand
+      - tlm-styles/styles.scss
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://use.typekit.net/tag1lvz.css">
 
 execute:
   echo: false
