@@ -16,7 +16,7 @@ Lecture 1
 ::: card-body
 ### Statistics and Samples {.card-title}
 
-Course policies, grading, materials, and expectations.
+Introduction to populations, samples, and the role of sampling in statistical inference.
 
 [Go to Lecture](lecture-01-statistics-samples/){.btn .btn-primary}
 :::
