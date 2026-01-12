@@ -1,12 +1,68 @@
 ---
-title: "BIOL 275: Biostatistics"
+title: "BIOL 275 Biostatistics"
 ---
 
-## Welcome
+## Course Overview
 
-This site contains materials for BIOL 275.
+This course introduces core concepts in biostatistics with an emphasis on data literacy, reproducible analysis, and interpretation of biological data. Students will work with real datasets using R and develop skills applicable across biology, ecology, and environmental science.
 
--   Syllabus
--   Labs
--   Assignments
--   Resources
+This website serves as the **public hub** for course materials.
+
+## Course Information
+
+Instructor: Chris Merkord
+
+Institution: Minnesota State University Moorhead
+
+Term: Spring 2026
+
+Delivery: In-person lecture and lab
+
+Software: R, RStudio, Posit Cloud (introductory use)
+
+## Start Here
+
+:::: {.card style="max-width: 18rem;"}
+::: card-body
+##### Syllabus {.card-title}
+<p class="card-text">Course policies, grading, materials, and expectations.</p>
+<a href="./syllabus/" class="btn btn-primary">Go to Syllabus</a>
+:::
+::::
+
+:::: {.card style="max-width: 18rem;"}
+::: card-body
+##### Schedule {.card-title}
+<p class="card-text">Weekly topics, readings, and links.</p>
+<a href="./schedule/" class="btn btn-primary">Go to Schedule</a>
+:::
+::::
+
+:::: {.card style="max-width: 18rem;"}
+::: card-body
+##### Lecture Slides {.card-title}
+<p class="card-text">Slide decks (HTML/PDF) and supporting materials.</p>
+<a href="./lectures/" class="btn btn-primary">Go to Lectures</a>
+:::
+::::
+
+:::: {.card style="max-width: 18rem;"}
+::: card-body
+##### Lab Assignments {.card-title}
+<p class="card-text">Lab pages, handouts, datasets, and submission details.</p>
+<a href="./lectures/" class="btn btn-primary">Go to Labs</a>
+:::
+::::
+
+
+## For Enrolled Students
+
+-   Assignment deadlines and submissions are managed through **D2L**
+
+-   Grades, feedback, and announcements will **not** be posted on this site
+
+-   This site is updated regularly—check links before each class
+
+## Accessibility & Use
+
+All materials on this site are provided for instructional use by enrolled students. If you encounter accessibility issues or broken links, contact the instructor.
