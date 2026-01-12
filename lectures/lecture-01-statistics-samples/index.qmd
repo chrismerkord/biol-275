@@ -16,7 +16,6 @@ format:
     hash: true
     center: false
     chalkboard: true
-    logo: ../../tlm-styles/logos/m-symbol-black.png
     footer: "BIOL 275 Biostatistics | Spring 2026"
     theme:
       - default
