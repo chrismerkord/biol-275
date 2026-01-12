@@ -22,38 +22,51 @@ Software: R, RStudio, Posit Cloud (introductory use)
 
 ## Start Here
 
-:::: {.card style="max-width: 18rem;"}
+::::::::::::: row
+::::::: col-sm-6
+:::: card
 ::: card-body
 ##### Syllabus {.card-title}
-<p class="card-text">Course policies, grading, materials, and expectations.</p>
-<a href="./syllabus/" class="btn btn-primary">Go to Syllabus</a>
+
+Course policies, grading, materials, and expectations.
+
+[Go to Syllabus](syllabus/){.btn .btn-primary}
 :::
 ::::
 
-:::: {.card style="max-width: 18rem;"}
+:::: card
 ::: card-body
-##### Schedule {.card-title}
-<p class="card-text">Weekly topics, readings, and links.</p>
-<a href="./schedule/" class="btn btn-primary">Go to Schedule</a>
+### Schedule {.card-title}
+
+Weekly topics, readings, and links. 
+
+[Go to Schedule](schedule/){.btn .btn-primary}
 :::
 ::::
+:::::::
 
-:::: {.card style="max-width: 18rem;"}
+::::::: col-sm-6
+:::: card
 ::: card-body
-##### Lecture Slides {.card-title}
-<p class="card-text">Slide decks (HTML/PDF) and supporting materials.</p>
-<a href="./lectures/" class="btn btn-primary">Go to Lectures</a>
+### Lecture Slides {.card-title}
+
+Slide decks (HTML/PDF) and supporting materials.
+
+[Go to Lectures](lectures/){.btn .btn-primary}
 :::
 ::::
 
-:::: {.card style="max-width: 18rem;"}
+:::: card
 ::: card-body
-##### Lab Assignments {.card-title}
-<p class="card-text">Lab pages, handouts, datasets, and submission details.</p>
-<a href="./lectures/" class="btn btn-primary">Go to Labs</a>
+### Lab Assignments {.card-title}
+
+Lab pages, handouts, datasets, and submission details.
+
+[Go to Labs](labs/){.btn .btn-primary}
 :::
 ::::
-
+:::::::
+:::::::::::::
 
 ## For Enrolled Students
 
