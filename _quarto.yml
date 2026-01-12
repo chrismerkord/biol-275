@@ -38,7 +38,7 @@ format:
     theme: 
       - cosmo
       - brand
-      - tlm-styles/styles.scss
+      - tlm-styles/tlm-theme.scss
     include-in-header:
       - text: |
           <link rel="stylesheet" href="https://use.typekit.net/tag1lvz.css">
