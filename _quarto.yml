@@ -16,6 +16,10 @@ website:
         text: Syllabus
       - href: schedule/index.qmd
         text: Schedule
+      - href: lectures/index.qmd
+        text: Lectures
+      - href: labs/index.qmd
+        text: Labs
   sidebar:
     style: "docked"
     search: true
@@ -24,6 +28,8 @@ website:
         text: Home
       - href: syllabus/index.qmd
       - href: schedule/index.qmd
+      - href: lectures/index.qmd
+      - href: labs/index.qmd
         
 format:
   html:

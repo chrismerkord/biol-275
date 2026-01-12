@@ -1,0 +1,7 @@
+---
+title: "Labs"
+format:
+  html:
+    toc: true
+    page-layout: full
+---
