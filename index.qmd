@@ -36,7 +36,7 @@ Course policies, grading, materials, and expectations.
 
 :::: card
 ::: card-body
-### Schedule {.card-title}
+##### Schedule {.card-title}
 
 Weekly topics, readings, and links. 
 
@@ -45,10 +45,13 @@ Weekly topics, readings, and links.
 ::::
 :::::::
 
+:::::::::::::
+::::::::::::: row
+
 ::::::: col-sm-6
 :::: card
 ::: card-body
-### Lecture Slides {.card-title}
+##### Lecture Slides {.card-title}
 
 Slide decks (HTML/PDF) and supporting materials.
 
@@ -58,7 +61,7 @@ Slide decks (HTML/PDF) and supporting materials.
 
 :::: card
 ::: card-body
-### Lab Assignments {.card-title}
+##### Lab Assignments {.card-title}
 
 Lab pages, handouts, datasets, and submission details.
 
