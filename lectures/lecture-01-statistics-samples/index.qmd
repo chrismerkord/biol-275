@@ -19,7 +19,6 @@ format:
     footer: "BIOL 275 Biostatistics | Spring 2026"
     theme:
       - default
-      - brand
       - ../../tlm-styles/tlm-theme.scss
       - ../../styles.scss
     include-in-header:

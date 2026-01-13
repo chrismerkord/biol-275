@@ -37,7 +37,6 @@ format:
     toc: true
     theme: 
       - cosmo
-      - brand
       - tlm-styles/tlm-theme.scss
     include-in-header:
       - text: |
