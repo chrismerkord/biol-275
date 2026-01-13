@@ -5,3 +5,32 @@ format:
     toc: true
     page-layout: full
 ---
+
+::::::::::: row
+:::::: col-sm-3
+::::: card
+::: card-header
+Lab 1
+:::
+
+::: card-body
+### Introduction to R and RStudio {.card-title}
+
+[Go to Lab](introduction-to-r-and-rstudio/){.btn .btn-primary}
+:::
+:::::
+::::::
+
+:::::: col-sm-3
+:::: card
+::: card-header
+Lab 2
+:::
+::: card-body
+### Coming Soon {.card-title}
+
+[Go to Lab](){.btn .btn-primary}
+:::
+::::
+::::::
+:::::::::::

@@ -1,0 +1,135 @@
+---
+title: "BIOL 275 Lab 1 Handout: R & RStudio Basics"
+format:
+  pdf:
+    pdf-engine: xelatex
+    fontsize: 11pt
+    geometry:
+      - letterpaper
+      - margin=0.6in
+    number-sections: false
+    toc: false
+header-includes:
+  - |
+    \usepackage[most]{tcolorbox}
+    \usepackage{enumitem}
+    \setlist[itemize]{nosep, topsep=8pt, leftmargin=*}
+    \setlist[enumerate]{nosep, topsep=8pt, leftmargin=*}
+    
+    % Pandoc tight lists: force list spacing
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}%
+      \setlength{\parskip}{0pt}%
+      \setlength{\parsep}{0pt}%
+    }
+    
+    \pagestyle{empty}
+    
+    % Compact title without titling.sty
+    \makeatletter
+    \renewcommand{\maketitle}{
+      \begin{center}
+        {\Large\bfseries \@title \par}
+        \vspace{4pt}
+        \end{center}
+      \vspace{-1pt}
+    }
+    \makeatother
+    
+    % Tighten section spacing (template-safe; no titlesec)
+    \makeatletter
+    \renewcommand\section{\@startsection{section}{1}{\z@}%
+      {0.2\baselineskip}%
+      {0.2\baselineskip}%
+      {\normalfont\large\bfseries}}
+    \makeatother
+
+    % Answer box styles
+    \newtcolorbox{answerbox}[1][]{
+      enhanced,
+      sharp corners,
+      boxrule=0.6pt,
+      colback=white,
+      colframe=black,
+      left=6pt,right=6pt,top=6pt,bottom=6pt,
+      #1
+    }
+
+    % Convenience commands for fixed-height boxes
+    \newcommand{\ab}[1]{\begin{answerbox}[height=#1]\end{answerbox}}
+---
+
+\vspace{-0.15in}
+
+\begin{answerbox}
+\textbf{Name:} \hspace{2.5in} \textbf{Date:} \hspace{1.4in} \textbf{LA Initials:} \hspace{0.8in}
+\end{answerbox}
+
+## Section 1: Posit Cloud Setup (Checklist)
+
+\begin{itemize}[label={}, leftmargin=10pt, itemsep=4pt, topsep=2pt, parsep=0pt, partopsep=0pt]
+  \item $\square$~I created a Posit Cloud account
+  \item $\square$~I opened an RStudio project
+  \item $\square$~I can see the Console, Script Editor, Environment, and Files panes
+\end{itemize}
+
+## Section 2: RStudio Orientation
+
+**1. What is the Console used for?**
+\ab{0.55in}
+
+**2. What is an R script, and why is it useful?**
+\ab{1.00in}
+
+**3. Which pane shows objects you have created?**
+\ab{0.55in}
+
+**4. Which pane shows plots and figures?**
+\ab{0.55in}
+
+## Section 3: Assigning Values in R
+
+**7. Write R code that means: “x gets a value of 5.”**  
+
+\ab{0.55in}
+
+**8. Translate the following R code into a human-readable sentence:**
+
+```r
+y <- 0.2
+```
+
+\ab{0.75in}
+
+## Section 4: The Console and Command Prompt
+
+**5. What does a *clean* command prompt look like in the R console?**
+\ab{0.4in}
+
+**6. Suppose you type the following into the console and press Enter:**
+
+```r
+sqrt(9
+```
+
+**a. What does the console prompt change to?**
+\ab{0.55in}
+
+**b. What does this prompt mean? (1 short sentence)**
+\ab{0.55in}
+
+**c. Describe *two different ways* to get back to a clean command prompt.**
+
+\ab{0.55in}
+
+
+## Section 5: Packages
+
+\begin{itemize}[label={}, leftmargin=10pt, itemsep=4pt, topsep=2pt, parsep=0pt, partopsep=0pt]
+  \item $\square$~I installed at least one R package.
+  \item $\square$~I loaded that package using `library()`.
+\end{itemize}
+
+## Section 6: Notes
+
+\ab{3 in}

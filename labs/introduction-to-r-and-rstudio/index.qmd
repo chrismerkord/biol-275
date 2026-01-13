@@ -1,0 +1,171 @@
+---
+title: "Lab 1: Introduction to R, RStudio, and Posit Cloud"
+description: "Account setup and first exposure to RStudio, including the console, scripts, packages, and basic R syntax."
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: false
+---
+
+## Overview
+
+In this lab you will set up your Posit Cloud account and complete your first guided interaction with R using RStudio. You will learn how to enter commands, recognize console behavior, and begin working with R scripts.
+
+You will complete a **paper handout** alongside this lab. That handout serves two purposes:
+
+1. Learning assistants (LAs) will use it to verify completion  
+2. You will keep it as a reference for future labs
+
+## Learning Objectives
+
+By the end of this lab, you will be able to:
+
+- Create and log into a Posit Cloud account  
+- Open a new RStudio project in Posit Cloud  
+- Identify the main panes in RStudio and their purposes  
+- Recognize a clean command prompt and an incomplete command prompt  
+- Assign values to objects in R  
+- Write and run code from an R script  
+- Install and load an R package  
+
+These objectives correspond directly to questions on the lab handout.
+
+## What You Need Before You Start
+
+- Your **Lab 1 handout** (paper copy)  ([download](handout.qmd))
+- A computer with internet access  
+- Your MSUM email address  
+
+## Part 1: Create a Posit Cloud Account
+
+1. Go to <https://posit.cloud>  
+2. Click **Sign Up**  
+3. Choose **Sign up with email**  
+4. Use your MSUM email address  
+5. When prompted, select the **Cloud Free** plan  
+
+You only need the free plan for this course.
+
+Once your account is created, log in to Posit Cloud.
+
+> **Handout:**  
+> Check the boxes in Section 1 once you have successfully logged in and opened RStudio.
+
+## Part 2: Create a New RStudio Project
+
+After logging in:
+
+1. From the Posit Cloud dashboard, click **New Project**  
+2. Choose **New RStudio Project**  
+3. Select **Empty Project**  
+4. Accept the default project name  
+
+This project belongs to **you**. We will not use a shared class project today.
+
+Once the project opens, you should see the RStudio interface.
+
+## Part 3: RStudio Orientation (Follow Along)
+
+Your instructor will walk you through the RStudio interface.
+
+You should be able to see:
+
+- **Console** (where R runs commands)  
+- **Script Editor** (where you write and save code)  
+- **Environment** (shows objects you have created)  
+- **Files / Plots / Packages** pane  
+
+Do **not** explore on your own yet. Follow along as features are introduced.
+
+> **Handout:**  
+> Fill in Section 2 as these panes are explained.
+
+## Part 4: Working in the Console (Follow Along)
+
+You will begin by typing commands **directly into the Console** as your instructor demonstrates.
+
+Topics covered live:
+
+- What a *clean command prompt* looks like  
+- What happens when a command is incomplete  
+- How to recover from an incomplete command  
+- Assigning values to objects  
+
+Type what your instructor types. Ask questions if something unexpected happens.
+
+> **Handout:**  
+> Complete Section 3 and Section 4 as these ideas are introduced.
+
+## Part 5: Creating and Using a Script
+
+Next, you will move from the Console to an R script.
+
+### Create a Script
+
+1. Click **File → New File → R Script**  
+2. A blank script will open in the Script Editor  
+
+### Copy This Code into Your Script
+
+Copy **all** of the following code block and paste it into your script:
+
+```r
+# Lab 1: Introduction to R and RStudio
+
+# Assign values
+x <- 5
+y <- 0.2
+
+# Do some basic calculations
+x
+sqrt(9)
+x + y
+```
+
+### Run Code from the Script
+
+Your instructor will show you how to:
+
+- Run a single line of code  
+- Run multiple lines of code  
+- See results appear in the Console  
+- Watch objects appear in the Environment pane  
+
+You should **not** retype this code into the Console. Run it from the script.
+
+> **Handout:**  
+> Make sure you can answer the questions about assigning values and interpreting code.
+
+## Part 6: Installing and Loading a Package (Follow Along)
+
+Your instructor will demonstrate how to:
+
+- Install an R package  
+- Load a package using `library()`  
+
+You only need to successfully install and load **one** package.
+
+> **Handout:**  
+> Check the boxes in Section 5 once this is complete.
+
+## Before You Leave
+
+Before leaving the lab:
+
+1. Make sure **all required sections of your handout are filled in**  
+2. Show your completed handout to a Learning Assistant  
+3. The LA will verify completion for credit  
+
+Do **not** leave without having your handout checked.
+
+## Looking Ahead
+
+In future labs, you will:
+
+- Use shared class projects  
+- Work with data files  
+- Write longer scripts  
+- Produce tables and plots  
+
+Today’s lab was about getting set up and learning how to interact with R safely and predictably.
