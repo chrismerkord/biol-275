@@ -1,0 +1,545 @@
+---
+title: |
+  | Lecture 1
+  | Statistics and Samples
+subtitle: "ABD 3e Chapter 1"
+author: "Chris Merkord"
+tbl-cap-location: bottom
+format: 
+  revealjs:
+    fig-align: center
+    cap-location: bottom
+    slide-number: true
+    toc: false
+    controls: true
+    progress: true
+    hash: true
+    center: false
+    chalkboard: true
+    footer: "BIOL 275 Biostatistics | Spring 2026"
+    theme:
+      - default
+      - ../../tlm-styles/tlm-theme.scss
+      - ../../styles.scss
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://use.typekit.net/tag1lvz.css">
+lightbox: auto
+editor: visual
+---
+
+## Learning Objectives
+
+By the end of this lecture, you should be able to:
+
+-   Distinguish between categorical and numerical variables
+-   Identify common sources of confusion in variable classification
+-   Determine explanatory and response variables in a study
+-   Explain why observational studies cannot establish causation
+-   Describe how random assignment reduces confounding in experiments
+
+## Data is made of observations, variables, and values
+
+-   Observations are sample units
+-   Variable are characteristics of sample units
+
+![Source: Data Science with R by Garrett Grolemund](images/clipboard-2790595581.png)
+
+## [Variables]{.keyword} are characteristics that differ among individuals or other sampling units
+
+-   Data are the measurements of one or more variables
+
+-   Also called observations, especially in the tidyverse in R
+
+-   Variables can be categorical or numerical
+
+##  {#why-data-types-matter .statement-slide data-menu-title="Why data types matter"}
+
+Knowing what kind of variable we have drives our models of data analysis and is therefore critical to the enterprise of statistics
+
+## Variables come in two basic types: [categorical]{.keyword} and [numerical]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+[Categorical]{.keyword}
+
+-   Values represent groups or labels
+-   Describes *which kind* or *which category*
+-   Arithmetic operations do **not** make sense
+-   Values are names or labels rather than measurements
+-   Sometimes called qualitative
+-   The categories are called [levels]{.keyword}
+    -   Example: For the variable "sex chromosome genotype", the levels might be XX, XY, XO, XXY, or XYY)
+:::
+
+::: {.column width="50%"}
+[Numerical]{.keyword}
+
+-   Values represent quantities
+-   Describes *how much* or *how many*
+-   Arithmetic operations make sense
+-   Values are numbers with meaningful magnitudes
+    -   Example: 4 is twice as many as 2
+-   Sometimes called quantitative
+:::
+:::::
+
+## Categorical Variables are [nominal]{.keyword} or [ordinal]{.keyword}
+
+:::::: columns
+::: {.column width="33%"}
+[Nominal]{.keyword}
+
+-   No inherent order (sequence)
+-   Example:
+    -   treatment (levels: placebo, dosage 1, dosage 2)
+-   [Binary]{.keyword} variables: special case with only 2 levels
+    -   Example: survival (levels: alive, dead)
+:::
+
+::: {.column width="33%"}
+[Ordinal]{.keyword}
+
+-   Inherent order
+-   Often represent discretized numerical variables
+-   Examples:
+    -   life stage (levels: egg, larva, juvenile, subadult, adult)
+    -   size class (levels: small, med, large)
+:::
+
+::: {.column width="33%"}
+More examples:
+
+![(c) Allison Horst](images/nominal-ordinal-binary.png){fig-alt="Illustration showing examples of nominal, ordinal, and binary variables. The nominal variable is species (tutle, snail, butterfly), the ordinal variable is happiness level (unhappy, okay, awesome), and the binary variable is extinction status (extinct, not extinct)." fig-align="center"}
+:::
+::::::
+
+## Numerical Variables are [continous]{.keyword} or [discrete]{.keyword}
+
+:::::: columns
+::: {.column width="33%"}
+[Continuous]{.keyword}
+
+-   Measurements
+-   Infinite number of values within possible range
+-   Examples:
+    -   Core body temperature
+    -   Territory size
+    -   Cigarette consumption rate
+:::
+
+::: {.column width="33%"}
+[Discrete]{.keyword}
+
+-   Can only exist at limited values
+-   Counts (often)
+-   Examples:
+    -   Number of mates
+    -   Number of amino acids in a protein
+:::
+
+::: {.column width="33%"}
+More examples:
+
+![(c) Allison Horst](images/continous-discrete.png){fig-alt="Illustration showing examples of continuous and discrete variables." fig-align="center"}
+:::
+::::::
+
+## Common confusions, with examples to follow
+
+-   In practice, it can be confusing to decide
+
+    -   Ordinal vs. Numerical
+
+    -   Continuous vs. Discrete
+
+    -   Numerical vs. Categorical but stored as numbers
+
+## Numeric labels do not imply numerical variables
+
+::::: columns
+::: {.column width="50%"}
+-   Some variables use numbers only as labels
+-   The order of values is meaningful
+-   Distances between values are not defined or consistent
+-   Arithmetic operations are usually inappropriate
+-   Some such variables are cyclical rather than linear
+    -   E.g. (month 12 is equidistant from month 1 and 11)
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-width: 4.5
+#| fig-height: 3
+#| fig-cap: "**Ozone concentration by calendar month.** Month is treated as a categorical variable, even though month numbers appear on the axis. Data from the airquality dataset included with base R (datasets package)."
+
+library(dplyr)
+library(ggplot2)
+
+airquality |>
+  filter(!is.na(Ozone)) |>
+  mutate(
+    Month = factor(Month, levels = sort(unique(Month)))
+  ) |>
+  ggplot(aes(x = Month, y = Ozone)) +
+  geom_boxplot(
+    width = 0.6,
+    outlier.alpha = 0.4,
+    fill = "#4C72B0"
+  ) +
+  labs(
+    x = "Month (number)",
+    y = "Ozone concentration (ppb)"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    axis.title.x = element_text(margin = margin(t = 6)),
+    axis.title.y = element_text(margin = margin(r = 6)),
+    panel.grid.minor = element_blank()
+  )
+```
+:::
+:::::
+
+## Year can be numerical
+
+::::: columns
+::: {.column width="35%"}
+-   Year represents elapsed time
+-   Differences between years are meaningful
+-   Treat year as a numeric time variable
+:::
+
+::: {.column width="65%"}
+```{r}
+#| fig-width: 6.5
+#| fig-height: 3.5
+#| fig-cap: "**Line graph (time series) showing year as a numerical variable.** Average unemployment rate plotted against year treated as a quantitative measure of time, where differences between years are meaningful. Data: economics dataset (ggplot2)."
+
+economics |>
+  mutate(year = as.integer(format(date, "%Y"))) |>
+  group_by(year) |>
+  summarize(
+    unemployment_rate = mean(unemploy / pop),
+    .groups = "drop"
+  ) |>
+  ggplot(aes(x = year, y = unemployment_rate)) +
+  geom_line(linewidth = 0.7) +
+  geom_point(size = 1.8) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+  labs(x = "Year (number)", y = "Average unemployment rate") +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid.minor = element_blank(),
+    axis.title.x = element_text(margin = margin(t = 6)),
+    axis.title.y = element_text(margin = margin(r = 6))
+  )
+```
+:::
+:::::
+
+## Year can be categorical
+
+::::: columns
+::: {.column width="35%"}
+-   Year is used as a group label
+-   Compare a measured variable in selected years
+-   Treat year as a categorical variable
+:::
+
+::: {.column width="65%"}
+```{r}
+#| fig-width: 6.5
+#| fig-height: 3.5
+#| fig-cap: "**Bar chart showing year as a categorical variable.** Average unemployment rate compared across selected, non-equidistant years, with year treated as labeled groups rather than a continuous scale. Data: economics dataset (ggplot2)."
+
+selected_years <- c(1969, 1983, 2001, 2010)  # intentionally non-equidistant
+
+economics |>
+  mutate(year = as.integer(format(date, "%Y"))) |>
+  filter(year %in% selected_years) |>
+  group_by(year) |>
+  summarize(
+    unemployment_rate = mean(unemploy / pop),
+    .groups = "drop"
+  ) |>
+  mutate(year = factor(year, levels = selected_years)) |>
+  ggplot(aes(x = year, y = unemployment_rate)) +
+  geom_col(width = 0.7, fill = "#4C72B0") +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+  labs(x = "Year (category)", y = "Average unemployment rate") +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid.minor = element_blank(),
+    axis.title.x = element_text(margin = margin(t = 6)),
+    axis.title.y = element_text(margin = margin(r = 6))
+  )
+
+```
+:::
+:::::
+
+## Age is numerical; age class is ordinal
+
+::::: columns
+::: {.column width="50%"}
+-   Age as a measured quantity
+    -   Often in units of days, weeks, years, etc.
+    -   Differences and averages are meaningful.
+-   Age classes group ages into ordered categories
+    -   The order matters, but distances between classes are inconsistent or not possible to define
+:::
+
+::: {.column width="50%"}
+![Progression of Bald Eagle head plumage from juvenile to adult, illustrating how feather color and pattern change with age. This figure highlights that age classes represent ordered categories, and that the spacing between classes is not necessarily equal. Source: [Loudoun Wildlife Conservancy](https://loudounwildlife.org/2022/04/age-progression-bald-eagles/) (adapted from Avian Report).](images/clipboard-3474876288.png){fig-alt="Illustration showing a sequence of Bald Eagle heads from juvenile to adult, depicting gradual changes in feather coloration and markings as the bird matures."}
+:::
+:::::
+
+## Likert data are ordinal, not numerical
+
+::::: columns
+::: {.column width="50%"}
+-   Response levels have a clear order
+-   Numbers, if used, are labels, not measurements
+-   Differences between levels are not defined
+-   Treat Likert data as ordered categories
+-   Don't assign categories a numerical value and treat numerically
+:::
+
+::: {.column width="50%"}
+![An example questionnaire about a website design, with answers as a Likert scale. Source: Wikimedia Commons. Image by Nicholas Smith, CC BY-SA 3.0.](images/clipboard-1700607794.png){.fit-vertical fig-alt="Horizontal Likert scale with five ordered response options ranging from “Strongly disagree” on the left to “Strongly agree” on the right, illustrating ordered but non-quantitative survey responses."}
+:::
+:::::
+
+## Rankings are ordinal, not numerical
+
+::::: columns
+::: {.column width="50%"}
+-   Values indicate order only
+-   Differences between ranks are not meaningful
+-   Rank numbers are labels, not quantities
+-   Do not treat ranks as measurements
+:::
+
+::: {.column width="50%"}
+![Amazon product rating summary showing the percentage of 1–5 star reviews and a reported average of 4.3 out of 5. Star ratings are ordinal categories, even though they are commonly summarized using numerical averages.](images/clipboard-3769565349.png){fig-alt="Bar chart of Amazon product ratings showing the percentage of reviews for 1-, 2-, 3-, 4-, and 5-star categories, with an overall average rating of 4.3 out of 5 stars displayed above the chart."}
+:::
+:::::
+
+## 0/1 variables are usually categorical
+
+::::: columns
+::: {.column width="60%"}
+-   Values represent two categories (binary outcome)
+-   Numbers are a coding choice, not a measurement
+-   Point estimates are proportions, not means of a quantity
+-   Inference depends on modeling a binomial process
+-   Do not let variable type be determined by how data are coded
+-   Safe default in R: convert to a logical (`TRUE` / `FALSE`) variable
+:::
+
+::: {.column width="40%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+#| fig-cap: "**Estimating a binary outcome with uncertainty.** Both panels show the same point estimates for low birth weight by smoking status. Left: confidence intervals computed correctly by treating the data as binomial proportions. Right: confidence intervals computed incorrectly by treating 0/1 data as numerical means. Data: `birthwt` (MASS)."
+
+
+library(MASS)
+
+col_point <- "#009E73"  # colorblind-safe green
+
+df <- MASS::birthwt |>
+  dplyr::mutate(
+    smoke = factor(smoke, levels = c(0, 1),
+                   labels = c("Non-smoker", "Smoker"))
+  )
+
+summ <- df |>
+  dplyr::group_by(smoke) |>
+  dplyr::summarize(
+    n = dplyr::n(),
+    x = sum(low == 1),
+    p_hat = mean(low),
+    .groups = "drop"
+  )
+
+# Correct: binomial proportion CI (score/Wilson-type via prop.test)
+prop_ci <- summ |>
+  dplyr::rowwise() |>
+  dplyr::mutate(
+    method = "Correct: proportion CI",
+    ci = list(stats::prop.test(x, n, correct = FALSE)$conf.int),
+    lo = ci[[1]][1],
+    hi = ci[[1]][2]
+  ) |>
+  dplyr::ungroup() |>
+  dplyr::select(smoke, p_hat, lo, hi, method)
+
+# Incorrect: t-based CI treating 0/1 as numeric
+mean_ci <- df |>
+  dplyr::group_by(smoke) |>
+  dplyr::summarize(
+    p_hat = mean(low),
+    lo = stats::t.test(low)$conf.int[1],
+    hi = stats::t.test(low)$conf.int[2],
+    method = "Incorrect: mean CI",
+    .groups = "drop"
+  )
+
+plot_df <- dplyr::bind_rows(prop_ci, mean_ci)
+
+ggplot(plot_df, aes(x = smoke, y = p_hat)) +
+  geom_pointrange(
+    aes(ymin = lo, ymax = hi),
+    color = col_point,
+    linewidth = 0.7
+  ) +
+  geom_point(size = 2.4, color = col_point) +
+  facet_wrap(~ method) +
+  scale_y_continuous(
+    limits = c(0, 1),
+    breaks = seq(0, 1, by = 0.2)
+  ) +
+  labs(
+    x = NULL,
+    y = "Estimated proportion of low birth weight"
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    panel.grid.minor = element_blank(),
+    strip.text = element_text(face = "bold"),
+    axis.title.y = element_text(margin = margin(r = 6))
+  )
+```
+:::
+:::::
+
+## [Explanatory]{.keyword} and [response]{.keyword} variables
+
+::::: columns
+::: {.column width="50%"}
+-   Variables are often related to one another
+-   [Explanatory variable]{.keyword} is used to explain or predict variation in another variable
+-   [Response variable]{.keyword} is the outcome being measured
+-   In graphs, explanatory usually on **x-axis**, response on **y-axis**
+-   These terms do **not** imply causation
+-   Which variable plays which role depends on the scientific question
+:::
+
+::: {.column width="50%"}
+![Illustration showing the placement of explanatory and response variables in a graph. Financial damage (thousands of dollars) is shown on the x-axis as the explanatory variable, and number of firefighters is shown on the y-axis as the response variable. Source: Sophia Learning, “Explanatory and Response Variables,” Sophia.org.](images/clipboard-2579283811.png){fig-alt="Diagram of a two-axis graph labeled to show variable roles, with financial damage on the horizontal x-axis as the explanatory variable and number of firefighters on the vertical y-axis as the response variable, with arrows pointing to each axis."}
+:::
+:::::
+
+## [Frequency distributions]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+-   Different individuals in a population will have different values of a given parameter (natural variation)
+
+-   The [frequency]{.keyword} of a particular value is the number of times it is observed in a sample
+
+-   The frequencies of all values can be plotted to produce a [frequency distribution]{.keyword}
+
+    -   Histogram for numerical variable
+
+    -   Bar chart for categorical variable
+:::
+
+::: {.column width="50%"}
+![The frequency distribution of beak depths in a sample of 100 finches from a Galápagos island population (Boag and Grant 1984). The vertical axis indicates the frequency, the number of observations in each 0.5-mm interval.\
+Source: Whitlock & Schluter, *The Analysis of Biological Data*, 3rd ed.](images/clipboard-2296887591.png)
+:::
+:::::
+
+## [Probability distributions]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+-   The distribution of a variable in the whole population is called its [probability distribution]{.keyword}
+
+-   Provides the probability of occurrence of different possible outcomes
+
+-   The true probability distribution is usually unknown ([latent]{.keyword}) and is estimated from a sample
+:::
+
+::: {.column width="50%"}
+![A normal distribution. This probability distribution is often used to approximate the distribution of a variable in the population from which a sample has been drawn.\
+Source: Whitlock & Schluter, *The Analysis of Biological Data*, 3rd ed.](images/clipboard-2246667733.png)
+:::
+:::::
+
+## [Experimental]{style=".keyword"} vs. [observational]{style=".keyword"} studies
+
+::::: columns
+::: {.column width="50%"}
+### [Experimental Studies]{style=".keyword"}
+
+-   Researcher assigns treatments (randomly) to individuals
+
+-   [Treatments]{style=".keyword"} are values (i.e. levels) of an categorical explanatory variable
+
+-   **Can determine causal relationship** between explanatory and response variables
+:::
+
+::: {.column width="50%"}
+### [Observational Studies]{style=".keyword"}
+
+-   Treatments are not assigned by a researcher
+
+-   Organisms might choose their own treatment
+
+-   Or the treatment might occur naturally
+
+-   **Can only determine association** between variables
+:::
+:::::
+
+## Observational data can show that variables move together, but not why they do
+
+![Time series showing a strong correlation between ice cream consumption and violent crime rates in the United States, illustrating a spurious relationship between unrelated variables. Source: Tyler Vigen, Spurious Correlations (tylervigen.com).](images/clipboard-3451539255.png){fig-alt="Line graph with two time series from 1990 to 2020 showing ice cream consumption and violent crime rates declining together over time, demonstrating a strong correlation between variables with no causal relationship."}
+
+## Direction of causation is ambiguous in observational studies
+
+::::: columns
+::: {.column width="50%"}
+EXAMPLE: A study finds that plants with fewer pests tend to have greater biomass.
+
+-   Pests may reduce plant growth and vigor
+-   Alternatively, larger or healthier plants may better resist or tolerate pests
+-   Both explanations are consistent with the observed pattern
+-   Because no treatments were assigned, the direction of causation is unclear
+:::
+
+::: {.column width="50%"}
+![Potato beetle feeding on a plant leaf, illustrating a plant–herbivore interaction where observed associations (e.g., pest presence and plant biomass) do not, by themselves, reveal the direction of causation. Photo: © Diana Griffin ([iNaturalist](https://www.inaturalist.org/observations/293271984)).](images/clipboard-1309518114.png){fig-alt="Close-up photograph of a potato beetle on a green plant leaf, showing an insect herbivore feeding on plant tissue."}
+:::
+:::::
+
+## Why experiments can identify causation
+
+-   In experiments, the researcher **assigns treatments to units**
+-   **Random assignment** balances other variables across treatments
+-   This reduces the influence of [confounding variables]{.keyword}
+
+[Confounding variables]{#.keyword}\
+- Variables related to both the explanatory and response variables\
+- Can create associations that are not causal\
+- Randomization breaks their systematic influence
+
+**Result:** Differences in outcomes can be attributed to the treatment itself
+
+## Example of a confounding variable
+
+::::: columns
+::: {.column width="50%"}
+![General properties of a confounder.](images/clipboard-341897626.png)
+:::
+
+::: {.column width="50%"}
+![Example confounding variable. Body mass index may affect end stage renal disease. However, body mass index may also affect blood pressure, which may independently affect renal disease.](images/clipboard-279685996.png)
+:::
+:::::
+
+Result: It is impossible to tell assign cause for end stage renal disease to one variable or the other.

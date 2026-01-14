@@ -9,7 +9,7 @@ format:
 Lecture slide decks are available in html format.
 
 ::::::::::: {.grid .gap-3}
-:::::: {.g-col-12 .g-col-sm-6}
+:::::: {.g-col-12 .g-col-sm-4}
 ::::: {.card .h-100}
 ::: card-header
 Lecture 1
@@ -25,15 +25,17 @@ Introduction to populations, samples, and the role of sampling in statistical in
 :::::
 ::::::
 
-:::::: {.g-col-12 .g-col-sm-6}
+:::::: {.g-col-12 .g-col-sm-4}
 ::::: {.card .h-100}
 ::: card-header
 Lecture 2
 :::
 ::: card-body
-### Coming Soon {.card-title}
+##### Data and Variables {.card-title}
 
-[Go to Lecture](){.btn .btn-primary}
+Types of variables, their roles in analysis, and why correlation does not imply causation.
+
+[Go to Lecture](lecture-02-data-and-variables/){.btn .btn-primary}
 :::
 ::::
 ::::::
