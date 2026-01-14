@@ -114,7 +114,7 @@ More examples:
 :::
 ::::::
 
-## Numerical Variables are [continous]{.keyword} or [discrete]{.keyword}
+## Numerical Variables are [continuous]{.keyword} or [discrete]{.keyword}
 
 :::::: columns
 ::: {.column width="33%"}
