@@ -28,6 +28,23 @@
   margin-bottom: 0;
 }
 
+/* Big statement slide */
+.reveal .statement-slide {
+  display: flex;
+  align-items: center;     /* vertical centering */
+  justify-content: center; /* horizontal centering */
+  height: 100%;
+  text-align: center;
+}
+
+.reveal .statement-slide p {
+  font-size: 2.6em;        /* adjust as needed */
+  line-height: 1.25;
+  font-weight: 600;
+  color: var(--accent, #2b6cb0); /* fallback if no brand token */
+  margin: 0;
+}
+
 .reveal .keyword {
   font-family: "Acumin Pro SemiCondensed", "Acumin Pro", sans-serif;
   font-weight: 700;
@@ -44,4 +61,10 @@
 .reveal strong {
   font-weight: 700;
   color: #CC5500;
+}
+
+.reveal .slides img.fit-vertical {
+  max-width: 100%;
+  max-height: 70vh;
+  height: auto;
 }
