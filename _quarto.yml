@@ -36,8 +36,8 @@ format:
   html:
     toc: true
     theme: 
-      - cosmo
-      - tlm-styles/tlm-theme.scss
+      - default
+      - styles.scss
     include-in-header:
       - text: |
           <link rel="stylesheet" href="https://use.typekit.net/tag1lvz.css">
