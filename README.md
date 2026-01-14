@@ -28,3 +28,16 @@ To recreate the exact package environment on a new machine:
 ```r
 renv::restore()
 ```
+
+## tlm-styles Submodule
+
+This repository uses the `tlm-styles` Git submodule to manage shared Quarto styles across multiple course repositories.
+
+The `tlm-styles` submodule is located in the `tlm-styles/` folder and contains:
+
+```
+_brand.yml            # Quarto brand tokens (fonts, colors)
+tlm-theme.scss          # main SCSS theme file
+```
+
+See the [tlm-styles README](tlm-styles/README.md) for details on using and updating the submodule.
