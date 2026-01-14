@@ -6,15 +6,17 @@ format:
     page-layout: full
 ---
 
-::::::::::: row
-:::::: col-sm-3
-::::: card
+Lecture slide decks are available in html format.
+
+::::::::::: {.grid .gap-3}
+:::::: {.g-col-12 .g-col-sm-6}
+::::: {.card .h-100}
 ::: card-header
 Lecture 1
 :::
 
 ::: card-body
-### Statistics and Samples {.card-title}
+##### Statistics and Samples {.card-title}
 
 Introduction to populations, samples, and the role of sampling in statistical inference.
 
@@ -23,8 +25,8 @@ Introduction to populations, samples, and the role of sampling in statistical in
 :::::
 ::::::
 
-:::::: col-sm-3
-:::: card
+:::::: {.g-col-12 .g-col-sm-6}
+::::: {.card .h-100}
 ::: card-header
 Lecture 2
 :::

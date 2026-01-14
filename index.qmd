@@ -22,34 +22,34 @@ Software: R, RStudio, Posit Cloud (introductory use)
 
 ## Start Here
 
-::::::::::::: row
-::::::: col-sm-6
-:::: card
+::::::: {.grid .gap-3}
+::: {.g-col-12 .g-col-sm-6}
+::: {.card .h-100}
 ::: card-body
-##### Syllabus {.card-title}
+### Syllabus {.card-title}
 
 Course policies, grading, materials, and expectations.
 
 [Go to Syllabus](syllabus/){.btn .btn-primary}
 :::
-::::
+:::
 
-:::: card
+:::
+
+::: {.g-col-12 .g-col-sm-6}
+::: {.card .h-100}
 ::: card-body
 ##### Schedule {.card-title}
 
-Weekly topics, readings, and links. 
+Weekly topics, readings, and links.
 
 [Go to Schedule](schedule/){.btn .btn-primary}
 :::
-::::
-:::::::
+:::
+:::
 
-:::::::::::::
-::::::::::::: row
-
-::::::: col-sm-6
-:::: card
+::: {.g-col-12 .g-col-sm-6}
+::: {.card .h-100}
 ::: card-body
 ##### Lecture Slides {.card-title}
 
@@ -57,9 +57,12 @@ Slide decks (HTML/PDF) and supporting materials.
 
 [Go to Lectures](lectures/){.btn .btn-primary}
 :::
-::::
+:::
 
-:::: card
+:::
+
+::: {.g-col-12 .g-col-sm-6}
+::: {.card .h-100}
 ::: card-body
 ##### Lab Assignments {.card-title}
 
@@ -67,9 +70,9 @@ Lab pages, handouts, datasets, and submission details.
 
 [Go to Labs](labs/){.btn .btn-primary}
 :::
-::::
+:::
+:::
 :::::::
-:::::::::::::
 
 ## For Enrolled Students
 
