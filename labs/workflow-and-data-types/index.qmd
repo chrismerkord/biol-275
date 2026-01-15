@@ -238,7 +238,7 @@ In R, what you see in `glimpse()` is usually a **class** (type) such as:
 These two systems overlap, but they are not identical. This table is a practical crosswalk:
 
 | Lecture concept | Typical meaning | Common R type(s) you’ll see | Short name in a tibble | Notes |
-|----|----|----|----|----|
+|---------------|---------------|---------------|---------------|---------------|
 | Nominal (categorical) | categories with no order | `factor`, `character` | `fct`, `chr` | `factor` is preferred for “known categories” |
 | Ordinal (categorical) | categories with order | `factor` (ordered) | `fct` | ordering must be defined explicitly |
 | Discrete (numeric) | counts (0, 1, 2, …) | `integer`, sometimes `double` | `int` | counts can be stored as numeric even if “discrete” |
@@ -283,11 +283,13 @@ In this section, you will explore the relationship between two penguin traits: *
 
 Before running any code, think about how these two variables might be related. If a penguin has a longer bill, do you expect it to also have a deeper bill, or might there be little or no relationship between them?
 
-On your handout, sketch your prediction by:
-
--   Drawing x- and y-axes
--   Labeling the axes **bill length** and **bill depth**
--   Drawing a line or pattern that shows how you think the two variables are related
+> **Handout Q10**
+>
+> Sketch your prediction by:
+>
+> -   Drawing x- and y-axes
+> -   Labeling the axes **bill length** and **bill depth**
+> -   Drawing a line or pattern that shows how you think the two variables are related
 
 Do this **before** you generate the plot in R.
 
@@ -329,7 +331,7 @@ ggplot(
   )
 ```
 
-> **Handout Q10:**
+> **Handout Q11:**
 >
 > Briefly interpret the plot:
 >
