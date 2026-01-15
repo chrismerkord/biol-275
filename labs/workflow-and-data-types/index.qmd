@@ -32,11 +32,11 @@ This page will tell you exactly when to answer each question (e.g., **Handout Q1
 
 1.  Open the course Posit Cloud link from the D2L announcement.
 2.  Sign in with your Posit Cloud account.
-3.  Join the course workspace.
+3.  Join the course workspace. You will be redirected to a Welcome screen.
 
 > **Handout Q1**
 >
-> Write down the name of the workspace you joined and confirm you can see the course projects/templates.
+> Write down the name of the workspace you joined. You can see this in the left navigation bar under **Spaces**.
 
 ::: callout-tip
 If you are already in the workspace, proceed to the next step.
@@ -44,9 +44,8 @@ If you are already in the workspace, proceed to the next step.
 
 ### 2) Start your Lab 2 project from the template
 
-1.  In the course workspace, locate the provided **Lab 2 project template**.
-2.  Click **Copy** (or the equivalent action) to create your own copy.
-3.  Open your copy of the project.
+1.  In the course workspace, click the Content heading to see projects in the workspace.
+2.  Click the bluen START button the Lab 2 project. This will create your own copy of the project and open it.
 
 > **Handout Q2:**
 >
