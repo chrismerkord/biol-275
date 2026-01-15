@@ -6,30 +6,34 @@ format:
     page-layout: full
 ---
 
-::::::::::: row
-:::::: col-sm-3
-::::: card
+::::::::::: {.grid .gap-3}
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
 ::: card-header
 Lab 1
 :::
 
 ::: card-body
-### Introduction to R and RStudio {.card-title}
+##### Introduction to R and RStudio {.card-title}
 
-[Go to Lab](introduction-to-r-and-rstudio/){.btn .btn-primary}
+Introduction to R and Posit Cloud, focusing on basic calculations, functions, and understanding R’s console output.
+
+[Lab 1](introduction-to-r-and-rstudio/)
 :::
 :::::
 ::::::
 
-:::::: col-sm-3
-:::: card
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
 ::: card-header
 Lab 2
 :::
 ::: card-body
-### Coming Soon {.card-title}
+##### Workflow and Data Types {.card-title}
 
-[Go to Lab](){.btn .btn-primary}
+Working with data frames in R using the palmerpenguins dataset to practice data inspection, data types, and simple summaries.
+
+[Lab 2](workflow-and-data-types/)
 :::
 ::::
 ::::::

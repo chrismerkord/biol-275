@@ -1,0 +1,330 @@
+---
+title: "Lab 2: Workflow and Data Types"
+description: "Working with data frames in R using the palmerpenguins dataset to practice data inspection, data types, and simple summaries."
+format: html
+execute:
+  echo: true
+---
+
+## Student Learning Outcomes
+
+By the end of lab you should be able to:
+
+-   Access our Posit Cloud workspace and start a project from a template.
+-   Load course packages (the tidyverse) and access the `palmerpenguins` dataset.
+-   Inspect a dataset to answer:
+    -   *How many observations/variables?*
+    -   *What are the variable names?*
+    -   *What are their data types?*
+-   Produce quick summaries of all variables.
+-   Explore the relationship between two numerical variables using a scatterplot.
+
+::: callout-important
+**Paper handout:** You will answer questions on a paper handout as you move through this page.\
+This page will tell you exactly when to answer each question (e.g., **Handout Q1**).
+:::
+
+------------------------------------------------------------------------
+
+## Setup and workflow
+
+### 1) Join the course workspace on Posit Cloud
+
+1.  Open the course Posit Cloud link from the D2L announcement.
+2.  Sign in with your Posit Cloud account.
+3.  Join the course workspace.
+
+**Handout Q1:** Write down the name of the workspace you joined and confirm you can see the course projects/templates.
+
+::: callout-tip
+If you are already in the workspace, proceed to the next step.
+:::
+
+### 2) Start your Lab 2 project from the template
+
+1.  In the course workspace, locate the provided **Lab 2 project template**.
+2.  Click **Copy** (or the equivalent action) to create your own copy.
+3.  Open your copy of the project.
+
+Inside RStudio, confirm you see:
+
+-   **Files** pane with a list of files in the project folder
+-   A file ending in `.Rproj`
+-   A file named `lab-report.qmd`
+
+**Handout Q2:** What is the name of your Lab 2 project? What file extension indicates an RStudio Project?
+
+::: callout-note
+**Why we use Projects:** Projects keep your code, data, and outputs together in one folder and make relative file paths work reliably.
+:::
+
+### 3) Create an R script
+
+In your Lab 2 project, create a new R script:
+
+-   In the Files pane, click New File → R Script.
+-   Save the file immediately.
+-   Name the script: `lab-02.R`
+
+------------------------------------------------------------------------
+
+## Packages and the penguins dataset
+
+### 4) Packages for this course
+
+In R, shared code is distributed as **packages** (bundles of functions, data, and documentation).\
+In this course we will use the **tidyverse** in every lab moving forward.
+
+For this lab you will use:
+
+-   `tidyverse` (especially **dplyr**, **ggplot2**, **readr**, **tibble**)
+-   `palmerpenguins` (the dataset source)
+
+#### Install packages
+
+Copy the code from the box below by clicking the **clipboard icon**, paste it into the **Console** (not your script), and run it to install the required packages.
+
+```{r}
+#| eval: false
+
+install.packages(c("tidyverse", "palmerpenguins"))
+```
+
+#### Load packages (run every new session)
+
+Put this at the top of your script and run it:
+
+```{r}
+#| message: false
+
+# load packages -----------------------------------------------------------
+
+library(tidyverse)      # tools for working with data
+library(palmerpenguins) # penguin dataset
+```
+
+**Handout Q3:** What is the difference between *installing* a package and *loading* a package?
+
+::: callout-tip
+## tidyverse messages
+
+When you load the tidyverse, you will see some messages in the console. These are telling you that tidyverse is loading some other packages for you, and that some of their functions have the same name as some functions in base R packages.
+
+You can usually just ignore these messages.
+:::
+
+------------------------------------------------------------------------
+
+## Data frames, tibbles, and penguins
+
+### 5) What is a data frame? What is a tibble?
+
+A **data frame** is the basic table-like data structure in R:
+
+-   **Rows** = observations (cases, individuals, sampling units)
+-   **Columns** = variables (measurements or categories)
+
+A **tibble** is a modern version of a data frame used by the tidyverse:
+
+-   Prints in a cleaner way (doesn’t flood your console)
+-   Keeps variable types visible
+-   Plays nicely with tidyverse functions
+
+The `palmerpenguins` package includes a dataset named `penguins` with measurements from penguins in the Palmer Archipelago (Antarctica).
+
+![Stylized illustrations of the three penguin species in the *palmerpenguins* dataset—Chinstrap, Gentoo, and Adélie—commonly used for teaching data visualization and data analysis in R. Artwork by \@allison_horst](images/clipboard-3055016893.png){fig-alt="Illustrated image showing three penguins standing side by side against colorful paint-splash backgrounds, representing the three species in the palmerpenguins dataset: Chinstrap, Gentoo, and Adélie." width="75%"}
+
+Run this to print the `penguins` object in the console:
+
+```{r}
+penguins
+```
+
+**Handout Q4:** What does a *row* represent in the `penguins` dataset? What does a *column* represent?
+
+------------------------------------------------------------------------
+
+## Inspecting a dataset and identifying variable types
+
+### 6) Basic inspection tools
+
+There are many functions that give you information about a dataset. Some, like the next example, are basic functions included in R.
+
+#### Size: `nrow()` and `ncol()`
+
+The classic way to inspect a dataset is will functions like `nrow()` and `ncol`, which return the number of rows and columns in a data frame.
+
+```{r}
+#| output: false
+
+nrow(penguins)
+ncol(penguins)
+```
+
+**Handout Q5:** How many rows and columns are in `penguins`?
+
+#### Print: look at a few rows (without printing everything)
+
+With modern tibbles, printing in the console provides the same information as the previous two functions, plus a lot more.
+
+Run the following lines of code, pausing to see the output after each line. Can you spot where the number of rows and columns is displayed in the output?
+
+```{r}
+#| output: false
+
+print(penguins)
+print(penguins, n = 15, width = Inf)  # show more rows and all columns
+```
+
+#### Structure overview: `glimpse()`
+
+This is the fastest way to see:
+
+-   variable (column) names
+-   variable types (R classes)
+-   a preview of values
+
+```{r}
+glimpse(penguins)
+```
+
+**Handout Q6:** From `glimpse(penguins)`, list **three** variable names and their **R data types**.
+
+#### Quick counts: `dplyr::count()`
+
+Use `count()` to see how many observations fall in each category:
+
+```{r}
+#| output: false
+
+count(penguins, species)
+count(penguins, island)
+```
+
+**Handout Q7:** Which species is most common in the dataset? How many rows are there for that species?
+
+::: callout-warning
+Some variables include missing values (`NA`). For counting, you can include them with:
+
+```{r}
+#| output: false
+
+count(penguins, sex, sort = TRUE, .drop = FALSE)
+```
+:::
+
+------------------------------------------------------------------------
+
+### 7) Connecting lecture data types to R variable types
+
+In lecture, you learned data types like **nominal**, **ordinal**, **discrete**, and **continuous**.
+
+In R, what you see in `glimpse()` is usually a **class** (type) such as:
+
+-   `character` (text)
+-   `factor` (categorical with a fixed set of levels)
+-   `logical` (TRUE/FALSE)
+-   `integer` (whole numbers)
+-   `double` / `numeric` (numbers with decimals)
+
+These two systems overlap, but they are not identical. This table is a practical crosswalk:
+
+| Lecture concept | Typical meaning | Common R type(s) you’ll see | Short name in a tibble | Notes |
+|---------------|---------------|---------------|---------------|---------------|
+| Nominal (categorical) | categories with no order | `factor`, `character` | `fct`, `chr` | `factor` is preferred for “known categories” |
+| Ordinal (categorical) | categories with order | `factor` (ordered) | `fct` | ordering must be defined explicitly |
+| Discrete (numeric) | counts (0, 1, 2, …) | `integer`, sometimes `double` | `int` | counts can be stored as numeric even if “discrete” |
+| Continuous (numeric) | measured on a continuum | `double` / `numeric` | `dbl` | most measurements are `double` |
+
+**Handout Q8:** Choose **two** variables in `penguins` and write their type using (a) lecture terminology and (b) R type from `glimpse()`.
+
+------------------------------------------------------------------------
+
+## Summarizing variables
+
+### 8) Summaries you can generate quickly
+
+#### Base R summary: `summary()`
+
+This gives different summaries depending on variable type:
+
+```{r}
+#| output: false
+
+summary(penguins)
+```
+
+-   For numeric variables: min, quartiles, median, mean, max (plus `NA`s)
+-   For categorical variables: counts per category (plus `NA`s)
+
+**Handout Q9:** Use `summary(penguins)` to answer: *Which variable(s) show missing values?*
+
+------------------------------------------------------------------------
+
+## Thinking about relationships between variables
+
+In this section, you will explore the relationship between two penguin traits: **bill length** and **bill depth**. These measurements describe different dimensions of the penguin’s bill and are commonly used to study variation among individuals and species. Refer to the diagram below to be clear on what is meant by *length* versus *depth*.
+
+![Diagram illustrating penguin bill (culmen) measurements, showing how bill length is measured along the ridge of the upper bill and bill depth is measured vertically at the base of the bill. Artwork by \@allison_horst](images/clipboard-3266250749.png){fig-alt="Labeled diagram of a penguin head showing two bill measurements: bill length measured along the top ridge of the bill from base to tip, and bill depth measured vertically at the base of the bill." fig-align="center" width="60%"}
+
+### 9) Predict the relationship before plotting
+
+Before running any code, think about how these two variables might be related. If a penguin has a longer bill, do you expect it to also have a deeper bill, or might there be little or no relationship between them?
+
+On your handout, sketch your prediction by:
+
+-   Drawing x- and y-axes
+-   Labeling the axes **bill length** and **bill depth**
+-   Drawing a line or pattern that shows how you think the two variables are related
+
+Do this **before** you generate the plot in R.
+
+### 10) Make a scatterplot with ggplot2
+
+The following code example is adapted from the **palmerpenguins** package website:\
+<https://allisonhorst.github.io/palmerpenguins/articles/examples.html>
+
+Copy this code to your script exactly as written:
+
+```{r}
+#| echo: true
+#| fig-show: hide
+
+ggplot(
+  data = penguins, 
+  mapping = aes(x = bill_length_mm, y = bill_depth_mm, group = species)
+) +
+  geom_point(
+    aes(color = species, shape = species),
+    size = 3, 
+    alpha = 0.8
+  ) +
+  geom_smooth(method = "lm", se = FALSE, aes(color = species)) +
+  scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
+  labs(
+    title = "Penguin bill dimensions",
+    subtitle = "Bill length and depth for Adelie, Chinstrap and Gentoo Penguins at Palmer Station LTER",
+    x = "Bill length (mm)",
+    y = "Bill depth (mm)",
+    color = "Penguin species",
+    shape = "Penguin species"
+  ) +
+  theme(
+    legend.position = c(0.85, 0.15),
+    plot.title.position = "plot",
+    plot.caption = element_text(hjust = 0, face = "italic"),
+    plot.caption.position = "plot"
+  )
+```
+
+**Handout Q10:** Briefly interpret the plot:
+
+-   What is the relationship between body mass and flipper length?
+-   Do species appear to differ? How?
+
+------------------------------------------------------------------------
+
+## Wrap-up and submission
+
+1.  Make sure your script is saved in your Lab 2 project.
+2.  Keep your handout and **show it to a Learning Assistant for a completion grade before you leave lab**. You may do this as soon as you finish.

@@ -28,6 +28,18 @@
   margin-bottom: 0;
 }
 
+/* Distinct styling for R output blocks */
+div.cell-output,
+div.cell-output-stdout,
+div.cell-output-stderr {
+  background-color: #f1f3f5;   /* slightly darker than code blocks */
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+}
+
 /* Big statement slide */
 .reveal .statement-slide {
   display: flex;
