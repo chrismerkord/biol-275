@@ -1,0 +1,66 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+:::::::::::::::::: calendar-grid
+::::: {.card .text-center}
+::: card-header
+
+:::
+::: {.card-body .text-center}
+1
+:::
+:::::
+
+::::: card
+::: {.card-header .text-center}
+Jan 12
+:::
+
+::: {.card-body .text-start}
+Lecture
+:::
+:::::
+
+::::: {.card .lab}
+::: {.card-header .text-center}
+13
+:::
+
+::: {.card-body .text-start}
+Lab
+:::
+:::::
+
+::::: {.card .lecture}
+::: {.card-header .text-center}
+14
+:::
+
+::: {.card-body .text-start}
+Lecture
+:::
+:::::
+
+::::: card
+::: {.card-header .text-center}
+15
+:::
+
+::: {.card-body .text-start}
+Lab
+:::
+:::::
+
+::::: card
+::: {.card-header .text-center}
+16
+:::
+
+::: {.card-body .text-start}
+Lecture
+:::
+:::::
+::::::::::::::::::

@@ -80,3 +80,40 @@ div.cell-output-stderr {
   max-height: 70vh;
   height: auto;
 }
+
+/* calendar grid */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: 0.3fr repeat(5, 1fr); /* narrow week column + 5 days */
+  gap: 0rem;
+}
+
+/* calendar card header styling */
+.calendar-grid .card-header {
+  font-size: 0.85em;          /* smaller than body text */
+  background-color: inherit; /* match card body */
+  border-bottom: 0;          /* remove header/body divider */
+  padding-bottom: 0.25rem;   /* tighten spacing */
+  color: #999;          /* dark gray text */
+}
+
+.calendar-grid .card-body {
+  padding-top: 0.25rem;      /* visually merge with header */
+}
+
+/* activity-based card colors using Bootstrap subtle variants */
+.calendar-grid .card.lecture {
+  background-color: var(--bs-primary-bg-subtle);
+}
+
+.calendar-grid .card.lab {
+  background-color: var(--bs-success-bg-subtle);
+}
+
+.calendar-grid .card.exam {
+  background-color: var(--bs-danger-bg-subtle);
+}
+
+.calendar-grid .card.noclass {
+  background-color: var(--bs-secondary-bg-subtle);
+}
