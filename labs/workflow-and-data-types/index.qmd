@@ -210,16 +210,6 @@ count(penguins, island)
 >
 > Which species is most common in the dataset? How many rows are there for that species?
 
-::: callout-warning
-Some variables include missing values (`NA`). For counting, you can include them with:
-
-```{r}
-#| output: false
-
-count(penguins, sex, sort = TRUE, .drop = FALSE)
-```
-:::
-
 ------------------------------------------------------------------------
 
 ### 7) Connecting lecture data types to R variable types
