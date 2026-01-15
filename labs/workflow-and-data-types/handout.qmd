@@ -109,6 +109,6 @@ header-includes:
 
 \ab{3in}
 
-**11. Briefly interpret the plot: What is the relationship between body mass and flipper length? Do species appear to differ? How?**
+**11. Briefly interpret the plot: What is the relationship between bill length and bill depth? Is that relationship the same across species?**
 
 \ab{1.5 in}
