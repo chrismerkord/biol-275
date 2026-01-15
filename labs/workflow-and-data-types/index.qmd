@@ -46,13 +46,7 @@ If you are already in the workspace, proceed to the next step.
 2.  Click **Copy** (or the equivalent action) to create your own copy.
 3.  Open your copy of the project.
 
-Inside RStudio, confirm you see:
-
--   **Files** pane with a list of files in the project folder
--   A file ending in `.Rproj`
--   A file named `lab-report.qmd`
-
-**Handout Q2:** What is the name of your Lab 2 project? What file extension indicates an RStudio Project?
+**Handout Q2:** What is the name of your Lab 2 project?
 
 ::: callout-note
 **Why we use Projects:** Projects keep your code, data, and outputs together in one folder and make relative file paths work reliably.
