@@ -324,7 +324,7 @@ ggplot(
 >
 > Briefly interpret the plot:
 >
-> -   What is the relationship between body mass and flipper length?
+> -   What is the relationship between bill length and bill depth?
 > -   Do species appear to differ? How?
 
 ------------------------------------------------------------------------
