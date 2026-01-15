@@ -34,7 +34,9 @@ This page will tell you exactly when to answer each question (e.g., **Handout Q1
 2.  Sign in with your Posit Cloud account.
 3.  Join the course workspace.
 
-**Handout Q1:** Write down the name of the workspace you joined and confirm you can see the course projects/templates.
+> **Handout Q1**
+>
+> Write down the name of the workspace you joined and confirm you can see the course projects/templates.
 
 ::: callout-tip
 If you are already in the workspace, proceed to the next step.
@@ -46,7 +48,9 @@ If you are already in the workspace, proceed to the next step.
 2.  Click **Copy** (or the equivalent action) to create your own copy.
 3.  Open your copy of the project.
 
-**Handout Q2:** What is the name of your Lab 2 project?
+> **Handout Q2:**
+>
+> What is the name of your Lab 2 project?
 
 ::: callout-note
 **Why we use Projects:** Projects keep your code, data, and outputs together in one folder and make relative file paths work reliably.
@@ -97,7 +101,9 @@ library(tidyverse)      # tools for working with data
 library(palmerpenguins) # penguin dataset
 ```
 
-**Handout Q3:** What is the difference between *installing* a package and *loading* a package?
+> **Handout Q3:**
+>
+> What is the difference between *installing* a package and *loading* a package?
 
 ::: callout-tip
 ## tidyverse messages
@@ -134,7 +140,9 @@ Run this to print the `penguins` object in the console:
 penguins
 ```
 
-**Handout Q4:** What does a *row* represent in the `penguins` dataset? What does a *column* represent?
+> **Handout Q4:**
+>
+> What does a *row* represent in the `penguins` dataset? What does a *column* represent?
 
 ------------------------------------------------------------------------
 
@@ -155,7 +163,9 @@ nrow(penguins)
 ncol(penguins)
 ```
 
-**Handout Q5:** How many rows and columns are in `penguins`?
+> **Handout Q5:**
+>
+> How many rows and columns are in `penguins`?
 
 #### Print: look at a few rows (without printing everything)
 
@@ -182,7 +192,9 @@ This is the fastest way to see:
 glimpse(penguins)
 ```
 
-**Handout Q6:** From `glimpse(penguins)`, list **three** variable names and their **R data types**.
+> **Handout Q6:**
+>
+> From `glimpse(penguins)`, list **three** variables in the penguins dataset.
 
 #### Quick counts: `dplyr::count()`
 
@@ -195,7 +207,9 @@ count(penguins, species)
 count(penguins, island)
 ```
 
-**Handout Q7:** Which species is most common in the dataset? How many rows are there for that species?
+> **Handout Q7:**
+>
+> Which species is most common in the dataset? How many rows are there for that species?
 
 ::: callout-warning
 Some variables include missing values (`NA`). For counting, you can include them with:
@@ -224,13 +238,15 @@ In R, what you see in `glimpse()` is usually a **class** (type) such as:
 These two systems overlap, but they are not identical. This table is a practical crosswalk:
 
 | Lecture concept | Typical meaning | Common R type(s) you’ll see | Short name in a tibble | Notes |
-|---------------|---------------|---------------|---------------|---------------|
+|----|----|----|----|----|
 | Nominal (categorical) | categories with no order | `factor`, `character` | `fct`, `chr` | `factor` is preferred for “known categories” |
 | Ordinal (categorical) | categories with order | `factor` (ordered) | `fct` | ordering must be defined explicitly |
 | Discrete (numeric) | counts (0, 1, 2, …) | `integer`, sometimes `double` | `int` | counts can be stored as numeric even if “discrete” |
 | Continuous (numeric) | measured on a continuum | `double` / `numeric` | `dbl` | most measurements are `double` |
 
-**Handout Q8:** Choose **two** variables in `penguins` and write their type using (a) lecture terminology and (b) R type from `glimpse()`.
+> **Handout Q8:**
+>
+> Choose **two** variables in `penguins` and write their type using (a) lecture terminology and (b) R type from `glimpse()`.
 
 ------------------------------------------------------------------------
 
@@ -251,7 +267,9 @@ summary(penguins)
 -   For numeric variables: min, quartiles, median, mean, max (plus `NA`s)
 -   For categorical variables: counts per category (plus `NA`s)
 
-**Handout Q9:** Use `summary(penguins)` to answer: *Which variable(s) show missing values?*
+> **Handout Q9:**
+>
+> Use `summary(penguins)` to answer: *Which variable(s) show missing values?*
 
 ------------------------------------------------------------------------
 
@@ -311,10 +329,12 @@ ggplot(
   )
 ```
 
-**Handout Q10:** Briefly interpret the plot:
-
--   What is the relationship between body mass and flipper length?
--   Do species appear to differ? How?
+> **Handout Q10:**
+>
+> Briefly interpret the plot:
+>
+> -   What is the relationship between body mass and flipper length?
+> -   Do species appear to differ? How?
 
 ------------------------------------------------------------------------
 
