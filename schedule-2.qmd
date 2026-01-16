@@ -4,63 +4,100 @@ format: html
 editor: visual
 ---
 
-:::::::::::::::::: calendar-grid
-::::: {.card .text-center}
-::: card-header
+:::::::::::::::::::: {.calendar-grid .calendar-header-row}
 
+::: {.card}
+::: {.card-body}
+W
 :::
-::: {.card-body .text-center}
+:::
+
+::: {.card}
+::: {.card-body}
+Mon
+:::
+:::
+
+::: {.card}
+::: {.card-body}
+Tue
+:::
+:::
+
+::: {.card}
+::: {.card-body}
+Wed
+:::
+:::
+
+::: {.card}
+::: {.card-body}
+Thu
+:::
+:::
+
+::: {.card}
+::: {.card-body}
+Fri
+:::
+:::
+
+::::::::::::::::::::
+
+:::::::::::::::::::: calendar-grid
+:::: card
+::: card-body
 1
 :::
-:::::
+::::
 
 ::::: card
-::: {.card-header .text-center}
+::: card-header
 Jan 12
 :::
 
-::: {.card-body .text-start}
-Lecture
+::: card-body
+##### Lecture
 :::
 :::::
 
 ::::: {.card .lab}
-::: {.card-header .text-center}
+::: card-header
 13
 :::
 
-::: {.card-body .text-start}
+::: card-body
 Lab
 :::
 :::::
 
 ::::: {.card .lecture}
-::: {.card-header .text-center}
+::: card-header
 14
 :::
 
-::: {.card-body .text-start}
+::: card-body
 Lecture
 :::
 :::::
 
 ::::: card
-::: {.card-header .text-center}
+::: card-header
 15
 :::
 
-::: {.card-body .text-start}
+::: card-body
 Lab
 :::
 :::::
 
 ::::: card
-::: {.card-header .text-center}
+::: card-header
 16
 :::
 
-::: {.card-body .text-start}
+::: card-body
 Lecture
 :::
 :::::
-::::::::::::::::::
+::::::::::::::::::::

@@ -95,10 +95,41 @@ div.cell-output-stderr {
   border-bottom: 0;          /* remove header/body divider */
   padding-bottom: 0.25rem;   /* tighten spacing */
   color: #999;          /* dark gray text */
+  text-align: center;
 }
 
 .calendar-grid .card-body {
   padding-top: 0.25rem;      /* visually merge with header */
+}
+
+/* base badge styling */
+.calendar-grid .badge {
+  display: inline-block;
+  font-size: 0.75em;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  line-height: 1.2;
+  margin-bottom: 0.35rem;
+}
+
+/* badge colors by card type */
+.calendar-grid .card.lecture .session-badge {
+  color: var(--bs-primary-text-emphasis);
+  background: var(--bs-primary-bg-subtle);
+  border: 1px solid var(--bs-primary-border-subtle);
+}
+
+.calendar-grid .card.lab .session-badge {
+  color: var(--bs-success-text-emphasis);
+  background: var(--bs-success-bg-subtle);
+  border: 1px solid var(--bs-success-border-subtle);
+}
+
+.calendar-grid .card.exam .session-badge {
+  color: var(--bs-danger-text-emphasis);
+  background: var(--bs-danger-bg-subtle);
+  border: 1px solid var(--bs-danger-border-subtle);
 }
 
 /* activity-based card colors using Bootstrap subtle variants */
@@ -116,4 +147,30 @@ div.cell-output-stderr {
 
 .calendar-grid .card.noclass {
   background-color: var(--bs-secondary-bg-subtle);
+}
+
+/* first column (week number) card */
+.calendar-grid .card:first-child {
+  display: flex;
+  align-items: center;      /* vertical centering */
+}
+
+.calendar-grid .card:first-child .card-body {
+  width: 100%;
+  text-align: center;       /* optional, usually desirable for week labels */
+}
+
+/* header row container */
+.calendar-header-row .card {
+  background-color: var(--bs-secondary);
+  color: var(--bs-secondary-color);
+  font-weight: 700;
+  border: none;
+}
+
+/* header card body */
+.calendar-header-row .card-body {
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.85em;
 }
