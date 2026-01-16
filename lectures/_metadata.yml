@@ -1,0 +1,24 @@
+author: "Chris Merkord"
+tbl-cap-location: bottom
+lightbox: auto
+editor: visual
+
+format:
+  revealjs:
+    fig-align: center
+    cap-location: bottom
+    slide-number: true
+    toc: false
+    controls: true
+    progress: true
+    hash: true
+    center: false
+    chalkboard: true
+    footer: "BIOL 275 Biostatistics | Spring 2026"
+    theme:
+      - default
+      - ../../tlm-styles/tlm-theme.scss
+      - ../../styles.scss
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://use.typekit.net/tag1lvz.css">
