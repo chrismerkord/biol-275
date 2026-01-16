@@ -4,10 +4,6 @@ format:
   html:
     toc: true
     page-layout: full
-    theme:
-      - default
-      - tlm-styles/tlm-theme.scss
-      - styles.scss
 ---
 
 Lecture slide decks are available in html format.
@@ -24,7 +20,7 @@ Lecture 1
 
 Introduction to populations, samples, and the role of sampling in statistical inference.
 
-[Go to Lecture](lecture-01-statistics-samples/){.btn .btn-primary}
+[Go to Lecture](slides/lecture-01-statistics-samples/){.btn .btn-primary}
 :::
 :::::
 ::::::
@@ -39,7 +35,7 @@ Lecture 2
 
 Types of variables, their roles in analysis, and why correlation does not imply causation.
 
-[Go to Lecture](lecture-02-data-and-variables/){.btn .btn-primary}
+[Go to Lecture](slides/lecture-02-data-and-variables/){.btn .btn-primary}
 :::
 ::::
 ::::::
