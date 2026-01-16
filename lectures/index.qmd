@@ -8,7 +8,7 @@ format:
 
 Lecture slide decks are available in html format.
 
-::::::::::: {.grid .gap-3}
+::::::::::::::: {.grid .gap-3}
 :::::: {.g-col-12 .g-col-sm-4}
 ::::: {.card .h-100}
 ::: card-header
@@ -30,6 +30,7 @@ Introduction to populations, samples, and the role of sampling in statistical in
 ::: card-header
 Lecture 2
 :::
+
 ::: card-body
 ##### Data and Variables {.card-title}
 
@@ -37,7 +38,7 @@ Types of variables, their roles in analysis, and why correlation does not imply 
 
 [Go to Lecture](slides/lecture-02-data-and-variables/){.btn .btn-primary}
 :::
-::::
+:::::
 ::::::
 
 :::::: {.g-col-12 .g-col-sm-4}
@@ -45,13 +46,30 @@ Types of variables, their roles in analysis, and why correlation does not imply 
 ::: card-header
 Lecture 3
 :::
+
 ::: card-body
-##### Displaying Data {.card-title}
+##### Effective data visualization {.card-title}
 
-Introduction to displaying data to explore patterns and clearly communicate results.
+Key principles of good graphics, focusing on clarity, honesty, and making patterns easy to see.
 
-[Go to Lecture](slides/lecture-03-displaying-data/){.btn .btn-primary}
+[Go to Lecture](slides/lecture-03-effective-data-visualization/){.btn .btn-primary}
 :::
-::::
+:::::
 ::::::
-:::::::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 4
+:::
+
+::: card-body
+##### Visualizing Data Types {.card-title}
+
+Common visualization types and their suitability for different data types and analytical goals.
+
+[Coming Soon](){.btn .btn-primary}
+:::
+:::::
+::::::
+:::::::::::::::
