@@ -1,0 +1,361 @@
+---
+title: |
+  | Lecture 3
+  | Displaying Data
+subtitle: "ABD 3e Chapter 2"
+format: revealjs
+---
+
+## Key Learning Objectives
+
+-   Distinguish between explanatory and exploratory figures
+-   Identify what makes a good graph
+-   Understand how data types drive figure design
+-   Understand how to make effective tables
+-   Identify best practices in figure design
+
+## Displaying data helps you **understand** your data and **communicate** your results 
+
+![](images/clipboard-4140443648.png)
+
+## Exploratory vs. Explanatory Plots
+
+::::: columns
+::: {.column width="50%"}
+[Exploratory]{.keyword}
+
+-   Purpose: *find* the story in the data
+-   Audience: you (the analyst)
+-   Minimal concern for aesthetics
+    -   Rough labels
+    -   Default colors
+    -   Rapid iteration
+-   Focused on understanding patterns and relationships
+:::
+
+::: {.column width="50%"}
+[Explanatory]{.keyword}
+
+-   Purpose: *share* the story of the data
+-   Audience: others
+-   Careful design choices
+    -   Clear labels and scales
+    -   Thoughtful color use
+    -   Accessible in grayscale
+-   Assumes the audience may be unfamiliar with the data
+:::
+:::::
+
+::: notes
+Most real plots fall on a continuum between these extremes—\
+from what you make for yourself to what you present to a broad public audience.
+:::
+
+## Data Visualization Example: Anscombe’s Quartet
+
+::::: columns
+::: {.column width="50%"}
+-   Four data sets with identical summary statistics.
+-   Same means, standard deviations, and correlations
+:::
+
+::: {.column width="50%"}
+| Dataset | $\\bar{x}$ | $\\bar{y}$ | $s_x$ | $s_y$ | $r_{x,y}$ |
+|--------:|-----------:|-----------:|------:|------:|----------:|
+|       I |        9.0 |        7.5 | 3.316 | 2.031 |     0.816 |
+|      II |        9.0 |        7.5 | 3.316 | 2.031 |     0.816 |
+|     III |        9.0 |        7.5 | 3.316 | 2.031 |     0.816 |
+|      IV |        9.0 |        7.5 | 3.316 | 2.031 |     0.816 |
+:::
+:::::
+
+## Trendlines for Anscombe's quartet show exactly the same pattern
+
+::::: columns
+::: {.column width="50%"}
+-   A fitted trendline looks essentially identical across datasets
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-35454360.png)
+:::
+:::::
+
+## Visualizing the Data Reveals What Statistics Miss
+
+::::: columns
+::: {.column width="50%"}
+-   The underlying data distributions are very different
+-   Patterns include nonlinearity, outliers, and leverage points
+-   Graphs expose structure that summary statistics conceal
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-1047803039.png)
+:::
+:::::
+
+## What Makes a Plot Effective (or Misleading)
+
+::::: columns
+::: {.column width="50%"}
+**Good plots**
+
+-   Show the data, not just summaries
+-   Make patterns easy to see
+-   Represent magnitudes accurately
+-   Use clear, readable graphics
+:::
+
+::: {.column width="50%"}
+**Bad plots**
+
+-   Hide or obscure the data
+-   Make patterns difficult to detect
+-   Distort magnitudes
+-   Use cluttered or unclear graphics
+:::
+:::::
+
+## Show the data, not just the summaries
+
+:::::: columns
+::: {.column width="33%"}
+![](images/clipboard-199959289.png)
+
+-   Shows means only
+
+-   Variation within positions is hidden
+:::
+
+::: {.column width="33%"}
+![](images/clipboard-974688347.png)
+
+-   Shows individuals
+
+-   Points are overplotted
+
+-   Obscures density of points
+:::
+
+::: {.column width="33%"}
+![](images/slide-14-01.png)
+
+-   Shows all of the observations.
+-   [Jittering]{.keyword} - shifting points horizontally (random)
+:::
+::::::
+
+## Make Patterns Easy to See
+
+::::: columns
+::: {.column width="50%"}
+### How patterns get hidden
+
+-   Rely on a single plot
+-   Use inappropriate or misleading scales
+-   Arrange groups arbitrarily
+-   Ignore meaningful ordering
+:::
+
+::: {.column width="50%"}
+### How patterns are revealed
+
+-   Explore multiple plot types
+-   Choose scales that match the data
+-   Arrange factors intentionally
+-   Order groups:
+    -   By level for ordinal variables
+    -   By mean (or another summary) for nominal variables
+:::
+:::::
+
+## Nonsensical Order Hides Patterns
+
+Non-intuitive ordering of factors hides patterns. ![](images/slide-16-01.png)
+
+## Inappropriate scales hides patterns
+
+![](images/slide-17-01.png)
+
+## Transform Data to Reveal Patterns
+
+In this plot, a log-log scale reveals a pattern hidden on the linear scale. Lifespan by body size in mammals, data from Allison & Cicchetti 1976 ![](images/slide-18-01.png)
+
+## Mistake 3: Display Magnitudes Dishonestly
+
+How to represent magnitudes dishonestly: - Start bar plots at a non-zero value How to represent magnitudes honestly: - Sat bar plots at zero **Why? The weight of a bar plot** **makes us think in magnitudes.**
+
+## Present Magnitudes Dishonestly (1 of 2)
+
+This plot suggests that centers are 20X taller than guards. ![](images/slide-20-01.png)
+
+## Present Magnitudes Dishonestly (2 of 2)
+
+Note: This applies to bar plots that naturally start at zero. Not all plots need to start at zero. ![](images/slide-21-01.png)
+
+## Mistake 4: Draw Elements Unclearly
+
+How to draw graphical elements unclearly:
+
+-   Unthinkingly accept default options from plotting programs.
+-   Do not consider how a diverse audience will interpret your figure.
+
+How to draw graphical elements clearly:
+
+-   Reflect on plot design.
+-   Consider the diverse audience you are reaching and how they may interact with your plot.
+
+## Draw Graphics Unclearly
+
+In this plot, x-axis labels obscure one another.
+
+## Flip Axes to Present Graphics Clearly
+
+Flipping axes makes categories readable.
+
+## Clear Graphics for Everyone
+
+ALWAYS Consider colorblind readers
+
+## Direct Labeling Clarifies Graphics
+
+Labels directly on plots (left hand side) quickly clarifies patterns.
+
+## Let data type guide presentation
+
+## Consider Data Type
+
+In presentation, “form follows data structure” One categorical variable: - Bar plots and Tables. One numerical variable: - Histograms, Density plots, and Cumulative Freq. Distros. Two categorical variables: - Bar plots, Contingency Tables, and Mosaic Plots. One numerical variable + one categorical variable: - Multiple histograms, Strip charts, and Box plots. Two numerical variables and beyond: - Scatterplots and Small multiples
+
+## One Categorical Variable: Bar plots and Tables
+
+One Categorical Variable: Bar plots and Tables
+
+## Nonsensical ordering hides patterns
+
+Order ordinal factors meaningfully. - For example, January to December. Order nominal factors by count. - If there is a grab bag category, place it after the lowest count. Example: Leading Causes of Death
+
+## Ordering Factors Nonsensically
+
+Before re-ordering factors, patterns are unclear.
+
+## Ordering Factors Meaningfully
+
+After re-ordering factors, patterns become clear.
+
+## Tables Should Follow Similar Rules (1 of 2)
+
+Nonsense order hides patterns Alphabetical order is usually a bad idea.
+
+## Tables Should Follow Similar Rules (2 of 2)
+
+Order to reveal patterns List ordinal factors in a meaningful order. List nominal factors from greatest to least, with “all others” last.
+
+## One Numerical Variable: Histograms, Density plots, and Cumulative Freq. Distros
+
+One Numerical Variable: Histograms, Density plots, and Cumulative Freq. Distros
+
+## One Numerical Variable—Goals
+
+Visualize the center (Mean) Visualize the width (Variation) Visualize the shape (Distribution)
+
+## Example: Gettysburg Address
+
+All of the words in the Gettysburg Address. Let’s see the number of times words of various lengths come up.
+
+## Gettysburg Address: Summary Table
+
+Number of words of a given length in the Gettysburg Address.
+
+## Histograms visually describe summary tables
+
+## Histograms—Consider Your Bins
+
+Each block of a histogram is called a bin The size or “width” of a bin refers to the range in each block. Changing bins can change stories. - Don’t be fooled. - Don’t allow bad bin widths to obscure your data. DO NOT assume that default bin widths are appropriate.
+
+## Density plots serve a similar purpose as histograms, but smooth the distribution.
+
+Like histograms (even more so), we can be fooled by bandwidth, take control of this
+
+## Cumulative Frequency Distributions clearly communicate quantiles
+
+## Shapes of Distributions
+
+Histograms, density plots, and cumulative frequency plots can reveal the shapes of distributions. This is important for understanding data and choosing a statistical approach.
+
+## Distribution Shapes: Histograms
+
+Bell-shaped Bimodal Skewed Uniform
+
+## Distribution Shapes: Density plots
+
+Bell-shaped Bimodal Skewed Uniform ![](images/slide-45-01.png)
+
+## Distribution Shapes: Cumul. Freq. Distros.
+
+Bell-shaped Bimodal Skewed Uniform ![](images/slide-46-01.png)
+
+## Two Categorical Variables: Bar plots, Contingency Tables, and Mosaic Plots
+
+Two Categorical Variables: Bar plots, Contingency Tables, and Mosaic Plots
+
+## Two Categorical Variables—Goals
+
+Visualize the association between variables. Example: Is Breeding Dangerous for Birds
+
+## Is Breeding Dangerous for Birds?
+
+Oppliger et al. (1996) removed eggs from some, but not other, *Parus* *major* nests to encourage them to breed more. They later assayed the moms for malaria. Here are the data as a **contingency table**.
+
+## Visualization: Grouped Bar Graph
+
+## Visualization: Stacked Bar Graph
+
+## Visualization: Mosaic Plot
+
+## One categorical and one numerical variable: Multiple histograms and Strip charts
+
+## Example: Edgar Anderson’s Iris Data Set
+
+Multiple Histograms This dataset is in R stats package print(iris)
+
+## Avoid Over-plotting
+
+Over-plotting hides data by placing data points on top of each other.
+
+## Good Alternative: Strip Chart
+
+To show data, data points are jittered about the x-axis. Note: The position on the x within groups is not meaningful.
+
+## Another Alternative: Violin Plot
+
+The shape of the “violins” reflects the distribution of the data.
+
+## Quiz 1 results
+
+## Two numerical variables: Scatterplots
+
+## Two Numerical Variables—Goals
+
+Visualize the association. Visualize the joint distribution.
+
+## Two Continuous: Scatterplots
+
+## Two Continuous + One Categorical: Scatterplot With Legend
+
+## Two Continuous + One Categorical: Scatterplot Directly Label
+
+## Two Continuous + One Categorical: Small Multiples
+
+## Line Graphs Show Data Over Time
+
+For temporal data, note all observations with a data point, and connect each point with a line. Points may be omitted for clarity if there are no gaps
+
+## Color Code Maps to Show Spatial Data
+
+Note: Maps need not refer to areas of land. For example, you can make a map of gene expression across the body.
+
+## Best Practices for Saving and Sharing Data:
+
+Guidelines for Making Data Easy to Analyze - Each row should correspond to one observation, and each column should correspond to a variable. - Avoid special characters such as \$ \# ! %. - Ensure column names are easily interpretable. - Save spreadsheets as a plain text file (.csv or .txt). - Make sure the data are correct. - Include a data dictionary with fuller explanations. Statistics is much easier if data are well formatted.

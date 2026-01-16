@@ -39,4 +39,19 @@ Types of variables, their roles in analysis, and why correlation does not imply 
 :::
 ::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 3
+:::
+::: card-body
+##### Displaying Data {.card-title}
+
+Introduction to displaying data to explore patterns and clearly communicate results.
+
+[Go to Lecture](slides/lecture-03-displaying-data/){.btn .btn-primary}
+:::
+::::
+::::::
 :::::::::::
