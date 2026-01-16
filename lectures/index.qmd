@@ -4,6 +4,10 @@ format:
   html:
     toc: true
     page-layout: full
+    theme:
+      - default
+      - tlm-styles/tlm-theme.scss
+      - styles.scss
 ---
 
 Lecture slide decks are available in html format.
