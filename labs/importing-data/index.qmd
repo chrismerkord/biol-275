@@ -24,22 +24,49 @@ Before beginning the lab, make sure you are set up correctly.
 
 1.  Pick up a physical copy of the lab [handout](handout.pdf "Download the Lab 3 Handout"), or print one if you are working outside of class.
 2.  Log in to **Posit Cloud** and navigate to the **course workspace**.
-3.  Open the Assignment Project named "lab-03-importing-data"
-4.  In the console, install the required package **tidyverse** for this lab (only needs to be done once per project).
+3.  Open the Assignment Project named "Lab 3 Importing Data"
+4.  Install the required packages for this lab (**tidyverse**) using the Packages pane or by running the following code ***in the Console pane*** (do not put it in a script):
 
 ```{r}
+#| label: install-tidyverse
 #| eval: false
 #| echo: true
 
 install.packages("tidyverse")
 ```
 
-5.  Create a new R script and label it "lab-3-script".
-6.  In your script, add this code and run it to load the tidyverse packge:
+5.  Create a new R script and save it as **lab-3-script.R**.
 
-```{r}
-library(tidyverse)
-```
+6.  Copy and paste this code to the top of your script ***in the Source pane*** and run it to load the tidyverse package:
+
+    a.  The first line is a comment that RStudio recognizes as a section heading.
+    b.  The second line loads the tidyverse package so that you can use functions in it later.
+
+    ```{r}
+    #| label: library(tidyverse)
+    #| echo: true
+
+    # load packages --------------------------------------------------------------
+
+    library(tidyverse)
+    ```
+
+    ::: callout-warning
+    If you run `library(tidyverse)` before you install the tidyverse package, you will see an error message in the console. For example:
+
+    ```{r}
+    #| label: package-not-installed-example
+    #| echo: true
+    #| error: true
+    #| 
+
+    library(tidyverse_not_installed)
+    ```
+    :::
+
+    ::: callout-tip
+    Read the following sections carefully **before** writing any code or answering handout questions. The lab will clearly indicate when you should run code or record an answer. Skipping ahead often leads to confusion and unnecessary frustration.
+    :::
 
 ## Introduction to importing data
 
@@ -79,12 +106,12 @@ In this course, file names will always:
 -   use **hyphens (`-`)**, not underscores (`_`)
 -   be written entirely in lowercase
 
-Seeing a file in the Files pane means it exists on disk, but it is **not available in R until you read it using code**. R does not automatically load files just because they are present in the project.
-
 > ##### Handout Q1
 >
 > List all CSV files you see in the `data/` folder.\
 > For each file, write its **relative path**, starting from the project root.
+>
+> A relative path includes the folder name(s) and the filename, separated by forward slashes.
 >
 > Example format:\
 > - `data/example-data.csv`
@@ -92,6 +119,12 @@ Seeing a file in the Files pane means it exists on disk, but it is **not availab
 > (Include all CSV files currently present in the folder.)
 
 When you are finished, return to the project’s top-level folder by clicking the **`..`** entry in the Files pane. You can also click the **R cube icon** in the Files pane to return directly to the project root.
+
+::: callout-caution
+Seeing a file in the Files pane means it exists on disk, but it is **not available in R until you read it using code**. R does not automatically load files just because they are present in the project.
+
+Read on to learn how to read data using R code.
+:::
 
 ## Reading a CSV File with `read_csv()`
 
@@ -226,7 +259,7 @@ Many real datasets include information at the top of the file that is not part o
 
 #### Description
 
-This dataset comes from a **simulated clinical drug efficacy trial** designed to resemble how data are recorded in FDA-style studies. Each row represents a **single participant at a single study visit**, so most participants appear multiple times in the dataset.
+This [dataset]() comes from a **simulated clinical drug efficacy trial** designed to resemble how data are recorded in FDA-style studies. Each row represents a **single participant at a single study visit**, so most participants appear multiple times in the dataset.
 
 Participants were randomly assigned to one of three **treatment arms**—placebo, low dose, or high dose—and were measured at baseline and follow-up visits during the study. The outcome variable is a continuous biomarker value that is expected to change over time in response to treatment.
 
@@ -414,7 +447,7 @@ Use:
 -   **ordered factors** for categories with a meaningful progression (e.g., time points, dose levels).
 
 | Aspect | Unordered factor | Ordered factor |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | Level order exists | Yes | Yes |
 | Order has meaning | No | Yes |
 | `<` / `>` comparisons allowed | No | Yes |
