@@ -25,10 +25,11 @@ Before beginning the lab, make sure you are set up correctly.
 1.  Pick up a physical copy of the lab [handout](handout.pdf "Download the Lab 3 Handout"), or print one if you are working outside of class.
 2.  Log in to **Posit Cloud** and navigate to the **course workspace**.
 3.  Open the Assignment Project named "lab-03-importing-data"
-4.  In the console, install the required packages for this lab (only needs to be done once per project).
+4.  In the console, install the required package **tidyverse** for this lab (only needs to be done once per project).
 
 ```{r}
 #| eval: false
+#| echo: true
 
 install.packages("tidyverse")
 ```
