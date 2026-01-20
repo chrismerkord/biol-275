@@ -18,6 +18,10 @@ By the end of this lab, you should be able to:
 -   Recognize how missing values are represented in a dataset and how R interprets them.
 -   Manually set data types.
 
+::: callout-tip
+Read the following sections carefully **before** writing any code or answering handout questions. The lab will clearly indicate when you should run code or record an answer. Skipping ahead often leads to confusion and unnecessary frustration.
+:::
+
 ## Getting Started
 
 Before beginning the lab, make sure you are set up correctly.
@@ -62,10 +66,8 @@ install.packages("tidyverse")
 
     library(tidyverse_not_installed)
     ```
-    :::
 
-    ::: callout-tip
-    Read the following sections carefully **before** writing any code or answering handout questions. The lab will clearly indicate when you should run code or record an answer. Skipping ahead often leads to confusion and unnecessary frustration.
+    Solution: install the package first, then load it with `library()`
     :::
 
 ## Introduction to importing data
@@ -129,6 +131,8 @@ Read on to learn how to read data using R code.
 ## Reading a CSV File with `read_csv()`
 
 We will begin by reading a **real epidemiological dataset** using `read_csv()`. This provides a concrete example of what it looks like when a CSV file is already well-structured and can be read using R’s default assumptions.
+
+Before writing any code, take a moment to read the dataset description below so you understand what the data represent.
 
 ### WNV Dataset overview
 
@@ -227,19 +231,31 @@ As you look at the file, consider the following questions:
 
 ### Reading the file
 
-To read this dataset into R, use the `read_csv()` function. The file is stored in the project’s `data/` folder, so you must include the relative path when reading it. The file path must be surrounded by double quotes `"`. For example:
+Now that you know what the data file *should* contain (based on the dataset description and metadata), and what it *does* contain (based on your inspection of the CSV), you are ready to read it into R.
+
+To read this dataset into R, use the `read_csv()` function. The only required argument is the **path** to the file, which you recorded in your answer to handout question 1.
+
+The file is stored in the project’s `data/` folder, so you must include that folder in the path name, for example `data/wnv-data.csv`. Here is example code to read a hypothetical \`data/example.csv\` data file:
 
 ```{r}
 #| label: read-csv-example
 #| eval: false
 #| echo: true
 
+# read the data ----------------------------------------------------------
+
 read_csv("data/example.csv")
 ```
 
-Using the example above, type the code to read in the `wnv-data.csv` file into your R script (not console).
+::: callout-important
+The file path must be surrounded by double quotes \``` "`. ``
+:::
 
-After reading the file, inspect the resulting tibble to confirm:
+Copy and paste that code ***into your R script***, then modify the path so it references the `wnv-data.csv` file instead of `example.csv`.
+
+Running that line of code will cause R to read the data into a tibble in R and print that tibble in the console.
+
+Inspect the console output to confirm:
 
 -   the variable names are correct,
 -   each column contains the expected type of data,
@@ -248,6 +264,29 @@ After reading the file, inspect the resulting tibble to confirm:
 > ##### Handout Q4
 >
 > How many observations are there in the dataset?
+
+While the previous code will read the data and print it in the console, it will not assign the dataset a name and make it available for further actions. To do that, you must use the assignment operator `<-` to give the tibble a name, for example:
+
+```{r}
+#| label: read-and-assign-example
+#| eval: false
+#| echo: true
+
+wnv_data <- read_csv("data/wnv-data.csv")
+```
+
+You can give the dataset any name you want. In this case we have named it **`wnv_data`**.
+
+Now you can do other actions with the data, like glimpsing or summarizing it using functions learned in the previous lab. For example:
+
+```{r}
+#| label: glimpse-and-summarize
+#| echo: true
+#| output: false
+
+glimpse(wnv_data) # show the variable names and the first few values of each
+summary(wnv_data) # show summaries of each variable
+```
 
 This example shows what it looks like when a CSV file aligns well with R’s defaults. In the next sections of the lab, you will work with datasets that require additional instructions—such as skipping non-data lines or explicitly defining missing values—to be read correctly.
 
