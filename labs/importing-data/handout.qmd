@@ -1,0 +1,119 @@
+---
+title: "BIOL 275 Lab 3 Importing Data"
+format:
+  pdf:
+    pdf-engine: xelatex
+    fontsize: 11pt
+    geometry:
+      - letterpaper
+      - margin=0.6in
+    number-sections: false
+    toc: false
+header-includes:
+  - |
+    \usepackage[most]{tcolorbox}
+    \usepackage{enumitem}
+    \setlist[itemize]{nosep, topsep=8pt, leftmargin=*}
+    \setlist[enumerate]{nosep, topsep=8pt, leftmargin=*}
+    
+    % Pandoc tight lists: force list spacing
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}%
+      \setlength{\parskip}{0pt}%
+      \setlength{\parsep}{0pt}%
+    }
+    
+    \pagestyle{empty}
+    
+    % Compact title without titling.sty
+    \makeatletter
+    \renewcommand{\maketitle}{
+      \begin{center}
+        {\Large\bfseries \@title \par}
+        \vspace{4pt}
+        \end{center}
+      \vspace{-1pt}
+    }
+    \makeatother
+    
+    % Tighten section spacing (template-safe; no titlesec)
+    \makeatletter
+    \renewcommand\section{\@startsection{section}{1}{\z@}%
+      {0.2\baselineskip}%
+      {0.2\baselineskip}%
+      {\normalfont\large\bfseries}}
+    \makeatother
+
+    % Answer box styles
+    \newtcolorbox{answerbox}[1][]{
+      enhanced,
+      sharp corners,
+      boxrule=0.6pt,
+      colback=white,
+      colframe=black,
+      left=6pt,right=6pt,top=6pt,bottom=6pt,
+      #1
+    }
+
+    % Convenience commands for fixed-height boxes
+    \newcommand{\ab}[1]{\begin{answerbox}[height=#1]\end{answerbox}}
+---
+
+\vspace{-0.15in}
+
+\begin{answerbox}
+\textbf{Name:} \hspace{2.5in} \textbf{Date:} \hspace{1.4in} \textbf{LA Initials:} \hspace{0.8in}
+\end{answerbox}
+
+## CSV Files and the Project Environment
+
+**1. Give the full path of all CSV files in the project. Example: data/example-data.csv**
+\ab{1in}
+
+## West Nile Virus Dataset
+
+**2. Identify the data type for each variable: nominal, ordinal, continuous, or numerical discrete.**
+\ab{1in}
+
+**3. What value represents a missing value (no data) in this dataset?**
+\ab{0.5in}
+
+**4. How many observations are there in the dataset?**
+\ab{0.5in}
+
+## Drug Efficacy Trial Dataset
+
+**5. Which line contains the variable names?**
+\ab{0.5in}
+
+**6. How many lines of non-data before the first row of data? (should be one less than the previous answer).**
+\ab{0.5in}
+
+**7. How many rows and columns are in the correctly-imported trial_data tibble?**
+\ab{0.45in}
+
+**8. What data type does it show for the variable `AVAL`? What data type should it be based on what the variable represents?**
+\ab{0.5in}
+
+**9. How do the NA values in `wnv_data` differ from the NR values you see in trial_data when the file is first read?**
+\ab{1in}
+
+**10.What data type is AVAL after setting `na = "NR"` ?**
+\ab{0.5in}
+
+**11. Which variables in the dataset, if any, should be treated as unordered factors? Which should be treated as ordered factors?**
+\ab{0.5in}
+
+## Practice: Bird Point Count Dataset
+
+**12. How many rows should you skip?**
+\ab{0.5in}
+
+**13. Which column contains missing values, and what text represents a missing value?**
+\ab{0.5in}
+
+**14. Which variables should be converted to nominal categorical variables? ordinal categorical variables?**
+\ab{1in}
+
+**15. Print the final bird dataset in the console. Have an LA initial here after review.**
+\ab{0.5in}

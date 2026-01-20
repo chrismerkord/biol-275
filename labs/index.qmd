@@ -37,4 +37,19 @@ Working with data frames in R using the palmerpenguins dataset to practice data 
 :::
 ::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lab 3
+:::
+::: card-body
+##### Importing Data {.card-title}
+
+Reading external data into R, with emphasis on file structure, missing values, and correct specification of categorical variables.
+
+[Lab 3](importing-data/)
+:::
+::::
+::::::
 :::::::::::

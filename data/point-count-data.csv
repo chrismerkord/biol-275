@@ -1,0 +1,75 @@
+Simulated bird point count data; not real survey results).
+point_id,species,datetime,wind,bird_count
+PT-01,Baltimore Oriole,2025-06-05 06:15,1,1
+PT-01,Baltimore Oriole,2025-06-19 06:45,Not Recorded,3
+PT-01,Grasshopper Sparrow,2025-06-05 06:15,3,1
+PT-01,Grasshopper Sparrow,2025-06-19 06:45,2,0
+PT-01,Lark Sparrow,2025-06-05 06:15,1,1
+PT-01,Lark Sparrow,2025-06-19 06:45,2,1
+PT-02,Baltimore Oriole,2025-06-05 06:15,1,2
+PT-02,Baltimore Oriole,2025-06-19 06:45,Not Recorded,0
+PT-02,Grasshopper Sparrow,2025-06-05 06:15,3,0
+PT-02,Grasshopper Sparrow,2025-06-19 06:45,2,3
+PT-02,Lark Sparrow,2025-06-05 06:15,3,1
+PT-02,Lark Sparrow,2025-06-19 06:45,2,2
+PT-03,Baltimore Oriole,2025-06-05 06:15,2,3
+PT-03,Baltimore Oriole,2025-06-19 06:45,1,0
+PT-03,Grasshopper Sparrow,2025-06-05 06:15,0,1
+PT-03,Grasshopper Sparrow,2025-06-19 06:45,1,1
+PT-03,Lark Sparrow,2025-06-05 06:15,1,1
+PT-03,Lark Sparrow,2025-06-19 06:45,2,0
+PT-04,Baltimore Oriole,2025-06-05 06:15,1,1
+PT-04,Baltimore Oriole,2025-06-19 06:45,0,1
+PT-04,Grasshopper Sparrow,2025-06-05 06:15,Not Recorded,3
+PT-04,Grasshopper Sparrow,2025-06-19 06:45,3,1
+PT-04,Lark Sparrow,2025-06-05 06:15,0,1
+PT-04,Lark Sparrow,2025-06-19 06:45,3,1
+PT-05,Baltimore Oriole,2025-06-05 06:15,4,0
+PT-05,Baltimore Oriole,2025-06-19 06:45,Not Recorded,0
+PT-05,Grasshopper Sparrow,2025-06-05 06:15,1,4
+PT-05,Grasshopper Sparrow,2025-06-19 06:45,1,1
+PT-05,Lark Sparrow,2025-06-05 06:15,1,1
+PT-05,Lark Sparrow,2025-06-19 06:45,0,3
+PT-06,Baltimore Oriole,2025-06-05 06:15,1,2
+PT-06,Baltimore Oriole,2025-06-19 06:45,3,2
+PT-06,Grasshopper Sparrow,2025-06-05 06:15,0,5
+PT-06,Grasshopper Sparrow,2025-06-19 06:45,2,3
+PT-06,Lark Sparrow,2025-06-05 06:15,1,1
+PT-06,Lark Sparrow,2025-06-19 06:45,3,0
+PT-07,Baltimore Oriole,2025-06-05 06:15,Not Recorded,0
+PT-07,Baltimore Oriole,2025-06-19 06:45,2,1
+PT-07,Grasshopper Sparrow,2025-06-05 06:15,2,1
+PT-07,Grasshopper Sparrow,2025-06-19 06:45,3,1
+PT-07,Lark Sparrow,2025-06-05 06:15,0,1
+PT-07,Lark Sparrow,2025-06-19 06:45,2,0
+PT-08,Baltimore Oriole,2025-06-05 06:15,3,2
+PT-08,Baltimore Oriole,2025-06-19 06:45,3,1
+PT-08,Grasshopper Sparrow,2025-06-05 06:15,1,2
+PT-08,Grasshopper Sparrow,2025-06-19 06:45,1,5
+PT-08,Lark Sparrow,2025-06-05 06:15,0,0
+PT-08,Lark Sparrow,2025-06-19 06:45,Not Recorded,3
+PT-09,Baltimore Oriole,2025-06-05 06:15,0,2
+PT-09,Baltimore Oriole,2025-06-19 06:45,2,2
+PT-09,Grasshopper Sparrow,2025-06-05 06:15,2,1
+PT-09,Grasshopper Sparrow,2025-06-19 06:45,2,2
+PT-09,Lark Sparrow,2025-06-05 06:15,2,1
+PT-09,Lark Sparrow,2025-06-19 06:45,Not Recorded,0
+PT-10,Baltimore Oriole,2025-06-05 06:15,Not Recorded,0
+PT-10,Baltimore Oriole,2025-06-19 06:45,2,2
+PT-10,Grasshopper Sparrow,2025-06-05 06:15,0,2
+PT-10,Grasshopper Sparrow,2025-06-19 06:45,1,3
+PT-10,Lark Sparrow,2025-06-05 06:15,2,0
+PT-10,Lark Sparrow,2025-06-19 06:45,Not Recorded,2
+PT-11,Baltimore Oriole,2025-06-05 06:15,0,2
+PT-11,Baltimore Oriole,2025-06-19 06:45,0,3
+PT-11,Grasshopper Sparrow,2025-06-05 06:15,1,4
+PT-11,Grasshopper Sparrow,2025-06-19 06:45,3,2
+PT-11,Lark Sparrow,2025-06-05 06:15,1,1
+PT-11,Lark Sparrow,2025-06-19 06:45,3,1
+PT-12,Baltimore Oriole,2025-06-05 06:15,1,3
+PT-12,Baltimore Oriole,2025-06-19 06:45,3,0
+PT-12,Grasshopper Sparrow,2025-06-05 06:15,3,3
+PT-12,Grasshopper Sparrow,2025-06-19 06:45,Not Recorded,0
+PT-12,Lark Sparrow,2025-06-05 06:15,1,0
+PT-12,Lark Sparrow,2025-06-19 06:45,4,1
+

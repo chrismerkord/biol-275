@@ -1,0 +1,364 @@
+Simulated clinical trial dataset for BIOL 275 (NOT real patient data).
+Format: long; one record per participant per visit.
+STUDYID,USUBJID,SITEID,ARMCD,ARM,PARAMCD,PARAM,AVISITN,AVISIT,BASE,AVAL
+WNV-EX-001,WNV-EX-001-0001,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,57.1,57.1
+WNV-EX-001,WNV-EX-001-0001,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,57.1,NR
+WNV-EX-001,WNV-EX-001-0001,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,57.1,NR
+WNV-EX-001,WNV-EX-001-0002,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,59.7,59.7
+WNV-EX-001,WNV-EX-001-0002,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,59.7,53.6
+WNV-EX-001,WNV-EX-001-0002,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,59.7,56.1
+WNV-EX-001,WNV-EX-001-0003,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,70.2,70.2
+WNV-EX-001,WNV-EX-001-0003,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,70.2,51
+WNV-EX-001,WNV-EX-001-0003,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,70.2,43.4
+WNV-EX-001,WNV-EX-001-0004,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,33.9,33.9
+WNV-EX-001,WNV-EX-001-0004,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,33.9,39.2
+WNV-EX-001,WNV-EX-001-0004,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,33.9,45
+WNV-EX-001,WNV-EX-001-0005,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,47.6,47.6
+WNV-EX-001,WNV-EX-001-0005,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,47.6,57.6
+WNV-EX-001,WNV-EX-001-0005,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,47.6,41.1
+WNV-EX-001,WNV-EX-001-0006,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,53.3,53.3
+WNV-EX-001,WNV-EX-001-0006,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,53.3,62.6
+WNV-EX-001,WNV-EX-001-0006,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,53.3,59
+WNV-EX-001,WNV-EX-001-0007,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,50.6,50.6
+WNV-EX-001,WNV-EX-001-0007,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,50.6,55.5
+WNV-EX-001,WNV-EX-001-0007,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,50.6,62.2
+WNV-EX-001,WNV-EX-001-0008,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,61.4,61.4
+WNV-EX-001,WNV-EX-001-0008,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,61.4,49.6
+WNV-EX-001,WNV-EX-001-0008,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,61.4,32
+WNV-EX-001,WNV-EX-001-0009,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,62.3,62.3
+WNV-EX-001,WNV-EX-001-0009,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,62.3,66.6
+WNV-EX-001,WNV-EX-001-0009,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,62.3,40.6
+WNV-EX-001,WNV-EX-001-0010,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,27.9,27.9
+WNV-EX-001,WNV-EX-001-0010,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,27.9,59.8
+WNV-EX-001,WNV-EX-001-0010,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,27.9,36.5
+WNV-EX-001,WNV-EX-001-0011,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,51.2,51.2
+WNV-EX-001,WNV-EX-001-0011,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,51.2,66.3
+WNV-EX-001,WNV-EX-001-0011,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,51.2,67.6
+WNV-EX-001,WNV-EX-001-0012,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,51,51
+WNV-EX-001,WNV-EX-001-0012,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,51,57.2
+WNV-EX-001,WNV-EX-001-0012,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,51,72.1
+WNV-EX-001,WNV-EX-001-0013,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,62.9,62.9
+WNV-EX-001,WNV-EX-001-0013,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,62.9,36.4
+WNV-EX-001,WNV-EX-001-0013,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,62.9,69.4
+WNV-EX-001,WNV-EX-001-0014,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,73.9,73.9
+WNV-EX-001,WNV-EX-001-0014,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,73.9,50.4
+WNV-EX-001,WNV-EX-001-0014,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,73.9,26.5
+WNV-EX-001,WNV-EX-001-0015,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,53.2,53.2
+WNV-EX-001,WNV-EX-001-0015,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,53.2,60
+WNV-EX-001,WNV-EX-001-0015,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,53.2,56.9
+WNV-EX-001,WNV-EX-001-0016,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,68.7,68.7
+WNV-EX-001,WNV-EX-001-0016,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,68.7,41.5
+WNV-EX-001,WNV-EX-001-0016,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,68.7,52.3
+WNV-EX-001,WNV-EX-001-0017,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,55.6,55.6
+WNV-EX-001,WNV-EX-001-0017,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,55.6,41.8
+WNV-EX-001,WNV-EX-001-0017,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,55.6,49.8
+WNV-EX-001,WNV-EX-001-0018,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,46.3,46.3
+WNV-EX-001,WNV-EX-001-0018,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,46.3,41.9
+WNV-EX-001,WNV-EX-001-0018,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,46.3,44
+WNV-EX-001,WNV-EX-001-0019,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,70,70
+WNV-EX-001,WNV-EX-001-0019,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,70,39.3
+WNV-EX-001,WNV-EX-001-0019,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,70,43.9
+WNV-EX-001,WNV-EX-001-0020,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,43.1,43.1
+WNV-EX-001,WNV-EX-001-0020,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,43.1,61.9
+WNV-EX-001,WNV-EX-001-0020,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,43.1,17.3
+WNV-EX-001,WNV-EX-001-0021,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,55,55
+WNV-EX-001,WNV-EX-001-0021,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,55,42.2
+WNV-EX-001,WNV-EX-001-0021,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,55,36.6
+WNV-EX-001,WNV-EX-001-0022,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,56.8,56.8
+WNV-EX-001,WNV-EX-001-0022,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,56.8,33.4
+WNV-EX-001,WNV-EX-001-0022,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,56.8,NR
+WNV-EX-001,WNV-EX-001-0023,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,65.6,65.6
+WNV-EX-001,WNV-EX-001-0023,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,65.6,46.9
+WNV-EX-001,WNV-EX-001-0023,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,65.6,27.7
+WNV-EX-001,WNV-EX-001-0024,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,77.6,77.6
+WNV-EX-001,WNV-EX-001-0024,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,77.6,39.2
+WNV-EX-001,WNV-EX-001-0024,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,77.6,26.5
+WNV-EX-001,WNV-EX-001-0025,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,60.4,60.4
+WNV-EX-001,WNV-EX-001-0025,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,60.4,57.9
+WNV-EX-001,WNV-EX-001-0025,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,60.4,42.8
+WNV-EX-001,WNV-EX-001-0026,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,64.3,64.3
+WNV-EX-001,WNV-EX-001-0026,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,64.3,40.8
+WNV-EX-001,WNV-EX-001-0026,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,64.3,70.9
+WNV-EX-001,WNV-EX-001-0027,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,39.6,39.6
+WNV-EX-001,WNV-EX-001-0027,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,39.6,59.5
+WNV-EX-001,WNV-EX-001-0027,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,39.6,45.6
+WNV-EX-001,WNV-EX-001-0028,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,52.1,52.1
+WNV-EX-001,WNV-EX-001-0028,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,52.1,NR
+WNV-EX-001,WNV-EX-001-0028,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,52.1,NR
+WNV-EX-001,WNV-EX-001-0029,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,73.1,73.1
+WNV-EX-001,WNV-EX-001-0029,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,73.1,43.6
+WNV-EX-001,WNV-EX-001-0029,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,73.1,49
+WNV-EX-001,WNV-EX-001-0030,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,31.4,31.4
+WNV-EX-001,WNV-EX-001-0030,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,31.4,47.7
+WNV-EX-001,WNV-EX-001-0030,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,31.4,65.8
+WNV-EX-001,WNV-EX-001-0031,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,73.9,73.9
+WNV-EX-001,WNV-EX-001-0031,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,73.9,48.2
+WNV-EX-001,WNV-EX-001-0031,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,73.9,62.5
+WNV-EX-001,WNV-EX-001-0032,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,69.5,69.5
+WNV-EX-001,WNV-EX-001-0032,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,69.5,48.6
+WNV-EX-001,WNV-EX-001-0032,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,69.5,59.6
+WNV-EX-001,WNV-EX-001-0033,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,67,67
+WNV-EX-001,WNV-EX-001-0033,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,67,NR
+WNV-EX-001,WNV-EX-001-0033,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,67,NR
+WNV-EX-001,WNV-EX-001-0034,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,72.5,72.5
+WNV-EX-001,WNV-EX-001-0034,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,72.5,22.4
+WNV-EX-001,WNV-EX-001-0034,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,72.5,56.9
+WNV-EX-001,WNV-EX-001-0035,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,75.5,75.5
+WNV-EX-001,WNV-EX-001-0035,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,75.5,52.5
+WNV-EX-001,WNV-EX-001-0035,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,75.5,72.4
+WNV-EX-001,WNV-EX-001-0036,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,56.7,56.7
+WNV-EX-001,WNV-EX-001-0036,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,56.7,48.9
+WNV-EX-001,WNV-EX-001-0036,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,56.7,43.5
+WNV-EX-001,WNV-EX-001-0037,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,44.1,44.1
+WNV-EX-001,WNV-EX-001-0037,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,44.1,47.5
+WNV-EX-001,WNV-EX-001-0037,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,44.1,35.2
+WNV-EX-001,WNV-EX-001-0038,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,57,57
+WNV-EX-001,WNV-EX-001-0038,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,57,54
+WNV-EX-001,WNV-EX-001-0038,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,57,42.6
+WNV-EX-001,WNV-EX-001-0039,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,64.7,64.7
+WNV-EX-001,WNV-EX-001-0039,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,64.7,51.7
+WNV-EX-001,WNV-EX-001-0039,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,64.7,39.9
+WNV-EX-001,WNV-EX-001-0040,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,40.1,40.1
+WNV-EX-001,WNV-EX-001-0040,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,40.1,55.1
+WNV-EX-001,WNV-EX-001-0040,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,40.1,64.3
+WNV-EX-001,WNV-EX-001-0041,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,30.1,30.1
+WNV-EX-001,WNV-EX-001-0041,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,30.1,45.1
+WNV-EX-001,WNV-EX-001-0041,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,30.1,40.4
+WNV-EX-001,WNV-EX-001-0042,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,47.6,47.6
+WNV-EX-001,WNV-EX-001-0042,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,47.6,43.6
+WNV-EX-001,WNV-EX-001-0042,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,47.6,62.6
+WNV-EX-001,WNV-EX-001-0043,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,60,60
+WNV-EX-001,WNV-EX-001-0043,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,60,54.2
+WNV-EX-001,WNV-EX-001-0043,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,60,54.4
+WNV-EX-001,WNV-EX-001-0044,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,64.6,64.6
+WNV-EX-001,WNV-EX-001-0044,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,64.6,61
+WNV-EX-001,WNV-EX-001-0044,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,64.6,49.9
+WNV-EX-001,WNV-EX-001-0045,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,70,70
+WNV-EX-001,WNV-EX-001-0045,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,70,65.4
+WNV-EX-001,WNV-EX-001-0045,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,70,NR
+WNV-EX-001,WNV-EX-001-0046,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,75.3,75.3
+WNV-EX-001,WNV-EX-001-0046,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,75.3,18.5
+WNV-EX-001,WNV-EX-001-0046,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,75.3,61.4
+WNV-EX-001,WNV-EX-001-0047,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,67.6,67.6
+WNV-EX-001,WNV-EX-001-0047,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,67.6,NR
+WNV-EX-001,WNV-EX-001-0047,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,67.6,59.6
+WNV-EX-001,WNV-EX-001-0048,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,64.4,64.4
+WNV-EX-001,WNV-EX-001-0048,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,64.4,48
+WNV-EX-001,WNV-EX-001-0048,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,64.4,43
+WNV-EX-001,WNV-EX-001-0049,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,39.2,39.2
+WNV-EX-001,WNV-EX-001-0049,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,39.2,50
+WNV-EX-001,WNV-EX-001-0049,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,39.2,47.6
+WNV-EX-001,WNV-EX-001-0050,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,44,44
+WNV-EX-001,WNV-EX-001-0050,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,44,60.1
+WNV-EX-001,WNV-EX-001-0050,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,44,55.5
+WNV-EX-001,WNV-EX-001-0051,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,74.9,74.9
+WNV-EX-001,WNV-EX-001-0051,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,74.9,46.6
+WNV-EX-001,WNV-EX-001-0051,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,74.9,32.1
+WNV-EX-001,WNV-EX-001-0052,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,71.9,71.9
+WNV-EX-001,WNV-EX-001-0052,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,71.9,NR
+WNV-EX-001,WNV-EX-001-0052,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,71.9,43.6
+WNV-EX-001,WNV-EX-001-0053,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,49.2,49.2
+WNV-EX-001,WNV-EX-001-0053,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,49.2,54.6
+WNV-EX-001,WNV-EX-001-0053,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,49.2,40.3
+WNV-EX-001,WNV-EX-001-0054,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,65.8,65.8
+WNV-EX-001,WNV-EX-001-0054,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,65.8,46
+WNV-EX-001,WNV-EX-001-0054,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,65.8,48.6
+WNV-EX-001,WNV-EX-001-0055,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,66.9,66.9
+WNV-EX-001,WNV-EX-001-0055,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,66.9,82.4
+WNV-EX-001,WNV-EX-001-0055,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,66.9,31.1
+WNV-EX-001,WNV-EX-001-0056,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,45.4,45.4
+WNV-EX-001,WNV-EX-001-0056,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,45.4,83.4
+WNV-EX-001,WNV-EX-001-0056,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,45.4,27
+WNV-EX-001,WNV-EX-001-0057,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,52.4,52.4
+WNV-EX-001,WNV-EX-001-0057,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,52.4,31.3
+WNV-EX-001,WNV-EX-001-0057,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,52.4,40.1
+WNV-EX-001,WNV-EX-001-0058,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,59.4,59.4
+WNV-EX-001,WNV-EX-001-0058,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,59.4,40.2
+WNV-EX-001,WNV-EX-001-0058,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,59.4,59.8
+WNV-EX-001,WNV-EX-001-0059,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,37,37
+WNV-EX-001,WNV-EX-001-0059,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,37,67.4
+WNV-EX-001,WNV-EX-001-0059,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,37,55.1
+WNV-EX-001,WNV-EX-001-0060,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,46.4,46.4
+WNV-EX-001,WNV-EX-001-0060,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,46.4,NR
+WNV-EX-001,WNV-EX-001-0060,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,46.4,52.3
+WNV-EX-001,WNV-EX-001-0061,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,48.4,48.4
+WNV-EX-001,WNV-EX-001-0061,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,48.4,34.7
+WNV-EX-001,WNV-EX-001-0061,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,48.4,62.8
+WNV-EX-001,WNV-EX-001-0062,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,59.9,59.9
+WNV-EX-001,WNV-EX-001-0062,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,59.9,48.2
+WNV-EX-001,WNV-EX-001-0062,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,59.9,63.7
+WNV-EX-001,WNV-EX-001-0063,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,44.8,44.8
+WNV-EX-001,WNV-EX-001-0063,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,44.8,37.7
+WNV-EX-001,WNV-EX-001-0063,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,44.8,39.1
+WNV-EX-001,WNV-EX-001-0064,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,59.8,59.8
+WNV-EX-001,WNV-EX-001-0064,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,59.8,64.5
+WNV-EX-001,WNV-EX-001-0064,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,59.8,16.6
+WNV-EX-001,WNV-EX-001-0065,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,51,51
+WNV-EX-001,WNV-EX-001-0065,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,51,34.5
+WNV-EX-001,WNV-EX-001-0065,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,51,63.7
+WNV-EX-001,WNV-EX-001-0066,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,68.5,68.5
+WNV-EX-001,WNV-EX-001-0066,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,68.5,NR
+WNV-EX-001,WNV-EX-001-0066,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,68.5,NR
+WNV-EX-001,WNV-EX-001-0067,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,63.3,63.3
+WNV-EX-001,WNV-EX-001-0067,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,63.3,66.2
+WNV-EX-001,WNV-EX-001-0067,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,63.3,54.2
+WNV-EX-001,WNV-EX-001-0068,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,68.9,68.9
+WNV-EX-001,WNV-EX-001-0068,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,68.9,48.5
+WNV-EX-001,WNV-EX-001-0068,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,68.9,56.7
+WNV-EX-001,WNV-EX-001-0069,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,56.7,56.7
+WNV-EX-001,WNV-EX-001-0069,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,56.7,56
+WNV-EX-001,WNV-EX-001-0069,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,56.7,34.9
+WNV-EX-001,WNV-EX-001-0070,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,57.2,57.2
+WNV-EX-001,WNV-EX-001-0070,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,57.2,69.6
+WNV-EX-001,WNV-EX-001-0070,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,57.2,41.3
+WNV-EX-001,WNV-EX-001-0071,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,42.5,42.5
+WNV-EX-001,WNV-EX-001-0071,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,42.5,30.8
+WNV-EX-001,WNV-EX-001-0071,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,42.5,56.5
+WNV-EX-001,WNV-EX-001-0072,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,53.4,53.4
+WNV-EX-001,WNV-EX-001-0072,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,53.4,53.7
+WNV-EX-001,WNV-EX-001-0072,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,53.4,36.6
+WNV-EX-001,WNV-EX-001-0073,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,62.8,62.8
+WNV-EX-001,WNV-EX-001-0073,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,62.8,NR
+WNV-EX-001,WNV-EX-001-0073,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,62.8,38.4
+WNV-EX-001,WNV-EX-001-0074,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,69.8,69.8
+WNV-EX-001,WNV-EX-001-0074,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,69.8,55.3
+WNV-EX-001,WNV-EX-001-0074,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,69.8,NR
+WNV-EX-001,WNV-EX-001-0075,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,60.3,60.3
+WNV-EX-001,WNV-EX-001-0075,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,60.3,55.4
+WNV-EX-001,WNV-EX-001-0075,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,60.3,42.1
+WNV-EX-001,WNV-EX-001-0076,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,54.3,54.3
+WNV-EX-001,WNV-EX-001-0076,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,54.3,67.9
+WNV-EX-001,WNV-EX-001-0076,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,54.3,57.4
+WNV-EX-001,WNV-EX-001-0077,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,57.8,57.8
+WNV-EX-001,WNV-EX-001-0077,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,57.8,53.6
+WNV-EX-001,WNV-EX-001-0077,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,57.8,43.2
+WNV-EX-001,WNV-EX-001-0078,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,72.6,72.6
+WNV-EX-001,WNV-EX-001-0078,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,72.6,46.8
+WNV-EX-001,WNV-EX-001-0078,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,72.6,40.7
+WNV-EX-001,WNV-EX-001-0079,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,66,66
+WNV-EX-001,WNV-EX-001-0079,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,66,51.9
+WNV-EX-001,WNV-EX-001-0079,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,66,62
+WNV-EX-001,WNV-EX-001-0080,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,31.7,31.7
+WNV-EX-001,WNV-EX-001-0080,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,31.7,53.2
+WNV-EX-001,WNV-EX-001-0080,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,31.7,57.9
+WNV-EX-001,WNV-EX-001-0081,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,52.3,52.3
+WNV-EX-001,WNV-EX-001-0081,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,52.3,57.8
+WNV-EX-001,WNV-EX-001-0081,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,52.3,57.3
+WNV-EX-001,WNV-EX-001-0082,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,74.5,74.5
+WNV-EX-001,WNV-EX-001-0082,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,74.5,68.4
+WNV-EX-001,WNV-EX-001-0082,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,74.5,NR
+WNV-EX-001,WNV-EX-001-0083,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,55.6,55.6
+WNV-EX-001,WNV-EX-001-0083,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,55.6,46.1
+WNV-EX-001,WNV-EX-001-0083,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,55.6,NR
+WNV-EX-001,WNV-EX-001-0084,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,39.7,39.7
+WNV-EX-001,WNV-EX-001-0084,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,39.7,65.2
+WNV-EX-001,WNV-EX-001-0084,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,39.7,51.8
+WNV-EX-001,WNV-EX-001-0085,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,58.8,58.8
+WNV-EX-001,WNV-EX-001-0085,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,58.8,NR
+WNV-EX-001,WNV-EX-001-0085,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,58.8,57.1
+WNV-EX-001,WNV-EX-001-0086,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,55.6,55.6
+WNV-EX-001,WNV-EX-001-0086,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,55.6,61.3
+WNV-EX-001,WNV-EX-001-0086,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,55.6,39.8
+WNV-EX-001,WNV-EX-001-0087,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,41.1,41.1
+WNV-EX-001,WNV-EX-001-0087,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,41.1,40.2
+WNV-EX-001,WNV-EX-001-0087,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,41.1,36.6
+WNV-EX-001,WNV-EX-001-0088,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,60.6,60.6
+WNV-EX-001,WNV-EX-001-0088,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,60.6,44.9
+WNV-EX-001,WNV-EX-001-0088,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,60.6,38.8
+WNV-EX-001,WNV-EX-001-0089,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,44.5,44.5
+WNV-EX-001,WNV-EX-001-0089,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,44.5,49.7
+WNV-EX-001,WNV-EX-001-0089,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,44.5,26.4
+WNV-EX-001,WNV-EX-001-0090,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,50.3,50.3
+WNV-EX-001,WNV-EX-001-0090,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,50.3,54.9
+WNV-EX-001,WNV-EX-001-0090,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,50.3,43.6
+WNV-EX-001,WNV-EX-001-0091,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,71.7,71.7
+WNV-EX-001,WNV-EX-001-0091,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,71.7,NR
+WNV-EX-001,WNV-EX-001-0091,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,71.7,51.1
+WNV-EX-001,WNV-EX-001-0092,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,65.3,65.3
+WNV-EX-001,WNV-EX-001-0092,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,65.3,70.4
+WNV-EX-001,WNV-EX-001-0092,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,65.3,46.3
+WNV-EX-001,WNV-EX-001-0093,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,50.1,50.1
+WNV-EX-001,WNV-EX-001-0093,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,50.1,59.1
+WNV-EX-001,WNV-EX-001-0093,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,50.1,63.4
+WNV-EX-001,WNV-EX-001-0094,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,67.3,67.3
+WNV-EX-001,WNV-EX-001-0094,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,67.3,55.7
+WNV-EX-001,WNV-EX-001-0094,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,67.3,56
+WNV-EX-001,WNV-EX-001-0095,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,41.1,41.1
+WNV-EX-001,WNV-EX-001-0095,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,41.1,36
+WNV-EX-001,WNV-EX-001-0095,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,41.1,22.4
+WNV-EX-001,WNV-EX-001-0096,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,68.9,68.9
+WNV-EX-001,WNV-EX-001-0096,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,68.9,45.8
+WNV-EX-001,WNV-EX-001-0096,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,68.9,51
+WNV-EX-001,WNV-EX-001-0097,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,51.1,51.1
+WNV-EX-001,WNV-EX-001-0097,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,51.1,45.5
+WNV-EX-001,WNV-EX-001-0097,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,51.1,56
+WNV-EX-001,WNV-EX-001-0098,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,70.7,70.7
+WNV-EX-001,WNV-EX-001-0098,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,70.7,40.4
+WNV-EX-001,WNV-EX-001-0098,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,70.7,47.4
+WNV-EX-001,WNV-EX-001-0099,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,45.1,45.1
+WNV-EX-001,WNV-EX-001-0099,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,45.1,43
+WNV-EX-001,WNV-EX-001-0099,1002,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,45.1,44.7
+WNV-EX-001,WNV-EX-001-0100,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,52.7,52.7
+WNV-EX-001,WNV-EX-001-0100,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,52.7,55.4
+WNV-EX-001,WNV-EX-001-0100,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,52.7,49.5
+WNV-EX-001,WNV-EX-001-0101,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,37.9,37.9
+WNV-EX-001,WNV-EX-001-0101,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,37.9,45.6
+WNV-EX-001,WNV-EX-001-0101,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,37.9,NR
+WNV-EX-001,WNV-EX-001-0102,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,53.3,53.3
+WNV-EX-001,WNV-EX-001-0102,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,53.3,38.5
+WNV-EX-001,WNV-EX-001-0102,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,53.3,52.2
+WNV-EX-001,WNV-EX-001-0103,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,72.3,72.3
+WNV-EX-001,WNV-EX-001-0103,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,72.3,62.9
+WNV-EX-001,WNV-EX-001-0103,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,72.3,49
+WNV-EX-001,WNV-EX-001-0104,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,44.5,44.5
+WNV-EX-001,WNV-EX-001-0104,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,44.5,64.1
+WNV-EX-001,WNV-EX-001-0104,1002,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,44.5,38.4
+WNV-EX-001,WNV-EX-001-0105,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,44.7,44.7
+WNV-EX-001,WNV-EX-001-0105,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,44.7,55.9
+WNV-EX-001,WNV-EX-001-0105,1003,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,44.7,NR
+WNV-EX-001,WNV-EX-001-0106,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,52.9,52.9
+WNV-EX-001,WNV-EX-001-0106,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,52.9,69.7
+WNV-EX-001,WNV-EX-001-0106,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,52.9,58.2
+WNV-EX-001,WNV-EX-001-0107,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,87,87
+WNV-EX-001,WNV-EX-001-0107,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,87,48.5
+WNV-EX-001,WNV-EX-001-0107,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,87,42.1
+WNV-EX-001,WNV-EX-001-0108,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,44.7,44.7
+WNV-EX-001,WNV-EX-001-0108,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,44.7,42.8
+WNV-EX-001,WNV-EX-001-0108,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,44.7,46.4
+WNV-EX-001,WNV-EX-001-0109,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,38.2,38.2
+WNV-EX-001,WNV-EX-001-0109,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,38.2,49.4
+WNV-EX-001,WNV-EX-001-0109,1001,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,38.2,NR
+WNV-EX-001,WNV-EX-001-0110,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,53.5,53.5
+WNV-EX-001,WNV-EX-001-0110,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,53.5,51.3
+WNV-EX-001,WNV-EX-001-0110,1003,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,53.5,60
+WNV-EX-001,WNV-EX-001-0111,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,28.6,28.6
+WNV-EX-001,WNV-EX-001-0111,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,28.6,NR
+WNV-EX-001,WNV-EX-001-0111,1001,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,28.6,48.9
+WNV-EX-001,WNV-EX-001-0112,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,48.5,48.5
+WNV-EX-001,WNV-EX-001-0112,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,48.5,47.7
+WNV-EX-001,WNV-EX-001-0112,1004,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,48.5,59.8
+WNV-EX-001,WNV-EX-001-0113,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,41.4,41.4
+WNV-EX-001,WNV-EX-001-0113,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,41.4,38.3
+WNV-EX-001,WNV-EX-001-0113,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,41.4,51.8
+WNV-EX-001,WNV-EX-001-0114,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,58.8,58.8
+WNV-EX-001,WNV-EX-001-0114,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,58.8,NR
+WNV-EX-001,WNV-EX-001-0114,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,58.8,54.8
+WNV-EX-001,WNV-EX-001-0115,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,65.8,65.8
+WNV-EX-001,WNV-EX-001-0115,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,65.8,44.8
+WNV-EX-001,WNV-EX-001-0115,1003,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,65.8,56.1
+WNV-EX-001,WNV-EX-001-0116,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,69.4,69.4
+WNV-EX-001,WNV-EX-001-0116,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,69.4,58.5
+WNV-EX-001,WNV-EX-001-0116,1004,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,69.4,NR
+WNV-EX-001,WNV-EX-001-0117,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,60.5,60.5
+WNV-EX-001,WNV-EX-001-0117,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,60.5,67.4
+WNV-EX-001,WNV-EX-001-0117,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,60.5,50
+WNV-EX-001,WNV-EX-001-0118,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,63.5,63.5
+WNV-EX-001,WNV-EX-001-0118,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,63.5,42.9
+WNV-EX-001,WNV-EX-001-0118,1001,LD,Low Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,63.5,51.7
+WNV-EX-001,WNV-EX-001-0119,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,46.6,46.6
+WNV-EX-001,WNV-EX-001-0119,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,46.6,39.2
+WNV-EX-001,WNV-EX-001-0119,1002,HD,High Dose,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,46.6,84.1
+WNV-EX-001,WNV-EX-001-0120,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),0,Baseline,86.3,86.3
+WNV-EX-001,WNV-EX-001-0120,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),4,Week 4,86.3,26.8
+WNV-EX-001,WNV-EX-001-0120,1004,PBO,Placebo,BIOMARK,Inflammatory Biomarker (arbitrary units),8,Week 8,86.3,50.3
+
