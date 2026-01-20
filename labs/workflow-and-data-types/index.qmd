@@ -227,7 +227,7 @@ In R, what you see in `glimpse()` is usually a **class** (type) such as:
 These two systems overlap, but they are not identical. This table is a practical crosswalk:
 
 | Lecture concept | Typical meaning | Common R type(s) you’ll see | Short name in a tibble | Notes |
-|---------------|---------------|---------------|---------------|---------------|
+|----|----|----|----|----|
 | Nominal (categorical) | categories with no order | `factor`, `character` | `fct`, `chr` | `factor` is preferred for “known categories” |
 | Ordinal (categorical) | categories with order | `factor` (ordered) | `fct` | ordering must be defined explicitly |
 | Discrete (numeric) | counts (0, 1, 2, …) | `integer`, sometimes `double` | `int` | counts can be stored as numeric even if “discrete” |
