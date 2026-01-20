@@ -257,9 +257,13 @@ Many real datasets include information at the top of the file that is not part o
 
 ### Drug Efficacy Trial Dataset
 
+This dataset should be included in your Posit Cloud project, but you can also download it here:
+
+<a href="/data/generated/drug-trial-data.csv" download class="btn btn-light">Download `drug-trial-data.csv`</a>
+
 #### Description
 
-This [dataset]() comes from a **simulated clinical drug efficacy trial** designed to resemble how data are recorded in FDA-style studies. Each row represents a **single participant at a single study visit**, so most participants appear multiple times in the dataset.
+This dataset comes from a **simulated clinical drug efficacy trial** designed to resemble how data are recorded in FDA-style studies. Each row represents a **single participant at a single study visit**, so most participants appear multiple times in the dataset.
 
 Participants were randomly assigned to one of three **treatment arms**—placebo, low dose, or high dose—and were measured at baseline and follow-up visits during the study. The outcome variable is a continuous biomarker value that is expected to change over time in response to treatment.
 
