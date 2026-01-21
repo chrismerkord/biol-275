@@ -6,33 +6,165 @@ subtitle: "ABD 3e Chapter 2"
 format: revealjs
 ---
 
-## Consider Data Type
+## Why Graphs Matter
 
-In presentation, “form follows data structure” One categorical variable: - Bar plots and Tables. One numerical variable: - Histograms, Density plots, and Cumulative Freq. Distros. Two categorical variables: - Bar plots, Contingency Tables, and Mosaic Plots. One numerical variable + one categorical variable: - Multiple histograms, Strip charts, and Box plots. Two numerical variables and beyond: - Scatterplots and Small multiples
+Graphs help us see patterns that are hard to detect in raw numbers.
+
+They allow us to:
+
+-   Summarize large amounts of data
+-   Compare groups or values quickly
+-   See trends, differences, and relationships
+
+But different graphs highlight different things.\
+Choosing the right graph is necessary to show the most important features of the data clearly.
+
+## In data visualization, form follows data structure
+
+The type of graph you choose should be determined by:
+
+-   How many variables you have
+-   Whether each variable is **categorical** or **numerical**
+-   What relationship or pattern you want to reveal
+
+## Distributions: Looking at One Variable
+
+::::: columns
+::: {.column width="50%"}
+A [distribution]{.keyword} describes how the values of a single variable are spread out
+
+When you make a **histogram** or **bar chart**, you are showing:
+
+-   What values occur
+-   How often each value occurs
+-   Where values are common or rare
+:::
+
+::: {.column width="50%"}
+Visualizing distributions helps you:
+
+-   Understand typical values
+-   See variability and spread
+-   Detect skew, gaps, or unusual values
+
+When you graph **one variable**, you are almost always graphing its distribution.
+:::
+:::::
 
 ## One Categorical Variable: Bar plots and Tables
 
-One Categorical Variable: Bar plots and Tables
+::::: columns
+::: {.column width="50%"}
+**Goal:** Show how *observations* are distributed across *categories*
 
-## Nonsensical ordering hides patterns
+-   Each bar represents a category
+-   Height = frequency (number of observations)
+-   Bars are separated (categories are distinct)
+-   Bar height encodes frequency or proportion
+-   Best practice: **order by frequency**
+:::
 
-Order ordinal factors meaningfully. - For example, January to December. Order nominal factors by count. - If there is a grab bag category, place it after the lowest count. Example: Leading Causes of Death
+::: {.column width="50%"}
+```{r}
+#| label: barchart-penguins
+#| fig-height: 4
+#| fig-width: 5
+#| fig-cap: "Barchart showing how penguins observations are distributed among three species in the Palmer Penguins dataset (Horst et al. 2020)"
 
-## Ordering Factors Nonsensically
+library(ggplot2)
+library(forcats)
+library(palmerpenguins, quietly = TRUE)
 
-Before re-ordering factors, patterns are unclear.
+ggplot(penguins, aes(x = fct_infreq(species), fill = species)) +
+  geom_bar() +
+  scale_fill_manual(values = c("darkorange","purple","cyan4"), 
+                    guide = FALSE) +
+  theme_minimal(base_size = 15) +
+  labs(
+    x = "Species",
+    y = "Number of penguins",
+    title = "Number of penguins by species"
+  )
+```
+:::
+:::::
 
-## Ordering Factors Meaningfully
+## Tables can be used if necessary
 
-After re-ordering factors, patterns become clear.
+::::: columns
+::: {.column width="50%"}
+```{r}
+#| label: penguins-table-code
+#| eval: false
+#| echo: true
 
-## Tables Should Follow Similar Rules (1 of 2)
+library(gt)
+library(dplyr)
+library(palmerpenguins)
 
-Nonsense order hides patterns Alphabetical order is usually a bad idea.
+penguins |> 
+  count(species) |> 
+  arrange(desc(n)) |> 
+  gt() |> 
+  cols_label(
+    species = "Species",
+    n = "Number of penguins"
+  )
+```
+:::
 
-## Tables Should Follow Similar Rules (2 of 2)
+::: {.column width="50%"}
+```{r}
+#| label: penguins-table-graph
+#| eval: true
+#| echo: false
 
-Order to reveal patterns List ordinal factors in a meaningful order. List nominal factors from greatest to least, with “all others” last.
+library(gt)
+library(dplyr)
+library(palmerpenguins)
+
+penguins |> 
+  count(species) |> 
+  arrange(desc(n)) |> 
+  gt() |> 
+  cols_label(
+    species = "Species",
+    n = "Number of penguins"
+  ) |> 
+  tab_options(
+    table.font.size = px(24)
+  )
+```
+:::
+:::::
+
+## Order factors meaningfully
+
+::::: columns
+::: {.column width="50%"}
+Ordinal variables:
+
+-   use pre-defined order (e.g. months Jan-Dec)
+
+Nominal variables:
+
+-   Most interested in the largest categories
+
+-   Order by frequency
+
+-   Place catch-all category at the bottom
+
+-   Swap axes to give category labels more room
+:::
+
+::: {.column width="50%"}
+Example: Leading Causes of Death
+
+![Bar chart before reordering.](images/clipboard-2541097321.png){width="279"}
+
+![Bar chart after reordering.](images/clipboard-1373280282.png){width="278"}
+:::
+:::::
 
 ## One Numerical Variable: Histograms, Density plots, and Cumulative Freq. Distros
 
