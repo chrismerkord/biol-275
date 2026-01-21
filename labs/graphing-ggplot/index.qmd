@@ -1,0 +1,44 @@
+---
+title: "Lab 4: Graphing with ggplot"
+description: "An introduction to creating scatterplots in R using ggplot2 and a layered approach to graphing."
+format: html
+execute:
+  echo: true
+---
+
+## Learning Objectives
+
+By the end of this lab, students will be able to:
+
+-   Describe the basic idea of building graphs in layers using ggplot2.
+-   Create a ggplot object by specifying a dataset and aesthetic mappings.
+-   Map numerical variables to the x- and y-axes to produce a scatterplot.
+-   Map a categorical variable to color to represent groups in the data.
+-   Use `facet_wrap()` to create small-multiple scatterplots.
+-   Recreate a scatterplot with aesthetics and facets using a new dataset.
+
+## Overview: From Data to Graphs
+
+## The Gapminder Dataset
+
+## How ggplot Builds a Graph
+
+## Starting a Plot with `ggplot()`
+
+## Mapping Variables with `aes()`
+
+## Adding Points with `geom_point()`
+
+## Using Color to Represent Groups
+
+## Creating Small Multiples with `facet_wrap()`
+
+## Interpreting the Code–Graph Connection
+
+## Guided Practice: Modifying an Existing Plot
+
+## Independent Practice: A New Scatterplot
+
+## Key Takeaways
+
+## Submission and Wrap-up
