@@ -490,7 +490,7 @@ Use:
 -   **ordered factors** for categories with a meaningful progression (e.g., time points, dose levels).
 
 | Aspect | Unordered factor | Ordered factor |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | Level order exists | Yes | Yes |
 | Order has meaning | No | Yes |
 | `<` / `>` comparisons allowed | No | Yes |
