@@ -8,7 +8,7 @@ format:
 
 Lecture slide decks are available in html format.
 
-::::::::::::::: {.grid .gap-3}
+::::::::::::::::::: {.grid .gap-3}
 :::::: {.g-col-12 .g-col-sm-4}
 ::::: {.card .h-100}
 ::: card-header
@@ -68,8 +68,8 @@ Lecture 4
 
 Common visualization types and their suitability for different data types and analytical goals.
 
-[Coming Soon](){.btn .btn-primary}
+[Under Construction](slides/lecture-04-visualizing-data-types/){.btn .btn-warning}
 :::
 :::::
 ::::::
-:::::::::::::::
+:::::::::::::::::::

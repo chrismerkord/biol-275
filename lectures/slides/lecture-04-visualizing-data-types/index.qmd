@@ -6,55 +6,299 @@ subtitle: "ABD 3e Chapter 2"
 format: revealjs
 ---
 
-## Consider Data Type
+## Why Graphs Matter
 
-In presentation, “form follows data structure” One categorical variable: - Bar plots and Tables. One numerical variable: - Histograms, Density plots, and Cumulative Freq. Distros. Two categorical variables: - Bar plots, Contingency Tables, and Mosaic Plots. One numerical variable + one categorical variable: - Multiple histograms, Strip charts, and Box plots. Two numerical variables and beyond: - Scatterplots and Small multiples
+Graphs help us see patterns that are hard to detect in raw numbers.
 
-## One Categorical Variable: Bar plots and Tables
+They allow us to:
 
-One Categorical Variable: Bar plots and Tables
+-   Summarize large amounts of data
+-   Compare groups or values quickly
+-   See trends, differences, and relationships
 
-## Nonsensical ordering hides patterns
+But different graphs highlight different things.\
+Choosing the right graph is necessary to show the most important features of the data clearly.
 
-Order ordinal factors meaningfully. - For example, January to December. Order nominal factors by count. - If there is a grab bag category, place it after the lowest count. Example: Leading Causes of Death
+## In data visualization, form follows data structure
 
-## Ordering Factors Nonsensically
+The type of graph you choose should be determined by:
 
-Before re-ordering factors, patterns are unclear.
+-   How many variables you have
+-   Whether each variable is **categorical** or **numerical**
+-   What relationship or pattern you want to reveal
 
-## Ordering Factors Meaningfully
+## Distributions: Looking at One Variable
 
-After re-ordering factors, patterns become clear.
+::::: columns
+::: {.column width="50%"}
+A [distribution]{.keyword} describes how the values of a single variable are spread out
 
-## Tables Should Follow Similar Rules (1 of 2)
+When you make a **histogram** or **bar chart**, you are showing:
 
-Nonsense order hides patterns Alphabetical order is usually a bad idea.
+-   What values occur
+-   How often each value occurs
+-   Where values are common or rare
+:::
 
-## Tables Should Follow Similar Rules (2 of 2)
+::: {.column width="50%"}
+Visualizing distributions helps you:
 
-Order to reveal patterns List ordinal factors in a meaningful order. List nominal factors from greatest to least, with “all others” last.
+-   Understand typical values
+-   See variability and spread
+-   Detect skew, gaps, or unusual values
 
-## One Numerical Variable: Histograms, Density plots, and Cumulative Freq. Distros
+When you graph **one variable**, you are almost always graphing its distribution.
+:::
+:::::
 
-One Numerical Variable: Histograms, Density plots, and Cumulative Freq. Distros
+## One Categorical Variable: [Barcharts]{.keyword}
 
-## One Numerical Variable—Goals
+::::: columns
+::: {.column width="50%"}
+**Goal:** Show how *observations* are distributed across *categories*
 
-Visualize the center (Mean) Visualize the width (Variation) Visualize the shape (Distribution)
+-   Each column represents a category
+-   Height = frequency (number of observations)
+-   Bars are separated (categories are distinct)
+-   Bar height encodes frequency or proportion
+-   Best practice: **order by frequency**
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: barchart-penguins
+#| fig-height: 4
+#| fig-width: 5
+#| fig-cap: "Barchart showing how penguins observations are distributed among three species in the Palmer Penguins dataset (Horst et al. 2020)"
+
+library(ggplot2)
+library(forcats)
+library(palmerpenguins, quietly = TRUE)
+
+ggplot(penguins, aes(x = fct_infreq(species), fill = species)) +
+  geom_bar() +
+  scale_fill_manual(values = c("darkorange","purple","cyan4"), 
+                    guide = FALSE) +
+  theme_minimal(base_size = 15) +
+  labs(
+    x = "Species",
+    y = "Number of penguins",
+    title = "Distribution of penguins by species"
+  )
+```
+:::
+:::::
+
+## Tables can be used if necessary
+
+::::: columns
+::: {.column width="50%"}
+```{r}
+#| label: penguins-table-code
+#| eval: false
+#| echo: true
+
+library(gt)
+library(dplyr)
+library(palmerpenguins)
+
+penguins |> 
+  count(species) |> 
+  arrange(desc(n)) |> 
+  gt() |> 
+  cols_label(
+    species = "Species",
+    n = "Number of penguins"
+  )
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: penguins-table-graph
+#| eval: true
+#| echo: false
+
+library(gt)
+library(dplyr)
+library(palmerpenguins)
+
+penguins |> 
+  count(species) |> 
+  arrange(desc(n)) |> 
+  gt() |> 
+  cols_label(
+    species = "Species",
+    n = "Number of penguins"
+  ) |> 
+  tab_options(
+    table.font.size = px(24)
+  )
+```
+:::
+:::::
+
+## Order factors meaningfully
+
+::::: columns
+::: {.column width="50%"}
+Ordinal variables:
+
+-   use pre-defined order (e.g. months Jan-Dec)
+
+Nominal variables:
+
+-   Most interested in the largest categories
+
+-   Order by frequency
+
+-   Place catch-all category at the bottom
+
+-   Swap axes to give category labels more room
+:::
+
+::: {.column width="50%"}
+Example: Leading Causes of Death
+
+![Bar chart before reordering.](images/clipboard-2541097321.png){width="279"}
+
+![Bar chart after reordering.](images/clipboard-1373280282.png){width="278"}
+:::
+:::::
+
+## Visualizing One Numerical Variable
+
+::::: columns
+::: {.column width="50%"}
+**Goal:** Understand the *distribution* of values in a single numerical variable.
+
+These graphs are used to show:
+
+-   Where values are *concentrated* (center, location)
+-   How *spread out* the data are (width, variation)
+-   Whether the distribution is *symmetric* or *skewed*
+:::
+
+::: {.column width="50%"}
+Common graph types:
+
+-   Histograms
+-   Density plots
+-   Cumulative frequency distributions
+
+When you graph one numerical variable, you are visualizing its *distribution*.
+:::
+:::::
 
 ## Example: Gettysburg Address
 
-All of the words in the Gettysburg Address. Let’s see the number of times words of various lengths come up.
+::::: columns
+::: {.column width="50%"}
+|                 |                     |
+|-----------------|---------------------|
+| **Word length** | **Number of words** |
+| 1               | 7                   |
+| 2               | 50                  |
+| 3               | 60                  |
+| 4               | 58                  |
+| 5               | 34                  |
+| 6               | 24                  |
+| 7               | 15                  |
+| 8               | 6                   |
+| 9               | 10                  |
+| 10              | 4                   |
+| 11              | 3                   |
+:::
 
-## Gettysburg Address: Summary Table
+::: {.column width="50%"}
+Histograms visually describe summary tables
 
-Number of words of a given length in the Gettysburg Address.
+![Word length distribution in the Gettysburg address](images/clipboard-2018971871.png){alt="Word length distribution in the Gettysburg address"}
+:::
+:::::
 
-## Histograms visually describe summary tables
+## [Histograms]{.keyword} display the distribution of a *numerical* variable
 
-## Histograms—Consider Your Bins
+::::: columns
+::: {.column width="50%"}
+-   Values grouped into intervals called [bins]{.keyword}
 
-Each block of a histogram is called a bin The size or “width” of a bin refers to the range in each block. Changing bins can change stories. - Don’t be fooled. - Don’t allow bad bin widths to obscure your data. DO NOT assume that default bin widths are appropriate.
+-   Height = number of observations (frequency)
+
+-   Show distribution shape
+
+-   Show skewness or symmetry
+
+-   Show gaps or unusual values
+
+-   Bars touch
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: histogram-penguins
+#| fig-height: 4
+#| fig-width: 5
+#| fig-cap: "Barchart showing how penguins observations are distributed among three species in the Palmer Penguins dataset (Horst et al. 2020)"
+
+library(ggplot2)
+library(forcats)
+library(palmerpenguins, quietly = TRUE)
+
+penguins |> 
+  filter(!is.na(bill_length_mm)) |> 
+  ggplot(aes(x = bill_length_mm)) +
+  geom_histogram(binwidth = 2, fill = "darkcyan") +
+  theme_minimal(base_size = 15) +
+  labs(
+    x = "Species",
+    y = "Number of penguins",
+    title = "Distribution of peguin bill lengths"
+  )
+```
+:::
+:::::
+
+## Choosing Bin Widths
+
+::::: columns
+::: {.column width="50%"}
+-   Bin width defines how numerical values are grouped
+-   Different bin widths can reveal or obscure patterns
+-   Bin widths should be chosen deliberately
+-   Default settings are rarely optimal
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: histogram-narrow-bins
+#| fig-height: 2.8
+#| fig-width: 7
+#| fig-cap: "A histogram with bins that are too narrow."
+
+
+penguins |> 
+  filter(!is.na(bill_length_mm)) |> 
+  ggplot(aes(x = bill_length_mm)) +
+  geom_histogram(bins=100, fill = "darkcyan") +
+  theme_minimal(base_size = 15)
+```
+
+```{r}
+#| label: histogram-wide-bins
+#| fig-height: 2.8
+#| fig-width: 7
+#| fig-cap: "A histogram with bins that are too wide"
+
+
+penguins |> 
+  filter(!is.na(bill_length_mm)) |> 
+  ggplot(aes(x = bill_length_mm)) +
+  geom_histogram(bins=4, fill = "darkcyan") +
+  theme_minimal(base_size = 15)
+```
+:::
+:::::
 
 ## Density plots serve a similar purpose as histograms, but smooth the distribution.
 

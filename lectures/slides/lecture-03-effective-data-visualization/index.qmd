@@ -14,7 +14,7 @@ format: revealjs
 -   Understand how to make effective tables
 -   Identify best practices in figure design
 
-## Displaying data helps you **understand** your data and **communicate** your results 
+## Displaying data helps you **understand** your data and **communicate** your results
 
 ![](images/clipboard-4140443648.png)
 
@@ -182,9 +182,15 @@ Non-intuitive ordering of factors hides patterns. ![](images/slide-16-01.png)
 
 In this plot, a log-log scale reveals a pattern hidden on the linear scale. Lifespan by body size in mammals, data from Allison & Cicchetti 1976 ![](images/slide-18-01.png)
 
-## Mistake 3: Display Magnitudes Dishonestly
+## Mistake: Display Magnitudes Dishonestly
 
-How to represent magnitudes dishonestly: - Start bar plots at a non-zero value How to represent magnitudes honestly: - Sat bar plots at zero **Why? The weight of a bar plot** **makes us think in magnitudes.**
+How to represent magnitudes dishonestly:
+
+-   Start bar plots at a non-zero value
+
+How to represent magnitudes honestly:
+
+-   Start bar plots at zero **Why? The weight of a bar plot** **makes us think in magnitudes.**
 
 ## Present Magnitudes Dishonestly (1 of 2)
 
@@ -194,34 +200,43 @@ This plot suggests that centers are 20X taller than guards. ![](images/slide-20-
 
 Note: This applies to bar plots that naturally start at zero. Not all plots need to start at zero. ![](images/slide-21-01.png)
 
-## Mistake 4: Draw Elements Unclearly
+## Mistake: Draw Elements Unclearly
 
-How to draw graphical elements unclearly:
+::::: columns
+::: {.column width="50%"}
+How to draw graphical elements *unclearly*:
 
 -   Unthinkingly accept default options from plotting programs.
 -   Do not consider how a diverse audience will interpret your figure.
+:::
 
-How to draw graphical elements clearly:
+::: {.column width="50%"}
+How to draw graphical elements *clearly*:
 
 -   Reflect on plot design.
+
 -   Consider the diverse audience you are reaching and how they may interact with your plot.
+:::
+:::::
 
 ## Draw Graphics Unclearly
 
 In this plot, x-axis labels obscure one another.
 
+![](images/clipboard-122828006.png)
+
 ## Flip Axes to Present Graphics Clearly
 
 Flipping axes makes categories readable.
 
-## Clear Graphics for Everyone
+![](images/clipboard-3224243569.png)
 
-ALWAYS Consider colorblind readers
+## Always consider color-blind readers
+
+Simulated view of the graph on the left for two types of color-blindness
+
+![](images/clipboard-2743557806.png)
 
 ## Direct Labeling Clarifies Graphics
 
-Labels directly on plots (left hand side) quickly clarifies patterns.
-
-## Best Practices for Saving and Sharing Data:
-
-Guidelines for Making Data Easy to Analyze - Each row should correspond to one observation, and each column should correspond to a variable. - Avoid special characters such as \$ \# ! %. - Ensure column names are easily interpretable. - Save spreadsheets as a plain text file (.csv or .txt). - Make sure the data are correct. - Include a data dictionary with fuller explanations. Statistics is much easier if data are well formatted.
+![](images/clipboard-2686749986.png)
