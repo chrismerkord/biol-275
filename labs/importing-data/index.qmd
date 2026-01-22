@@ -47,7 +47,7 @@ install.packages("tidyverse")
     b.  The second line loads the tidyverse package so that you can use functions in it later.
 
     ```{r}
-    #| label: library(tidyverse)
+    #| label: load-packages
     #| echo: true
 
     # load packages --------------------------------------------------------------
