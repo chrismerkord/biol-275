@@ -23,8 +23,8 @@ Before you begin the lab activities, complete the following steps to make sure y
 
 1.  **Get the Lab Handout.**
 
-    Pick up a physical copy of the lab [handout](handout.pdf "Download the Lab 3 Handout"), or print one if you are working outside of class.\
-    <a href="lab-04-worksheet.pdf" download class="btn btn-light">Download Lab Worksheet</a>
+    Pick up a physical copy of the lab worksheet, or print one if you are working outside of class.\
+    <a href="lab-04-worksheet.pdf" download class="btn btn-outline-primary mt-3">Download Lab Worksheet (PDF, if needed)</a>
 
 2.  **Open Posit Cloud and Start Lab 4.**
 
