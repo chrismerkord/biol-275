@@ -98,7 +98,9 @@ A ggplot is composed of seven parts. The first three are always needed to produc
 
 ![The 7 parts used to compose a ggplot. Credit: ggplot2 package webpage by Wickham et al.](https://ggplot2.tidyverse.org/articles/ggplot2_files/figure-html/overview_graphic-1.png){width="50%"}
 
-The goal of this section is not to memorize these parts, but to recognize them when you see ggplot code. Most plots you create will reuse the same pieces in different combinations.
+> ##### Handout Q1
+>
+> In your own words, what does it mean to “build” a graph in ggplot2 rather than choosing a graph type?
 
 ## Data
 
@@ -113,6 +115,10 @@ ggplot(data = penguins)
 
 Because no variables or layers have been specified yet, nothing is drawn. This is expected. Think of this as creating an empty plotting canvas that knows which dataset it will use.
 
+> ##### Handout Q2
+>
+> What dataset is being used in this example?
+
 ## Mapping
 
 A **mapping** describes how variables in the dataset are connected to visual properties in the plot. These connections are called aesthetic mappings. The most common mappings are the x- and y-axes.
@@ -126,9 +132,9 @@ ggplot(penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g))
 
 Here, two numerical variables are mapped to position: one to the x-axis and one to the y-axis. At this point, ggplot knows where values should go, but it still does not know what type of marks to draw.
 
-> Handout Q:
+> ##### Handout Q3
 >
-> Record which variables are mapped to x and y on your worksheet.
+> Which variables are mapped to the x- and y-axes in this plot?
 
 ## Layers
 
@@ -146,6 +152,10 @@ ggplot(penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
 Adding a geometry layer causes the data to appear on the graph. In this lab, you will focus on point geometries, which are used to create scatterplots.
 
 You do not need to worry about the statistical transformation or position adjustment yet—ggplot handles these automatically unless you tell it otherwise.
+
+> ##### Handout Q4
+>
+> In this lab, what type of geometry is used to create scatterplots? Give the exact function name.
 
 ## Scales
 
@@ -178,9 +188,9 @@ ggplot(penguins, mapping = aes(flipper_length_mm, body_mass_g, color = species))
 
 This example shows that scales can be customized without changing the underlying data or mappings. For now, the important idea is that scales exist and can be adjusted when needed.
 
-> Handout Q:
+> ##### Handout Q5
 >
-> What changes and what stays the same when a plot is faceted.
+> Do you need to manually define scales in order to make a useful plot? Why or why not?
 
 ## Facets
 
@@ -198,6 +208,10 @@ ggplot(penguins, mapping = aes(flipper_length_mm, body_mass_g, color = species))
 ```
 
 Faceting is often preferable to adding more colors or symbols, especially when comparing patterns across categories. You will use faceting frequently in future labs.
+
+> ##### Handout Q6:
+>
+> What changes and what stays the same when a plot is faceted.
 
 ## Guided Practice: Modifying an Existing Plot
 
@@ -235,6 +249,10 @@ Your scatterplot should:
 -   use faceting to show the same plot across groups
 
 Use the earlier examples as a template. You should not need any new ggplot functions to complete this section.
+
+> ##### Handout Q7
+>
+> List the variables you used for the x and y axes, for color, and for facetting in the gapminder scatterplot.
 
 ## Key Takeaways
 

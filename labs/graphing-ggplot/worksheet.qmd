@@ -66,3 +66,23 @@ header-includes:
 \textbf{Name:} \hspace{2.5in} \textbf{Date:} \hspace{1.4in} \textbf{LA Initials:} \hspace{0.8in}
 \end{answerbox}
 
+**1. In your own words, what does it mean to “build” a graph in ggplot2 rather than choosing a graph type?**
+\ab{1in}
+
+**2. What dataset is being used in this example?**
+\ab{0.5in}
+
+**3. Which variables are mapped to the x- and y-axes in this plot?**
+\ab{0.5in}
+
+**4. In this lab, what type of geometry is used to create scatterplots? Give the exact function name.**
+\ab{0.5in}
+
+**5. Do you need to manually define scales in order to make a useful plot? Why or why not?**
+\ab{1in}
+
+**6. What changes and what stays the same when a plot is faceted.**
+\ab{1in}
+
+**7. List the variables you used for the x and y axes, for color, and for facetting in the gapminder scatterplot.**
+\ab{2in}
