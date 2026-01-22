@@ -140,6 +140,8 @@ Here, two numerical variables are mapped to position: one to the x-axis and one 
 
 A **layer** tells ggplot how to represent the mapped data visually. Layers include information about geometry (what shape to draw), statistical transformations, and position adjustments. In this course, you will usually define only the geometry and rely on defaults for the rest.
 
+To add a layer of points to the graph, use the `geom_point()` function as shown in the example below. You can also add other layers to the same graph. In the example below, we have also added a linear regression line with `geom_smooth()` to help visualize the relationship between the two variables.
+
 ```{r}
 #| label: ggplot-layers
 #| output: false
@@ -161,7 +163,7 @@ You do not need to worry about the statistical transformation or position adjust
 
 Scales control how data values are translated into visual values. When you map a variable to color, ggplot automatically creates a color scale. The same is true for the x- and y-axes.
 
-In our example, we are plotting data from three penguin species. If we wanted to visualize which points represent each species, we can use an aesthetic mapping to link the `species` variable to the `color` aesthetic:
+In our example, we are plotting data from three penguin species. If we wanted to visualize which points represent each species, we can use an aesthetic mapping to link the `species` variable to the `color` aesthetic by adding `color = species` to the `aes()` function.
 
 ```{r}
 #| label: ggplot-color-default
@@ -172,9 +174,7 @@ ggplot(penguins, mapping = aes(flipper_length_mm, body_mass_g, color = species))
   geom_smooth(formula = y ~ x, method = "lm")
 ```
 
-These default scales are usually sufficient, especially early in the course. Later, you will learn how and when to modify them intentionally.
-
-This provides a default scale for color (i.e. a default set of colors). We can then modify those defaults by specifying a color scale ourselves. The viridis color scale is a common one that is color-blind friendly.
+This provides a default scale for color (i.e. a default set of colors). We can then modify those defaults by specifying a color scale ourselves using one of the many `scale_*` functions. In this case we will use `scale_color_viridis_d()` to tell ggplot to use the **viridis** color scale. The viridis color scale is a common one that is color-blind friendly.
 
 ```{r}
 #| label: ggplot-color-scale
@@ -183,7 +183,7 @@ This provides a default scale for color (i.e. a default set of colors). We can t
 ggplot(penguins, mapping = aes(flipper_length_mm, body_mass_g, color = species)) +
   geom_point() +
   geom_smooth(formula = y ~ x, method = "lm") +
-  scale_colour_viridis_d()
+  scale_color_viridis_d()
 ```
 
 This example shows that scales can be customized without changing the underlying data or mappings. For now, the important idea is that scales exist and can be adjusted when needed.
@@ -194,7 +194,7 @@ This example shows that scales can be customized without changing the underlying
 
 ## Facets
 
-Facets create small multiples: the same graph repeated for different subsets of the data. Each panel shows the same variables using the same scales, making comparisons across groups easier.
+Facets create small multiples: the same graph repeated for different subsets of the data. Each panel shows the same variables using the same scales, making comparisons across groups easier. Create facets using the `facet_wrap()` function like this:
 
 ```{r}
 #| label: ggplot-facets
@@ -212,6 +212,10 @@ Faceting is often preferable to adding more colors or symbols, especially when c
 > ##### Handout Q6:
 >
 > What changes and what stays the same when a plot is faceted.
+
+::: callout-tip
+When you use `facet_wrap()` the default behavior is to use the same limits for the x- and y-axes. If you want to let those limits vary to fit the data on each facet, add a comma followed by `scales = "free"` to `facet_wrap()`.
+:::
 
 ## Guided Practice: Modifying an Existing Plot
 
