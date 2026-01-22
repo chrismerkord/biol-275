@@ -39,7 +39,7 @@ Before you begin the lab activities, complete the following steps to make sure y
     #| eval: false
     #| echo: true
 
-    install.packages("tidyverse", "palmerpenguins", "gapminder")
+    install.packages(c("tidyverse", "palmerpenguins", "gapminder"))
     ```
 
 4.  **Create an R Script**
