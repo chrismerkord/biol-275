@@ -219,6 +219,15 @@ In this final activity, you will apply what you learned using a new dataset. The
 
 You will work with the **Gapminder** dataset, which contains country-level measurements collected across multiple years. Each row represents one country in one year.
 
+Print the gapminder dataset in your console to see what it looks like:
+
+```{r}
+#| label: print-gapminder
+#| output: false
+
+print(gapminder)
+```
+
 Your scatterplot should:
 
 -   use two numerical variables on the x- and y-axes
