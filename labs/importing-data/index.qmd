@@ -18,26 +18,26 @@ By the end of this lab, you should be able to:
 -   Recognize how missing values are represented in a dataset and how R interprets them.
 -   Manually set data types.
 
-::: callout-tip
-Read the following sections carefully **before** writing any code or answering handout questions. The lab will clearly indicate when you should run code or record an answer. Skipping ahead often leads to confusion and unnecessary frustration.
-:::
-
 ## Getting Started
 
 Before beginning the lab, make sure you are set up correctly.
 
-1.  Pick up a physical copy of the [lab worksheet](lab-04-worksheet.pdf), or print one if you are working outside of class.
+1.  Pick up a physical copy of the **lab worksheet**, or print one if you are working outside of class.\
+    <a href="lab-03-worksheet.pdf" download class="btn btn-outline-primary mt-3">Download Lab Worksheet (PDF, if needed)</a>
+
 2.  Log in to **Posit Cloud** and navigate to the **course workspace**.
+
 3.  Open the Assignment Project named "Lab 3 Importing Data"
+
 4.  Install the required packages for this lab (**tidyverse**) using the Packages pane or by running the following code ***in the Console pane*** (do not put it in a script):
 
-```{r}
-#| label: install-packages
-#| eval: false
-#| echo: true
-
-install.packages("tidyverse")
-```
+  ```{r}
+  #| label: install-packages
+  #| eval: false
+  #| echo: true
+  
+  install.packages("tidyverse")
+  ```
 
 5.  Create a new R script and save it as **lab-3-script.R**.
 
@@ -70,7 +70,7 @@ install.packages("tidyverse")
     Solution: install the package first, then load it with `library()`
     :::
 
-## Introduction to importing data
+## Overview: Introduction to importing data
 
 In this lab, you will learn how data are brought into R from an external file. Unlike the previous lab, where the dataset already existed in R, this lab focuses on what happens before analysis begins.
 
@@ -79,6 +79,10 @@ Reading data into R is not a passive step. When you import a dataset, R must mak
 The goal of this lab is not to analyze data, make plots, or run statistical tests. The goal is to practice reading data correctly and verifying that the imported dataset matches the meaning of the original data source.
 
 With the project set up and the required package loaded, we will begin by reading a CSV file that is already well-structured and works with R’s default assumptions.
+
+::: callout-tip
+Read the following sections carefully **before** writing any code or answering handout questions. The lab will clearly indicate when you should run code or record an answer. Skipping ahead often leads to confusion and unnecessary frustration.
+:::
 
 ## CSV Files and the Project Environment
 
