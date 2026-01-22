@@ -26,7 +26,7 @@ Read the following sections carefully **before** writing any code or answering h
 
 Before beginning the lab, make sure you are set up correctly.
 
-1.  Pick up a physical copy of the lab [handout](handout.pdf "Download the Lab 3 Handout"), or print one if you are working outside of class.
+1.  Pick up a physical copy of the [lab worksheet](lab-04-worksheet.pdf), or print one if you are working outside of class.
 2.  Log in to **Posit Cloud** and navigate to the **course workspace**.
 3.  Open the Assignment Project named "Lab 3 Importing Data"
 4.  Install the required packages for this lab (**tidyverse**) using the Packages pane or by running the following code ***in the Console pane*** (do not put it in a script):
