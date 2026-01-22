@@ -32,14 +32,14 @@ Before you begin the lab activities, complete the following steps to make sure y
 
 3.  **Install required packages**
 
-    Install the required packages for this lab, including **tidyverse** and **gapminder** using the Packages pane or by running the following code ***in the Console***:
+    Install the required packages for this lab, including **tidyverse**, **palmerpenguins**, and **gapminder** using the Packages pane or by running the following code ***in the Console***:
 
     ```{r}
     #| label: install-packages
     #| eval: false
     #| echo: true
 
-    install.packages("tidyverse", "gapminder")
+    install.packages("tidyverse", "palmerpenguins", "gapminder")
     ```
 
 4.  **Create an R Script**
@@ -57,6 +57,7 @@ Before you begin the lab activities, complete the following steps to make sure y
     # load packages --------------------------------------------------------------
 
     library(tidyverse)
+    library(palmerpenguins)
     library(gapminder)
     ```
 
@@ -75,26 +76,170 @@ Do not continue until all of the above steps are working correctly.
 
 ## Overview: From Data to Graphs
 
-## The Gapminder Dataset
+In this lab, you will learn how to create your first graphs in R using the ggplot2 package. Rather than selecting a graph type from a menu, you will build a graph step by step by describing how variables in a dataset should be represented visually.
 
-## How ggplot Builds a Graph
+You will begin by working through examples using the Palmer Penguins dataset to learn the basic structure of a ggplot, how aesthetic mappings work, and how scatterplots are constructed. Once those ideas are in place, you will apply the same approach to a different dataset—the Gapminder dataset—to create a similar graph on your own.
 
-## Starting a Plot with `ggplot()`
+The focus of this lab is on scatterplots and on understanding the core pieces that make up a graph: the data, the variables being plotted, and the visual mappings that connect data values to positions, colors, and panels. The goal is not to memorize commands, but to understand how the pieces fit together.
 
-## Mapping Variables with `aes()`
+This lab is designed to be self-paced. As you work through the sections, you will follow along with provided examples and record notes and answers on the lab worksheet. The questions are intended to highlight key ideas and syntax that you will reuse later in the course, not to test you.
 
-## Adding Points with `geom_point()`
+By the end of the lab, you should be comfortable reading ggplot code, understanding what each part of a plot is doing, and making small modifications to create similar graphs using a new dataset.
 
-## Using Color to Represent Groups
+::: callout-tip
+Read the following sections carefully **before** writing any code or answering handout questions. The lab will clearly indicate when you should run code or record an answer. Skipping ahead often leads to confusion and unnecessary frustration.
+:::
 
-## Creating Small Multiples with `facet_wrap()`
+## How ggplot2 Builds a Graph
 
-## Interpreting the Code–Graph Connection
+ggplot2 is an R package for creating graphs of data. ggplot2 uses a conceptual framework that involves composing graphs in a stepwise manner using code rather than selecting a pre-defined graph from a list. You can read more about ggplot2 in this short vignette [Introduction to ggplot2](https://ggplot2.tidyverse.org/articles/ggplot2.html) and in the ggplot2 [book](https://ggplot2-book.org/).
+
+A ggplot is composed of seven parts. The first three are always needed to produce a graph: data, a mapping, and a layer. The other four have sensible defaults and are used to fine-tune the graph: scales, facets, coordinates, and a theme.
+
+![The 7 parts used to compose a ggplot. Credit: ggplot2 package webpage by Wickham et al.](https://ggplot2.tidyverse.org/articles/ggplot2_files/figure-html/overview_graphic-1.png){width="50%"}
+
+The goal of this section is not to memorize these parts, but to recognize them when you see ggplot code. Most plots you create will reuse the same pieces in different combinations.
+
+## Data
+
+Every ggplot begins with a dataset. The dataset tells ggplot where the data come from, but it does not yet specify what to draw or how to draw it. At this stage, ggplot knows what data are available, but it has no instructions for how to display them.
+
+```{r}
+#| label: ggplot-data
+#| output: false
+
+ggplot(data = penguins)
+```
+
+Because no variables or layers have been specified yet, nothing is drawn. This is expected. Think of this as creating an empty plotting canvas that knows which dataset it will use.
+
+## Mapping
+
+A **mapping** describes how variables in the dataset are connected to visual properties in the plot. These connections are called aesthetic mappings. The most common mappings are the x- and y-axes.
+
+```{r}
+#| label: ggplot-mapping
+#| output: false
+
+ggplot(penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g))
+```
+
+Here, two numerical variables are mapped to position: one to the x-axis and one to the y-axis. At this point, ggplot knows where values should go, but it still does not know what type of marks to draw.
+
+> Handout Q:
+>
+> Record which variables are mapped to x and y on your worksheet.
+
+## Layers
+
+A **layer** tells ggplot how to represent the mapped data visually. Layers include information about geometry (what shape to draw), statistical transformations, and position adjustments. In this course, you will usually define only the geometry and rely on defaults for the rest.
+
+```{r}
+#| label: ggplot-layers
+#| output: false
+
+ggplot(penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point() +
+  geom_smooth(formula = y ~ x, method = "lm")
+```
+
+Adding a geometry layer causes the data to appear on the graph. In this lab, you will focus on point geometries, which are used to create scatterplots.
+
+You do not need to worry about the statistical transformation or position adjustment yet—ggplot handles these automatically unless you tell it otherwise.
+
+## Scales
+
+Scales control how data values are translated into visual values. When you map a variable to color, ggplot automatically creates a color scale. The same is true for the x- and y-axes.
+
+In our example, we are plotting data from three penguin species. If we wanted to visualize which points represent each species, we can use an aesthetic mapping to link the `species` variable to the `color` aesthetic:
+
+```{r}
+#| label: ggplot-color-default
+#| output: false
+
+ggplot(penguins, mapping = aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point() +
+  geom_smooth(formula = y ~ x, method = "lm")
+```
+
+These default scales are usually sufficient, especially early in the course. Later, you will learn how and when to modify them intentionally.
+
+This provides a default scale for color (i.e. a default set of colors). We can then modify those defaults by specifying a color scale ourselves. The viridis color scale is a common one that is color-blind friendly.
+
+```{r}
+#| label: ggplot-color-scale
+#| output: false
+
+ggplot(penguins, mapping = aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point() +
+  geom_smooth(formula = y ~ x, method = "lm") +
+  scale_colour_viridis_d()
+```
+
+This example shows that scales can be customized without changing the underlying data or mappings. For now, the important idea is that scales exist and can be adjusted when needed.
+
+> Handout Q:
+>
+> What changes and what stays the same when a plot is faceted.
+
+## Facets
+
+Facets create small multiples: the same graph repeated for different subsets of the data. Each panel shows the same variables using the same scales, making comparisons across groups easier.
+
+```{r}
+#| label: ggplot-facets
+#| output: false
+
+ggplot(penguins, mapping = aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point() +
+  geom_smooth(formula = y ~ x, method = "lm") +
+  scale_colour_viridis_d() +
+  facet_wrap(~ species)
+```
+
+Faceting is often preferable to adding more colors or symbols, especially when comparing patterns across categories. You will use faceting frequently in future labs.
 
 ## Guided Practice: Modifying an Existing Plot
 
+This exercise is designed to help you connect specific lines of ggplot code to visible changes in the graph. Focus on what changes and why, not on getting a “correct” final plot.
+
+Copy the the working ggplot code from above, and make the following modifications:
+
+-   put `body_mass_g` on the x-axis and `flipper_length_mm` on the y-axis.
+
+-   map the color aesthetic to `sex` instead of `species.`
+
+-   facet the graph using `year` instead of `species`.
+
+If something does not work as expected, read error messages carefully and ask an LA for help. Small syntax issues are common at this stage.
+
 ## Independent Practice: A New Scatterplot
+
+In this final activity, you will apply what you learned using a new dataset. The goal is to recreate the structure of the previous scatterplots—not to invent a new type of graph.
+
+You will work with the **Gapminder** dataset, which contains country-level measurements collected across multiple years. Each row represents one country in one year.
+
+Your scatterplot should:
+
+-   use two numerical variables on the x- and y-axes
+-   map a categorical variable to color
+-   use faceting to show the same plot across groups
+
+Use the earlier examples as a template. You should not need any new ggplot functions to complete this section.
 
 ## Key Takeaways
 
-## Submission and Wrap-up
+-   ggplot graphs are built by combining data, mappings, and layers.
+-   Aesthetic mappings connect variables to visual properties like position and colors
+-   Scatterplots require two numerical variables.
+-   Faceting allows you to compare patterns across groups using the same axes.
+
+These ideas will carry forward as you learn additional graph types later in the course.
+
+## Wrap-up and submission
+
+This lab is graded for completion.
+
+1.  Make sure your script is saved in your project on Posit Cloud.
+2.  Print the final bird dataset in the console and show it to an LA for grading.
+3.  Keep your handout and **show it to a Learning Assistant for a completion grade before you leave lab**. You may do this as soon as you finish.

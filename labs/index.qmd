@@ -52,4 +52,20 @@ Reading external data into R, with emphasis on file structure, missing values, a
 :::
 ::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lab 4
+:::
+::: card-body
+##### Graphing with ggplot {.card-title}
+
+An introduction to creating scatterplots in R using ggplot2 and a layered approach to graphing.
+
+[Lab 4](graphing-ggplot/)
+:::
+::::
+::::::
 :::::::::::
+
