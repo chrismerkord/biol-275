@@ -248,9 +248,10 @@ print(gapminder)
 
 Your scatterplot should:
 
--   use two numerical variables on the x- and y-axes
--   map a categorical variable to color
--   use faceting to show the same plot across groups
+-   use the `gapminder` data.
+-   use two numerical variables of your choice on the x- and y-axes.
+-   map a categorical variable to color. in practice, the one that works best is `continent`.
+-   use faceting to show the same plot across groups.
 
 Use the earlier examples as a template. You should not need any new ggplot functions to complete this section.
 
