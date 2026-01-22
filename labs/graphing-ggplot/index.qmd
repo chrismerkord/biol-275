@@ -17,6 +17,62 @@ By the end of this lab, students will be able to:
 -   Use `facet_wrap()` to create small-multiple scatterplots.
 -   Recreate a scatterplot with aesthetics and facets using a new dataset.
 
+## Getting started
+
+Before you begin the lab activities, complete the following steps to make sure you are fully set up.
+
+1.  **Get the Lab Handout.**
+
+    Pick up a physical copy of the lab [handout](handout.pdf "Download the Lab 3 Handout"), or print one if you are working outside of class.\
+    <a href="lab-04-worksheet.pdf" download class="btn btn-light">Download Lab Worksheet</a>
+
+2.  **Open Posit Cloud and Start Lab 4.**
+
+    Log in to **Posit Cloud** and navigate to the **course workspace**, and start the Lab 4 assignment.
+
+3.  **Install required packages**
+
+    Install the required packages for this lab, including **tidyverse** and **gapminder** using the Packages pane or by running the following code ***in the Console***:
+
+    ```{r}
+    #| label: install-packages
+    #| eval: false
+    #| echo: true
+
+    install.packages("tidyverse", "gapminder")
+    ```
+
+4.  **Create an R Script**
+
+    Create a new R script and save it as **lab-3-script.R**.
+
+5.  **Load the packages**
+
+    Copy and paste this code to your R script and run it to load the packages. Remember to run both library commands (Ctrl+Enter on one line, then the next).
+
+    ```{r}
+    #| label: load-packages
+    #| echo: true
+
+    # load packages --------------------------------------------------------------
+
+    library(tidyverse)
+    library(gapminder)
+    ```
+
+::: callout-note
+## Checkpoint
+
+At this point, you should have:
+
+-   These instructions open in a web browser.
+-   Your Lab 4 project open in Posit Cloud in another browser window.
+-   The required packages installed and loaded without errors
+-   The Lab 4 worksheet in front of you.
+
+Do not continue until all of the above steps are working correctly.
+:::
+
 ## Overview: From Data to Graphs
 
 ## The Gapminder Dataset
