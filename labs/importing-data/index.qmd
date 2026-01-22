@@ -32,7 +32,7 @@ Before beginning the lab, make sure you are set up correctly.
 4.  Install the required packages for this lab (**tidyverse**) using the Packages pane or by running the following code ***in the Console pane*** (do not put it in a script):
 
 ```{r}
-#| label: install-tidyverse
+#| label: install-packages
 #| eval: false
 #| echo: true
 
@@ -490,7 +490,7 @@ Use:
 -   **ordered factors** for categories with a meaningful progression (e.g., time points, dose levels).
 
 | Aspect | Unordered factor | Ordered factor |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | Level order exists | Yes | Yes |
 | Order has meaning | No | Yes |
 | `<` / `>` comparisons allowed | No | Yes |
