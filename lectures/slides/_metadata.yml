@@ -5,6 +5,9 @@ editor: visual
 
 format:
   revealjs:
+    width: 1920
+    height: 1080
+    margin: 0.05
     fig-align: center
     cap-location: bottom
     slide-number: true
