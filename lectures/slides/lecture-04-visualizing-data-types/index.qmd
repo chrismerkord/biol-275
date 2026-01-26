@@ -213,11 +213,11 @@ When you graph one numerical variable, you are visualizing its *distribution*.
 ::: {.column width="50%"}
 Histograms visually describe summary tables
 
-![Word length distribution in the Gettysburg address](images/clipboard-2018971871.png){alt="Word length distribution in the Gettysburg address"}
+![Word length distribution in the Gettysburg address](images/clipboard-2018971871.png)
 :::
 :::::
 
-## [Histograms]{.keyword} display the distribution of a *numerical* variable
+## [Histograms]{.keyword} display the distribution of a *numerical* variable using columns
 
 ::::: columns
 ::: {.column width="50%"}
@@ -239,7 +239,7 @@ Histograms visually describe summary tables
 #| label: histogram-penguins
 #| fig-height: 4
 #| fig-width: 5
-#| fig-cap: "Barchart showing how penguins observations are distributed among three species in the Palmer Penguins dataset (Horst et al. 2020)"
+#| fig-cap: "Barchart showing the distribution of bill lengths for penguins in the Palmer Penguins dataset (Horst et al. 2020)"
 
 library(ggplot2)
 library(forcats)
@@ -251,9 +251,9 @@ penguins |>
   geom_histogram(binwidth = 2, fill = "darkcyan") +
   theme_minimal(base_size = 15) +
   labs(
-    x = "Species",
-    y = "Number of penguins",
-    title = "Distribution of peguin bill lengths"
+    x = "Bill Length (mm)",
+    y = "Count",
+    title = "Distribution of penguin bill lengths"
   )
 ```
 :::
@@ -300,11 +300,117 @@ penguins |>
 :::
 :::::
 
-## Density plots serve a similar purpose as histograms, but smooth the distribution.
+## [Density plots]{.keyword} show the shape of a numerical distribution using a smooth curve
 
-Like histograms (even more so), we can be fooled by bandwidth, take control of this
+::::: columns
+::: {.column width="50%"}
+-   Same goal as histograms: reveal shape, center, spread, skew
+-   No bins; based on a continuous density estimate
+-   Emphasize overall patterns rather than exact counts
+-   Well suited for comparing multiple groups on the same axis
+-   Shape depends strongly on **bandwidth** (smoothing level)
+-   Defaults can mislead — adjust bandwidth intentionally
+:::
 
-## Cumulative Frequency Distributions clearly communicate quantiles
+::: {.column width="50%"}
+```{r}
+#| label: density-penguins
+#| fig-height: 4
+#| fig-width: 5
+#| fig-cap: "Density plot showing the distribution of bill lengths for penguins in the Palmer Penguins dataset (Horst et al. 2020)"
+
+penguins |> 
+  filter(!is.na(bill_length_mm)) |> 
+  ggplot(aes(x = bill_length_mm)) +
+  geom_density(fill = "darkcyan") +
+  theme_minimal(base_size = 15) +
+  labs(
+    x = "Bill Length (mm)",
+    y = "Density",
+    title = "Distribution of penguin bill lengths"
+  )
+```
+:::
+:::::
+
+## Cumulative frequency distributions show quantiles and cumulative proportions
+
+::::: columns
+::: {.column width="50%"}
+-   Show the proportion of observations ≤ a given value
+-   x-axis: data values; y-axis: cumulative proportion (0–1)
+-   Quantiles read directly from the curve (median, quartiles, percentiles)
+-   Always non-decreasing; ends at 1
+-   Well suited for comparing distributions across groups
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: cdf-penguins
+#| fig-height: 4
+#| fig-width: 5
+#| fig-cap: "Cumulative distribution function (CDF) of penguin bill lengths, showing the proportion of individuals with bill lengths less than or equal to a given value in the Palmer Penguins dataset (Horst et al. 2020)."
+
+penguins |> 
+  filter(!is.na(bill_length_mm)) |> 
+  ggplot(aes(x = bill_length_mm)) +
+  stat_ecdf(geom = "step") +
+  theme_minimal(base_size = 15) +
+  labs(
+    x = "Bill Length (mm)",
+    y = "Cumulative proportion",
+    title = "Cumulative distribution of\npenguin bill lengths"
+  )
+```
+:::
+:::::
+
+## CDFs are used when **how values accumulate** matters
+
+::::: columns
+::: {.column width="50%"}
+-   Time-to-event data (e.g., survival, germination, development time)
+-   Comparing entire distributions across populations or treatments
+-   Evaluating biologically meaningful thresholds (e.g., size at maturity, tolerance limits)
+-   Formal distribution comparisons (e.g., Kolmogorov–Smirnov tests)
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: cdf-example
+#| fig-cap: "Kaplan–Meier survival curve (1 − CDF) for patients with advanced lung cancer, showing the proportion of individuals who have not yet experienced the event (death) over time. Each downward step corresponds to one or more observed events. Data are from the `lung` dataset in the R `survival` package (North Central Cancer Treatment Group)."
+
+# Load required packages
+library(survival)
+
+# Load the lung survival dataset
+data(lung)
+
+# Recode status: 1 = censored, 2 = event (death)
+lung$status_event <- lung$status == 2
+
+# Fit Kaplan–Meier survival curve
+km_fit <- survfit(Surv(time, status_event) ~ 1, data = lung)
+
+# Convert to a data frame
+km_df <- data.frame(
+  time = km_fit$time,
+  surv = km_fit$surv
+)
+
+# Plot 1 − CDF (i.e., survival function)
+ggplot(km_df, aes(x = time, y = surv)) +
+  geom_step(linewidth = 1, color = "darkblue") +
+  labs(
+    x = "Time (days)",
+    y = "Proportion not yet experiencing event",
+    title = "1 − CDF (survival curve) for lung cancer patients"
+  ) +
+  theme_minimal(base_size = 15)
+
+```
+:::
+:::::
 
 ## Shapes of Distributions
 
@@ -357,8 +463,6 @@ To show data, data points are jittered about the x-axis. Note: The position on t
 ## Another Alternative: Violin Plot
 
 The shape of the “violins” reflects the distribution of the data.
-
-## Quiz 1 results
 
 ## Two numerical variables: Scatterplots
 
