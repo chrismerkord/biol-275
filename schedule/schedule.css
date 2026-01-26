@@ -1,0 +1,76 @@
+
+table.table {
+  
+  font-size: calc(var(--bs-body-font-size) * 0.9);
+  
+  td > p {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  td > p:has(.lecture) ~ p:has(.lecture),
+  td > p:has(.lab)     ~ p:has(.lab),
+  td > p:has(.exam)    ~ p:has(.exam),
+  td > p:has(.noclass) ~ p:has(.noclass) {
+    margin-top: 0.5rem;
+  }
+  
+  /* Supporting text paragraphs */
+  td > p:not(:has(.lecture)):not(:has(.lab)):not(:has(.exam)):not(:has(.noclass)) {
+    margin-left: 0rem;
+  }
+ 
+  /* table cells that contain headings */
+  td > p:has(.lecture),
+  td > p:has(.lab),
+  td > p:has(.exam),
+  td > p:has(.noclass) {
+    margin-left: 0;
+  }
+  
+  /* Paragraphs acting as headings */
+  td > p:has(.lecture),
+  td > p:has(.lab),
+  td > p:has(.exam),
+  td > p:has(.noclass) {
+  font-size: 0.75em;                 /* clearly subordinate */
+  font-weight: 500;                  /* quiet emphasis */
+  text-transform: uppercase;
+  letter-spacing: 0.06em;            /* critical for caps */
+  color: var(--bs-secondary-color);  /* Bootstrap-muted */
+  margin-bottom: 0.25rem;
+  }
+  
+  thead th {
+    border-bottom: 2px solid var(--bs-border-color);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    vertical-align: bottom;
+  }
+  
+  td {
+    border: 1px solid var(--bs-border-color);
+  }
+  
+  .exam {
+    font-weight: bold;
+    color: var(--bs-danger);
+  }
+  
+  td:has(.lecture):not(:has(.exam), :has(.holiday), :has(.deadline)) {
+    background: var(--lecture-bg);
+  }
+  
+  td:has(.noclass):not(:has(.exam), :has(.holiday)) {
+    background-color: var(--bs-secondary-bg);
+  }
+  
+  td:has(.lab):not(:has(.exam)) {
+    background: var(--holiday-bg);
+  }
+  
+  td:has(.exam) {
+    background-color: var(--bs-danger-bg-subtle);
+  }
+
+}
