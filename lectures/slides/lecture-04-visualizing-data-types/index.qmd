@@ -3,6 +3,9 @@ title: |
   | Lecture 4
   | Visualizing Data Types
 subtitle: "ABD 3e Chapter 2"
+execute:
+  cache: false
+freeze: false
 format: revealjs
 ---
 
