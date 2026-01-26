@@ -68,7 +68,21 @@ Lecture 4
 
 Common visualization types and their suitability for different data types and analytical goals.
 
-[Under Construction](slides/lecture-04-visualizing-data-types/){.btn .btn-warning}
+[Go to Lecture](slides/lecture-04-visualizing-data-types/){.btn .btn-primary}
+:::
+:::::
+::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 5
+:::
+
+::: card-body
+##### Describing Data {.card-title}
+
+[Under Construction](slides/lecture-05/){.btn .btn-warning}
 :::
 :::::
 ::::::

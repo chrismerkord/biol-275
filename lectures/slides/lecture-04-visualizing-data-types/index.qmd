@@ -27,6 +27,8 @@ The type of graph you choose should be determined by:
 -   Whether each variable is **categorical** or **numerical**
 -   What relationship or pattern you want to reveal
 
+# Visualizing One Variable
+
 ## Distributions: Looking at One Variable
 
 ::::: columns
@@ -67,8 +69,8 @@ When you graph **one variable**, you are almost always graphing its distribution
 ::: {.column width="50%"}
 ```{r}
 #| label: barchart-penguins
-#| fig-height: 4
-#| fig-width: 5
+#| fig-height: 6
+#| fig-width: 8
 #| fig-cap: "Barchart showing how penguins observations are distributed among three species in the Palmer Penguins dataset (Horst et al. 2020)"
 
 library(ggplot2)
@@ -78,8 +80,8 @@ library(palmerpenguins, quietly = TRUE)
 ggplot(penguins, aes(x = fct_infreq(species), fill = species)) +
   geom_bar() +
   scale_fill_manual(values = c("darkorange","purple","cyan4"), 
-                    guide = FALSE) +
-  theme_minimal(base_size = 15) +
+                    guide = "none") +
+  theme_minimal(base_size = 18) +
   labs(
     x = "Species",
     y = "Number of penguins",
@@ -132,7 +134,7 @@ penguins |>
     n = "Number of penguins"
   ) |> 
   tab_options(
-    table.font.size = px(24)
+    table.font.size = px(50)
   )
 ```
 :::
@@ -149,20 +151,17 @@ Ordinal variables:
 Nominal variables:
 
 -   Most interested in the largest categories
-
 -   Order by frequency
-
 -   Place catch-all category at the bottom
-
 -   Swap axes to give category labels more room
 :::
 
 ::: {.column width="50%"}
 Example: Leading Causes of Death
 
-![Bar chart before reordering.](images/clipboard-2541097321.png){width="279"}
+![Bar chart before reordering.](images/clipboard-2541097321.png){width="45%"}
 
-![Bar chart after reordering.](images/clipboard-1373280282.png){width="278"}
+![Bar chart after reordering.](images/clipboard-1373280282.png){width="45%"}
 :::
 :::::
 
@@ -213,7 +212,7 @@ When you graph one numerical variable, you are visualizing its *distribution*.
 ::: {.column width="50%"}
 Histograms visually describe summary tables
 
-![Word length distribution in the Gettysburg address](images/clipboard-2018971871.png)
+![Word length distribution in the Gettysburg address](images/clipboard-2018971871.png){width="90%"}
 :::
 :::::
 
@@ -237,8 +236,8 @@ Histograms visually describe summary tables
 ::: {.column width="50%"}
 ```{r}
 #| label: histogram-penguins
-#| fig-height: 4
-#| fig-width: 5
+#| fig-height: 6
+#| fig-width: 8
 #| fig-cap: "Barchart showing the distribution of bill lengths for penguins in the Palmer Penguins dataset (Horst et al. 2020)"
 
 library(ggplot2)
@@ -249,7 +248,7 @@ penguins |>
   filter(!is.na(bill_length_mm)) |> 
   ggplot(aes(x = bill_length_mm)) +
   geom_histogram(binwidth = 2, fill = "darkcyan") +
-  theme_minimal(base_size = 15) +
+  theme_minimal(base_size = 18) +
   labs(
     x = "Bill Length (mm)",
     y = "Count",
@@ -267,13 +266,14 @@ penguins |>
 -   Different bin widths can reveal or obscure patterns
 -   Bin widths should be chosen deliberately
 -   Default settings are rarely optimal
+-   In R you can set either the `binwidth` or number of `bins` arguments to `geom_histogram()`
 :::
 
 ::: {.column width="50%"}
 ```{r}
 #| label: histogram-narrow-bins
-#| fig-height: 2.8
-#| fig-width: 7
+#| fig-height: 3.2
+#| fig-width: 8
 #| fig-cap: "A histogram with bins that are too narrow."
 
 
@@ -286,8 +286,8 @@ penguins |>
 
 ```{r}
 #| label: histogram-wide-bins
-#| fig-height: 2.8
-#| fig-width: 7
+#| fig-height: 3.2
+#| fig-width: 8
 #| fig-cap: "A histogram with bins that are too wide"
 
 
@@ -315,15 +315,15 @@ penguins |>
 ::: {.column width="50%"}
 ```{r}
 #| label: density-penguins
-#| fig-height: 4
-#| fig-width: 5
+#| fig-height: 6
+#| fig-width: 8
 #| fig-cap: "Density plot showing the distribution of bill lengths for penguins in the Palmer Penguins dataset (Horst et al. 2020)"
 
 penguins |> 
   filter(!is.na(bill_length_mm)) |> 
   ggplot(aes(x = bill_length_mm)) +
   geom_density(fill = "darkcyan") +
-  theme_minimal(base_size = 15) +
+  theme_minimal(base_size = 18) +
   labs(
     x = "Bill Length (mm)",
     y = "Density",
@@ -347,15 +347,15 @@ penguins |>
 ::: {.column width="50%"}
 ```{r}
 #| label: cdf-penguins
-#| fig-height: 4
-#| fig-width: 5
+#| fig-height: 6
+#| fig-width: 8
 #| fig-cap: "Cumulative distribution function (CDF) of penguin bill lengths, showing the proportion of individuals with bill lengths less than or equal to a given value in the Palmer Penguins dataset (Horst et al. 2020)."
 
 penguins |> 
   filter(!is.na(bill_length_mm)) |> 
   ggplot(aes(x = bill_length_mm)) +
   stat_ecdf(geom = "step") +
-  theme_minimal(base_size = 15) +
+  theme_minimal(base_size = 18) +
   labs(
     x = "Bill Length (mm)",
     y = "Cumulative proportion",
@@ -378,13 +378,12 @@ penguins |>
 ::: {.column width="50%"}
 ```{r}
 #| label: cdf-example
+#| fig-height: 6
+#| fig-width: 8
 #| fig-cap: "Kaplan–Meier survival curve (1 − CDF) for patients with advanced lung cancer, showing the proportion of individuals who have not yet experienced the event (death) over time. Each downward step corresponds to one or more observed events. Data are from the `lung` dataset in the R `survival` package (North Central Cancer Treatment Group)."
 
 # Load required packages
 library(survival)
-
-# Load the lung survival dataset
-data(lung)
 
 # Recode status: 1 = censored, 2 = event (death)
 lung$status_event <- lung$status == 2
@@ -406,82 +405,707 @@ ggplot(km_df, aes(x = time, y = surv)) +
     y = "Proportion not yet experiencing event",
     title = "1 − CDF (survival curve) for lung cancer patients"
   ) +
-  theme_minimal(base_size = 15)
+  theme_minimal(base_size = 18)
 
 ```
 :::
 :::::
 
-## Shapes of Distributions
+## Describing a distribution means describing patterns in data
 
-Histograms, density plots, and cumulative frequency plots can reveal the shapes of distributions. This is important for understanding data and choosing a statistical approach.
+::::: columns
+::: {.column width="50%"}
+-   A distribution shows how values of a numerical variable are arranged
+-   Description comes before calculation or modeling
+-   Goal: describe what is typical, how values vary, and what stands out
+-   Distributions are described using **shape**, **location**, **spread**, and **outliers**
+-   These features can be seen visually before any statistics are computed
+:::
 
-## Distribution Shapes: Histograms
+::: {.column width="50%"}
+```{r}
+#| label: histogram-shape
+#| fig.width: 8
+#| fig.height: 6
+#| fig.cap: "Histogram of simulated data drawn from a normal distribution, illustrating the basic idea of a distribution: how numerical values are arranged and how frequently they occur across the range of the data."
+#| 
+set.seed(123)
 
-Bell-shaped Bimodal Skewed Uniform
+x <- rnorm(1000, mean = 0, sd = 1)
 
-## Distribution Shapes: Density plots
+ggplot(data.frame(x = x), aes(x = x)) +
+  geom_histogram(bins = 30, fill = "grey35",
+  color = "white",
+  linewidth = 0.25) +
+  theme_gray(base_size = 18) +
+  labs(
+    x = "Value",
+    y = "Count",
+    title = "Example distribution of a numerical variable"
+  )
+```
+:::
+:::::
 
-Bell-shaped Bimodal Skewed Uniform ![](images/slide-45-01.png)
+## Distribution **shape** describes the overall pattern of values
 
-## Distribution Shapes: Cumul. Freq. Distros.
+::::: columns
+::: {.column width="50%"}
+-   Shape refers to the form of the distribution as a whole
+-   Common shapes include [left-skewed]{.keyword}, [symmetric]{.keyword} ([normal]{.keyword}), and [right-skewed]{.keyword}
+-   Some data are evenly distributed ([uniform]{.keyword})
+-   Multiple peaks indicate mixed groups or processes ([bimodal]{.keyword}, [multimodal]{.keyword})
+-   Shape often reflects underlying biological or sampling processes
+:::
 
-Bell-shaped Bimodal Skewed Uniform ![](images/slide-46-01.png)
+::: {.column width="50%"}
+```{r}
+#| label: histogram-skew
+#| fig.width: 8
+#| fig.height: 6
+#| fig.cap: "Examples of common distribution shapes—left-skewed, normal (symmetric), right-skewed, uniform, bimodal, and multimodal—illustrating how numerical data can vary in overall pattern depending on underlying processes or population structure."
+#| 
 
-## Two Categorical Variables: Bar plots, Contingency Tables, and Mosaic Plots
+set.seed(123)
 
-Two Categorical Variables: Bar plots, Contingency Tables, and Mosaic Plots
+n <- 1500
 
-## Two Categorical Variables—Goals
+df <- bind_rows(
+  tibble(shape = "Left-skewed",  x = 8 - rexp(n, rate = 1/1.3)),     # long left tail
+  tibble(shape = "Normal",       x = rnorm(n, mean = 5, sd = 1.0)),
+  tibble(shape = "Right-skewed", x = 2 + rexp(n, rate = 1/1.3)),     # long right tail
+  tibble(shape = "Uniform",      x = runif(n*2, min = 2, max = 8)),
+  tibble(shape = "Bimodal",      x = c(rnorm(n/1.8, 3.5, 0.6), rnorm(n/2, 6.5, 0.6))),
+  tibble(shape = "Multimodal",   x = c(rnorm(n/2.6, 3.0, 0.45), rnorm(n/2.4, 5.0, 0.45), rnorm(n/3, 7.0, 0.45)))
+) |>
+  mutate(shape = factor(
+    shape,
+    levels = c("Left-skewed", "Normal", "Right-skewed", "Uniform", "Bimodal", "Multimodal")
+  ))
 
-Visualize the association between variables. Example: Is Breeding Dangerous for Birds
+ggplot(df, aes(x = x)) +
+  geom_density() +
+  facet_wrap(~ shape, ncol = 3) +
+  theme_gray(base_size = 18) +
+  labs(
+    x = "Value",
+    y = "Density",
+    title = "Common distribution shapes"
+  )
 
-## Is Breeding Dangerous for Birds?
+```
+:::
+:::::
 
-Oppliger et al. (1996) removed eggs from some, but not other, *Parus* *major* nests to encourage them to breed more. They later assayed the moms for malaria. Here are the data as a **contingency table**.
+## [Location]{.keyword} describes where a distribution is centered
 
-## Visualization: Grouped Bar Graph
+::::: columns
+::: {.column width="50%"}
+-   Where values tend to cluster along the x-axis
+-   Distributions can share shape but differ in location
+-   Common summaries: **mean** and **median**
+-   Visual comparison reveals shifts between groups or conditions
+-   Differences often reflect biological or environmental change
+:::
 
-## Visualization: Stacked Bar Graph
+::: {.column width="50%"}
+```{r}
+#| label: histogram-location
+#| fig.width: 8
+#| fig.height: 6
+#| fig.cap: "Histograms showing two distributions with similar shape and spread but different locations, illustrating how shifts in the center (mean or median) move the distribution along the x-axis without changing its overall form."
 
-## Visualization: Mosaic Plot
 
-## One categorical and one numerical variable: Multiple histograms and Strip charts
+set.seed(123)
 
-## Example: Edgar Anderson’s Iris Data Set
+n <- 1000
 
-Multiple Histograms This dataset is in R stats package print(iris)
+df <- bind_rows(
+  tibble(group = "Group A", x = rnorm(n, mean = 5, sd = 1)),
+  tibble(group = "Group B", x = rnorm(n, mean = 7, sd = 1))
+)
 
-## Avoid Over-plotting
+ggplot(df, aes(x = x)) +
+  geom_histogram(
+    bins = 30,
+    fill = "grey35",
+    color = "white",
+    linewidth = 0.3
+  ) +
+  facet_wrap(~ group, ncol = 1) +
+  theme_gray(base_size = 18) +
+  labs(
+    x = "Value",
+    y = "Count",
+    title = "Distributions with similar shape but different locations"
+  )
+```
+:::
+:::::
 
-Over-plotting hides data by placing data points on top of each other.
+## [Spread]{.keyword} describes how variable the data are
 
-## Good Alternative: Strip Chart
+::::: columns
+::: {.column width="50%"}
+-   How wide or narrow a distribution is
+-   Distributions can share a center but differ in spread
+-   Greater spread indicates more heterogeneity in sample units
+-   Spread affects uncertainty and overlap between groups
+-   Common summaries: **range** and **standard deviation**
+:::
 
-To show data, data points are jittered about the x-axis. Note: The position on the x within groups is not meaningful.
+::: {.column width="50%"}
+```{r}
+#| label: histogram-spread
+#| fig.width: 8
+#| fig.height: 6
+#| fig-cap: "Histograms showing two distributions with the same center but different spread, illustrating how increased variability widens the distribution and increases overlap and uncertainty."
 
-## Another Alternative: Violin Plot
 
-The shape of the “violins” reflects the distribution of the data.
+library(tidyverse)
 
-## Two numerical variables: Scatterplots
+set.seed(123)
 
-## Two Numerical Variables—Goals
+n <- 1000
 
-Visualize the association. Visualize the joint distribution.
+df <- bind_rows(
+  tibble(group = "Low spread",  x = rnorm(n, mean = 5, sd = 0.6)),
+  tibble(group = "High spread", x = rnorm(n, mean = 5, sd = 1.8))
+)
 
-## Two Continuous: Scatterplots
+ggplot(df, aes(x = x)) +
+  geom_histogram(
+    bins = 30,
+    fill = "grey35",
+    color = "white",
+    linewidth = 0.3
+  ) +
+  facet_wrap(~ group, ncol = 1) +
+  theme_gray(base_size = 18) +
+  labs(
+    x = "Value",
+    y = "Count",
+    title = "Distributions with the same center but different spread"
+  )
 
-## Two Continuous + One Categorical: Scatterplot With Legend
 
-## Two Continuous + One Categorical: Scatterplot Directly Label
+```
+:::
+:::::
 
-## Two Continuous + One Categorical: Small Multiples
+## [Outliers]{.keyword} are observations that do not follow the main pattern
 
-## Line Graphs Show Data Over Time
+::::: columns
+::: {.column width="50%"}
+-   Values far from the bulk of the data
+-   May reflect rare events, error, or different processes
+-   Can strongly influence summaries and models
+-   Should be identified visually before analysis
+-   Investigate outliers; do not remove automatically
+:::
 
-For temporal data, note all observations with a data point, and connect each point with a line. Points may be omitted for clarity if there are no gaps
+::: {.column width="50%"}
+```{r}
+#| label: histogram-outliers
+#| fig.width: 8
+#| fig.height: 6
+#| fig-cap: "Histogram showing a distribution with a central cluster of values and a small number of extreme observations (outliers) far from the main pattern."
 
-## Color Code Maps to Show Spatial Data
 
-Note: Maps need not refer to areas of land. For example, you can make a map of gene expression across the body.
+set.seed(123)
+
+# Main distribution
+main <- rnorm(600, mean = 5, sd = 1)
+
+# Outliers
+outliers <- c(rnorm(12, mean = 10, sd = .5),
+              rnorm(4, mean = 0,  sd = 1))
+
+df <- tibble(
+  x = c(main, outliers),
+  outlier = c(rep(FALSE, length(main)), rep(TRUE, length(outliers)))
+)
+
+ggplot(df, aes(x = x, fill = outlier)) +
+  geom_histogram(
+    bins = 40,
+    color = "white",
+    linewidth = 0.3
+  ) +
+    # change colors here if desired
+    scale_fill_manual(
+    values = c("FALSE" = "grey35", "TRUE" = "grey35"),
+    guide = "none"
+  ) +
+  theme_minimal(base_size = 15) +
+  labs(
+    x = "Value",
+    y = "Count",
+    title = "Distribution with outliers"
+  )
+
+```
+:::
+:::::
+
+# Visualizing Two Variables
+
+## Visualizing relationships between two categorical variables
+
+-   Goal: assess whether categories are associated
+-   Common tools: bar plots, contingency tables, mosaic plots
+-   Focus on comparing proportions, not raw counts
+-   Ask questions like: “Does category A differ across levels of category B?”
+-   Useful for exploring relationships before formal tests
+
+## Example: Is Breeding Dangerous for Birds?
+
+::::: columns
+::: {.column width="50%"}
+-   Study by Oppliger et al. (1996) on great tits (*Parus major*)\
+    ![Great Tit (Parus major). Credit: Frank Vassen. Source: Wikimedia Commons.](images/clipboard-3286598477.png){width="245"}
+-   Researchers experimentally altered breeding effort by removing eggs from some nests
+-   Control nests were left unchanged
+-   Female birds were later assayed for malaria infection
+-   Question: is increased reproductive effort associated with higher malaria risk?
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: malaria-table
+
+library(tidyverse)
+library(gt)
+
+# Create the contingency table as a tibble
+birds <- tibble(
+  outcome = c("Malaria", "No malaria"),
+  control = c(7, 28),
+  removed = c(15, 15)
+) |>
+  mutate(total = control + removed)
+
+birds |>
+  gt(rowname_col = "outcome") |>
+
+  # Column spanner for treatment
+  tab_spanner(
+    label = "Treatment",
+    columns = c(control, removed)
+  ) |>
+
+  # Add total row
+  grand_summary_rows(
+    columns = c(control, removed, total),
+    fns = list(Total = ~sum(.))
+  ) |>
+
+  # Relabel columns
+  cols_label(
+    control = "Control",
+    removed = "Removed",
+    total = "Total"
+  ) |>
+
+  # Table title
+  tab_header(
+    title = "Is breeding dangerous for birds?",
+    subtitle = "Malaria outcomes by experimental breeding treatment"
+  ) |>
+
+  # Source note (shown below table)
+  tab_source_note(
+    source_note = "Source: Oppliger et al. (1996)"
+  ) |>
+
+  # Visual polish
+  opt_table_outline() |>
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_grand_summary()
+  ) |> 
+  tab_options(
+    table.font.size = px(40)
+  )
+```
+:::
+:::::
+
+## Grouped bar graphs compare category frequencies across groups
+
+::::: columns
+::: {.column width="50%"}
+-   Bars show counts or proportions for each category
+-   Categories are displayed side-by-side within groups
+-   Used for two categorical variables
+-   Best for comparing differences between groups within categories
+-   E.g. compare outcomes within treatments
+-   Use proportions when group sizes differ
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: grouped-bar-graph
+#| fig.width: 8
+#| fig.height: 6
+#| fig-cap: "Grouped bar graph showing counts of malaria outcomes for female great tits in control nests versus nests where eggs were removed to increase breeding effort (Oppliger et al. 1996)."
+
+library(tidyverse)
+
+# Data (no totals row/column for plotting)
+birds <- tibble(
+  outcome = c("Malaria", "No malaria"),
+  control = c(7, 28),
+  removed = c(15, 15)
+)
+
+# Convert to long format for ggplot
+birds_long <- birds |>
+  pivot_longer(
+    cols = c(control, removed),
+    names_to = "treatment",
+    values_to = "count"
+  ) |>
+  mutate(treatment = recode(treatment, control = "Control", removed = "Removed"))
+
+# Grouped bar graph (counts)
+ggplot(birds_long, aes(x = treatment, y = count, fill = outcome)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.7) +
+  see::scale_fill_oi() +
+  theme_minimal(base_size = 18) +
+  labs(
+    x = "Outcome",
+    y = "Count",
+    fill = "Treatment",
+    title = "Malaria outcomes by treatment"
+  )
+
+```
+:::
+:::::
+
+## Stacked bar graphs show composition within groups
+
+::::: columns
+::: {.column width="50%"}
+-   Bars represent groups; segments represent categories
+-   Emphasize within-group composition
+-   Prefer when grouped bars become cluttered
+-   Use proportional stacks when group sizes differ
+-   Less effective for comparing categories across groups
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: stacked-bar-graph
+#| fig.width: 8
+#| fig.height: 6
+#| fig-cap: "Stacked bar graph showing counts of malaria outcomes within each treatment group (control vs egg removal) for female great tits (Oppliger et al. 1996)."
+
+# Stacked bar graph (counts)
+ggplot(birds_long, aes(x = treatment, y = count, fill = outcome)) +
+  geom_col(width = 0.7) +
+  see::scale_fill_oi() +
+  theme_minimal(base_size = 15) +
+  labs(
+    x = "Treatment",
+    y = "Count",
+    fill = "Outcome",
+    title = "Malaria outcomes by treatment"
+  )
+```
+:::
+:::::
+
+## Mosaic plots show association between two categorical variables
+
+::::: columns
+::: {.column width="50%"}
+-   Alternative to grouped and stacked bar graphs
+-   Best when the goal is to assess association, not exact counts
+-   Width shows group size; height shows category proportions
+-   Makes differences in proportions and imbalances in group size explicit
+-   Especially useful before or alongside chi-square tests
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: mosaic-plot
+#| fig.width: 8
+#| fig.height: 6
+#| fig-cap: "Mosaic plot showing the association between treatment (control vs egg removal) and malaria outcome in female great tits; tile areas are proportional to counts, with widths showing group sizes and heights showing outcome proportions (Oppliger et al. 1996)."
+
+tab <- xtabs(count ~ treatment + outcome, data = birds_long)
+
+# Okabe–Ito colors (matching see::scale_color_oi())
+oi_cols <- c("#E69F00", "#56B4E9")
+
+par(cex = 1.7)
+
+mosaicplot(
+  tab,
+  color = oi_cols,
+  main = "Mosaic plot: Outcome by treatment",
+  xlab = "Treatment",
+  ylab = "Outcome"
+)
+
+par(cex = 1)
+```
+:::
+:::::
+
+## Visualizing one categorical and one numerical variable
+
+-   Goal: compare the distribution of a numerical variable across categories
+-   [Multiple histograms]{.keyword}:
+    -   Show full distribution shape within each category
+    -   Best for moderate to large sample sizes
+    -   Use consistent bin widths for fair comparison
+-   [Strip charts]{.keyword}:
+    -   Show individual observations directly
+    -   Best for small to moderate sample sizes
+    -   Reveal clustering, overlap, and outliers clearly
+-   Choice depends on sample size and whether you want to emphasize shape or individual values
+
+## Compare the distribution of a numerical variable across categories
+
+:::::: columns
+::: {.column width="33%"}
+[Multiple Histograms]{.keyword}
+
+```{r}
+#| label: multiple-histograms
+#| fig.width: 5
+#| fig.height: 5
+
+# Multiple histograms: bill length by species
+ggplot(
+  penguins |> filter(!is.na(bill_length_mm)),
+  aes(x = bill_length_mm, fill = species)
+) +
+  geom_histogram(
+    bins = 25,
+    color = "white",
+    linewidth = 0.3
+  ) +
+  facet_wrap(~ species, ncol = 1) +
+  see::scale_fill_oi(guide = "none") +
+  theme_minimal(base_size = 18) +
+  labs(
+    x = "Bill length (mm)",
+    y = "Count",
+  )
+```
+
+-   Shows full distributions
+-   Use consistent bin widths for fair comparison
+:::
+
+::: {.column width="33%"}
+[Strip Chart]{.keyword}
+
+```{r}
+#| label: strip-chart
+#| fig.width: 5
+#| fig.height: 5
+
+# Strip chart (jittered points): bill length by species
+ggplot(
+  penguins |> filter(!is.na(bill_length_mm)),
+  aes(x = species, y = bill_length_mm, color = species)
+) +
+  geom_jitter(
+    width = 0.15,
+    alpha = 0.6,
+    size = 2
+  ) +
+  see::scale_color_oi(guide = "none") +
+  theme_minimal(base_size = 18) +
+  labs(
+    x = "Species",
+    y = "Bill length (mm)",
+  )
+
+```
+
+-   Shows individual obs.
+-   Reveals clustering, overlap, outliers
+:::
+
+::: {.column width="33%"}
+[Violin Plot]{.keyword}
+
+```{r}
+#| label: violin-plot
+#| fig.width: 5
+#| fig.height: 5
+
+ggplot(
+  penguins |> filter(!is.na(bill_length_mm)),
+  aes(x = species, y = bill_length_mm, color = species, fill = species)
+) +
+  geom_violin(linewidth = 1, alpha = 0.5) +
+  see::scale_color_oi(guide = "none") +
+  see::scale_fill_oi(guide = "none") +
+  theme_minimal(base_size = 18) +
+  labs(
+    x = "Species",
+    y = "Bill length (mm)",
+  )
+
+```
+
+-   Shows probability densities
+
+-   Good for comparing shape (needs large sample size)
+:::
+::::::
+
+## [Scatterplots]{.keyword} visualize relationships between two numerical variables
+
+::::: columns
+::: {.column width="50%"}
+-   Goal: assess how one numerical variable changes with another
+-   Show individual observations as points
+-   Patterns reveal direction, strength, and form of association
+-   Useful for identifying trends, clusters, and outliers
+-   Foundation for correlation, regression, and modeling
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: scatterplot
+#| fig.width: 6
+#| fig.height: 6
+#| fig-cap: "Scatterplot showing the relationship between flipper length and body mass in penguins, illustrating how two numerical variables vary together and revealing overall trends, spread, and potential outliers."
+
+ggplot(
+  penguins |> filter(!is.na(body_mass_g), !is.na(flipper_length_mm)),
+  aes(x = flipper_length_mm, y = body_mass_g)
+) +
+  geom_point(alpha = 0.7, color = "#E69F00") +
+  theme_minimal(base_size = 18) +
+  labs(
+    x = "Flipper length (mm)",
+    y = "Body mass (g)",
+    title = "Penguin body mass vs flipper length"
+  )
+
+```
+:::
+:::::
+
+## Time series graphs show change in a variable over time
+
+::::: columns
+::: {.column width="50%"}
+-   Time on x-axis (ordinal or numerical variable)
+-   Points = observations at specific times
+-   Lines emphasize continuity and temporal trends
+-   Useful for detecting trends, cycles, and sudden changes
+-   Order matters: nearby points are often related
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: time-ssseries
+#| fig.width: 8
+#| fig.height: 6
+#| fig.cap: "Annual reported West Nile virus hospitalizations by case type, shown as stacked counts by year. Neuroinvasive and non-neuroinvasive cases are displayed separately to illustrate changes in both total burden and case composition over time. Source: Arbonet."
+
+library(scales)
+
+read_csv(here::here("data", "wnv-data.csv"), show_col_types = FALSE) |> 
+  summarise(
+    reported_cases = sum(reported_cases),
+    .by = year
+  ) |> 
+  ggplot(aes(x = year, y = reported_cases)) +
+  geom_point(color = "#E69F00", size = 3, na.rm = TRUE) +
+  geom_line(color = "#E69F00", linewidth = 1.2, na.rm = TRUE) +
+  scale_x_continuous(
+    breaks = scales::breaks_width(1),
+    minor_breaks = NULL,
+    expand = expansion(mult = c(0, 0.01))
+  ) +
+  labs(x = "Year", y = "Reported cases") +
+  theme_classic(base_size = 18) +
+  theme(
+    panel.border = element_blank(),
+    axis.line.x = element_line(color = "black", linewidth = 0.5),
+    axis.line.y = element_line(color = "black", linewidth = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.ticks.x = element_line(color = "black"),
+    legend.position = "bottom",
+    legend.title = element_text(size = 10),
+    legend.text = element_text(size = 10)
+  )
+```
+:::
+:::::
+
+## Annotations can help tell your story in a time series graph
+
+![](images/clipboard-304585937.png)
+
+## Maps show how a variable varies over space
+
+::::: columns
+::: {.column width="50%"}
+-   Location is part of the data, not just context
+-   Values are encoded by color, size, or symbols
+-   Useful for identifying spatial patterns and gradients
+-   Reveal clustering, hotspots, and gaps
+-   Interpretation depends on scale and map design
+:::
+
+::: {.column width="50%"}
+Example: [chloropleth]{.keyword} maps use color shading to represent values aggregated within geographic areas.
+
+![](images/clipboard-3797092964.png){width="60%"}
+:::
+:::::
+
+# Visualizing three or more variables
+
+## Visualizing three or more variables
+
+-   One variable mapped to position (x or y); others mapped to color, size, or shape
+-   Faceting splits data into small multiples for clearer comparisons
+-   Interaction between variables becomes the focus, not individual effects
+-   Choose encodings intentionally to avoid clutter and misinterpretation
+-   Add variables *only if they clarify the question being asked*
+
+## Example: Scatterplot (two numerical variables) with colors (categorical variable)
+
+![](images/clipboard-759208477.png)
+
+## Example: Scatterplot small multiples comparing penguin body mass and flipper length across species and sex
+
+```{r}
+#| label: four-variables-penguins
+#| fig.width: 14
+#| fig.height: 7
+#| fig-cap: "Scatterplots showing the relationship between flipper length and body mass in penguins, facetted by sex (rows) and species (columns), illustrating how this relationship varies across biological groups."
+
+ggplot(
+  penguins |> 
+    filter(
+      !is.na(body_mass_g),
+      !is.na(flipper_length_mm),
+      !is.na(sex),
+      !is.na(species)
+    ),
+  aes(x = flipper_length_mm, y = body_mass_g, color = sex, shape = sex)
+) +
+  geom_point() +
+  facet_wrap(~ species) +
+  see::scale_color_oi() +
+  theme_gray(base_size = 18) +
+  labs(
+    x = "Flipper length (mm)",
+    y = "Body mass (g)",
+    title = "Penguin body mass vs flipper length by sex and species"
+  )
+```
