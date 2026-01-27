@@ -37,6 +37,7 @@ format:
     toc: true
     toc-depth: 2
     number-sections: false
+    code-link: true
     theme: 
       - default
       - styles.scss
