@@ -67,5 +67,19 @@ An introduction to creating scatterplots in R using ggplot2 and a layered approa
 :::
 ::::
 ::::::
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lab 5
+:::
+::: card-body
+##### ggplot2 Visualization Challenge {.card-title}
+
+An introduction to creating scatterplots in R using ggplot2 and a layered approach to graphing.
+
+[Lab 5](ggplot2-vis-challenge/)
+:::
+::::
+::::::
 :::::::::::
 
