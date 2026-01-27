@@ -88,13 +88,12 @@ Bar charts are used to compare **counts or totals across categories**. In ecolog
 
 For this challenge, you will use the `and_vertebrates` dataset from the `lterdatasampler` package. This dataset comes from the Andrews Forest Long-Term Ecological Research (LTER) site in Oregon and contains records of vertebrate observations, including amphibians, birds, mammals, and reptiles. Each row represents an observation of a species.
 
-Your task is to create a **horizontal bar chart** using ggplot2 functions that shows the **count of observations for each species**. Your plot must meet the following requirements:
+Your task is to create a **bar chart** showing the **count of observations for each species**. Your plot must meet the following requirements:
 
 -   Display species on the y-axis, with bar lengths representing counts.
--   Do not include a bar for observations with missing species values
 -   Add a title to the plot
 
-If you finish early, consider refining the plot by reordering species by frequency, adjusting labels for readability, or simplifying the legend.
+If you finish early, consider refining the plot by reordering species by frequency, adding color, or adjusting labels for readability.
 
 ## Challenge 2: Histograms — Air temperature distributions
 
@@ -104,8 +103,8 @@ For this challenge, you will use the `ntl_airtemp` dataset from the `lterdatasam
 
 Create a histogram showing the **distribution of air temperatures**. Your plot must meet the following requirements:
 
--   Air temperature must be mapped to the **x-axis**.\
--   The histogram must use an explicitly chosen **bin width** (do not rely on the default).\
+-   Adjusted average air temperature must be mapped to the **x-axis**.
+-   The histogram must use an explicitly chosen **bin width** or number of **bins** (do not rely on the default).
 -   Both axis labels must be written in **sentence case** and include units where appropriate.
 
 If you finish early, consider refining the plot by adjusting the bin width, adding a fill color with a subtle outline, or adding a vertical reference line (e.g., mean or median).
@@ -118,8 +117,7 @@ For this challenge, you will use the `hbr_maples` dataset from the `lterdatasamp
 
 Create a boxplot showing **variation in stem length among watersheds**. Your plot must meet the following requirements:
 
--   Watershed must be mapped to the **x-axis** and stem length to the **y-axis**.\
--   Each watershed should have its **own box**, allowing distributions to be compared.\
+-   Watershed must be mapped to the **x-axis** and stem length to the **y-axis**.
 -   Axis labels must be clear, written in **sentence case**, and include units where appropriate.
 
 If you finish early, consider refining the plot by adjusting box colors, overlaying individual data points, or reordering watersheds to improve readability.
@@ -143,5 +141,5 @@ If you finish early, consider refining the plot by improving axis formatting, ad
 This lab is graded for completion.
 
 1.  Make sure your script is saved in your project on Posit Cloud.
-2.  Show your 4 graphs to an LA or instructor for a completion grade.
+2.  Show your graphs to an LA or instructor for a completion grade.
 3.  Keep your handout and **show it to a Learning Assistant for a completion grade before you leave lab**. You may do this as soon as you finish.
