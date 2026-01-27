@@ -108,7 +108,21 @@ Create a histogram showing the **distribution of air temperatures**. Your plot m
 -   The histogram must use an explicitly chosen **bin width** (do not rely on the default).\
 -   Both axis labels must be written in **sentence case** and include units where appropriate.
 
-If you finish early, consider refining the plot by adjusting the bin width, adding a fill color with a subtle outline, or adding a vertical reference line (e.g., mean or medi
+If you finish early, consider refining the plot by adjusting the bin width, adding a fill color with a subtle outline, or adding a vertical reference line (e.g., mean or median).
+
+## Challenge 3: Boxplots — Stem length across watersheds
+
+Boxplots are used to compare the **distribution of a numerical variable across groups**. They summarize the median, spread, and potential outliers, making them especially useful for comparing variation among sites or treatments.
+
+For this challenge, you will use the `hbr_maples` dataset from the `lterdatasampler` package, which contains measurements of sugar maple seedlings collected at the Hubbard Brook Experimental Forest. The dataset includes stem length measurements from seedlings sampled across multiple watersheds.
+
+Create a boxplot showing **variation in stem length among watersheds**. Your plot must meet the following requirements:
+
+-   Watershed must be mapped to the **x-axis** and stem length to the **y-axis**.\
+-   Each watershed should have its **own box**, allowing distributions to be compared.\
+-   Axis labels must be clear, written in **sentence case**, and include units where appropriate.
+
+If you finish early, consider refining the plot by adjusting box colors, overlaying individual data points, or reordering watersheds to improve readability.
 
 ## Challenge 4: Time series with facets — Ice cover duration by lake
 
