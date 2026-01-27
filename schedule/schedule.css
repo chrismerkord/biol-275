@@ -41,6 +41,16 @@ table.table {
   margin-bottom: 0.25rem;
   }
   
+  /* alerts */
+  td > .alert {
+    margin: 1rem .2rem .2rem;
+    padding: .5rem;
+  }
+
+  td > .alert > p {
+    margin: 0;
+  }
+  
   thead th {
     border-bottom: 2px solid var(--bs-border-color);
     padding: 0.5rem 0.75rem;
