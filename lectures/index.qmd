@@ -82,7 +82,23 @@ Lecture 5
 ::: card-body
 ##### Describing Data {.card-title}
 
-[Under Construction](slides/lecture-05/){.btn .btn-warning}
+Describing data using measures of location, variability, and appropriate numerical precision.
+
+[Go to Lecture](slides/lecture-05-describing-data/){.btn .btn-primary}
+:::
+:::::
+::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 6
+:::
+
+::: card-body
+##### Lecture 6 {.card-title}
+
+[Under Construction](){.btn .btn-warning}
 :::
 :::::
 ::::::

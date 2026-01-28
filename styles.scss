@@ -178,3 +178,23 @@ div.cell-output-stderr {
 .callout {
   margin-left: 1em;
 }
+
+/* Color all math */
+.reveal .MathJax,
+.reveal .MathJax_Display {
+  color: var(--bs-primary) !important;
+}
+
+.reveal .math {
+  color: var(--quarto-scss-export-primary);
+}
+
+.reveal .MathJax_Display {
+  font-size: 1.5em !important;
+}
+
+.center-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

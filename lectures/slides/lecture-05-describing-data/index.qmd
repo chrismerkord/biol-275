@@ -1,0 +1,463 @@
+---
+title: |
+  | Lecture 5
+  | Describing Data
+subtitle: "ABD 3e Chapter 3"
+format:
+  revealjs:
+    fig-width: 8
+    fig-height: 6
+---
+
+## Learning Objectives
+
+-   Differentiate between estimates of location and estimates of width
+-   Recognize that variability is not simply noise but is a key parameter that can be estimated
+-   Become familiar with the most common descriptive statistics
+-   Know when the mean or median is a more appropriate summary of location
+
+## Three Common Descriptions of Data
+
+-   Location (central tendency)
+
+-   Width (spread)
+
+-   Association\* (correlation)
+
+\*later in term
+
+##  {#samples-and-populations .statement-slide data-menu-title="Samples and Populations"}
+
+We do statistics to learn about the **World Out There (the population)** from **Data (the sample)**
+
+## Estimates and Parameters
+
+-   We almost never sample an entire population. **So we almost never know parameters from populations.**
+-   But we can make educated guesses of parameters by making **estimates from samples**.
+
+## Histograms reveal location {data-menu-title="Histograms reveal location (with means)"}
+
+::::: columns
+::: {.column width="50%"}
+Also called “center” or “central tendency” of values
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-iris-sepal-length-histogram
+#| fig.height: 7
+#| fig.width: 8
+#| fig.cap: "Distribution of sepal length for the three *Iris* species, shown as histograms faceted by species. Source: iris dataset in R."
+
+library(tidyverse)
+
+iris |> 
+  mutate(Species = paste("I. ", Species)) |> 
+  ggplot(aes(x = Sepal.Length, fill = Species)) +
+  geom_histogram(bins = 20, color = "white") +
+  facet_wrap(~ Species, ncol = 1) +
+  see::scale_fill_oi(aes = "fill") +
+  labs(
+    x = "Sepal length (mm)",
+    y = "Count"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(face = "italic"),
+    text = element_text(size = 18)
+  )
+```
+:::
+:::::
+
+## Histograms reveal location
+
+::::: columns
+::: {.column width="50%"}
+Also called “center” or “central tendency” of values
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-iris-sepal-length-means
+#| fig.height: 7
+#| fig.width: 8
+#| fig.cap: "Distribution of sepal length for the three *Iris* species, shown as histograms faceted by species. Red vertical lines indicate species-specific means. Source: iris dataset in R."
+
+iris2 <- iris |>
+  mutate(Species = paste("I. ", Species))
+
+ggplot(iris2, aes(x = Sepal.Length, fill = Species)) +
+  geom_histogram(bins = 20, color = "white") +
+  geom_vline(
+    data = iris2 |>
+      group_by(Species) |>
+      summarize(mean_sepal_length = mean(Sepal.Length), .groups = "drop"),
+    aes(xintercept = mean_sepal_length),
+    color = "red",
+    linewidth = 1.5
+  ) +
+  facet_wrap(~ Species, ncol = 1) +
+  see::scale_fill_oi(aes = "fill") +
+  labs(
+    x = "Sepal length (mm)",
+    y = "Count"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(face = "italic")
+  )
+
+```
+:::
+:::::
+
+## Choose the right measure of **location**
+
+-   Location summarizes *where values tend to fall* in a distribution.
+
+-   Different summaries answer different questions.
+
+:::::: {.columns style="display: block;"}
+::: {.column width="30%"}
+[Mean]{.keyword}
+
+-   Balance point of the distribution
+-   Strongly influenced by extreme values
+:::
+
+::: {.column width="30%"}
+[Median]{.keyword}
+
+-   Typical value for an individual
+-   Robust to skew and outliers
+:::
+
+::: {.column width="30%"}
+[Mode]{.keyword}
+
+-   Most common value or range
+-   Highlights peaks in the distribution
+:::
+::::::
+
+## The [mean]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+Estimate = $\bar{Y}$
+
+“Sample mean”
+
+Parameter = $\mu$
+
+“Population mean”
+:::
+
+::: {.column width="50%"}
+$$
+\bar{Y} = \frac{\sum Y_i}{n}
+$$
+
+where
+
+-   $\bar{Y}$ is the sample mean
+-   $\sum$ denotes summation over all observations
+-   $n$ is the number of observations
+-   $Y_i$ is the observed value for the $i^{\text{th}}$ individual
+:::
+:::::
+
+## The [median]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+The median is the **middle value** of an ordered dataset.
+
+-   Order the observations from smallest to largest
+-   If *n* is odd, the median is the $(n + 1)/2$<sup>th</sup> value
+-   If *n* is even, the median is the mean of the $n/2$<sup>th</sup> and $(n/2 + 1)$<sup>th</sup> values
+:::
+
+::: {.column width="50%"}
+![Source: Blythwood / Wikipedia](images/clipboard-2221749387.png)
+:::
+:::::
+
+## The [mode]{.keyword}
+
+The mode is the **most common value** in a dataset.
+
+-   For numerical data, it usually represents a **range of values** (a peak in a histogram)
+-   A distribution can have **one mode, multiple modes, or no clear mode**
+-   Modes are useful for identifying **common outcomes or clusters**, not for summarizing overall center
+
+## Mean, median, and mode summarize location differently
+
+::::: columns
+::: {.column width="50%"}
+-   These measures summarize **different aspects of location**
+-   They coincide in **symmetric distributions**
+-   They diverge in **skewed distributions**
+-   Differences reveal the *shape* of the distribution, not noise.
+:::
+
+::: {.column width="50%"}
+![Geometric visualisation of the mode, median and mean of an arbitrary probability density function. Credit: Cmglee, CC BY-SA 3.0, via Wikimedia Commons](images/clipboard-3997344797.png){fig-alt="Geometric visualisation of the mode, median and mean of an arbitrary probability density function." fig-align="center" width="50%"}
+:::
+:::::
+
+## There are multiple ways to measure [width]{.keyword} (**variability**)
+
+Different measures of width emphasize different aspects of spread.
+
+-   [Range]{.keyword}\
+    Difference between the largest and smallest values
+
+-   [Interquartile range (IQR)]{.keyword}\
+    Spread of the middle 50% of values
+
+-   [Variance and standard deviation]{.keyword}\
+    Typical deviation from the mean
+
+-   [Coefficient of variation (CV)]{.keyword}\
+    Variability expressed relative to the mean
+
+## [Range]{.keyword} is the difference between the smallest and largest values
+
+Use as a simple measure of spread, when working with small datasets, or as a quick exploratory metric
+
+![](images/clipboard-1024546780.png){style="padding: 2em;"}
+
+:::::: columns
+::: {.column width="50%"}
+Example:
+
+-   Minimum value = $1.25$
+
+-   Maximum value = $3.55$
+
+-   Range = $3.55−1.25=2.30$
+:::
+
+:::: {.column width="50%"}
+::: callout-note
+## Because small samples tend to give lower estimates of the range than large samples, the sample range is a biased estimator of the true range of the population.
+:::
+::::
+::::::
+
+## [Interquartile range]{.keyword} describes spread of the middle 50% of values
+
+-   Median = middle observation, partitions data into two halves
+
+-   **Quartiles** = Q1, Q2 (median), Q3, partition data into four quarters
+
+-   Interquartile range (IQR) ="Q" 3−"Q" 1
+
+![](images/clipboard-1791606662.png){style="padding: 1em" fig-align="center"}
+
+::: center-block
+Example: $Q3−Q1 = 3.045−2.34=0.705$
+:::
+
+## [Boxplots]{.keyword} display the median, IQR, outliers
+
+![](images/clipboard-3985089004.png){fig-align="center" width="90%"}
+
+## Example of a boxplot comparing groups
+
+::::: columns
+::: {.column width="50%"}
+-   IQR is the yellow span
+
+-   Location of the horizontal line (median) within the box indicates skew
+
+    -   Toward the top = left skew
+
+    -   Toward the bottom = right skew
+
+-   Points are outliers
+
+    -   Common definition of outliers: observations which lie more than 1.5× "IQR" from the edge of the box
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-912471775.png)
+:::
+:::::
+
+## Variance, standard deviation, and CV quantify **spread around the mean**
+
+These measures quantify how far observations typically lie from the average.
+
+-   Observations fall both above and below the mean
+-   Simple differences cancel out, so variability needs a different approach
+-   Squared differences avoid cancellation and work well mathematically
+-   Variance and standard deviation measure **absolute spread**
+-   The coefficient of variation (CV) measures **relative spread**
+
+**Key idea:**\
+Variability is a property of the data, not noise.
+
+## The [variance]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+-   Average squared distance of observations from the mean
+-   Emphasizes large deviations
+-   Expressed in squared units
+-   Numerator often called the "sum of squared differences" or the **"sum of squares".**
+-   **Parameter (true population value)** $\sigma^2$
+-   **Statistic (estimated from sample)** $s^2$
+
+![Credit: Rod Pierce / mathisfun.com](images/clipboard-911341904.png){fig-align="center" width="80%"}
+:::
+
+::: {.column width="50%"}
+$$
+\sigma^2 = \frac{\sum (x_i - \mu)^2}{n}
+$$
+
+$$
+s^2 = \frac{\sum (x_i - \bar{x})^2}{n - 1}
+$$ where
+
+-   $x_i$ is the observed value for the $i^{\text{th}}$ individual
+-   $\mu$ is the sample mean
+-   $\sum$ denotes summation over all observations
+-   $n$ is the number of observations
+:::
+:::::
+
+## Why $n$ for population and $n-1$ for sample? (Bessel's correction)
+
+::::: columns
+::: {.column width="70%"}
+-   When you compute the sample mean, you’re letting the data pick the center that minimizes the squared distances.
+-   That makes the distances look smaller than they really are in the population
+-   So we slightly inflate the average squared distance by dividing by n−1 instead of n.
+-   Simply:
+    -   **Population:** we already know the true center, so we divide by $n$
+    -   **Sample:** we had to *estimate* the center first, so we divide by $n - 1$
+-   Most important for small samples
+-   What if we didn't use correction? False impression of precision, harder to detect true differences between groups
+:::
+
+::: {.column width="30%"}
+![](images/clipboard-3356282270.png){width="90%"}
+:::
+:::::
+
+## The [standard deviation]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+-   Typical distance of observations from the mean
+-   Expressed in the same units as the data
+-   Larger values indicate greater spread
+-   Parameter (true population value) $\sigma$
+-   Statistics (estimated from sample) $s$
+:::
+
+::: {.column width="50%"}
+$$
+\sigma = \sqrt{\frac{\sum (x_i - \mu)^2}{n}}
+$$
+
+$$
+s = \sqrt{\frac{\sum (x_i - \bar{x})^2}{n - 1}}
+$$
+:::
+:::::
+
+## The [coefficient of variation]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+-   Standard deviation **relative** to the mean
+-   **Unitless** measure of variability
+-   Useful for **comparing spread across different scales**
+:::
+
+::: {.column width="50%"}
+$$
+\mathrm{CV} = \frac{s}{\bar{x}} \times 100\%
+$$
+
+where
+
+-   $s$ is the sample standard deviation
+-   $\bar{x}$ is the sample mean
+-   $\mathrm{CV}$ is expressed as a percentage
+:::
+:::::
+
+## Choose the right measure of spread
+
+Use different measures of variability depending on your goal.
+
+:::::: {.columns style="margin-top: 2em;"}
+::: {.column width="33%"}
+### **Use variance when**
+
+-   You are working with equations or statistical models
+-   Variability needs to be combined or compared mathematically
+:::
+
+::: {.column width="33%"}
+### **Use standard deviation when**
+
+-   You want variability expressed in the same units as the data
+-   You are describing spread to a general audience
+:::
+
+::: {.column width="33%"}
+### **Use coefficient of variation (CV) when**
+
+-   You are comparing variability across different units or scales
+-   Relative variability matters more than absolute differences
+:::
+::::::
+
+## **Rounding**: when and how much?
+
+::::: columns
+::: {.column width="50%"}
+Rounding affects how results are interpreted.
+
+-   **Do not round intermediate steps.** Keep full precision during calculations to avoid compounding error
+
+-   **Round only final results.** This preserves accuracy while improving readability
+
+-   **Report appropriate precision.** Typically one–two decimal places more than the original measurements
+
+**Goal:** Communicate results clearly without implying false precision.
+
+Example: Values are integers, report mean and SD w/ 1 decimal place
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-608010208.png)
+:::
+:::::
+
+## Binary data: the mean is a **proportion**
+
+::::: columns
+::: {.column width="50%"}
+Binary outcomes can be coded as **0/1** (e.g., no/yes, absent/present).
+
+-   Code one outcome as **1** and the other as **0**
+-   The mean equals the **proportion of 1s**
+-   This is equivalent to the fraction of observations with that outcome
+
+**Example:** If 4 out of 5 individuals survive, the mean of the 0/1 data is 0.8 (80%).
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-4046539517.png)
+:::
+:::::
