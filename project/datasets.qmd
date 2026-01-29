@@ -3,8 +3,6 @@ title: "Datasets"
 format: html
 ---
 
-# Datasets
-
 For the EDA project, you will work with a real dataset that you select early in the semester. Choosing an appropriate dataset is a critical first step, as it determines what kinds of questions you can explore and how much time you will have for analysis and interpretation. Guidance and options are provided below to help you identify a dataset that is suitable for this project.
 
 ## How to Choose a Dataset
