@@ -70,17 +70,19 @@ If you are unsure whether a dataset is appropriate, ask early. Waiting too long 
 ## Project Timeline and Deliverables
 
 | Date | Deliverable | Description / Notes |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | **Jan 29** | Project introduced | Overview of the EDA project, expectations, and how it fits into the course. |
-| **Feb XX** | Dataset Readiness Check | Confirm that a dataset is selected, loaded, and minimally explored. Includes a rendered HTML document showing basic summaries, plots, and provisional research questions. |
-| **Feb XX** | Abstract Draft 1 | Initial project abstract describing the dataset, research focus, and general analytical approach. Questions are provisional. |
-| **Mar XX** | Abstract Draft 2 | Revised abstract incorporating feedback and reflecting a feasible, data-supported project direction. |
-| **Mar 18** | SAC abstract submission | Final abstract submitted to the Student Academic Conference. Project direction should be clear and grounded in the data. |
-| **Apr XX** | Analysis check-in | Progress review of analyses, figures, and interpretation using a rendered HTML report. Feedback focuses on clarity and feasibility. |
-| **Apr XX** | Poster draft due | Draft poster assembled, summarizing key questions, results, and figures from the project. |
+| **Feb 12** | Dataset Readiness Check | Confirm that a dataset is selected, loaded, and minimally explored. Includes a rendered HTML document showing basic summaries, plots, and provisional research questions. |
+| **Feb 19** | Abstract Draft 1 | Initial project abstract describing the dataset, research focus, and general analytical approach. Questions are provisional. |
+| **Mar 5** | Abstract Draft 2 | Revised abstract incorporating feedback and reflecting a feasible, data-supported project direction. |
+| **Mar 17** | SAC application deadline for BIOL 275 students | Deadline for your BIOL 275 project abstract to be submitted to the Student Academic Conference. Note that this is one day before abstract submission closes on the SAC website. |
+| **Mar 18** | General SAC application deadline | Projects with no abstract submission by this date will not be able to present at the SAC. |
+| **Apr 1** | Analysis check-in report due | Submit a rendered project report including analyses, figures, and interpretation. |
+| **Apr 2** | Analysis check-in | In-class progress review of Check-in Report with instructor. Feedback focuses on clarity and feasibility. |
+| **Apr 9** | Poster draft due | Draft poster assembled, including Introduction, Research Questions, Data Set Description, Methods, Results (including figures), and Discussion. Instructor will provide feedback. |
 | **Apr 16** | Poster submitted for printing | Final poster submitted for SAC printing. Content should be complete and polished. |
 | **Apr 21** | Student Academic Conference | Poster presented at the Student Academic Conference. |
-| **Apr XX** | Post-project reflection | Short individual reflection on what you learned about data analysis, interpretation, and statistical reasoning. |
+| **Apr 23** | Post-project reflection | Short individual reflection on what you learned about data analysis, interpretation, and statistical reasoning. |
 
 ## Required Project Components
 
