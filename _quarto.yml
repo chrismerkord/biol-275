@@ -34,6 +34,7 @@ website:
       - href: lectures/index.qmd
       - section: "Labs"
         contents:
+          - labs/index.qmd
           - labs/introduction-to-r-and-rstudio/index.qmd
           - labs/workflow-and-data-types/index.qmd
           - labs/importing-data/index.qmd
