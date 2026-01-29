@@ -21,6 +21,8 @@ website:
         text: Lectures
       - href: labs/index.qmd
         text: Labs
+      - href: project/index.qmd
+        text: Project
   sidebar:
     style: "docked"
     search: true
@@ -31,6 +33,8 @@ website:
       - href: schedule/index.qmd
       - href: lectures/index.qmd
       - href: labs/index.qmd
+      - href: project/index.qmd
+        text: Project
         
 format:
   html:

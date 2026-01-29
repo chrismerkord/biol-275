@@ -1,0 +1,158 @@
+---
+title: "Datasets"
+format: html
+---
+
+# Datasets
+
+For the EDA project, you will work with a real dataset that you select early in the semester. Choosing an appropriate dataset is a critical first step, as it determines what kinds of questions you can explore and how much time you will have for analysis and interpretation. Guidance and options are provided below to help you identify a dataset that is suitable for this project.
+
+## How to Choose a Dataset
+
+Not all datasets are appropriate for this project. Before committing to a dataset, make sure it meets the following criteria:
+
+-   The data are in a rectangular format (rows are observations, columns are variables).
+-   The dataset includes at least one numerical variable and at least one categorical or grouping variable, or a clear way to define groups.
+-   There are enough observations to support meaningful plots and comparisons (very small datasets are usually not appropriate).
+-   The variables are clearly documented so you know what each column represents and what the units are.
+-   The data can be downloaded and imported into R and shared within your Posit Cloud project.
+-   The dataset supports questions about patterns, differences, or relationships, not just single summary values.
+
+If you are unsure whether a dataset is appropriate, ask early. Waiting too long to confirm dataset suitability is the most common reason projects fall behind.
+
+## Your own dataset
+
+If you are involved in an ongoing research project (for example, working with a faculty member at MSUM), you may be able to use data from that project for your BIOL 275 EDA project.
+
+To use your own dataset, the following conditions must be met:
+
+-   The dataset must be **approved by the instructor** before you begin analysis.
+
+-   The data must be **complete enough** to support exploratory analysis and basic statistical methods used in this course.
+
+-   The dataset must be **shareable with your project team** and usable within a shared Posit Cloud project.
+
+-   The data must not include **restricted, sensitive, or private information** unless explicit permission has been granted.
+
+-   You must be able to clearly explain **how the data were collected** and what the variables represent.
+
+Instructor approval is based on feasibility and suitability for the course project, not on the perceived “importance” of the dataset.
+
+## Biological trait data
+
+-   Life History and Lifespan data
+
+    -   [AnAge: The Animal Ageing and Longevity Database](https://genomics.senescence.info/species/index.html)
+
+        -   The dataset is available for download on the website
+        -   Data can be accessed in R via the [hagr](https://github.com/datawookie/hagr) package
+        -   The author published a blog introducing the package: [{hagr} Database of Animal Ageing and Longevity 2021-04-12](https://datawookie.dev/blog/2021/04/hagr-database-of-animal-ageing-and-longevity/)
+
+-   Morphological trait data
+
+    -   [ATLANTIC BIRD TRAITS: a dataset of bird morphological traits from the Atlantic forests of South America](https://doi.org/10.1002/ecy.2647)
+    -   [ATLANTIC MAMMAL TRAITS: a dataset of morphological traits of mammals in the Atlantic Forest of South America](https://doi.org/10.1002/ecy.2106)
+
+## Species occurrence data
+
+-   eBird data on bird observations. This is a huge dataset with many possible questions to explore. Challenge level: Difficult
+
+    -   See the [eBird data](data-ebird2.html) page for more details.
+
+-   The **Botanical Information and Ecology Network** brings together data on plant distribution, abundance, and traits, with the goal of predicting and mitigating the effects of climate change on plant species and communities. You can download geolocated observations and trait data, but you'd probably need to combine it with some other earth observation data like those found below. Challenge level: Moderate
+
+    -   [BIEN package](https://cran.r-project.org/web/packages/BIEN/vignettes/BIEN_tutorial.html)
+
+-   [iNaturalist](https://www.inaturalist.org/). Challenge level: Easy
+
+    -   [iNaturalist](https://www.inaturalist.org/) website
+    -   [rinat package](https://docs.ropensci.org/rinat/)
+
+-   [GBIF](https://www.gbif.org/). Global Biodiversity Information Facility. Geolocated occurrence data for all species worldwide, aggregated from many other data sources. Challenge level: Moderate
+
+    -   [rgbif package](https://github.com/ropensci/rgbif) on GitHub - read the intro on the README for more links to vignettes, reference, articles, and a published paper
+
+## Environmental data
+
+-   [NEON](https://www.neonscience.org/data). The National Science Foundation's National Ecological Observatory Network (NEON) is a continental-scale observation facility operated by Battelle and designed to collect long-term open access ecological data to better understand how U.S. ecosystems are changing. The comprehensive data, spatial extent and remote sensing technology provided by NEON will enable a large and diverse user community to tackle new questions at scales not accessible to previous generations of ecologists. Challenge level: Difficult
+
+    -   Users can browse data products and associated documentation and then select time frames and field sites to download the data
+
+    -   The neonUtilities R package allows you to access and download NEON data as well as to work with NEON data downloaded from the portal.
+
+## Public health datasets
+
+Many datasets for the USA can be found at:
+
+-   [National Center for Health Statistics](https://www.cdc.gov/nchs/data_access/ftp_data.htm). Includes datasets, documentation, and questionnaires from NCHS data collection systems. Some of these are included in the table below, but there are many more than what is given here.
+
+Quite a bit of health data may be downloaded at:
+
+-   [CDC WONDER](https://wonder.cdc.gov/). You choose the dataset, which variables to include, and download it.
+
+| Dataset | Description | Spatial Coverage | Spatial Resolution | Temporal Coverage | Temporal Resolution |
+|------------|------------|------------|------------|------------|------------|
+| [Behavioral Risk Factor Surveillance System (BRFSS) Prevalence Data](https://chronicdata.cdc.gov/Behavioral-Risk-Factors/Behavioral-Risk-Factor-Surveillance-System-BRFSS-P/) | Prevalence data based on telephone surveys | USA | State | 2011-present | Yearly |
+| [County Health Rankings & Roadmaps](http://www.countyhealthrankings.org/) | You can download data by state and year (see [Minnesota](http://www.countyhealthrankings.org/app/minnesota/2017/downloads), for example) | USA | State, County |  | Yearly |
+| [KIDS COUNT](http://datacenter.kidscount.org/) | A source of data on children and families and a project of the Annie E. Casey Foundation. You choose and download the variables necessary to answer your question. | USA | State, County |  | Yearly |
+| [National Comorbidity Survey (NCS) Series](https://www.icpsr.umich.edu/web/ICPSR/series/527) | Prevalence, risk factors, and consequences of psychiatric morbidity and comorbidity | USA | Individual | 1990-2004 | baseline, reinterview, replication |
+
+Other pages that provide lists of available datasets:
+
+-   [Global Health Data Exchange](http://ghdx.healthdata.org/). A comprehensive catalog of datasets including surveys, censuses, vital statistics, and other health-related data.
+-   [Minnesota Health Data Sources](http://www.countyhealthrankings.org/using-the-rankings-data/finding-more-data/minnesota), a list compiled by County Health Rankings & Roadmaps.
+
+## Geospatial data
+
+### AρρEEARS
+
+[**The Application for Extracting and Exploring Analysis Ready Samples (AρρEEARS)**](https://lpdaacsvc.cr.usgs.gov/appeears/) offers a simple and efficient way to access and transform geospatial data from a variety of federal data archives.
+
+AρρEEARS enables users to subset geospatial datasets using spatial, temporal, and band/layer parameters.
+
+Two types of sample requests are available:
+
+-   point samples for geographic coordinates and
+-   area samples for spatial areas via vector polygons.
+
+Sample requests submitted to AρρEEARS provide users not only with data values, but also associated quality data values. Interactive visualizations with summary statistics are provided for each sample within the application, which allow users to preview and interact with their samples before downloading their data. Visit the Help page to learn more.
+
+There are [handy videos](https://www.youtube.com/watch?v=thRApFufBq8) on how to use the system to get data.
+
+-   Some datasets include:
+
+    -   Land Surface Temperature (min, max, mean)
+    -   Sea Surface Temperature
+    -   Precipitation
+    -   Snow cover
+    -   Land cover
+    -   Soil moisture, soil temperature
+    -   Vegetation indices (e.g. NDVI)
+    -   Gridded population data
+
+-   The temporal and spatial range and resolution of these datasets varies.
+
+You could explore geospatial data by itself, or if you have GPS coordinate for other types of data (e.g. georeferenced specimen or observation data) then you could use AppEEARS to extract environmental data associated with those points.
+
+### Other geospatial data
+
+-   [**National Land Cover Database**](https://www.mrlc.gov/finddata.php). Could possibly look at land cover change in a particular area.
+
+## Cellular and molecular biology and biochemistry
+
+-   [**The Actinobacteriophage Database at PhagesDB.org**](https://phagesdb.org/), a website that collects and shares data, pictures, protocols, and analysis tools associated with the discovery, sequencing, and characterization of [mycobacteriophages](https://phagesdb.org/glossary/#Mycobacteriophage)---viruses that infect the *Mycobacteria* and also other bacterial hosts in the phylum Actinobacteria. It was developed at---and is maintained from---the **Pittsburgh Bacteriophage Institute**, a joint venture of **Dr. Graham Hatfull** and **Dr. Roger Hendrix**, both of the Department of Biological Sciences at the University of Pittsburgh.
+
+## Online data repositories
+
+-   [**Dryad**](http://datadryad.org/). A curated, general purpose data repository. You can search through it to find an interesting dataset. Here are two examples (but you should find your own):
+
+    -   [Mammal community data from Wen *et al.* (2018)](http://hdl.handle.net/10255/dryad.170813). A dataset of mammal species found at sites along an elevational gradient on three mountains in China.
+    -   [Birth seasonality data from Martinez-Bakker *et al.* (2014)](http://hdl.handle.net/10255/dryad.170822). A dataset of the number of births per month over the past 100 years in the US and 60 years in the World. Could possible be combined with another dataset to ask an interesting question.
+
+-   [Awesome Public Datasets](https://github.com/awesomedata/awesome-public-datasets). A topic-centric list of high-quality open datasets in public domains. By everyone, for everyone!
+
+-   [ATLANTIC: Data Papers from a biodiversity hotspot](https://esajournals.onlinelibrary.wiley.com/doi/toc/10.1002/(ISSN)1939-9170.AtlanticPapers). Datasets include: Mammals, Mammal traits, Bats, Nonvolant mammals, Small mammals, Primates, Birds, Bird traits, Amphibians, Butterflies, Epiphytes, Frugivory, Camera traps
+
+## Datasets in R
+
+Many R packages have datasets included.

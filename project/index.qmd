@@ -1,0 +1,117 @@
+---
+title: "Exploratory Data Analysis (EDA) Project"
+format: html
+---
+
+## Project Overview
+
+The Exploratory Data Analysis (EDA) Project is a semester-long project in BIOL 275 that asks you to work with a real biological dataset from start to finish. Rather than focusing on isolated statistical techniques, this project emphasizes understanding data, identifying meaningful patterns, and communicating results clearly.
+
+Over the course of the semester, you will select a dataset, explore its structure and limitations, apply statistical methods covered in the course, and summarize your findings in a scientific poster presented at the Student Academic Conference. The project is designed to mirror how data are actually used in biological research and applied science.
+
+## Why This Project Exists
+
+Statistics are most useful when they help us make sense of real data. This project exists to move beyond calculation and software mechanics and toward statistical reasoning.
+
+Through this project, you will practice:
+
+-   Asking answerable questions of real datasets.
+-   Exploring variation, patterns, and uncertainty.
+-   Choosing appropriate analytical approaches based on data structure.
+-   Interpreting results in biological context.
+-   Communicating findings to a general scientific audience.
+
+Exploratory data analysis is a critical step in any data-driven scientific workflow. This project gives you structured experience with that process, reinforcing the idea that statistical methods serve interpretation—not the other way around.
+
+## By the end of this course, you will be able to...
+
+By the end of this project, you will be able to:
+
+-   Work effectively with a real, multivariate biological dataset.
+-   Use exploratory data analysis to understand distributions, relationships, and limitations in data.
+-   Formulate and refine research questions based on evidence from the data.
+-   Apply appropriate statistical methods covered in the course to address those questions.
+-   Interpret statistical results accurately and explain what they mean biologically.
+-   Communicate a data-driven project clearly using figures, written explanation, and oral presentation.
+
+These skills are central to scientific literacy and are transferable well beyond this course.
+
+## How the Project Is Structured
+
+The EDA Project unfolds in a series of connected phases that build on one another over the semester.
+
+You will begin by selecting a dataset and exploring its structure to understand what kinds of questions it can support. As you learn more about the data, you will refine your research questions and apply statistical methods covered in the course to investigate patterns, differences, or relationships.
+
+Throughout the project, you will maintain a running Quarto (QMD) document that combines text, code, and figures and is rendered to HTML. This document serves as a record of your analysis and thinking as the project develops. Later in the semester, you will condense and translate this work into a scientific poster for presentation at the Student Academic Conference.
+
+The project is intentionally iterative. Early ideas are expected to change as you learn more about your data, and revision is a normal and expected part of the process.
+
+## Project Expectations and Shared Assumptions
+
+This project has a small number of expectations that apply to everyone and are designed to keep the project manageable and on track.
+
+-   You are expected to select a dataset early in the semester and begin working with it right away.
+-   You will continue working with the same dataset throughout the project. Switching datasets late in the process is not allowed.
+-   Research questions are provisional and are expected to evolve as you explore the data.
+-   All project work is documented in a Quarto (.qmd) file and rendered to HTML.
+-   Rendering your work is part of the analysis process, not a final formatting step.
+-   If you have not secured a suitable dataset by the dataset deadline, you will work with one of the instructor-provided datasets.
+
+These expectations exist to ensure that you have sufficient time to explore your data, carry out analyses, and focus on interpretation and communication rather than last-minute troubleshooting.
+
+## What You Should Do First
+
+Begin by looking for a dataset that is appropriate for exploratory data analysis and the types of statistical methods used in this course. Focus on understanding what the data represent, how they were collected, and what kinds of variables they contain.
+
+Do not worry yet about final research questions, advanced statistical methods, or poster design. Your initial goal is to engage with real data early so that you can explore its structure and identify plausible directions for analysis.
+
+If you are unsure whether a dataset is appropriate, ask early. Waiting too long to engage with data is the most common reason projects fall behind.
+
+## Project Timeline and Deliverables
+
+| Date | Deliverable | Description / Notes |
+|----|----|----|
+| **Jan 29** | Project introduced | Overview of the EDA project, expectations, and how it fits into the course. |
+| **Feb XX** | Dataset Readiness Check | Confirm that a dataset is selected, loaded, and minimally explored. Includes a rendered HTML document showing basic summaries, plots, and provisional research questions. |
+| **Feb XX** | Abstract Draft 1 | Initial project abstract describing the dataset, research focus, and general analytical approach. Questions are provisional. |
+| **Mar XX** | Abstract Draft 2 | Revised abstract incorporating feedback and reflecting a feasible, data-supported project direction. |
+| **Mar 18** | SAC abstract submission | Final abstract submitted to the Student Academic Conference. Project direction should be clear and grounded in the data. |
+| **Apr XX** | Analysis check-in | Progress review of analyses, figures, and interpretation using a rendered HTML report. Feedback focuses on clarity and feasibility. |
+| **Apr XX** | Poster draft due | Draft poster assembled, summarizing key questions, results, and figures from the project. |
+| **Apr 16** | Poster submitted for printing | Final poster submitted for SAC printing. Content should be complete and polished. |
+| **Apr 21** | Student Academic Conference | Poster presented at the Student Academic Conference. |
+| **Apr XX** | Post-project reflection | Short individual reflection on what you learned about data analysis, interpretation, and statistical reasoning. |
+
+## Required Project Components
+
+The EDA Project consists of several connected components that together document your work, analysis, and interpretation over the semester.
+
+### Dataset Selection
+
+You will work with a real biological or environmental dataset that is appropriate for exploratory data analysis and the statistical methods used in this course. The dataset should be large enough to show meaningful variation and contain multiple variables that support comparison or analysis.
+
+[Go to Datasets Page](datasets.html)
+
+### Exploratory Data Analysis
+
+You will explore the structure of your dataset using tables, summaries, and visualizations. This phase focuses on understanding distributions, identifying patterns and variation, recognizing missing data or outliers, and determining what kinds of questions the data can reasonably support.
+
+### Statistical Analysis and Interpretation
+
+Using statistical methods covered in the course, you will analyze your data to address your research questions. Emphasis is placed on selecting appropriate methods, interpreting results accurately, and explaining what those results mean in biological context rather than on statistical complexity.
+
+### Running Quarto (QMD → HTML) Report
+
+All project work is documented in a Quarto (.qmd) file that is rendered to HTML. This document combines text, code, figures, and interpretation and serves as the primary record of your project as it develops. You are expected to render your document regularly as part of the analysis process.
+
+### Poster Preparation
+
+Later in the semester, you will condense your analysis and results into a scientific poster. The poster emphasizes clear figures, concise text, and communication to a general scientific audience and is derived directly from your QMD report.
+
+### Poster Presentation
+
+You will present your poster at the Student Academic Conference. This includes explaining your project verbally, answering questions, and discussing your data, methods, and conclusions in an accessible way.
+
+### Reflection
+
+After the conference, you will complete a short reflection on the project. This reflection focuses on what you learned about working with data, how your understanding of statistics evolved, and what you would approach differently in the future.

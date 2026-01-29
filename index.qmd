@@ -72,6 +72,18 @@ Lab pages, handouts, datasets, and submission details.
 :::
 :::
 :::
+
+::: {.g-col-12 .g-col-sm-6}
+::: {.card .h-100}
+::: card-body
+##### EDA Project {.card-title}
+
+Analyze real biological data and communicate results through a scientific poster.
+
+[Go to Labs](project/){.btn .btn-primary}
+:::
+:::
+:::
 :::::::
 
 ## For Enrolled Students
