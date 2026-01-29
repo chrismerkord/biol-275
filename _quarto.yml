@@ -33,8 +33,10 @@ website:
       - href: schedule/index.qmd
       - href: lectures/index.qmd
       - href: labs/index.qmd
-      - href: project/index.qmd
-        text: Project
+      - section: "Project"
+        contents:
+          - project/index.qmd
+          - project/datasets.qmd
         
 format:
   html:
