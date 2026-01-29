@@ -26,7 +26,7 @@ Software: R, RStudio, Posit Cloud (introductory use)
 ::: {.g-col-12 .g-col-sm-6}
 ::: {.card .h-100}
 ::: card-body
-### Syllabus {.card-title}
+##### Syllabus {.card-title}
 
 Course policies, grading, materials, and expectations.
 
