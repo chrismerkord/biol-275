@@ -32,7 +32,13 @@ website:
       - href: syllabus/index.qmd
       - href: schedule/index.qmd
       - href: lectures/index.qmd
-      - href: labs/index.qmd
+      - section: "Labs"
+        contents:
+          - labs/introduction-to-r-and-rstudio/index.qmd
+          - labs/workflow-and-data-types/index.qmd
+          - labs/importing-data/index.qmd
+          - labs/graphing-ggplot/index.qmd
+          - labs/ggplot2-vis-challenge/index.qmd
       - section: "Project"
         contents:
           - project/index.qmd
