@@ -96,9 +96,11 @@ Lecture 6
 :::
 
 ::: card-body
-##### Lecture 6 {.card-title}
+##### Estimating with uncertainty {.card-title}
 
-[Under Construction](){.btn .btn-warning}
+Estimating population parameters and their uncertainty from sample data
+
+[Under Construction](slides/lecture-06-uncertainty/){.btn .btn-warning}
 :::
 :::::
 ::::::
