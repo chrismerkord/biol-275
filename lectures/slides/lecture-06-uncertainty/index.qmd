@@ -1,0 +1,444 @@
+---
+title: |
+  | Lecture 6
+  | Estimating with Uncertainty
+subtitle: "ABD 3e Chapter 4"
+format:
+  revealjs:
+    fig-width: 8
+    fig-height: 6
+---
+
+## Learning Objectives
+
+By the end of this lecture, you should be able to:
+
+-   Explain why **sample-based estimates vary by chance** and may differ from true population parameters
+
+-   Describe how the **sampling distribution quantifies uncertainty** in an estimate
+
+-   Define the **standard error** as the standard deviation of a sampling distribution and a measure of **estimation uncertainty**
+
+-   Interpret a **confidence interval** as a **plausible range of values** for a population parameter that reflects uncertainty in the estimate
+
+## Samples Vary by Chance
+
+::::: columns
+::: {.column width="50%"}
+-   Repeated **samples drawn from the same population** will differ from one another due to random chance
+
+-   As a result, **estimates calculated from samples** (e.g., means, proportions) will vary even when the underlying population is unchanged
+
+-   This variability is called **sampling error**, but it does **not** imply a mistake or bias — it is an inherent consequence of sampling
+:::
+
+::: {.column width="50%"}
+![**Sampling variability.** Different random samples from the same population produce different sample estimates by chance.](images/sampling-variability-diagram.png){#fig-sampling-variability-diagram fig-alt="Diagram showing a population and two different random samples drawn from it. The two samples contain different subsets of individuals and produce different sample means, illustrating that samples and their estimates vary by chance even when drawn from the same population."}
+:::
+:::::
+
+## [Sampling distribution]{.keyword}
+
+-   The distribution of a **parameter estimate** (e.g., a mean) obtained from **many repeated samples**
+
+![Sampling distribution of the sample mean. Repeated random samples from the same population produce different sample means; the distribution of those means forms the sampling distribution. *Source: GeeksforGeeks, "[Sampling Distribution](https://www.geeksforgeeks.org/maths/sampling-distribution/)"*.](images/sampling-distribution.png){#fig-sampling-distribution fig-alt="Diagram showing a population of 5th-grade students, many random samples drawn from that population, the sample mean from each sample, and a histogram of those sample means, illustrating the sampling distribution of the mean." width="1400"}
+
+## Generating a Sampling Distribution
+
+-   Draw a **random sample** of size $n$ from a population
+
+-   Calculate a **statistic of interest** (e.g., the sample mean)
+
+-   Repeat this process **many times**, each time taking a new random sample
+
+-   Collect the statistic from each sample
+
+-   The distribution of those statistics is the **sampling distribution**
+
+## Sampling Distribution: Book's Web App
+
+:::::: columns
+::: {.column width="50%"}
+**Interactive app (open in browser):**
+
+[https://www.zoology.ubc.ca/\~whitlock/\
+Kingfisher/SamplingNormal.htm](https://www.zoology.ubc.ca/~whitlock/Kingfisher/SamplingNormal.htm){.uri}
+
+![Sampling distribution simulation. Interactive web app showing repeated random samples drawn from a population and the resulting distribution of sample means, illustrating how sampling variability leads to uncertainty in estimates. Source: Whitlock and Schluter, The Analysis of Biological Data (3rd ed.) web app.](images/kingfisher-web-app.png){#fig-kingfisher-web-app fig-alt="Screenshot of an interactive web app showing a population distribution, repeated random samples, and a histogram of sample means, used to demonstrate how a sampling distribution is formed through repeated sampling." fig-align="center"}
+:::
+
+:::: {.column width="50%"}
+**What the app shows**
+
+-   Repeated random samples drawn from the same population
+
+-   The distribution of a **sample statistic** (here, the mean) across many samples
+
+::: {.callout-tip .ml-5 .mr-5}
+### Try this
+
+1.  Generate a sampling distribution using **sample size n = 10**
+2.  Repeat using **sample size n = 100**
+3.  Compare the results:
+    -   Which sampling distribution is **wider**?
+    -   Which is **more concentrated around the population mean**?
+:::
+::::
+::::::
+
+## [Standard Error of the Mean]{.keyword}
+
+:::::: columns
+::: {.column width="40%"}
+-   The **standard error of the mean (SE)** quantifies uncertainty in a sample mean
+
+-   It describes how much the **sample mean would vary by chance** across repeated samples
+
+-   SE reflects **precision**, not variability among individuals
+
+-   **SE decreases as sample size increases**, even if the underlying variability in the population does not
+
+-   SE is an **estimate** of the spread of the sampling distribution
+:::
+
+:::: {.column width="60%"}
+$$
+SE_{\bar{x}} = \frac{s}{\sqrt{n}}
+$$
+
+::: {style="font-size:2.2rem"}
+$$
+\displaystyle
+SE_{\bar{x}} \approx \text{SD of } \bar{x} \text{ across repeated samples}
+$$
+:::
+
+**where**
+
+-   $SE_{\bar{x}}$ = estimated standard deviation of the sampling distribution
+-   $s$ = sample standard deviation
+-   $n$ = sample size
+-   $\bar{x}$ = sample mean
+::::
+::::::
+
+## From Individuals to Samples (Penguin Body Mass)
+
+::::: columns
+::: column
+-   For this example, we treat the 344 penguins in the dataset as the population
+
+-   The population distribution describes variation in body mass among individual penguins
+
+-   A single random sample of penguins includes only some individuals from the population
+
+-   As a result, the sample does not fully represent the population distribution, and its summary statistics vary by chance
+:::
+
+::: column
+```{r}
+#| label: fig-penguin-body-mass
+#| fig-cap: "Distribution of body mass measurements for all penguins in the dataset, treated here as the population."
+
+library(palmerpenguins)
+library(ggplot2)
+
+penguins |>
+  ggplot(aes(x = body_mass_g)) +
+  geom_histogram(
+    bins = 15,
+    color = "white"
+  ) +
+  labs(
+    x = "Body mass (g)",
+    y = "Count"
+  ) +
+  theme_minimal(base_size = 18)
+
+```
+:::
+:::::
+
+## From Sample Means to a Sampling Distribution
+
+::::: columns
+::: {.column width="50%"}
+-   Each panel shows a different random sample
+
+-   Vertical lines are the sample means from each sample (they vary by chance)
+
+```{r}
+#| label: fig-penguin-random-samples
+#| fig-cap: "**Multiple random samples of penguin body masses (n = 15 per sample).** Each panel shows a different random sample drawn from the same population; vertical lines indicate the sample mean body mass, illustrating how estimates of the mean vary by chance across samples."
+
+library(dplyr)
+
+set.seed(275)
+
+n_samples <- 9
+sample_size <- 15
+
+samples <- bind_rows(
+  lapply(1:n_samples, function(i) {
+    penguins |>
+      filter(!is.na(body_mass_g)) |>
+      slice_sample(n = sample_size) |>
+      mutate(sample_id = paste("Sample", i))
+  })
+)
+
+sample_means <- samples |>
+  group_by(sample_id) |>
+  summarize(mean_mass = mean(body_mass_g), .groups = "drop")
+
+ggplot(samples, aes(x = body_mass_g)) +
+  geom_histogram(
+    bins = 15,
+    color = "white"
+  ) +
+  geom_vline(
+    data = sample_means,
+    aes(xintercept = mean_mass),
+    linewidth = 2,
+    color = "#0072B2"
+  ) +
+  facet_wrap(~ sample_id) +
+  labs(
+    title = "Random Samples of Penguin Body Mass (n = 15)",
+    x = "Body mass (g)",
+    y = "Count"
+  ) +
+  theme_minimal(base_size = 18)
+```
+:::
+
+::: {.column width="50%"}
+-   The histogram shows the distribution of those same sample means
+
+-   This distribution describes sampling variability
+
+```{r}
+#| label: fig-penguin-sampling-distribution
+#| fig-cap: "Sampling distribution of the mean penguin body mass based on repeated random samples of size n = 15. Each value represents the mean body mass from one random sample."
+
+library(palmerpenguins)
+library(dplyr)
+library(ggplot2)
+
+set.seed(123)
+
+n_samples <- 1000
+sample_size <- 15
+
+sampling_means <- tibble(sample = 1:n_samples) |>
+  rowwise() |>
+  mutate(
+    mean_mass = penguins |>
+      filter(!is.na(body_mass_g)) |>
+      slice_sample(n = sample_size) |>
+      summarize(mean(body_mass_g)) |>
+      pull()
+  ) |>
+  ungroup()
+
+ggplot(sampling_means, aes(x = mean_mass)) +
+  geom_histogram(
+    bins = 30,
+    color = "white",
+    fill = "#0072B2"
+  ) +
+  labs(
+    title = "Sampling Distribution of the Mean Penguin Body Mass",
+    x = "Sample mean body mass (g)",
+    y = "Count"
+  ) +
+  theme_minimal(base_size = 18)
+
+```
+:::
+:::::
+
+## Larger sample sizes produce less variability in the sample means
+
+::::: columns
+::: column
+-   Each sample is drawn from the same population
+
+-   All samples estimate the **same mean**
+
+-   **Smaller samples** produce more variable sample means (wider sampling distributions)
+
+-   **Larger samples** produce more similar sample means (narrower sampling distributions)
+:::
+
+::: column
+```{r}
+#| label: fig-sampling-distribution-by-n
+#| fig-height: 9
+#| fig-width: 8
+#| fig-cap: "Sampling distributions of the mean penguin body mass for two sample sizes. Smaller samples (n = 10) produce more variable sample means than larger samples (n = 100)."
+
+set.seed(123)
+
+n_reps <- 1000
+sample_sizes <- c(10, 100)
+
+sampling_means <- bind_rows(
+  lapply(sample_sizes, function(n) {
+    tibble(rep = 1:n_reps) |>
+      rowwise() |>
+      mutate(
+        mean_mass = penguins |>
+          filter(!is.na(body_mass_g)) |>
+          slice_sample(n = n) |>
+          summarize(mean(body_mass_g)) |>
+          pull(),
+        n = paste("n =", n)
+      ) |>
+      ungroup()
+  })
+)
+
+# Compute per-facet x-range and max bin count (approx) using ggplot2's binning
+bin_width <- (max(sampling_means$mean_mass) - min(sampling_means$mean_mass)) / 30
+
+# Create histogram bin counts per facet
+hist_counts <- sampling_means |>
+  mutate(
+    bin = floor((mean_mass - min(mean_mass)) / bin_width)
+  ) |>
+  group_by(n, bin) |>
+  summarize(count = n(), .groups = "drop")
+
+arrow_df <- hist_counts |>
+  group_by(n) |>
+  summarize(
+    y = 0.20 * max(count),
+    x_min = min(sampling_means$mean_mass[sampling_means$n == unique(n)]),
+    x_max = max(sampling_means$mean_mass[sampling_means$n == unique(n)]),
+    .groups = "drop"
+  )
+
+ggplot(sampling_means, aes(x = mean_mass)) +
+  geom_histogram(
+    bins = 30,
+    fill = "#0072B2",
+    color = "white"
+  ) +
+  geom_segment(
+    data = arrow_df,
+    aes(x = x_min, xend = x_max, y = y, yend = y),
+    color = "#D55E00",
+    linewidth = 2,
+    arrow = arrow(
+      ends = "both", type = "closed", length = unit(0.2, "inches")
+    )
+  ) +
+  facet_wrap(~ n, ncol = 1, scales = "free_y") +
+  labs(
+    title = "Effect of Sample Size on the Sampling Distribution\nof the Mean",
+    x = "Sample mean body mass (g)",
+    y = "Count"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    strip.text = element_text(size = rel(1.35))
+  )
+
+```
+:::
+:::::
+
+## Population Distribution vs Sampling Distribution
+
+::::: columns
+::: column
+-   The sampling distribution is **centered at the population mean**
+
+-   Its spread is **much smaller** than the spread of individual values
+:::
+
+::: column
+```{r}
+#| label: fig-population-vs-sampling-distribution
+#| fig-height: 9
+#| fig-width: 8
+#| fig-cap: "Population distribution of penguin body mass (top) compared to the sampling distribution of the sample mean for samples of size n = 25 (bottom). Vertical lines show the mean of each distribution."
+#| 
+
+set.seed(123)
+
+sample_size <- 15
+n_reps <- 2000
+
+# Population (treat observed penguins as the population for this example)
+pop <- penguins |>
+  filter(!is.na(body_mass_g)) |>
+  transmute(
+    value = body_mass_g,
+    distribution = "Population distribution (individual body mass)"
+  )
+
+# Sampling distribution of the mean
+samp_means <- tibble(rep = 1:n_reps) |>
+  rowwise() |>
+  mutate(
+    value = penguins |>
+      filter(!is.na(body_mass_g)) |>
+      slice_sample(n = sample_size) |>
+      summarize(mean(body_mass_g)) |>
+      pull()
+  ) |>
+  ungroup() |>
+  mutate(distribution = paste0("Sampling distribution of the mean (n = ", sample_size, ")"))
+
+plot_data <- bind_rows(pop, samp_means) |>
+  mutate(
+    distribution = factor(
+      distribution,
+      levels = c(
+        "Population distribution (individual body mass)",
+        paste0("Sampling distribution of the mean (n = ", sample_size, ")")
+      )
+    )
+  )
+
+mean_lines <- plot_data |>
+  group_by(distribution) |>
+  summarize(mean_value = mean(value), .groups = "drop")
+
+ggplot(plot_data, aes(x = value)) +
+  geom_histogram(
+    data = filter(plot_data, distribution == "Population distribution (individual body mass)"),
+    bins = 30,
+    fill = "grey30",
+    color = "white"
+  ) +
+  geom_histogram(
+    data = filter(plot_data, distribution != "Population distribution (individual body mass)"),
+    bins = 30,
+    fill = "#0072B2",
+    color = "white"
+  ) +
+  geom_vline(
+    data = mean_lines,
+    aes(xintercept = mean_value),
+    color = "#D55E00",
+    linewidth = 2
+  ) +
+  facet_wrap(~ distribution, ncol = 1, scales = "free_y") +
+  labs(
+    title = "Population Distribution vs Sampling Distribution of the Mean",
+    x = "Body mass (g)",
+    y = "Count"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    strip.text = element_text(size = rel(1.25))
+  )
+
+```
+:::
+:::::
+
+## Coming soon: Using the sampling distribution to express uncertainty about an estimate of the population mean

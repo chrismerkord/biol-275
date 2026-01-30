@@ -198,3 +198,10 @@ div.cell-output-stderr {
   justify-content: center;
   align-items: center;
 }
+
+/* Reset bold color inside callout titles */
+.callout .callout-title,
+.callout .callout-title strong,
+.callout .callout-title b {
+  color: var(--bs-callout-color);
+}
