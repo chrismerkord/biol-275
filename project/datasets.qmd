@@ -89,7 +89,7 @@ Quite a bit of health data may be downloaded at:
 -   [CDC WONDER](https://wonder.cdc.gov/). You choose the dataset, which variables to include, and download it.
 
 | Dataset | Description | Spatial Coverage | Spatial Resolution | Temporal Coverage | Temporal Resolution |
-|------------|------------|------------|------------|------------|------------|
+|----|----|----|----|----|----|
 | [Behavioral Risk Factor Surveillance System (BRFSS) Prevalence Data](https://chronicdata.cdc.gov/Behavioral-Risk-Factors/Behavioral-Risk-Factor-Surveillance-System-BRFSS-P/) | Prevalence data based on telephone surveys | USA | State | 2011-present | Yearly |
 | [County Health Rankings & Roadmaps](http://www.countyhealthrankings.org/) | You can download data by state and year (see [Minnesota](http://www.countyhealthrankings.org/app/minnesota/2017/downloads), for example) | USA | State, County |  | Yearly |
 | [KIDS COUNT](http://datacenter.kidscount.org/) | A source of data on children and families and a project of the Annie E. Casey Foundation. You choose and download the variables necessary to answer your question. | USA | State, County |  | Yearly |

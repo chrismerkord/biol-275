@@ -70,7 +70,7 @@ If you are unsure whether a dataset is appropriate, ask early. Waiting too long 
 ## Project Timeline and Deliverables
 
 | Date | Deliverable | Description / Notes |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | **Jan 29** | Project introduced | Overview of the EDA project, expectations, and how it fits into the course. |
 | **Feb 12** | Dataset Readiness Check | Confirm that a dataset is selected, loaded, and minimally explored. Includes a rendered HTML document showing basic summaries, plots, and provisional research questions. |
 | **Feb 19** | Abstract Draft 1 | Initial project abstract describing the dataset, research focus, and general analytical approach. Questions are provisional. |
