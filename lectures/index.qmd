@@ -100,7 +100,7 @@ Lecture 6
 
 Estimating population parameters and their uncertainty from sample data
 
-[Under Construction](slides/lecture-06-uncertainty/){.btn .btn-warning}
+[Go to Lecture](slides/lecture-06-uncertainty/){.btn .btn-primary}
 :::
 :::::
 ::::::

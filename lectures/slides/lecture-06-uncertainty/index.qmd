@@ -441,4 +441,556 @@ ggplot(plot_data, aes(x = value)) +
 :::
 :::::
 
-## Coming soon: Using the sampling distribution to express uncertainty about an estimate of the population mean
+## Confidence Intervals
+
+::::: columns
+::: {.column width="50%"}
+-   A [confidence interval (CI)]{.keyword} is a range of **plausible values** for a population parameter
+
+-   It is constructed from a **sample estimate** and a measure of its **uncertainty**
+
+-   Values inside the interval are **more plausible**, given the data and the chosen level of confidence
+
+-   Wider intervals indicate **greater uncertainty**; narrower intervals indicate **greater precision**
+:::
+
+::: {.column width="50%"}
+![Confidence interval as a range of plausible values. The shaded band represents a confidence interval, indicating the range of population mean values that are plausible given the data; the true population mean lies somewhere within this range.](images/clipboard-357435628.png){fig-alt="Stylized diagram showing a shaded horizontal band labeled as a confidence interval, representing a range of plausible values for a population mean, with a marker indicating that the true population mean lies somewhere within the interval and values outside the band are less plausible."}
+:::
+:::::
+
+## What a 95% Confidence Interval Means
+
+::::: columns
+::: {.column width="50%"}
+-   A CI reflects the reliability of the **method**, not certainty about a single interval
+
+-   The [confidence level]{.keyword} describes how the method performs under **repeated sampling**
+
+-   If we repeatedly sample from the same population and compute a 95% CI each time:
+
+    -   About **95% of intervals** will include the true population parameter
+    -   About **5% will miss it**
+
+-   Whether any *one* interval contains the true value is unknown
+
+-   Each confidence interval is unique—width varies depending on which individuals happen to be included in the sample
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-many-confidence-intervals
+#| fig-height: 8
+#| fig-width: 8
+#| fig-cap: "Repeated 95% confidence intervals for a population mean. Each horizontal line is a confidence interval from one sample; the vertical red line shows the true population mean. Most intervals include the true value, but some do not."
+
+library(palmerpenguins)
+library(dplyr)
+library(ggplot2)
+
+set.seed(123)
+
+true_mean <- mean(penguins$body_mass_g, na.rm = TRUE)
+
+n_intervals <- 20
+sample_size <- 25
+
+ci_data <- tibble(ci_id = 1:n_intervals) |>
+  rowwise() |>
+  mutate(
+    sample = list(
+      penguins |>
+        filter(!is.na(body_mass_g)) |>
+        slice_sample(n = sample_size)
+    ),
+    mean = mean(sample$body_mass_g),
+    sd = sd(sample$body_mass_g),
+    se = sd / sqrt(sample_size),
+    lci = mean - 1.96 * se,
+    uci = mean + 1.96 * se,
+    contains_true = lci <= true_mean & uci >= true_mean
+  ) |>
+  ungroup()
+
+ggplot(ci_data, aes(y = factor(ci_id))) +
+  geom_segment(
+    aes(x = lci, xend = uci, yend = factor(ci_id)),
+    color = "#0072B2",
+    linewidth = 1.2
+  ) +
+  geom_vline(
+    xintercept = true_mean,
+    color = "#D55E00",
+    linewidth = 1.4
+  ) +
+  labs(
+    title = "Repeated 95% CIs from random samples",
+    subtitle = "Each interval based on a random sample of n = 25 penguins",
+    caption = "Source: Palmer Penguins dataset (palmerpenguins package)",
+    x = "Body mass (g)",
+    y = "Confidence interval"
+  ) +
+  theme_minimal(base_size = 18)
+
+```
+:::
+:::::
+
+## Increasing sample size produces narrower confidence intervals
+
+-   Larger samples reduce uncertainty even though the underlying population variability remains the same
+
+```{r}
+#| label: fig-ci-by-sample-size
+#| fig-height: 8
+#| fig-width: 15
+#| fig-cap: "Repeated 95% confidence intervals for a population mean at two sample sizes (n = 10 and n = 25). Each horizontal line is one CI; the vertical red line is the true population mean. Larger samples produce narrower intervals. Data Source: Palmer Penguins."
+
+library(tidyr)
+
+set.seed(132)
+
+true_mean <- mean(penguins$body_mass_g, na.rm = TRUE)
+
+n_intervals <- 20
+sample_sizes <- c(10, 25)
+
+ci_data <- tidyr::expand_grid(
+  n = sample_sizes,
+  ci_id = 1:n_intervals
+) |>
+  rowwise() |>
+  mutate(
+    sample = list(
+      penguins |>
+        filter(!is.na(body_mass_g)) |>
+        slice_sample(n = n)
+    ),
+    xbar = mean(sample$body_mass_g),
+    s = sd(sample$body_mass_g),
+    se = s / sqrt(n),
+    lci = xbar - 1.96 * se,
+    uci = xbar + 1.96 * se
+  ) |>
+  ungroup() |>
+  mutate(
+    n_facet = factor(paste0("n = ", n))
+  )
+
+ggplot(ci_data, aes(y = factor(ci_id))) +
+  geom_segment(
+    aes(x = lci, xend = uci, yend = factor(ci_id)),
+    color = "#0072B2",
+    linewidth = 1.2
+  ) +
+  geom_vline(
+    xintercept = true_mean,
+    color = "#D55E00",
+    linewidth = 1.4
+  ) +
+  facet_wrap(~ n_facet, nrow = 1) +
+  labs(
+    x = "Body mass (g)",
+    y = "CI number"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    strip.text = element_text(size = rel(1.5))
+  )
+
+```
+
+## Confidence Level Affects CI Width
+
+-   Even at a fixed sample size, interval width also depends on the chosen confidence level.”
+
+-   Higher confidence requires a wider interval (95% CI is wider than 90% CI for the same sample)
+
+```{r}
+#| label: fig-ci-90-vs-95
+#| fig-height: 8
+#| fig-width: 15
+#| fig-cap: "Confidence level affects confidence interval width. For the same set of random samples (n = 25), 95% confidence intervals are wider than 90% confidence intervals."
+
+set.seed(135)
+
+true_mean <- mean(penguins$body_mass_g, na.rm = TRUE)
+
+n_intervals <- 20
+sample_size <- 25
+
+# Generate samples once, then compute both CI levels on the same samples
+samples <- tibble(ci_id = 1:n_intervals) |>
+  rowwise() |>
+  mutate(
+    sample = list(
+      penguins |>
+        filter(!is.na(body_mass_g)) |>
+        slice_sample(n = sample_size)
+    ),
+    xbar = mean(sample$body_mass_g),
+    s = sd(sample$body_mass_g),
+    se = s / sqrt(sample_size)
+  ) |>
+  ungroup()
+
+ci_levels <- tibble(
+  level = c("90% CI", "95% CI"),
+  z = c(1.645, 1.96)
+)
+
+ci_data <- samples |>
+  crossing(ci_levels) |>
+  mutate(
+    lci = xbar - z * se,
+    uci = xbar + z * se,
+    level = factor(level, levels = c("90% CI", "95% CI"))
+  )
+
+ggplot(ci_data, aes(y = factor(ci_id))) +
+  geom_segment(
+    aes(x = lci, xend = uci, yend = factor(ci_id)),
+    color = "#0072B2",
+    linewidth = 1.2
+  ) +
+  geom_vline(
+    xintercept = true_mean,
+    color = "#D55E00",
+    linewidth = 1.4
+  ) +
+  facet_wrap(~ level, nrow = 1) +
+  labs(
+    x = "Body mass (g)",
+    y = "CI number"
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    strip.text = element_text(size = rel(1.5))
+  )
+
+```
+
+## The [2SE Rule of Thumb]{.keyword} for Confidence Intervals
+
+-   Simple way to construct a confidence interval: **estimate ± 2 × SE**
+
+-   Usually close to a 95% confidence interval
+
+-   Works well when sample sizes are not very small
+
+## Example: 2SE Rule of Thumb with penguin body mass
+
+::::: columns
+::: {.column width="50%"}
+For one random sample of n = 25 penguins, the sample mean body mass was
+
+$$
+\bar{x} = 4389 \text{ g}
+$$
+
+with sample standard deviation
+
+$$
+s = 801.5 \text{ g}
+$$
+
+The standard error of the mean is\
+$$
+SE = \frac{s}{\sqrt{n}} = \frac{801.5}{\sqrt{25}} = 160.3 \text{ g}
+$$
+:::
+
+::: {.column width="50%"}
+Using the rule of thumb, a confidence interval is\
+$$
+\begin{aligned}\text{95% CI} \;&=\; 4389 \pm 2 \times 160.3 \\                &=\; 4389 \pm 320.6 \\ &=\; 4068-4710\end{aligned}
+$$
+
+```{r}
+#| label: fig-2se-example
+#| fig-height: 2.5
+#| fig-width: 8
+#| fig-cap: "Illustration of the 2 × SE rule. The point shows the sample mean ($\\bar{x}$); the inner and outer bands represent $\\bar{x} \\pm 1\\,SE$ and $\\bar{x} \\pm 2\\,SE$."
+
+set.seed(123)
+
+sample_size <- 25
+
+penguin_2se_data <- 
+  penguins |>
+  filter(!is.na(body_mass_g)) |>
+  slice_sample(n = sample_size) |> 
+  summarize(
+    xbar = mean(body_mass_g),
+    s = sd(body_mass_g),
+    se = s / sqrt(sample_size),
+    lci_1se = xbar - 1 * se,
+    uci_1se = xbar + 1 * se,
+    lci_2se = xbar - 2 * se,
+    uci_2se = xbar + 2 * se
+  ) 
+
+label_data <- 
+  penguin_2se_data |> 
+  select(-xbar, -s, -se) |> 
+  pivot_longer(
+    cols = c(lci_1se, uci_1se, lci_2se, uci_2se)
+  ) |> 
+  add_row(
+    name = "mean",
+    value = penguin_2se_data$xbar
+  ) |>
+  mutate(
+    label = case_when(
+      name == "lci_2se" ~ "bar(x) - 2*SE",
+      name == "lci_1se" ~ "bar(x) - SE",
+      name == "mean"    ~ "bar(x)",
+      name == "uci_1se" ~ "bar(x) + SE",
+      name == "uci_2se" ~ "bar(x) + 2*SE",
+      TRUE ~ NA
+    )
+  )
+
+penguin_2se_data |> 
+  ggplot(aes(y = 1)) +
+  geom_linerange(
+    aes(xmin = lci_2se, xmax = uci_2se),
+    linewidth = 3,
+    color = "#009E73"
+  ) +
+  geom_linerange(
+    aes(xmin = lci_1se, xmax = uci_1se),
+    linewidth = 3,
+    color = "#56B4E9"
+  ) +
+  geom_point(aes(x = xbar), color = "#E69F00", size = 5) +
+  geom_linerange(
+    aes(x = value, ymin = 0.996, ymax = 1.004),
+    data = label_data |> 
+      filter(name != "mean"),
+    size = 1
+  ) +
+  geom_text(
+    aes(x = value, y = 1.017, label = label),
+    data = label_data,
+    parse = TRUE,
+    family = "serif"
+  ) +
+  ylim(0.99, 1.03) +
+  scale_x_continuous(expand = expansion(mult = .1)) +
+  labs(y = NULL, x = "Body mass (g)") +
+  theme_gray(base_size = 18) +
+  theme(
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    panel.background = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  )
+```
+:::
+:::::
+
+## Error bars illustrate uncertainty
+
+::::: columns
+::: {.column width="50%"}
+-   Error bars extend from a sample estimate to show uncertainty in the estimated parameter
+
+-   They may represent ±1 SE, ±2 SE, or an exact confidence interval (e.g., 95% CI)
+
+-   Always specify what the error bars represent in the figure legend
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-penguin-body-mass-by-species
+#| fig-cap: "Penguin body mass by species. Points show individual penguins; symbols and vertical bars indicate the species mean and 90% confidence interval."
+
+set.seed(123)
+
+penguins_sample <-
+  penguins |>
+  filter(!is.na(body_mass_g), !is.na(species)) |> 
+  slice_sample(n = 25, by = species)
+
+# Summary stats for mean and 90% CI by species
+ci_data <- 
+  penguins_sample |>
+  group_by(species) |>
+  summarize(
+    n = n(),
+    mean_mass = mean(body_mass_g),
+    sd_mass = sd(body_mass_g),
+    se_mass = sd_mass / sqrt(n),
+    t_crit = qt(0.95, df = n - 1),
+    lci = mean_mass - t_crit * se_mass,
+    uci = mean_mass + t_crit * se_mass,
+    .groups = "drop"
+  )
+
+penguins_sample |>
+  ggplot(aes(x = species, y = body_mass_g, color = species)) +
+  geom_jitter(width = 0.18, height = 0, alpha = 0.7, size = 2) +
+  see::scale_color_oi() +
+  geom_errorbar(
+    data = ci_data,
+    aes(x = species, y = mean_mass, ymin = lci, ymax = uci),
+    inherit.aes = FALSE,
+    color = "#000000",
+    linewidth = 1.1,
+    width = .17
+  ) +
+  geom_point(
+    data = ci_data,
+    aes(x = species, y = mean_mass),
+    inherit.aes = FALSE,
+    color = "#D55E00",  # Okabe-Ito vermilion for emphasis
+    size = 4
+  ) +
+  labs(
+    title = "95% CIs for Body Mass by Species",
+    subtitle = "From a sample of 25 penguins of each species",
+    caption = "Data source: palmerpenguins",
+    x = "Species",
+    y = "Body mass (g)"
+  ) +
+  theme_minimal(base_size = 18) +
+  guides(color = "none")
+```
+:::
+:::::
+
+## Interpreting Confidence Intervals
+
+**Correct**
+
+-   In repeated sampling, **95% of 95% confidence intervals** will contain the true population mean
+
+-   We are **95% confident** that the population mean lies within this interval
+
+**Not correct**
+
+-   There is a **95% probability** that the population mean lies within this specific interval
+
+## Confidence Intervals: Book's Web App
+
+:::::: columns
+::: {.column width="50%"}
+**Interactive app (open in browser):**
+
+[https://www.zoology.ubc.ca/\~whitlock/\
+Kingfisher/CIMean.htm](http://www.zoology.ubc.ca/~whitlock/Kingfisher/CIMean.htm){.uri}
+
+![Confidence intervals for the mean simulation. Interactive web app showing repeated random samples drawn from a population and the resulting confidence intervals, illustrating how sampling variability leads to uncertainty in estimates. Source: Whitlock and Schluter, The Analysis of Biological Data (3rd ed.) web app.](images/clipboard-1130178014.png){fig-alt="Screenshot of an interactive web app showing the distribution of repeated random samples and line ranges representing 95% confidence intervals calculated from each sample, used to demonstrate how confidence intervals are calculated from individual samples." fig-align="center"}
+:::
+
+:::: {.column width="50%"}
+**What the app shows**
+
+-   Repeated random samples drawn from the same population
+
+-   The estimated mean and confidence interval for each sample
+
+::: {.callout-tip .ml-5 .mr-5}
+### Try this
+
+1.  Generate confidence intervals using **sample size n = 10** and **standard deviation sigma = 30**
+2.  As samples are appearing, slide the selectors right and left.
+3.  Questions:
+    -   How do CI's vary as n changes?
+    -   As the standard deviation changes?
+:::
+::::
+::::::
+
+## Reporting Means and Confidence Intervals in Writing
+
+::::: columns
+::: {.column width="50%"}
+-   Report the **estimate**, the **confidence interval**, the **confidence level**, and the **sample size**
+
+-   Use clear units and avoid unnecessary precision
+
+-   State the statistic in words the first time it appears
+
+**Example**
+
+> *Mean penguin body mass was 4389 g (95% CI: 4068–4710 g, n = 25).*
+:::
+
+::: {.column width="50%"}
+#### **Reporting standards vary**
+
+-   Different journals and fields have **different expectations** for:
+    -   whether CIs are required or optional
+    -   how many decimal places to report
+    -   whether to include SE, SD, or CI
+-   To determine standards:
+    -   check the **journal’s author guidelines**
+    -   look at **recent papers** in that journal or field
+    -   follow instructions provided by your **instructor or lab manual**
+:::
+:::::
+
+## Pseudoreplication: When Confidence Is Undeserved
+
+::::: columns
+::: {.column width="50%"}
+-   **Pseudoreplication** occurs when observations are **not independent**, but are treated as if they are
+
+-   This often happens when **multiple measurements come from the same experimental unit** (e.g., repeated measures, subsamples, clustered data)
+
+-   Pseudoreplication inflates the apparent **sample size**, leading to **confidence intervals that are too narrow**
+
+-   The result is a **false sense of precision** about the population parameter
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-1812952450.png)
+:::
+:::::
+
+## Pseudoreplication: Pulse Rate Example
+
+You are interested in estimating the **average pulse rate of mountain climbers**.
+
+-   Mountain climbers are hard to find, so you take **10 pulse measurements from each climber**
+
+-   You study **6 climbers**, giving **60 total measurements**
+
+**Question:** What is the sample size ($n$)?
+
+**Answer:**
+
+-   The **experimental units** are the climbers\
+-   The correct sample size is $n = 6$, not 60
+
+Treating the 60 measurements as independent observations would be **pseudoreplication**, leading to **overly narrow confidence intervals** and misleading conclusions.
+
+## How to Avoid Pseudoreplication
+
+-   Identify the **experimental unit**: the unit that is independently sampled (e.g., individual climbers, plots, animals)
+
+-   Do **not** treat repeated measurements or subsamples from the same unit as independent data points
+
+-   When you have multiple measurements per unit:
+
+    -   **Average within each unit** before analysis, or
+    -   Use a statistical approach that **accounts for non-independence** (e.g., paired or repeated-measures designs)
+
+-   Always report and base inference on the **true sample size**, not the number of raw measurements
+
+## Lecture Summary: Estimating with Uncertainty
+
+-   Sample estimates vary by chance; this variability is described by the [sampling distribution]{.keyword}
+
+-   The [standard error (SE)]{.keyword} measures uncertainty in an estimate and decreases as sample size increases
+
+-   A useful approximation for uncertainty is the [2 × SE rule]{.keyword}, which gives a confidence interval close to 95%
+
+-   [Confidence intervals]{.keyword} express a range of plausible values for a population parameter and must be interpreted using repeated sampling logic
+
+-   Interval width depends on both **sample size** and [confidence level]{.keyword}
+
+-   [Pseudoreplication]{.keyword} violates independence, inflates sample size, and produces misleadingly narrow confidence intervals
