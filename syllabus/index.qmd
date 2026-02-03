@@ -176,7 +176,7 @@ Grades for individual quizzes, exams, assignments, etc. will be graded using a m
 The course grade will be calculated using a weighted system with percentages assigned to categories as follows:
 
 -   20% Quizzes (quizzes weighted based on length and difficulty)
--   21% Exams (3 exams)
+-   23% Exams (3 exams)
 -   12% Final Exam
 -   20% Lab Activities (labs weighted based on length and difficulty)
 -   20% Lab Project (points spread across sub-assignments)
