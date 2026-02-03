@@ -133,3 +133,5 @@ You are done when all of the following are true:
 -   All team members were added as moderators and **verified access**
 
 -   `README.md` exists in the Posit project and is completed
+
+---
