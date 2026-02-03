@@ -1,0 +1,135 @@
+---
+title: "EDA Project Team Formation"
+format: html
+---
+
+## Overview
+
+Today you will form your **EDA Project Team**, set up your shared **Posit Cloud** project, and submit your team information in **D2L**.
+
+You are **not** expected to have a finalized dataset, research question, or project plan yet. This step is about getting your team organized and ensuring everyone has access to the shared workspace.
+
+## Step 1. Join your D2L team first
+
+Before you do anything in Posit Cloud, join a team in D2L so you know your official team number (EDA Project Team 1, EDA Project Team 2, etc.).
+
+In D2L:
+
+-   Go to Other Tools \> Groups.
+
+-   Find and join a group named EDA Project Team 1, EDA Project Team 2, etc.
+
+-   All members must join the same team number.
+
+Your official team name will be your D2L group name (e.g., **EDA Project Team 6**). Use this exact team number everywhere.
+
+## Step 2. Submit your team information in D2L (one submission per team)
+
+Only one person per team submits this, and only after all members have joined the correct D2L team.
+
+Submissions made before all team members are enrolled in the same D2L group will not be graded.
+
+On your submission, include the following:
+
+-   Project Name (1-4 words)
+
+-   Names of group members (first and last), and the **email address they use to sign in to Posit Cloud**
+
+-   One-sentence topic description that includes:
+
+    -   a general domain (e.g., public health, ecology, behavior, epidemiology)
+
+    -   a type of data (e.g., time series, counts, measurements, spatial data)
+
+    -    Some examples: 
+
+        -   *We plan to explore a public health dataset that includes time series data and case counts.*
+
+        -   *We are looking for an animal behavior dataset in Dryad that includes individual level experiment data.*
+
+-   Submit the D2L project and inform the instructor so you can be added to the correct Posit Cloud workspace.
+
+## Step 3. Get added to your Team-specific Posit Cloud workspace.
+
+-   Tell the instructor you have submitted your D2L assignment.
+
+-   The instructor will use the email addresses included on the submission to add each student to a Posit Cloud workspace for your team.
+
+-   Refresh your browser to confirm you can see the new workspace.
+
+## Create your Posit Cloud project
+
+After everyone has been added to your Team-specific Posit Cloud Workspace:
+
+-   **One person** creates a new Posit Cloud project for the team. This will be the project owner.
+
+-   The project must be created in the **course workspace** (not your personal workspace).
+
+-   Name the project using your 2-4 word team name, e.g. "Fish Migration Project".
+
+-   The project owner must add all other team members as collaborators to that project.
+
+    -   Open the project.
+
+    -   Click the Gear icon.
+
+At this stage, you are allowed to upload data or create R scripts as you work define your project dataset, research questions, and analyses.
+
+## Step 4. Create a README.md in your Posit project (required)
+
+In your Posit project, create a file named:
+
+-   `README.md`
+
+Copy/paste the template below into that file and fill it in.
+
+For a simpler
+
+### README.md template
+
+``` markdown
+# EDA Project Team Information
+
+## Team
+
+- D2L team number: EDA Project Team ____
+- Team name (1–2 words): ______________________
+
+## Members
+
+- First Last (first.last@go.mnstate.edu)
+- First Last (first.last@go.mnstate.edu)
+- First Last (first.last@go.mnstate.edu)
+
+## Posit Cloud project link
+- Paste link here: 
+
+## Preliminary topic (one sentence)
+Write one sentence that includes:
+
+- a **general domain** (e.g., public health, ecology, behavior, epidemiology)
+- a **type of data** (e.g., time series, counts, measurements, spatial data)
+
+Sentence:
+
+
+
+## Notes
+- All members verified collaborator access on: ____ / ____ / 2026
+```
+
+## Completion checklist
+
+You are done when all of the following are true:
+
+-    Everyone has joined the same **EDA Project Team \#** in D2L
+
+-   One team member submitted the required information in D2L
+
+-   You are a member of your project-specific Posit Cloud workspace.
+
+-   Your Posit Cloud project exists, named correctly
+
+-   All team members were added as moderators and **verified access**
+
+-   `README.md` exists in the Posit project and is completed
