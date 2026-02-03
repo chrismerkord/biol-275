@@ -44,6 +44,7 @@ website:
         contents:
           - project/index.qmd
           - project/datasets.qmd
+          - project/dryad-datasets.qmd
           - project/team-formation.qmd
         
 format:

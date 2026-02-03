@@ -1,0 +1,239 @@
+---
+title: "Dryad datasets"
+format: html
+---
+
+## What is Dryad?
+
+[Dryad](https://datadryad.org/) is a public, curated data repository where researchers publish the datasets that support a scientific study. In many cases, journals (or funders) require authors to make data available, and Dryad is one common way they do that.
+
+Dryad records typically include:
+
+-   A dataset title and description (metadata)
+-   One or more data files (often `.csv`, `.tsv`, `.xlsx`, or a `.zip` containing files)
+-   A **DOI** (a permanent identifier) so the dataset can be cited
+-   License terms describing how the data can be reused
+
+## How Dryad relates to journal articles
+
+A Dryad dataset is usually connected to a specific peer-reviewed journal article.
+
+-   The **journal article** explains the scientific background, methods, and interpretation.
+-   The **Dryad dataset** provides the underlying files that were analyzed in that article.
+
+You should assume that you will need both:
+
+-   Use the **Dryad page** to download the data.
+-   Use the **journal article** (or at least the methods + data descriptions) to understand what the variables mean, how sampling was done, and what each row represents.
+
+In practice:
+
+-   If you find an interesting article first, look for a “Data Availability” statement and follow the link to the dataset.
+-   If you find an interesting dataset first, look for the “Related publication” on the Dryad page and skim the article.
+
+## Why Dryad is a good source for the EDA project
+
+Dryad can be a strong fit for the EDA project because many datasets are:
+
+-   Real research data (not toy examples)
+-   Rich enough for multiple plots and questions
+-   Licensed for reuse
+-   Documented (sometimes very well, sometimes not)
+
+However, quality varies a lot. Your job is to find a dataset that is usable within the time constraints of the course.
+
+## Tips for searching Dryad effectively
+
+### Start with topics, not with species names
+
+Search terms that often work well:
+
+-   Study system or field: `grassland`, `wetland`, `forest`, `urban`, `stream`
+-   Methods: `camera trap`, `point count`, `mark recapture`, `telemetry`, `eDNA`
+-   Data structure: `time series`, `trait`, `occurrence`, `survey`, `monitoring`
+-   Environmental drivers: `temperature`, `precipitation`, `nutrients`, `land cover`
+
+Species names can work, but topic/method searches tend to surface datasets with clearer analytical structure.
+
+### Use Dryad filters and metadata fields
+
+On Dryad, use filters (when available) to narrow results by:
+
+-   Year
+-   Subject area
+-   File type / number of files (sometimes a proxy for “substantial dataset”)
+
+When you open a Dryad record, pay attention to:
+
+-   The dataset description (is it specific and informative?)
+-   The file list (are they in usable formats?)
+-   The related publication link (does it clearly explain the data?)
+
+### Prefer datasets that look “analysis-ready”
+
+Good signs:
+
+-   Data files are `.csv`, `.tsv`, or `.xlsx`
+-   There is a README or “data dictionary” file explaining variables
+-   Variable names are interpretable (not just `V1`, `X3`, `temp2`)
+-   The dataset is “tidy-ish” (rows are observations; columns are variables), or at least can be made tidy without heroic effort
+-   Sample size is large enough to visualize patterns (often at least dozens of rows; ideally hundreds+)
+
+## Things to watch out for
+
+### 1) “Data” that are not really data
+
+Some Dryad records are not suitable for this course because the files are:
+
+-   PDFs of tables
+-   Specialized formats meant for a niche tool or workflow
+-   Only model outputs (no primary observations)
+-   Too small or too aggregated (e.g., one summary row per group, with no raw observations)
+
+### 2) Unclear observational units
+
+Before committing to a dataset, you should be able to answer:
+
+-   What does **one row** represent?
+-   What is the **sampling unit** (individual, site, plot, transect, day, etc.)?
+-   Are there repeated measures (same site measured over time)?
+-   Are there multiple files representing different tables that must be joined?
+
+If you cannot quickly determine what a row means, you will struggle to interpret your plots.
+
+### 3) Messy structure is normal, but don’t choose a disaster
+
+Some cleaning is expected. What you should avoid:
+
+-   Dozens of separate files that require complex merging
+-   No documentation and cryptic variable names
+-   Data stored in wide formats with hundreds of columns *and* no clear ID variables
+-   Everything embedded in “supplementary material” PDFs
+
+A manageable dataset is one where you can import it, identify a few key variables, and start plotting within one lab period.
+
+### 4) Licensing and attribution
+
+Dryad datasets have a license (often CC0 or similar). Even when reuse is permitted:
+
+-   You must cite the dataset DOI.
+-   You should cite the related publication if you rely on its methods/data description.
+-   You should not present results as if you collected the data yourself.
+
+## A recommended workflow for choosing a Dryad dataset
+
+1.  Search Dryad for a topic/method you care about.
+
+2.  Open a promising dataset record.
+
+3.  Check file formats and documentation.
+
+4.  Identify:
+
+    -   the unit of observation (row meaning)
+    -   a small set of candidate variables (one response-like variable + a few predictors/grouping variables)
+
+5.  Download and preview the data (even in Excel is fine for a first look).
+
+6.  Decide whether it is realistic for the EDA project.
+
+If you want feedback early, bring a link (Dryad URL/DOI) and a brief description of what you think the rows represent.
+
+## Dataset catalog for the EDA project
+
+This catalog is a curated list of Dryad datasets that the instructor (and sometimes past students) have already reviewed and found to be **good candidates** for the EDA project.
+
+Use it when you want a faster path to a workable dataset, or when you want examples of what “good” looks like.
+
+### Catalog table
+
+<!-- Placeholder: the searchable DT table will go here -->
+
+\`\`\`{r} \# DT table placeholder \# (This will be replaced with code that reads data/dryad_catalog.csv and displays it with DT.)
+
+## 
+
+### Data dictionary: Dryad dataset catalog
+
+The table below lists and describes the variables used in the **Dryad dataset catalog**. These variables describe *datasets*, not individual observations within a Dryad dataset.
+
+Each row in the catalog corresponds to **one Dryad dataset (and its associated publication)**.
+
+#### Variable descriptions
+
+-   **`id`**\
+    Internal identifier for the catalog. Used only for organization and reference.
+
+-   **`title`**\
+    Title of the Dryad dataset or the associated journal article.
+
+-   **`year`**\
+    Year the dataset was published in Dryad (often the same year as the journal article).
+
+-   **`system`**\
+    The biological, environmental, or scientific system the dataset focuses on.\
+    Examples: `Birds`, `Plants`, `Freshwater`, `Climate`, `Remote sensing`, `Microbiome`.
+
+-   **`topic_tags`**\
+    Short keywords describing the main themes of the dataset.\
+    Multiple values are allowed and separated by `|`.\
+    Examples: `behavior|movement|gps`, `nutrients|water_quality`.
+
+-   **`study_design`**\
+    General description of how the data were collected.\
+    Examples: `observational`, `experiment`, `survey`, `long-term monitoring`.
+
+-   **`data_types`**\
+    The primary types of variables present in the dataset that determine what analyses and visualizations are appropriate.\
+    Multiple values are allowed and separated by `|`.\
+    Examples: `counts`, `continuous`, `categorical`, `time_series`, `spatial`, `multivariate`.
+
+-   **`spatiotemporal`**\
+    Indicates whether the dataset varies across space, time, both, or neither.\
+    Examples: `spatial`, `time`, `spatiotemporal`, `none`.
+
+-   **`n_rows`**\
+    Approximate number of rows (observations) in the main data table.\
+    Used as a rough indicator of dataset size.
+
+-   **`n_cols`**\
+    Approximate number of columns (variables) in the main data table.
+
+-   **`file_formats`**\
+    File types provided in Dryad.\
+    Examples: `csv`, `tsv`, `xlsx`, `zip`.
+
+-   **`license`**\
+    Data reuse license specified by Dryad (e.g., CC0).\
+    Always check this before reuse and citation.
+
+-   **`has_readme`**\
+    Indicates whether a README or similar documentation file is included.
+
+-   **`data_dictionary`**\
+    Indicates whether a variable-level data dictionary or metadata file is included.
+
+-   **`analysis_readiness`**\
+    Instructor judgment of how ready the dataset is for analysis.\
+    Examples: `ready`, `some cleaning`, `heavy cleaning`.
+
+-   **`cleanliness_score`**\
+    A rough 1–5 score summarizing overall data cleanliness and usability\
+    (higher = easier to work with).
+
+-   **`recommended_for`**\
+    Suggested analytical uses for the dataset.\
+    Multiple values allowed; separated by `|`.\
+    Examples: `eda`, `regression`, `anova`, `time_series`.
+
+-   **`doi`**\
+    DOI for the Dryad dataset (or closely associated publication).
+
+-   **`dryad_url`**\
+    Direct link to the Dryad dataset landing page.
+
+-   **`abstract_1sentence`**\
+    Plain-language, one-sentence summary of what the dataset contains.
+
+-   **`notes`**\
+    Instructor or student comments about quirks, strengths, limitations, or tips for working with the data.

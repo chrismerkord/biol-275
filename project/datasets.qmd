@@ -89,7 +89,7 @@ Quite a bit of health data may be downloaded at:
 -   [CDC WONDER](https://wonder.cdc.gov/). You choose the dataset, which variables to include, and download it.
 
 | Dataset | Description | Spatial Coverage | Spatial Resolution | Temporal Coverage | Temporal Resolution |
-|----|----|----|----|----|----|
+|------------|------------|------------|------------|------------|------------|
 | [Behavioral Risk Factor Surveillance System (BRFSS) Prevalence Data](https://chronicdata.cdc.gov/Behavioral-Risk-Factors/Behavioral-Risk-Factor-Surveillance-System-BRFSS-P/) | Prevalence data based on telephone surveys | USA | State | 2011-present | Yearly |
 | [County Health Rankings & Roadmaps](http://www.countyhealthrankings.org/) | You can download data by state and year (see [Minnesota](http://www.countyhealthrankings.org/app/minnesota/2017/downloads), for example) | USA | State, County |  | Yearly |
 | [KIDS COUNT](http://datacenter.kidscount.org/) | A source of data on children and families and a project of the Annie E. Casey Foundation. You choose and download the variables necessary to answer your question. | USA | State, County |  | Yearly |
@@ -142,7 +142,7 @@ You could explore geospatial data by itself, or if you have GPS coordinate for o
 
 ## Online data repositories
 
--   [**Dryad**](http://datadryad.org/). A curated, general purpose data repository. You can search through it to find an interesting dataset. Here are two examples (but you should find your own):
+-   [Dryad Datasets](dryad-datasets.qmd). A curated, general purpose data repository. You can search through it to find an interesting dataset. Here are two examples (but you should find your own):
 
     -   [Mammal community data from Wen *et al.* (2018)](http://hdl.handle.net/10255/dryad.170813). A dataset of mammal species found at sites along an elevational gradient on three mountains in China.
     -   [Birth seasonality data from Martinez-Bakker *et al.* (2014)](http://hdl.handle.net/10255/dryad.170822). A dataset of the number of births per month over the past 100 years in the US and 60 years in the World. Could possible be combined with another dataset to ask an interesting question.
