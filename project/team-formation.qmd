@@ -47,7 +47,7 @@ On your submission, include the following:
 
         -   *We are looking for an animal behavior dataset in Dryad that includes individual level experiment data.*
 
--   Submit the D2L project and inform the instructor so you can be added to the correct Posit Cloud workspace.
+-   Submit the D2L assignment and inform the instructor so you can be added to the correct Posit Cloud workspace.
 
 ## Step 3. Get added to your Team-specific Posit Cloud workspace.
 
