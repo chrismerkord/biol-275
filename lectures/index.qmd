@@ -104,4 +104,20 @@ Estimating population parameters and their uncertainty from sample data
 :::
 :::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 7
+:::
+
+::: card-body
+##### Probability {.card-title}
+
+Introduces probability theory as the foundation of statistical reasoning, focusing on conditional probability, independence, and Bayes’ theorem.
+
+[Go to Lecture](slides/lecture-07-probability/){.btn .btn-primary}
+:::
+:::::
+::::::
 :::::::::::::::::::
