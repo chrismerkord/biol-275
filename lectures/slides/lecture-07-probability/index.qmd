@@ -327,7 +327,7 @@ $$
 \operatorname{Pr}[A \text{ and } B]
 $$
 
-![Visual illustration of the General Addition Principle, showing that the probability of A or B equals the probability of A plus the probability of B minus the probability of their overlap.](images/addition-principle-venn.jpg){#fig-addition-principle-venn fig-alt="A Venn diagram with two overlapping circles labeled A and B. The diagram shows that the combined area representing A or B equals the area of A plus the area of B, with the overlapping region subtracted once to avoid double counting." width="1299"}
+![Visual illustration of the General Addition Principle, showing that the probability of A or B equals the probability of A plus the probability of B minus the probability of their overlap.](images/addition-principle-venn.jpg){#fig-addition-principle-venn fig-alt="A Venn diagram with two overlapping circles labeled A and B. The diagram shows that the combined area representing A or B equals the area of A plus the area of B, with the overlapping region subtracted once to avoid double counting." width="1039"}
 
 ## A special case of the addition principle
 
@@ -549,9 +549,7 @@ Let’s revisit the example of two children of Oguchi carriers
 
 ![](images/probability-tree-step-3.jpg){fig-align="center"}
 
-## Probability Tree Step 4
-
--   Step 1: Write down all possible outcomes for event one, two… etc. and connected them
+## Probability Tree Step 4: Sum paths that lead to the same destination
 
 ![](images/probability-tree-step-4.jpg){fig-align="center"}
 
@@ -682,8 +680,6 @@ $$
 =
 0.314
 $$
-
-## Probability trees for conditional probabilities
 
 ## Probability trees for conditional probabilities
 
