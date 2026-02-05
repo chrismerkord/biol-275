@@ -81,5 +81,20 @@ An introduction to creating scatterplots in R using ggplot2 and a layered approa
 :::
 ::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lab 6
+:::
+::: card-body
+##### Describing Data with Summary Statistics {.card-title}
+
+Using descriptive statistics and graphs to summarize, compare, and interpret biological data.
+
+[Lab 6](describing-data/)
+:::
+::::
+::::::
 :::::::::::
 

@@ -1,0 +1,101 @@
+---
+title: "BIOL 275 Lab 6 Describing data"
+format:
+  pdf:
+    output-file: lab-06-worksheet.pdf
+    pdf-engine: xelatex
+    fontsize: 11pt
+    geometry:
+      - letterpaper
+      - margin=0.6in
+    number-sections: false
+    toc: false
+header-includes:
+  - |
+    \usepackage[most]{tcolorbox}
+    \usepackage{enumitem}
+    \setlist[itemize]{nosep, topsep=8pt, leftmargin=*}
+    \setlist[enumerate]{nosep, topsep=8pt, leftmargin=*}
+    
+    % Pandoc tight lists: force list spacing
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}%
+      \setlength{\parskip}{0pt}%
+      \setlength{\parsep}{0pt}%
+    }
+    
+    \pagestyle{empty}
+    
+    % Compact title without titling.sty
+    \makeatletter
+    \renewcommand{\maketitle}{
+      \begin{center}
+        {\Large\bfseries \@title \par}
+        \vspace{4pt}
+        \end{center}
+      \vspace{-1pt}
+    }
+    \makeatother
+    
+    % Tighten section spacing (template-safe; no titlesec)
+    \makeatletter
+    \renewcommand\section{\@startsection{section}{1}{\z@}%
+      {0.2\baselineskip}%
+      {0.2\baselineskip}%
+      {\normalfont\large\bfseries}}
+    \makeatother
+
+    % Answer box styles
+    \newtcolorbox{answerbox}[1][]{
+      enhanced,
+      sharp corners,
+      boxrule=0.6pt,
+      colback=white,
+      colframe=black,
+      left=6pt,right=6pt,top=6pt,bottom=6pt,
+      #1
+    }
+
+    % Convenience commands for fixed-height boxes
+    \newcommand{\ab}[1]{\begin{answerbox}[height=#1]\end{answerbox}}
+---
+
+\vspace{-0.15in}
+
+\begin{answerbox}
+\textbf{Name:} \hspace{2.5in} \textbf{Date:} \hspace{1.4in}
+\end{answerbox}
+
+\vspace{0.25in}
+
+**1. List the numerical variable and the categorical grouping variables used in the worked example (`and_vertebrates`).**
+\ab{1in}
+
+**2. Why is it important to check for and remove missing values before computing summary statistics such as the mean or standard deviation?**
+\ab{1.2in}
+
+**3. In your own words, how does a summary table differ from the raw data table?**
+\ab{1.2in}
+
+**4. In the `summarize()` call, what does the argument `.by = c(section, species)` do?**
+\ab{1.2in}
+
+**5. In this dataset, is the standard error (SE) larger or smaller than the standard deviation (SD)? Why?**
+\ab{1.2in}
+
+\newpage
+
+**6. Name one feature of the data that is visible in the distribution plot but is not visible in the summary table.**
+\ab{1.2in}
+
+**7. Why do some `geom_*()` layers use the raw dataset, while others use the summary table?**
+\ab{1.2in}
+
+**8. What does it mean to “override” an aesthetic inside a `geom_*()` call?**
+\ab{1.2in}
+
+**9. Based on the distribution plot, does the mean or the median better represent a “typical” individual for this dataset? Briefly explain your reasoning.**
+\ab{2.0in}
+
+**10. Why is the mean ± confidence interval plot more effective than the distribution plot for comparing group means?**
+\ab{1.2in}

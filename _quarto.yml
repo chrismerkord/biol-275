@@ -40,6 +40,7 @@ website:
           - labs/importing-data/index.qmd
           - labs/graphing-ggplot/index.qmd
           - labs/ggplot2-vis-challenge/index.qmd
+          - labs/describing-data/index.qmd
       - section: "Project"
         contents:
           - project/index.qmd
