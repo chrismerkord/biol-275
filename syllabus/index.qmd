@@ -79,7 +79,7 @@ The online version will be the only one most of you need, but if you want a prin
 -   Estimating with uncertainty
 -   Probability
 -   Hypothesis testing
--    Analyzing proportions
+-   Analyzing proportions
 -   Chi-square goodness of fit
 -   Contingency analysis
 -   The normal distribution
@@ -91,7 +91,7 @@ The online version will be the only one most of you need, but if you want a prin
 -   Correlation between numerical variables
 -   Regression
 -   Multiple explanatory variables
--    Finding and using publicly available data
+-   Finding and using publicly available data
 -   Exploratory data analysis
 -   Communicating scientific results
 -   Coding (R programming language)
