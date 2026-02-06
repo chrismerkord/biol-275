@@ -107,11 +107,11 @@ The online version will be the only one most of you need, but if you want a prin
 
 ## Course Policies
 
-## Instructional Strategies
+### Instructional Strategies
 
-The course is broadly divided into two parts, lecture that meets three times per week and lab that meets two times per week. Research has shown that student learning of technical concepts is reinforced by consistent, daily reinforcement.
+The course consists of lectures, laboratory sessions, and a semester-long group project, with additional optional enrichment opportunities provided through external seminars.
 
-### Lecture
+#### Lecture
 
 -   Lectures consist of oral presentation of slideshows by the instructor.
 
@@ -123,7 +123,7 @@ The course is broadly divided into two parts, lecture that meets three times per
 
 -   Some lectures may include in-class activities. These may or may not be announced ahead of time. Activities will not be graded and attendance will not be taken. To avoid missing a helpful activity, plan on coming to every class.
 
-### Laboratory
+#### Laboratory
 
 -   There will be regular in-person laboratory activities in a computer lab.
 
@@ -135,15 +135,19 @@ The course is broadly divided into two parts, lecture that meets three times per
 
 -   Learning Assistants will be present to assist with student learning. They are present for student support. Students should ask the Learning Assistants when they have any questions about a lab assignment.
 
-### Group Project
+#### Group Project
 
 -   The other half of lab meetings will be devoted to a group project. Students will work in groups of 3 or 4 to design and conduct an Exploratory Data Analysis (EDA) of a data set of their choice. The goal of the project is to give students an opportunity to hone their skills on a topic they are personally interested in.
-
 -   The project will involve in-class and out-of-class work. In-class activities will include proposal writing, presentations to the class, feedback on others’ presentations, and poster preparation. Out-of-class activities will include meeting with team members, conducting analyses, and preparing your poster for the Student Academic Conference (SAC).
-
 -   Each group will present the results of their EDA in poster format at the Student Academic Conference in April. Presenting in person at the SAC is required. See the course schedule for the date. The time of day will vary depending on which poster session you are assigned by the SAC organizers but will be known several weeks ahead of time. Please arrange to be at your poster at your designated time.
-
 -   To present at the SAC, you must first submit an abstract to the SAC committee in February. The date and instructions will be provided by the instructor. Failure to submit your group’s proposal by the deadline will result in your group being unable to present at the SAC and therefore unable to earn the course points associated with presenting.
+
+### Seminars
+
+-   Throughout the semester, students will have the opportunity to attend external research seminars offered by the department, college, or university.
+-   These seminars provide exposure to how data, statistical reasoning, and quantitative evidence are used in real research contexts across biology and related fields.
+-   Seminar topics may extend beyond material covered directly in lecture or lab, but students are expected to engage with the material at a conceptual level and reflect on its relevance to biostatistics and data analysis.
+-   Attendance at seminars is optional and is intended as an enrichment opportunity rather than a required component of the course.
 
 ### Technology
 
@@ -161,7 +165,7 @@ The following technology will be required in this course:
 
     Students are able to access their Posit Cloud account and any associated lab- or lecture-related materials from any computer using a web browser by signing in to Posit Cloud https://posit.cloud. While it is possible to install R and RStudio on your device directly, this is not the supported delivery method for instruction in this course.
 
-## Grades and Assessment
+### Grades and Assessment
 
 Grades will be assigned using an A, B, C, D, F scale based on the percentage of total points earned, as follows:
 
