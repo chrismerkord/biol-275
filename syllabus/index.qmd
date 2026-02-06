@@ -180,7 +180,8 @@ The course grade will be calculated using a weighted system with percentages ass
 -   12% Final Exam
 -   20% Lab Activities (labs weighted based on length and difficulty)
 -   20% Lab Project (points spread across sub-assignments)
--    5% Lab Practical
+-   5% Lab Practical
+-   Up to 4% for extra credit opportunities
 
 [Quizzes]{.underline}: Quizzes will be on D2L and will consist of multiple choice, short answer, matching, or similar types of questions. You will need a calculator to answer some questions. They will cover material presented in either lecture or lab, and each quiz will say what it covers so you know what to study before taking it. There will approximately one quizzes per week depending on the content we are learning that week. Each quiz will be announced in class and on D2L at least five days (not counting weekends and holidays) before it is due. You will take quizzes outside of class on your own time and you are expected to work on your own when taking them, unless otherwise instructed. You may retake each quiz an unlimited number of times. You will be able to see which questions you answered correctly and incorrectly after each attempt. Deadline extensions will only be granted in cases of extended university-approved excused absence.
 
@@ -191,6 +192,10 @@ The course grade will be calculated using a weighted system with percentages ass
 [Lab Project]{.underline}: Points will be awarded for various stages of the group lab project including but not limited to a written project proposal, a proposal presentation, conducting the experiment, data entry and analysis, a final written or oral report, presentation of a poster at the Student Academic Conference, and a post-conference reflection.
 
 [Lab Practical]{.underline}: The lab practical will involve coding in R to show your ability to import, manipulate, and summarize data, choose appropriate statistical methods for descriptive and inferential analysis, perform those methods, and convey the results using accurate and effective text and visual outputs. You are allowed to work in groups of 3-4 to write the code. If there is disagreement within your group on how to solve the problem, you are not required to have the same code as your collaborators. You will submit a report of your assignment via D2L. Your score will be determined based on the product you submit. A grading rubric will be passed out ahead of time.
+
+[Extra Credit: External Seminar Attendance]{.underline}: Students may earn up to 4 points of extra credit by attending approved external seminars during the semester. Each seminar attended is worth 1 extra credit point, for a maximum of 4 seminars. To receive credit, students must attend the seminar and complete the accompanying assignment posted on D2L; attendance alone is not sufficient. Assignments must be submitted by the stated deadline on D2L.
+
+Because not all students are able to attend in-person events, an alternative assignment of equivalent scope and effort will be provided on D2L for students who cannot physically attend a seminar. Extra credit points earned through seminars or the alternative assignment are added to the course total but are capped at 4 points
 
 ## University Policies
 
