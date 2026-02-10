@@ -47,7 +47,7 @@ website:
           - project/datasets.qmd
           - project/dryad-datasets.qmd
           - project/team-formation.qmd
-        
+          - project/data-readiness-check.qmd
 format:
   html:
     toc: true

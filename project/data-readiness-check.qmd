@@ -1,0 +1,171 @@
+---
+title: "Data Readiness Check"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+---
+
+## Overview
+
+Before your team starts the full EDA project, you must complete a **Data Readiness Check** to confirm:
+
+-   Your team project is set up correctly (everyone can run it)
+-   The dataset loads without errors
+-   Basic structure, variable types, and missingness are understood.
+-   You can produce and save two simple plots (one numeric distribution, one categorical distribution)
+
+**Deliverable (submit on D2L):**
+
+The PDF created by your data-readiness-check.qmd file.
+
+**Prerequisite:** Team + dataset selection. See: *Team Formation and Dataset Selection* (link below).
+
+-   [Team Formation & Dataset Selection](team-formation.qmd)
+
+------------------------------------------------------------------------
+
+## Step 1 — Confirm your team and dataset
+
+1.  Confirm **all members** can access the team project workspace in Posit Cloud.
+
+2.  Add the dataset to your project in a clear location:
+
+    -   Recommended: `data/`
+
+    You can skip this step if your dataset is accessed through an R package or read directly from the web.
+
+## Step 2 — Create `data-readiness-check.R`
+
+Create a new script named:
+
+-   `data-readiness-check.R`
+
+This script should be **only** for the readiness check.
+
+### Script requirements
+
+Your script must:
+
+1.  Load required packages
+2.  Read the dataset using tidyverse functions (e.g. `read_csv()`, `read_excel()`, `read_rds()`, etc.)
+3.  Display the data using:
+    -   `print()` and
+    -   `glimpse()`
+4.  Create **two plots** using `ggplot2`:
+    -   A histogram of **one numeric** variable
+    -   A bar chart of **one categorical** variable
+
+## Step 3 — Run the script and verify outputs
+
+1.   Run `data-readiness-check.R` from a fresh R session.
+2.   Confirm the script runs without errors.
+3.  Confirm the console shows the data as expected
+4.  Confirm the two graphs are displayed in the Viewer tab as expected
+
+## Step 4 — Write a short readiness summary
+
+1.  Create a Quarto Document
+    a.  Go to File \> New File \> Quarto document...
+    b.  Click "Create Empty Document" button
+2.  Install the **rmarkdown** package
+    a.  In order to create the PDF output, you will need to install the rmarkdown package. Click the yellow banner at the top of the new file prompting you to install the package.
+3.  Make sure your QMD file is in Source mode, not Visual mode (buttons in top left of source pane)
+4.  Copy and paste the template below into your QMD file and switch to Visual Mode
+5.  Copy code from your data-readiness-check.R to your QMD file as necessary.
+    a.  Put library commands in first R code chunk
+    b.  Put code to read data in second R code chunk
+    c.  Put code to display data (print, glimpse) in third r code chunk
+    d.  Put code to display histogram and barchart in fourth and fifth r code chunks.
+    e.  Update the text in between the R code chunks, e.g. listing the packages and variables you will use.
+6.  Click the "Render" button (blue arrow pointing right) to render the QMD file as a PDF document.
+7.  Open the PDF (click the file name) to make sure it shows the desired output.
+
+## Step 5 -  Submit on D2L
+
+1.  Download the PDF document to your computer using the More \> Export command in the Files tab.
+2.  Submit the PDF of your data readiness check on D2L
+
+## QMD Template
+
+```` md
+---
+title: "Data Readiness Check EDA Project Team 1"
+format: pdf
+editor: visual
+---
+
+## Load packages
+
+This project will use the following package:
+
+-   tidyverse - for data wranglin
+
+-   list others here or delete this line.
+
+```{r}
+# load packages
+library (tidyverse)
+# put other library commands here
+
+```
+
+## Dataset
+
+We plan to use the following dataset:
+
+-   Dataset name:
+
+-   Dataset source: (who created it)
+
+-   Dataset link:
+
+-   Dataset citation:
+
+If the dataset was downloaded from Dryad, provide the Dryad link here:
+
+## Reading the data
+
+The following code reads the data:
+
+```{r}
+# put your code here
+# e.g. data <- read_csv("data/my-data.csv")
+
+```
+
+## Viewing the data
+
+The following output shows that the data is a table with \_\_\_ rows and \_\_\_ columns.
+
+```{r}
+print()
+glimpse()
+```
+
+## Variable choice
+
+We plan to use the following variables in our dataset:
+
+-   variable_1 - explain what it is
+
+-   variable_2 - explain what it is
+
+## Variable distributions
+
+Visualization of one numerical variable:
+
+```{r}
+# put ggplot with geom_histogram() here
+
+
+```
+
+Visualization of one categorical variable:
+
+```{r}
+# put ggplot with geom_barchart() here
+
+
+```
+````
