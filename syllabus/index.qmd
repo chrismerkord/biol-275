@@ -113,36 +113,32 @@ The course consists of lectures, laboratory sessions, and a semester-long group 
 
 #### Lecture
 
--   Lectures consist of oral presentation of slideshows by the instructor.
-
--   Slides will be posted on D2L after each lecture.
-
--   A schedule of lecture topics and associated readings from the textbook are available on the Class Schedule. Students are expected to read the textbook ahead of time.
-
--   Students are strongly encouraged to take notes during lecture. One benefit of taking notes during lecture, other than improved understanding and retention, is that students may use their notes during the quizzes and exams.
-
--   Some lectures may include in-class activities. These may or may not be announced ahead of time. Activities will not be graded and attendance will not be taken. To avoid missing a helpful activity, plan on coming to every class.
+-   Lectures emphasize conceptual understanding, interpretation of statistical results, and the reasoning behind methods.
+-   Lectures consist primarily of instructor-led presentations using slides. Slides will be posted on the course website after each lecture.
+-   A schedule of lecture topics and associated textbook readings is provided on the Class Schedule. Students are expected to complete assigned readings before the corresponding lecture.
+-   Students are strongly encouraged to take notes during lecture. In addition to improving understanding and retention, students may use their notes during quizzes and exams.
+-   Some lectures may include in-class activities designed to reinforce key concepts. These activities may or may not be announced in advance, are not graded, and attendance will not be taken. To avoid missing a useful activity, students should plan to attend every lecture.
 
 #### Laboratory
 
--   There will be regular in-person laboratory activities in a computer lab.
-
--   Each lab section will meet twice per week, for 75 minutes each time.
-
--   Approximately half of the lab meetings will involve tutorial-style labs that will be provided at the time of the lab. Students will work in pairs to complete the labs, with the instructor available to answer questions. Work will entail using the computer software program RStudio (via Posit Cloud) to learn basic data science skills such as data management, exploratory data analyses, statistical hypothesis testing, and data visualization.
-
--   Students are expected to attend labs and complete assignments during class. Some leeway is afforded if you do not finish during class, with lab assignment due dates occurring on Friday. Attempting labs completely on your own time without the help of the instructor is not supported because of the likelihood of encountering technical difficulties. The instructor will not be available to help with lab questions outside of lab time, except during office hours.
-
--   Learning Assistants will be present to assist with student learning. They are present for student support. Students should ask the Learning Assistants when they have any questions about a lab assignment.
+-   There will be regular in-person laboratory activities held in a computer lab.
+-   Each lab section will meet twice per week for 75 minutes per meeting.
+-   Approximately half of the lab meetings will consist of structured, tutorial-style labs provided at the time of the lab. Students will work in pairs, with the instructor available to answer questions and provide guidance. These labs focus on developing core data science and biostatistics skills using RStudio (via Posit Cloud), including data management, exploratory data analysis, statistical hypothesis testing, and data visualization.
+-   The remaining lab meetings will be devoted to the group Exploratory Data Analysis (EDA) project. During these sessions, students will use class time to identify and evaluate datasets, develop analysis plans, conduct analyses, and complete periodic progress checks with the instructor.
+-   Students are expected to attend labs and complete assignments during class. Some leeway is afforded if you do not finish during class, with lab assignment due dates occurring on Friday. Attempting labs completely on your own time without the help of the instructor is not supported because of the likelihood of encountering technical difficulties. The instructor will not provide ad hoc troubleshooting for lab assignments outside of scheduled lab time, except during office hours.
+-   Students are expected to attend lab sessions and make substantial progress on lab work during scheduled class time. Some flexibility is provided if work is not completed during the lab period, with most lab assignments due on Fridays. Attempting to complete labs entirely outside of class without instructor support is not recommended due to the likelihood of technical difficulties. The instructor will not provide ad hoc troubleshooting for lab assignments outside of scheduled lab time, except during office hours.
+-   Learning Assistants will be present to support student learning during lab sessions. Students are encouraged to ask Learning Assistants for help when they have questions about lab assignments or software use.
 
 #### Group Project
 
--   The other half of lab meetings will be devoted to a group project. Students will work in groups of 3 or 4 to design and conduct an Exploratory Data Analysis (EDA) of a data set of their choice. The goal of the project is to give students an opportunity to hone their skills on a topic they are personally interested in.
--   The project will involve in-class and out-of-class work. In-class activities will include proposal writing, presentations to the class, feedback on others’ presentations, and poster preparation. Out-of-class activities will include meeting with team members, conducting analyses, and preparing your poster for the Student Academic Conference (SAC).
--   Each group will present the results of their EDA in poster format at the Student Academic Conference in April. Presenting in person at the SAC is required. See the course schedule for the date. The time of day will vary depending on which poster session you are assigned by the SAC organizers but will be known several weeks ahead of time. Please arrange to be at your poster at your designated time.
--   To present at the SAC, you must first submit an abstract to the SAC committee in February. The date and instructions will be provided by the instructor. Failure to submit your group’s proposal by the deadline will result in your group being unable to present at the SAC and therefore unable to earn the course points associated with presenting.
+The group project is intended to integrate concepts from lecture and lab into a realistic data analysis workflow that mirrors how biostatistics is used in practice.
 
-### Seminars
+-   The other half of lab meetings will be devoted to a group project. Students will work in small groups to design and conduct an Exploratory Data Analysis (EDA) of a data set of their choice. The goal of the project is to give students an opportunity to hone their skills on a topic they are personally interested in.
+-   The project will involve both in-class and out-of-class work. In-class lab time will be used to identify and evaluate potential datasets, develop analysis plans, work on data management and analyses, and complete periodic progress checks with the instructor. Out-of-class work will include meeting with team members, continuing analyses, refining figures and results, and preparing the poster for presentation.
+-   Each group will present the results of their EDA in poster format at the Student Academic Conference (SAC) in April. Presenting in person at the SAC is required. See the course schedule for the date. The time of day will vary depending on which poster session is assigned by the SAC organizers but will be known several weeks ahead of time. Students are expected to be present at their poster during their designated time.
+-   To present at the SAC, each group must submit an abstract to the SAC committee in February. The date and submission instructions will be provided by the instructor. Failure to submit the abstract by the deadline will result in the group being unable to present at the SAC and therefore unable to earn the course points associated with presenting.
+
+#### Seminars
 
 -   Throughout the semester, students will have the opportunity to attend external research seminars offered by the department, college, or university.
 -   These seminars provide exposure to how data, statistical reasoning, and quantitative evidence are used in real research contexts across biology and related fields.
