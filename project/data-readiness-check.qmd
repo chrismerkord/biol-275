@@ -139,8 +139,9 @@ The following code reads the data:
 The following output shows that the data is a table with \_\_\_ rows and \_\_\_ columns.
 
 ```{r}
-print()
-glimpse()
+# print()
+# glimpse()
+
 ```
 
 ## Variable choice
