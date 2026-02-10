@@ -41,11 +41,13 @@ On your submission, include the following:
 
     -   a type of data (e.g., time series, counts, measurements, spatial data)
 
-    -    Some examples: 
+    -   Some examples: 
 
-        -   *We plan to explore a public health dataset that includes time series data and case counts.*
+    ```         
+    -   *We plan to explore a public health dataset that includes time series data and case counts.*
 
-        -   *We are looking for an animal behavior dataset in Dryad that includes individual level experiment data.*
+    -   *We are looking for an animal behavior dataset in Dryad that includes individual level experiment data.*
+    ```
 
 -   Submit the D2L assignment and inform the instructor so you can be added to the correct Posit Cloud workspace.
 
@@ -122,7 +124,7 @@ Sentence:
 
 You are done when all of the following are true:
 
--    Everyone has joined the same **EDA Project Team \#** in D2L
+-   Everyone has joined the same **EDA Project Team \#** in D2L
 
 -   One team member submitted the required information in D2L
 
@@ -134,4 +136,4 @@ You are done when all of the following are true:
 
 -   `README.md` exists in the Posit project and is completed
 
----
+------------------------------------------------------------------------
