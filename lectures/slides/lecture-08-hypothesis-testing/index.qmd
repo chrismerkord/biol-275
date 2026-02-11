@@ -1,0 +1,651 @@
+---
+title: |
+  | Lecture 8
+  | Hypothesis Testing
+subtitle: "ABD 3e Chapter 6"
+format:
+  revealjs:
+    fig-width: 8
+    fig-height: 6
+---
+
+## Learning Objectives
+
+By the end of this presentation, students will be able to:
+
+-   Distinguish between estimation and hypothesis testing.
+-   Define a null model and explain how it generates a null distribution.
+-   State appropriate null and alternative hypotheses for a population proportion.
+-   Compute and interpret a test statistic and a $P$-value.
+-   Explain Type I error, Type II error, and statistical power.
+-   Make and report a statistical decision in biological context.
+-   Describe the relationship between hypothesis tests and confidence intervals.
+
+## Two different goals: estimation vs hypothesis testing
+
+::::: columns
+::: {.column width="50%"}
+[Estimation]{.keyword}
+
+-   What is the value of a population parameter?
+
+-   How uncertain is that estimate?
+
+-   How large is the effect?
+:::
+
+::: {.column width="50%"}
+[Hypothesis testing]{.keyword}
+
+-   Is the population parameter consistent with a specific value?
+
+-   Is the observed effect plausibly due to random variation alone?
+:::
+:::::
+
+**Estimation emphasizes magnitude and uncertainty; hypothesis testing emphasizes compatibility with a specific model.**
+
+## Hypothesis testing compares data to a null model
+
+::::: columns
+::: {.column width="50%"}
+-   [Null model]{.keyword}
+
+    -   Describes how data would vary if only random variation were operating
+
+    -   Baseline probability model against which observed results can be compared
+
+    -   Generates a distribution of plausible sampling outcomes ([null distribution)]{.keyword}
+
+-   A null model defines what “random variation alone” would look like.
+
+-   Hypothesis testing
+
+    -   Compares observed data to null distribution
+
+    -   If observed data fall in the extreme tail of that distribution, the data are unlikely under the null model
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-null-model-tail
+#| fig-cap: "A null model produces a distribution of plausible outcomes under random variation alone. When observed results fall in the shaded extreme tail of this distribution, those outcomes are less plausible under the null model."
+#| fig-alt: "A stylized null-model plot showing a smooth blue normal distribution labeled “Null Distribution.” The right tail of the distribution is shaded in orange and labeled “Observed Data,” with an arrow pointing from the label to the shaded region. Several white circular points appear in the shaded tail to represent observed outcomes. A horizontal baseline represents the x-axis labeled “Outcomes,” and a gray arrow beneath the axis points to the right with the label “less plausible,” indicating that values farther to the right are increasingly unlikely under the null model. The y-axis has no labels or ticks."
+#| fig-width: 7
+#| fig-height: 5
+
+library(ggplot2)
+library(dplyr)
+
+# ---- Parameters ----
+mu <- 0
+sigma <- 1
+tail_cut <- 1.25
+tail_color <- "#d55e00"  # tail fill + label + arrow
+curve_fill <- "#9ecae1"  # distribution fill
+curve_line <- "#2c5282"  # distribution outline + "Null Model" label
+
+# ---- Null distribution ----
+x <- seq(mu - 4*sigma, mu + 4*sigma, length.out = 5000)
+df <- tibble(
+  x = x,
+  y = dnorm(x, mu, sigma),
+  in_tail = x >= tail_cut
+)
+
+# Example observed test statistics (unlabeled circles)
+set.seed(275)
+pts <- tibble(
+  x = c(1.55, 1.75, 1.95, 2.15, 2.35),
+  y = dnorm(x, mu, sigma) * runif(5, 0.15, 0.35)
+)
+
+ymax <- max(df$y)
+xmin <- min(df$x)
+xmax <- max(df$x)
+
+ggplot(df, aes(x, y)) +
+
+  # Filled null distribution
+  geom_area(
+    data = df |> filter(!in_tail),
+    fill = curve_fill, 
+    alpha = 0.6, 
+    color = NA
+  ) +
+  geom_line(color = curve_line, linewidth = 1.2) +
+
+  # Highlighted right tail
+  geom_area(
+    data = df |> filter(in_tail),
+    fill = tail_color,
+    alpha = 0.35,
+    color = NA
+  ) +
+
+  # Horizontal x-axis line at y = 0
+  annotate(
+    "segment",
+    x = xmin, xend = xmax,
+    y = 0, yend = 0,
+    color = "black",
+    linewidth = 0.9
+  ) +
+
+  # Null model label (blue like the curve)
+  annotate(
+    "text",
+    x = mu - 2.2*sigma,
+    y = ymax * 0.70,
+    label = "Null Distribution",
+    color = curve_line,
+    size = 5
+  ) +
+
+  # Observed circles in the tail
+  geom_point(
+    data = pts,
+    aes(x, y),
+    inherit.aes = FALSE,
+    shape = 21,
+    fill = "white",
+    color = "black",
+    stroke = 1,
+    size = 4
+  ) +
+
+  # Observed Data label + arrow (same color as tail)
+  annotate(
+    "text",
+    x = mu + 3.0*sigma,
+    y = ymax * 0.35,
+    label = "Observed\nData",
+    color = tail_color,
+    fontface = "bold",
+    size = 5,
+    hjust = 0.5
+  ) +
+  annotate(
+    "curve",
+    x = mu + 2.6*sigma,
+    y = ymax * 0.30,
+    xend = mu + 1.8*sigma,
+    yend = dnorm(mu + 2.1*sigma, mu, sigma) * 0.95,
+    curvature = 0.25,
+    color = tail_color,
+    linewidth = 1.2,
+    arrow = arrow(length = unit(0.18, "inches"))
+  ) +
+
+  # X-axis label + arrow under the axis line
+  labs(title = "Null Model", x = "Outcomes", y = NULL) +
+  annotate(
+    "segment",
+    x = mu + 1.6*sigma,
+    xend = mu + 3.4*sigma,
+    y = -ymax * 0.10,
+    yend = -ymax * 0.10,
+    color = "grey40",
+    linewidth = 1.1,
+    arrow = arrow(length = unit(0.20, "inches"))
+  ) +
+  annotate(
+    "text",
+    x = mu + 1.55*sigma,
+    y = -ymax * 0.10,
+    label = "less plausible",
+    hjust = 1,
+    vjust = 0.5,
+    color = "grey40",
+    size = 4
+  ) +
+
+  # Layout and theming (no grid; no y-axis; no x ticks/labels)
+  coord_cartesian(ylim = c(-ymax * 0.15, ymax * 1.12)) +
+  theme_classic(base_size = 14) +
+  theme(
+    panel.grid = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.y  = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.line.y  = element_blank(),
+
+    axis.text.x  = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.line.x  = element_blank(),  # we drew our own axis line at y=0
+
+    plot.margin = margin(12, 18, 28, 12)
+  )
+
+
+```
+:::
+:::::
+
+## Making and using statistical hypotheses
+
+::::: columns
+::: {.column width="50%"}
+-   The null hypothesis ($H_0$)
+
+    -   Is a **specific claim** about a population parameter
+
+    -   That claim defines a reference model for comparison.
+
+    -   A good null hypothesis is one that, if rejected, would meaningfully change our understanding of the system.
+
+-   The alternative hypothesis ($H_A$)
+
+    -   Represents patterns in the data that are inconsistent with the null hypothesis.
+:::
+
+::: {.column width="50%"}
+![Visual comparison of the null and alternative hypotheses: the null hypothesis (\$H_0: \\mu = 0\$) specifies a single population mean, while the alternative hypothesis (\$H_A: \\mu \\neq 0\$) represents values different from that specific claim.](images/null-vs-alternative-hypotheses.png){#fig-null-vs-alternative-hypotheses fig-alt="Square, stylized illustration divided vertically into two textured halves, with a blue left panel labeled “Null Hypothesis” showing $H_0: \\mu = 0$ above a centered bell curve and a red right panel labeled “Alternative Hypothesis” showing $H_A: \\mu \\neq 0$ above two bell curves shifted away from zero, using hand-drawn lettering and bold contrasting colors." fig-align="center"}
+:::
+:::::
+
+## The null hypothesis implies a data-generating process
+
+::::: columns
+::: {.column width="40%"}
+-   A null hypothesis specifies a value for a population parameter
+
+-   That specification defines a probabilistic data-generating process
+
+-   Repeating that process produces a null distribution
+:::
+
+::: {.column width="60%"}
+-   Example (genetics): Two heterozygous parents reproduce (Aa × Aa)
+
+-   Data-generating process: meiosis produces gametes A and a with probability 0.5 each, and fertilization pairs gametes at random
+
+-   This process implies expected offspring genotype proportions: AA = 0.25, Aa = 0.50, aa = 0.25
+
+-   These expected proportions define the null distribution for genotype outcomes in offspring
+
+```{r}
+#| label: fig-genotype-null-distribution
+#| fig-cap: "Null distribution for offspring genotypes under Mendelian inheritance from a heterozygote cross (Aa × Aa)."
+#| fig-alt: "Bar chart labeled 'Null distribution' showing expected genotype proportions under a heterozygote cross: AA at 0.25, Aa at 0.50, and aa at 0.25."
+#| fig-width: 5
+#| fig-height: 3
+
+library(ggplot2)
+library(dplyr)
+
+null_df <- tibble::tibble(
+  genotype = factor(c("AA", "Aa", "aa"), levels = c("AA", "Aa", "aa")),
+  proportion = c(0.25, 0.50, 0.25)
+)
+
+ggplot(null_df, aes(x = genotype, y = proportion)) +
+  geom_col(width = 0.7) +
+  geom_text(aes(label = proportion), vjust = -0.4, size = 5) +
+  scale_y_continuous(limits = c(0, 0.6), breaks = seq(0, 0.6, by = 0.1)) +
+  labs(
+    title = "Null distribution",
+    x = "Offspring genotype",
+    y = "Proportion"
+  ) +
+  theme_classic(base_size = 14)
+
+```
+:::
+:::::
+
+## Which statement defines the null hypothesis?
+
+::::: columns
+::: {.column width="50%"}
+Which statement should be $H_0$, and why?
+
+-   The density of dolphins **is the same** in areas with and without drift-net fishing
+
+-   The density of dolphins **differs** in areas with and without drift-net fishing
+:::
+
+::: {.column width="50%"}
+![Dolphin caught in a driftnet (Photo by Greenpeace Turkey).](images/dolphin.jpg){#fig-dolphin fig-alt="Photograph of a dolphin underwater entangled in a long driftnet."}
+:::
+:::::
+
+## The logic of hypothesis testing
+
+| Step | Question being answered | What we do | Statistical meaning |
+|-----------------|-----------------|-----------------|---------------------|
+| 1 | What claim are we testing? | **State the hypotheses** $H_0$ **and** $H_A$ | Specify a model that defines $\operatorname{Pr}[\text{data} \mid H_0]$ |
+| 2 | How far do the data depart from the null? | **Compute a test statistic** | Measure distance from what is expected under $H_0$ |
+| 3 | How unusual is this result? | **Compute the** $P$**-value** | $\operatorname{Pr}[\text{data as or more extreme} \mid H_0]$ |
+| 4 | What do we conclude? | **Translate statistical evidence into a biological conclusion** | Make a decision about $H_0$ and state the conclusion in biological terms |
+
+## Example: Testing handedness in European toads
+
+::::: columns
+::: {.column width="50%"}
+-   Humans are predominantly right-handed.
+
+-   Do other animals exhibit consistent forelimb bias?
+
+-   Bisazza et al. (1996) tested the possibility of handedness in European toads (*Bufo bufo*) by by observing forelimb use in 18 wild-caught individuals.
+
+-   This example comes from the textbook (Whitlock & Schluter *Analysis of Biological Data* 3e)
+:::
+
+::: {.column width="50%"}
+![European toad (\*Bufo bufo\*).](images/toad.jpg){#fig-toad fig-alt="Photo of a European toad on a white background, facing the camera at eye level."}
+:::
+:::::
+
+## Methods
+
+::::: columns
+::: {.column width="50%"}
+-   In the lab, a balloon was wrapped around each individual’s head.
+
+-   For each individual, researchers recorded whether the right or left forelimb was used to remove it.
+
+-   The response variable was forelimb choice (right vs. left).
+:::
+
+::: {.column width="50%"}
+![Realistic, AI-generated image (created with ChatGPT) of a European common toad (\*Bufo bufo\*) with a white ball tied to its head, illustrating a behavioral experiment concept.](images/toad-with-ball.png){#fig-toad-with-ball fig-alt="Square, photorealistic AI-generated image (created with ChatGPT) of a European common toad (*Bufo bufo*) on a white background with a white ping-pong ball slightly smaller than its head tied on top using a string that runs around the ball and under the toad’s throat; the toad is lifting one forelimb above its eye in an unsuccessful attempt to touch the ball." fig-align="center"}
+:::
+:::::
+
+## Observed data
+
+::::: columns
+::: {.column width="50%"}
+-   18 European toads were tested.
+-   14 used their **right** forelimb.
+-   4 used their **left** forelimb.
+-   The sample proportion of right-handed toads is
+
+$$ \hat{p} = \frac{14}{18} \approx 0.78 $$
+
+> Is 0.78 far enough from 0.50 to conclude that toads are right-handed?
+:::
+
+::: {.column width="50%"}
+![Graphical illustration of the results of the study, showing more toads used their right hands than left. Generated by ChatGPT. Note: the actual sample size in the study was 18, not 16 as shown in this image.](images/toad-results.png){#fig-toad-results}
+:::
+:::::
+
+## Defining the parameter
+
+-   $\hat{p} = 0.78$ is the **sample proportion** of right-handed toads.
+
+-   Let $p$ denote the true proportion of right-handed toads in the population.
+
+-   Hypothesis testing is about $p$, not $\hat{p}$.
+
+> Is $p = 0.50$, or is $p \neq 0.50$?
+
+## Stating the hypotheses
+
+-   We want to test whether right- and left-handed toads occur with equal frequency in the population.
+
+-   The null hypothesis represents **no handedness**:
+
+$$
+H_0: p = 0.50
+$$
+
+-   The alternative hypothesis represents **a difference in frequency**:
+
+$$
+H_A: p \neq 0.50
+$$
+
+-   This is a **two-sided test** because the alternative allows values of $p$ on either side of 0.50.
+
+## The [test statistic]{.keyword}
+
+-   The **test statistic** is a number calculated from the data that summarizes how far the observed result departs from what is expected under $H_0$.
+
+-   In this study, the test statistic is the number of right-handed toads in the sample.
+
+$$
+\text{Test statistic} = 14
+$$
+
+-   If $H_0: p = 0.50$ is true and we sample 18 toads, we would expect about
+
+$$
+0.50 \times 18 = 9
+$$
+
+> If $H_0$ is true, would we always observe exactly 9 right-handed toads?
+
+## The null distribution
+
+::::: columns
+::: {.column width="50%"}
+-   Even if $H_0: p = 0.50$ is true, we would not expect to observe exactly 9 right-handed toads every time we sample 18.
+
+-   Instead, repeated samples would produce a **distribution** of possible outcomes.
+
+-   Under $H_0$, the number of right-handed toads in a sample of 18 follows a binomial distribution:
+
+$$
+X \sim \text{Binomial}(n = 18, p = 0.50)
+$$
+
+-   This distribution is called the **null distribution** because it describes the sampling behavior of the test statistic assuming $H_0$ is true.
+
+> Where does our observed value of 14 fall in this distribution?
+:::
+
+::: {.column width="50%"}
+![Null distribution for the number of right-handed toads in a sample of 18 under \$H_0: p = 0.50\$, showing a binomial probability distribution centered at 9.](images/toad-null-distribution.jpg){#fig-toad-null-distribution fig-alt="Bar plot showing the binomial null distribution for the number of right-handed toads out of 18 when $p = 0.50$. The x-axis ranges from 0 to 18 right-handed toads, and the y-axis shows probability. The distribution is symmetric and centered at 9, with probabilities decreasing toward the extremes." fig-align="center"}
+:::
+:::::
+
+## One-sided vs. two-sided tests
+
+-   The form of the alternative hypothesis determines whether a test is **one-sided** or **two-sided**.
+
+### [Two-sided test]{.keyword}
+
+-   The alternative allows values on **both sides** of the null value. $$
+    H_A: p \neq 0.50
+    $$
+-   We consider outcomes that are extreme in either direction.
+
+### [One-sided test]{.keyword}
+
+-   The alternative specifies a direction. $$
+    H_A: p > 0.50 \quad \text{or} \quad H_A: p < 0.50
+    $$
+
+-   We consider outcomes that are extreme in only one direction.
+
+-   In the toad study, we used a **two-sided test** because we asked whether right- and left-handed toads differ in frequency.
+
+## The [$P$-value]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+
+-   The $P$-value measures how unusual the observed result is under $H_0$.
+
+-   It is the probability of observing data **as extreme as or more extreme than** what we observed, assuming $H_0$ is true.
+
+$$ P = \operatorname{Pr}[\text{data as or more extreme} \mid H_0] $$
+
+-   For a two-sided test, we consider outcomes extreme in **both directions**.
+:::
+
+::: {.column width="50%"}
+![Null distribution for the number of right-handed toads under \$H_0: p = 0.50\$, with both tails shaded to represent outcomes at least as extreme as the observed value of 14.](images/toad-p-value.jpg){#fig-toad-p-value fig-alt="Bar plot showing the binomial null distribution for the number of right-handed toads out of 18 when $p = 0.50$. The distribution is centered at 9. The bars corresponding to extreme outcomes in both tails are shaded in red, including the observed value of 14 on the right side, illustrating the regions used to compute the two-sided $P$-value." fig-align="center"}
+:::
+:::::
+
+## Calculating the $P$-value
+
+-   Our observed test statistic is 14 right-handed toads.
+
+-   Probability of 14 or more right-handed toads:
+
+$$
+\operatorname{Pr}[X \ge 14] =
+\\ \operatorname{Pr}[X = 14]+\operatorname{Pr}[X = 15]+\operatorname{Pr}[X = 16]+\operatorname{Pr}[X = 17] =
+\\ 0.0015
+$$
+
+-   For a two-sided test, we double this probability:
+
+$$
+P = 2 \times \operatorname{Pr}[X \ge 14] = 0.031
+$$
+
+## The [significance level ($\alpha$)]{.keyword}
+
+-   The **significance level**, $\alpha$, is a probability threshold used to decide whether to reject $H_0$.
+
+-   It represents the probability of rejecting $H_0$ when $H_0$ is actually true (Type I error).
+
+-   A common choice is
+
+$$
+\alpha = 0.05
+$$
+
+-   Decision rule:
+
+    -   If $P \le \alpha$, reject $H_0$
+    -   If $P > \alpha$, fail to reject $H_0$
+
+## Decision and biological conclusion
+
+-   For the toad study:
+
+$$
+P = 0.031
+$$
+
+-   Because
+
+$$
+0.031 < 0.05
+$$
+
+we reject $H_0$.
+
+-   There is statistical evidence that right- and left-handed toads do not occur with equal frequency in the population.
+
+-   The data suggest a forelimb bias in European toads.
+
+## Reporting the results
+
+At minimum, report:
+
+-   The test statistic: 14 right-handed toads\
+-   The sample size: $n = 18$\
+-   The $P$-value: $P = 0.031$
+
+In addition, report an estimate of the parameter and its uncertainty:
+
+$$
+\hat{p} = 0.78
+$$
+
+-   Provide a confidence interval or standard error when possible.
+
+Example:
+
+> In a sample of 18 European toads, 14 (78%) used their right forelimb. A two-sided test indicated that this differed significantly from 0.50 ($P = 0.031$), suggesting a forelimb bias in the population.
+
+## Errors in hypothesis testing
+
+::::: columns
+::: {.column width="50%"}
+-   A [Type I error]{.keyword} occurs when we reject $H_0$ even though $H_0$ is true.
+
+    $$
+    \text{Type I error rate} = \alpha
+    $$
+
+-   A [Type II error]{.keyword} occurs when we fail to reject $H_0$ even though $H_0$ is false.
+
+    $$
+    \text{Type II error rate} = \beta
+    $$
+
+-   [Power]{.keyword} is the probability of correctly rejecting $H_0$ when it is false.
+
+    $$
+    \text{Power} = 1 - \beta
+    $$
+
+-   There is a tradeoff: decreasing $\alpha$ generally increases $\beta$, unless sample size increases.
+:::
+
+::: {.column width="50%"}
+|                     |              |                 |
+|---------------------|--------------|-----------------|
+|                     | **Reality**  |                 |
+| **Conclusion**      | $H_0$ True   | $H_0$ False     |
+| Reject $H_0$        | Type I error | Correct (Power) |
+| Do not reject $H_0$ | Correct      | Type II error   |
+:::
+:::::
+
+## When the null hypothesis is not rejected
+
+-   If $P > \alpha$, we **fail to reject** $H_0$.
+
+-   This is sometimes described as a *nonsignificant result*.
+
+-   We do **not** conclude that $H_0$ is true or that $H_A$ is false.
+
+-   We conclude only that the data are compatible with $H_0$.
+
+-   A nonsignificant result may occur because:
+
+    -   The null hypothesis is true, or
+    -   The study lacked sufficient power to detect a real effect.
+
+## One-sided tests
+
+::::: columns
+::: {.column width="50%"}
+-   In a **one-sided test**, the alternative hypothesis specifies a direction:
+
+$$ H_A: p > p_0 \quad \text{or} \quad H_A: p < p_0 $$
+
+-   We reject $H_0$ only if the data depart from $H_0$ in that specified direction.
+
+-   A one-sided test should be used **only if the direction is justified before examining the data**.
+
+-   In most scientific studies, two-sided tests are preferred because effects could plausibly occur in either direction.
+:::
+
+::: {.column width="50%"}
+Example: A one-sided test in toxicology
+
+-   Question: Does exposure to a pollutant increase amphibian mortality?
+
+-   Let $p$ denote the mortality rate in exposed individuals, and $p_0$ the mortality rate in controls.
+
+$$ H_0: p = p_0 $$ $$ H_A: p > p_0 $$
+
+-   The alternative is one-sided because the biological concern is an **increase** in mortality.
+
+-   A decrease in mortality would not support the claim of toxicity.
+:::
+:::::
+
+## Hypothesis testing vs. confidence intervals
+
+-   A 95% confidence interval provides an estimate of a parameter and a measure of uncertainty.
+
+-   For a two-sided test at $\alpha = 0.05$:
+
+    -   If the null value lies **outside** the 95% confidence interval, we reject $H_0$.
+    -   If the null value lies **inside** the 95% confidence interval, we fail to reject $H_0$.
+
+-   Thus, confidence intervals and hypothesis tests often lead to the same conclusion.
+
+-   Hypothesis tests are useful when the goal is to evaluate a specific scientific claim (e.g., $p = 0.50$), while confidence intervals emphasize estimation and effect size.

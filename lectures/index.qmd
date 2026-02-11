@@ -120,4 +120,20 @@ Introduces probability theory as the foundation of statistical reasoning, focusi
 :::
 :::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 8
+:::
+
+::: card-body
+##### Hypothesis testing {.card-title}
+
+An introduction to hypothesis testing in biology using a proportion example to illustrate null models, $P$-values, error types, and scientific interpretation.
+
+[Go to Lecture](slides/lecture-08-hypothesis-testing/){.btn .btn-primary}
+:::
+:::::
+::::::
 :::::::::::::::::::
