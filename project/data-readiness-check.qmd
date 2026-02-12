@@ -91,7 +91,7 @@ Your script must:
 ```` markdown
 ---
 title: "EDA Project Data Readiness Check"
-author: "Team 1: Chris Merkord, other members of the team"
+author: "Team number and member names"
 date: today
 format:
   pdf:
@@ -120,9 +120,6 @@ This project will use the following package:
 -   list others here or delete this line.
 
 ```{{r}}
-# load packages
-library (tidyverse)
-# put other library commands here
 
 ```
 
@@ -142,7 +139,6 @@ If the dataset was downloaded from Dryad, provide the Dryad link here:
 The following code reads the data:
 
 ```{{r}}
-# code to read/get the data into R
 
 ```
 
@@ -151,9 +147,6 @@ The following code reads the data:
 The following output shows that the data is a table with ___ rows and ___ columns.
 
 ```{{r}}
-# print() the data
-
-# glimpse() the data
 
 ```
 
@@ -162,24 +155,19 @@ The following output shows that the data is a table with ___ rows and ___ column
 We plan to use the following variables in our dataset:
 
 -   `variable_1` - explain what it is
-
 -   `variable_2` - explain what it is
 
 ## Variable distributions
 
-Visualization of one numerical variable:
+Distribution of of one numerical variable:
 
 ```{{r}}
-# put ggplot with geom_histogram() here
-
 
 ```
 
-Visualization of one categorical variable:
+Distribution of one categorical variable:
 
 ```{{r}}
-# put ggplot with geom_bar() here
-
 
 ```
 ````
