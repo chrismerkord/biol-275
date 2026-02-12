@@ -88,7 +88,7 @@ Your script must:
 
 ## QMD Template
 
-```` markdown
+```` text
 ---
 title: "EDA Project Data Readiness Check"
 author: "Team 1: Chris Merkord, other members of the team"
