@@ -58,8 +58,8 @@ Your script must:
 
 ## Step 3 — Run the script and verify outputs
 
-1.   Run `data-readiness-check.R` from a fresh R session.
-2.   Confirm the script runs without errors.
+1.  Run `data-readiness-check.R` from a fresh R session.
+2.  Confirm the script runs without errors.
 3.  Confirm the console shows the data as expected
 4.  Confirm the two graphs are displayed in the Viewer tab as expected
 
@@ -71,27 +71,44 @@ Your script must:
 2.  Install the **rmarkdown** package
     a.  In order to create the PDF output, you will need to install the rmarkdown package. Click the yellow banner at the top of the new file prompting you to install the package.
 3.  Make sure your QMD file is in Source mode, not Visual mode (buttons in top left of source pane)
-4.  Copy and paste the template below into your QMD file and switch to Visual Mode
+4.  Copy and paste the **QMD template** below into your QMD file and switch to Visual Mode
 5.  Copy code from your data-readiness-check.R to your QMD file as necessary.
     a.  Put library commands in first R code chunk
-    b.  Put code to read data in second R code chunk
-    c.  Put code to display data (print, glimpse) in third r code chunk
-    d.  Put code to display histogram and barchart in fourth and fifth r code chunks.
+    b.  Put code to read data and clean the data in second R code chunk
+    c.  Put code to display data (print, glimpse) in third R code chunk
+    d.  Put code to display histogram and barchart in fourth and fifth R code chunks.
     e.  Update the text in between the R code chunks, e.g. listing the packages and variables you will use.
 6.  Click the "Render" button (blue arrow pointing right) to render the QMD file as a PDF document.
 7.  Open the PDF (click the file name) to make sure it shows the desired output.
 
-## Step 5 -  Submit on D2L
+## Step 5 - Submit on D2L
 
 1.  Download the PDF document to your computer using the More \> Export command in the Files tab.
 2.  Submit the PDF of your data readiness check on D2L
 
 ## QMD Template
 
-```` md
+```` markdown
 ---
-title: "Data Readiness Check EDA Project Team 1"
-format: pdf
+title: "EDA Project Data Readiness Check"
+author: "Team 1: Chris Merkord, other members of the team"
+date: today
+format:
+  pdf:
+    documentclass: article
+    geometry: margin=1in
+    number-sections: false
+    toc: false
+    fig-width: 6
+    fig-height: 4
+    fig-align: center
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: false
+  cache: false
+  freeze: false
 editor: visual
 ---
 
@@ -136,7 +153,7 @@ The following code reads the data:
 
 ## Viewing the data
 
-The following output shows that the data is a table with \_\_\_ rows and \_\_\_ columns.
+The following output shows that the data is a table with ___ rows and ___ columns.
 
 ```{r}
 # print()
@@ -167,6 +184,116 @@ Visualization of one categorical variable:
 ```{r}
 # put ggplot with geom_barchart() here
 
+
+```
+````
+
+## QMD Example with Penguins Dataset
+
+```` markdown
+---
+title: "EDA Project Data Readiness Check"
+author: "Team 1: Chris Merkord"
+date: today
+format:
+  pdf:
+    documentclass: article
+    geometry: margin=1in
+    number-sections: false
+    toc: false
+    fig-width: 6
+    fig-height: 4
+    fig-align: center
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: false
+  cache: false
+  freeze: false
+editor: visual
+---
+
+## Load packages
+
+This project will use the following package:
+
+-   tidyverse - for data wrangling
+
+-   palmerpenguins - provides the data table
+
+```{r}
+# load packages
+library (tidyverse)
+library(palmerpenguins)
+
+```
+
+## Dataset
+
+We plan to use the following dataset:
+
+-   Dataset name: Palmer Penguins
+
+-   Dataset source: Data originally published in Gorman et al. (2014). R package published by Horst et al. (2020).
+
+-   Dataset link: https://allisonhorst.github.io/palmerpenguins/
+
+-   Dataset citations: 
+
+    - Gorman KB, Williams TD, Fraser WR (2014). Ecological sexual dimorphism and environmental variability within a community of Antarctic penguins (genus Pygoscelis). PLoS ONE 9(3):e90081. https://doi.org/10.1371/journal.pone.0090081
+    - Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. https://allisonhorst.github.io/palmerpenguins/. doi: 10.5281/zenodo.3960218.
+    
+## Reading and cleaning the data
+
+The data is included in the palmerpenguins package. To use the data, we just load the package:
+
+```{r}
+library(palmerpenguins)
+
+```
+
+- The data were already in a clean format, with rows representing observations and columns representing varibles.
+- The variable names were left as is because they were already in a format suitable for coding (no spaces, capital letters, etc).
+- The variable types were left as is because they were already set appropriately. For example, species, island, and sex were already `fct` types. If they had been imported as `chr` types, we would have converted them to factors in the previous code chunk.
+
+## Viewing the data
+
+The following output shows that the data is a table with **344** rows and **8** columns.
+
+```{r}
+# print the penguins dataset in tibble format
+print(penguins)
+
+# show all variable names and the first few values of each
+glimpse(penguins)
+
+```
+
+## Variable choice
+
+We plan to use the following variables in our dataset:
+
+-   `species` - the penguin species, one of Adelie, Chinstrap, or Gentoo
+
+-   `bill_length_mm` - bill length in mm
+
+## Variable distributions
+
+Visualization of one numerical variable:
+
+```{r}
+# histogram of bill lengths
+ggplot(penguins, aes(x = bill_length_mm)) +
+  geom_histogram()
+
+```
+
+Visualization of one categorical variable:
+
+```{r}
+ggplot(penguins, aes(x = species)) +
+    geom_bar()
 
 ```
 ````
