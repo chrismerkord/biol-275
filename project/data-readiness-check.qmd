@@ -88,7 +88,7 @@ Your script must:
 
 ## QMD Template
 
-```` text
+```` markdown
 ---
 title: "EDA Project Data Readiness Check"
 author: "Team 1: Chris Merkord, other members of the team"
@@ -117,10 +117,9 @@ editor: visual
 This project will use the following package:
 
 -   tidyverse - for data wranglin
-
 -   list others here or delete this line.
 
-```{r}
+```{{r}}
 # load packages
 library (tidyverse)
 # put other library commands here
@@ -132,11 +131,8 @@ library (tidyverse)
 We plan to use the following dataset:
 
 -   Dataset name:
-
 -   Dataset source: (who created it)
-
 -   Dataset link:
-
 -   Dataset citation:
 
 If the dataset was downloaded from Dryad, provide the Dryad link here:
@@ -145,9 +141,8 @@ If the dataset was downloaded from Dryad, provide the Dryad link here:
 
 The following code reads the data:
 
-```{r}
-# put your code here
-# e.g. data <- read_csv("data/my-data.csv")
+```{{r}}
+# code to read/get the data into R
 
 ```
 
@@ -155,9 +150,10 @@ The following code reads the data:
 
 The following output shows that the data is a table with ___ rows and ___ columns.
 
-```{r}
-# print()
-# glimpse()
+```{{r}}
+# print() the data
+
+# glimpse() the data
 
 ```
 
@@ -165,15 +161,15 @@ The following output shows that the data is a table with ___ rows and ___ column
 
 We plan to use the following variables in our dataset:
 
--   variable_1 - explain what it is
+-   `variable_1` - explain what it is
 
--   variable_2 - explain what it is
+-   `variable_2` - explain what it is
 
 ## Variable distributions
 
 Visualization of one numerical variable:
 
-```{r}
+```{{r}}
 # put ggplot with geom_histogram() here
 
 
@@ -181,8 +177,8 @@ Visualization of one numerical variable:
 
 Visualization of one categorical variable:
 
-```{r}
-# put ggplot with geom_barchart() here
+```{{r}}
+# put ggplot with geom_bar() here
 
 
 ```
@@ -219,14 +215,11 @@ editor: visual
 This project will use the following package:
 
 -   tidyverse - for data wrangling
-
 -   palmerpenguins - provides the data table
 
-```{r}
-# load packages
+```{{r}}
 library (tidyverse)
 library(palmerpenguins)
-
 ```
 
 ## Dataset
@@ -246,11 +239,10 @@ We plan to use the following dataset:
     
 ## Reading and cleaning the data
 
-The data is included in the palmerpenguins package. To use the data, we just load the package:
+The data is included in the palmerpenguins package, which is already loaded above. However, if we were instead reading it from a file like `penguins.csv` in a data folder, then we would do so like this:
 
-```{r}
-library(palmerpenguins)
-
+```{{r}}
+penguins <- read_csv("data/penguins.csv")
 ```
 
 - The data were already in a clean format, with rows representing observations and columns representing varibles.
@@ -261,13 +253,9 @@ library(palmerpenguins)
 
 The following output shows that the data is a table with **344** rows and **8** columns.
 
-```{r}
-# print the penguins dataset in tibble format
+```{{r}}
 print(penguins)
-
-# show all variable names and the first few values of each
 glimpse(penguins)
-
 ```
 
 ## Variable choice
@@ -275,23 +263,21 @@ glimpse(penguins)
 We plan to use the following variables in our dataset:
 
 -   `species` - the penguin species, one of Adelie, Chinstrap, or Gentoo
-
 -   `bill_length_mm` - bill length in mm
 
 ## Variable distributions
 
 Visualization of one numerical variable:
 
-```{r}
+```{{r}}
 # histogram of bill lengths
 ggplot(penguins, aes(x = bill_length_mm)) +
   geom_histogram()
-
 ```
 
 Visualization of one categorical variable:
 
-```{r}
+```{{r}}
 ggplot(penguins, aes(x = species)) +
     geom_bar()
 
