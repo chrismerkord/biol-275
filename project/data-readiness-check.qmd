@@ -83,7 +83,7 @@ Your script must:
 
 ## Step 5 - Submit on D2L
 
-1.  Download the PDF document to your computer using the More \> Export command in the Files tab.
+1.  Download the PDF document to your computer using the More \> Export command in the Files tab ([video example](https://www.youtube.com/watch?v=cAHCMpPJx3k)).
 2.  Submit the PDF of your data readiness check on D2L
 
 ## QMD Template
