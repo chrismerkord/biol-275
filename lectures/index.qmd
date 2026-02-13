@@ -136,4 +136,20 @@ An introduction to hypothesis testing in biology using a proportion example to i
 :::
 :::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 9
+:::
+
+::: card-body
+##### Analyzing proportions {.card-title}
+
+Introduces the binomial distribution for modeling binary outcomes and develops the statistical tools needed to estimate and draw inference about population proportions.
+
+[Go to Lecture](slides/lecture-09-analyzing-proportions/){.btn .btn-primary}
+:::
+:::::
+::::::
 :::::::::::::::::::

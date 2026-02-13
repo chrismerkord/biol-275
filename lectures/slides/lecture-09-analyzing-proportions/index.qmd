@@ -1,0 +1,689 @@
+---
+title: |
+  | Lecture 9
+  | Analyzing Proportions
+subtitle: "ABD 3e Chapter 7"
+format:
+  revealjs:
+    fig-width: 8
+    fig-height: 6
+---
+
+## 
+
+## Learning Objectives
+
+By the end of this lecture, you should be able to:
+
+-   Determine whether binary data follow a [binomial model]{.keyword}
+-   Calculate and interpret binomial probabilities
+-   Describe the distribution of counts and proportions
+-   Estimate a population proportion from a sample proportion
+-   Explain how sample size affects variability in the sampling distribution of a proportion
+-   Construct and interpret a confidence interval for a population proportion
+-   Use the binomial distribution to test hypotheses about a population proportion
+
+## Binary Outcomes in Biology
+
+::::: columns
+::: {.column width="50%"}
+Many biological variables have only two possible outcomes.
+
+These are called a [binary variable]{.keyword} (or Bernoulli variable).
+
+We record each observation as:
+
+-   1 = success
+-   0 = failure
+
+Each observation is a single trial with two possible results.
+:::
+
+::: {.column width="50%"}
+Examples:
+
+-   Individual survives / dies
+-   Seed germinates / does not germinate
+-   Nest occupied / not occupied
+-   Species present / absent
+-   Offspring male / female
+
+![Two Wisconsin Fast Plants growing cups showing a binary outcome: one seed germinates, the other does not.](images/binomial-seed-germination.png){fig-alt="Two clear cup growing systems side by side. The left cup contains a sprouting plant labeled “Germinates,” and the right cup contains only soil labeled “Does Not Germinate,” with a large “vs.” between them." fig-align="center" width="600"}
+:::
+:::::
+
+## From a Single Trial to Many Trials
+
+::::: columns
+::: {.column width="50%"}
+Suppose we observe a binary outcome repeatedly.
+
+Let:
+
+$$ X = \text{number of successes in } n \text{ trials} $$
+
+Now we are no longer modeling a single 0/1 outcome.
+
+We are modeling a count:
+
+-   How many successes occur in a fixed number of trials?
+:::
+
+::: {.column width="50%"}
+![Sample of eight binary trials showing five successes and three failures (X = 5, n = 8).](images/binomial-sample.png){fig-alt="Eight circles arranged in a row: five blue circles representing successes and three orange circles representing failures. A key identifies the colors, and the labels \"X = 5\" and \"n = 8\" appear below the row."}
+:::
+:::::
+
+## When Does the [Binomial Model]{.keyword} Apply?
+
+::::: columns
+::: {.column width="50%"}
+A dataset follows a binomial model if:
+
+1.  There is a fixed number of trials ( $n$ )
+2.  Each trial has two possible outcomes
+3.  Trials are independent
+4.  The probability of success ( $p$ ) is constant
+
+If these conditions hold, then:
+
+$$ X \sim \text{Binomial}(n, p) $$
+:::
+
+::: {.column width="50%"}
+![Binomial model checklist: Binary? → Fixed n? → Independent? → Constant p?](images/checklist.png){fig-alt="A vertical checklist with four boxes connected by arrows: “Binary?”, “Fixed n?”, “Independent?”, and “Constant p?”." fig-align="center" width="333"}
+:::
+:::::
+
+## If the Binomial Model Applies…
+
+If:
+
+$$
+X \sim \text{Binomial}(n, p)
+$$
+
+Then we can compute the probability of any specific number of successes:
+
+$$
+\operatorname{Pr}[X = x]
+$$
+
+We need a formula that tells us:
+
+1.  How many ways can ( $x$ ) successes occur?
+2.  What is the probability of each arrangement?
+
+## The [Binomial Probability Formula]{.keyword}
+
+For a binomial random variable:
+
+$$
+\operatorname{Pr}[X = x] =
+\binom{n}{x}
+p^{x}
+(1 - p)^{n - x}
+$$
+
+Where:
+
+-   $\binom{n}{x}$ = number of ways to have $x$ successes out of $n$ trials, read as "n choose x"
+    -   E.g. There are two ways to have one head when you flip a coin twice: a head then a tail, or a tail then a head
+    -   Calculated as $\frac{n!}{x!\times (n-x)!}$
+    -   where $n!=n \times (n-1) \times (n-2) \times \dots \times 2 \times 1$
+-   $p^{x}(1 - p)^{n - x}$ = probability of any one specific arrangement
+
+## Example: Wasp sex ratio
+
+::::: columns
+::: {.column width="60%"}
+Suppose you randomly sample $n=5$ wasps from a population where each wasp has the probability $p=0.2$ of being male. The probability then that exactly $3$ of the wasps in your sample are male is:
+
+$$
+\operatorname{Pr}[3 \text{ males}]
+=
+\binom{5}{3}
+(0.2)^{3}
+(1-0.2)^{5-3}
+$$
+
+$$
+= \frac{(5\times4\times3\times2\times1)}{(3\times 2\times 1) \times (2\times1)}(0.2)^3(0.8)^2
+$$
+
+$$
+= \frac{120}{6 \times 2} \times 0.008 \times 0.64
+$$
+
+$$
+=0.234
+$$
+
+...chance of getting 3 males in a sample of 5 wasps
+:::
+
+::: {.column width="40%"}
+![Male and female wasps illustrating a binary outcome (male vs. female) in the wasp offspring example.](images/wasp-male-female-binary-example.jpg){fig-alt="Side-by-side image of two wasps labeled “Female” and “Male,” showing visible differences in body shape and size." fig-align="center" width="800"}
+:::
+:::::
+
+## The [Binomial Distribution]{.keyword}
+
+For a fixed ( n ) and ( p ),
+
+$$
+X \sim \text{Binomial}(n, p)
+$$
+
+The binomial distribution is:
+
+-   All possible values of ( X )
+-   And the probability of each value
+
+$$
+X = 0, 1, 2, \dots, n
+$$
+
+## From One Probability to Many
+
+::::: columns
+::: {.column width="50%"}
+For the wasp example, we calculated:
+
+$$ \operatorname{Pr}[X = 3] $$
+
+But we could also calculate:
+
+$$ \operatorname{Pr}[X = 0], \operatorname{Pr}[X = 1], \dots, \operatorname{Pr}[X = n] $$
+
+Together, these probabilities form the **binomial distribution**.
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-binomial-n5-p02-animated
+#| fig-cap: "Animated binomial distribution for n = 5 and p = 0.2. Each frame highlights one possible value of X and updates the title to show Pr[X = x]."
+#| fig-alt: "Animated bar chart of the binomial distribution for n equals 5 and p equals 0.2. The animation cycles through x values from 0 to 5, highlighting one bar at a time and updating the title to display Pr[X = x]."
+#| out-width: 90%
+#| fig-align: center
+
+library(tidyverse)
+library(gganimate)
+library(gifski)
+
+# Parameters
+n <- 5
+p <- 0.2
+
+# Base distribution
+base_df <- tibble(
+  x = 0:n,
+  probability = dbinom(x, size = n, prob = p)
+)
+
+# Replicate data for animation frames (one frame per highlighted x)
+anim_df <- base_df %>%
+  crossing(highlight_x = 0:n) %>%
+  mutate(is_highlight = (x == highlight_x))
+
+# Build animated plot
+p_anim <- ggplot(anim_df, aes(x = factor(x), y = probability, fill = is_highlight)) +
+  geom_col() +
+  scale_fill_manual(values = c(`FALSE` = "grey80", `TRUE` = "steelblue"), guide = "none") +
+  labs(
+    x = "Number of successes (X)",
+    y = "Probability"
+  ) +
+  ggtitle("Pr[X = {current_frame}]") +
+  theme_minimal(base_size = 18) +
+  theme(
+    plot.title = element_text(
+      color = "steelblue",
+      size = 36,
+      face = "bold",
+      hjust = 0.5
+    )
+  ) +
+  transition_manual(highlight_x)
+
+gif_path <- "images/binomial-n5-p02-highlight.gif"
+
+animate(
+  p_anim,
+  n_frames = 24,
+  fps = 8,
+  renderer = gifski_renderer(gif_path)
+)
+```
+:::
+:::::
+
+## Why This Matters
+
+The binomial distribution tells us:
+
+-   If we repeated this process many times,
+
+-   what counts of successes we would expect to see.
+
+-   It describes the **distribution** of possible counts we would observe if we repeated the process many times.
+
+## Example: Mud Plantains Avoid Self-Fertilization
+
+::::: columns
+::: {.column width="50%"}
+System description
+
+-   Mud plantains are **hermaphroditic** (each flower has male and female structures).
+-   The style bends either left or right.
+-   This creates two floral morphs.
+
+Bees transfer pollen:
+
+-   From left-styled flowers
+-   To right-styled flowers
+
+This **reduces self-fertilization ("selfing")**.
+:::
+
+::: {.column width="50%"}
+![Mud plantain flowers showing left- and right-styled morphs that promote cross-pollination and reduce self-fertilization. Source: Whitlock & Schluter, *The Analysis of Biological Data*, 3rd ed.](images/mud-plantains.jpg){fig-alt="Side-by-side close-up images of mud plantain flowers. One flower has the style bent to the left and the other has the style bent to the right, illustrating two floral morphs that reduce self-fertilization."}
+:::
+:::::
+
+## Expected ratio of offspring is 1:3
+
+-   Under a simple model of inheritance, crossing left- and right-handed strains should yield offspring with a *1:3* ratio of left- to right-handed flowers.
+
+-   I.e. **25%** of offspring should be left-handed and **75%** should be right-handed.
+
+-   For this example, let’s call left-handedness “success” and right-handedness “failure”
+
+## A given sample size will produce a corresponding sampling distribution
+
+::::: columns
+::: {.column width="50%"}
+-   Let’s try looking at a complete sampling distribution instead of a single outcome
+
+-   Image we randomly sample $n=27$ individuals from a population in which $p=0.25$
+
+-   What is the probability that the sample contains exactly $X$ successes?
+:::
+
+::: {.column width="50%"}
+-   For example, the probability of getting exactly six left-handed flowers is:
+
+$$
+\operatorname{Pr}[6 \text{ left-handed flowers}] = \binom{27}{6} (0.25)^{6} (1-0.25)^{27-6}
+$$
+
+$$
+= 296010 \times 0.000244 \times 0.002378
+$$
+
+$$
+=0.1719
+$$
+
+-   Now, repeat to calculate the probability of each outcome
+:::
+:::::
+
+## Filling out the sampling distribution
+
+-   Repeat previous step to calculate the probability of each outcome.
+
+::::::: columns
+::: {.column width="25%"}
+| X   | Pr\[X\]  |
+|-----|----------|
+| 0   | 4.2×10-4 |
+| 1   | 0.0038   |
+| 2   | 0.0165   |
+| 3   | 0.0459   |
+| 4   | 0.0927   |
+| 5   | 0.1406   |
+| 6   | 0.1719   |
+:::
+
+::: {.column width="25%"}
+| X   | Pr\[X\] |
+|-----|---------|
+| 7   | 0.1719  |
+| 8   | 0.1432  |
+| 9   | 0.1008  |
+| 10  | 0.0605  |
+| 11  | 0.0312  |
+| 12  | 0.0138  |
+| 13  | 0.0053  |
+:::
+
+::: {.column width="25%"}
+| X   | Pr\[X\]    |
+|-----|------------|
+| 14  | 0.0018     |
+| 15  | 5.1×10^-4^ |
+| 16  | 1.3×10^-4^ |
+| 17  | 2.8×10^-5^ |
+| 18  | 5.1×10^-6^ |
+| 19  | 8.1×10^-7^ |
+| 20  | 1.1×10^-7^ |
+:::
+
+::: {.column width="25%"}
+| X   | Pr\[X\]     |
+|-----|-------------|
+| 21  | 1.2×10^-8^  |
+| 22  | 1.1×10^-9^  |
+| 23  | 7.9×10^-11^ |
+| 24  | 4.4×10^-12^ |
+| 25  | 1.8×10^-13^ |
+| 26  | 4.5×10^-15^ |
+| 27  | 5.5×10^-17^ |
+:::
+:::::::
+
+## The collection of probabilities is the sampling distribution
+
+::::: columns
+::: {.column width="50%"}
+-   The plot shows the probability of obtaining $X$ left-handed flowers out of $n=27$ randomly sampled, if the proportion of left-handed plants in the population is $p=0.25$
+:::
+
+::: {.column width="50%"}
+![Binomial probability distribution for the number of left-handed mud plantain flowers (X) in a sample, showing the probability of observing each possible count.](images/flower-sampling-distribution.jpg){fig-alt="Discrete bar plot showing probability on the y-axis and number of left-handed flowers (X) on the x-axis. The distribution is centered around approximately 6 and is roughly symmetric, with lower probabilities at extreme values."}
+:::
+:::::
+
+## Sample size determines the spread of the sampling distribution
+
+::::: columns
+::: {.column width="50%"}
+-   Larger sample sizes produce narrower sampling distributions
+:::
+
+::: {.column width="50%"}
+![Sampling distributions illustrating the effect of sample size on the distribution of a proportion. The top panel (n = 10) shows a wider, more variable distribution, while the bottom panel (n = 100) shows a narrower, more concentrated distribution around the true proportion.](images/flower-sampling-distribution-sample-size.jpg){fig-alt="Two probability distributions. The top plot (n = 10) shows a broad distribution of sample proportions with noticeable spread. The bottom plot (n = 100) shows a much narrower distribution of sample proportions concentrated near approximately 0.2, illustrating reduced variability with larger sample size." fig-align="center" width="410"}
+:::
+:::::
+
+## From Counts to Proportions
+
+So far, we have modeled the count:
+
+$$
+X = \text{number of successes in } n \text{ trials}
+$$
+
+But we often report results as a proportion:
+
+$$
+\frac{X}{n}
+$$
+
+Same underlying binomial randomness.
+
+Different scale.
+
+## Estimating a proportion from a single sample
+
+::::: columns
+::: {.column width="50%"}
+-   We can estimate a population proportion from a single sample.
+-   If there are $X$ successes out of $n$ trials in a random sample, then the estimated proportion of successes is $\hat{p}$:
+
+$$
+\hat{p}=\frac{X}{n}
+$$
+:::
+
+::: {.column width="50%"}
+-   Law of large numbers - as sample size increases, $\hat{p}$ approaches $p$
+:::
+:::::
+
+## [Standard error of $\hat{p}$]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+-   The standard deviation of the sampling distribution of $\hat{p}$ (designated by $\sigma_\hat{p}$) is
+
+$$ \sigma_\hat{p}=\sqrt{\frac{p(1-p)}{n}} $$
+
+-   This is also called the standard error of $p$
+
+-   As sample size increases, standard error goes down
+:::
+
+::: {.column width="50%"}
+-   In reality, we can almost never calculate this standard error because we don’t know true $p$
+
+-   We estimate standard error by replacing $p$ with $\hat{p}$
+
+$$ \operatorname{SE}_\hat{p}=\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} $$
+:::
+:::::
+
+## Approximate confidence interval for a proportion
+
+-   2SE rule of thumb only works when sampling distribution is bell-shaped, which is not true for $\operatorname{SE}_\hat{p}$
+
+-   [Agresti-Coull method]{.keyword} provides an approximate the 95% confidence interval for a proportion
+
+$$
+p' - 1.96 \sqrt{\frac{p'(1 - p')}{n + 4}}
+\;<\;
+p
+\;<\;
+p' + 1.96 \sqrt{\frac{p'(1 - p')}{n + 4}}
+$$where:
+
+$$
+p' = \frac{X + 2}{n + 4}
+$$
+
+-   The Wald method is commonly used, but it has been shown not to work well in some situations.
+
+## Interpreting a 95% Confidence Interval
+
+If we repeated this sampling process many times,
+
+about 95% of intervals constructed this way
+
+would contain the true population proportion (p).
+
+It does NOT mean:
+
+There is a 95% probability that this specific interval contains (p).
+
+## Use the [binomial test]{.keyword} to test hypotheses about a binomial sampling distribution
+
+-   Use data to test whether a population proportion ( $p$ ) matches a null expectation ( $p_0$ ) for the proportion
+
+-   *𝐻~0~*: The proportion $p$ of successes in the population is equal to $p_0$
+
+-   *𝐻~𝐴~*: The proportion $p$ of successes in the population is not equal to $p_0$
+
+## Example: Distribution of spermatogenesis genes
+
+::::: columns
+::: {.column width="50%"}
+-   **Evolutionary theory** predicts genes for spermatogenesis (sperm formation) should occur disproportionately more often on the X chromosome
+
+-   The X chromosome contains **6.1%** of the genes in the genome
+
+-   If genes for spermatogenesis occur randomly throughout the genome, we’d expect **6.1%** of them to fall on the X chromosome
+
+-   Each gene = trial
+
+-   Success = gene is on X
+:::
+
+::: {.column width="50%"}
+![Mouse chromosomes. Whitlock & Schluter (2015)](images/mouse-chromosomes.jpg)
+:::
+:::::
+
+## Observed distribution of spermatogenesis genes (data)
+
+::::: columns
+::: {.column width="50%"}
+-   Wang et al. (2001) identified 25 genes involved in spermatogenesis in mice.
+
+-   10 genes (40%) were on the X chromosome.
+
+> Do the results support the hypothesis that spermatogenesis genes occur preferentially on the X chromosome?
+:::
+
+::: {.column width="50%"}
+![Cartoon of the mouse genome. Blue ovals represent spermatogenesis genes. Lines represent chromosomes and are proportional in length to real life. Whitlock & Schluter (2015)](images/mouse-genome-cartoon.jpg)
+:::
+:::::
+
+## Hypotheses and test statistic
+
+::::: columns
+::: {.column width="50%"}
+STEP 1: State hypotheses
+
+-   𝐻~0~: The probability that a spermatogenesis gene falls on the X chromosome is 0.061 ( $p=0.061$ )
+
+-   𝐻~𝐴~: The probability that a spermatogenesis gene falls on the X chromosome is something other than 0.061 ( $p\ne0.061$ )
+:::
+
+::: {.column width="50%"}
+STEP 2: Calculate **test statistic**
+
+-   For binomial test, it is the **observed number of successes**
+
+-   For this example: 10
+
+-   How many would be expected under *𝐻~0~*?
+
+    -   Answer: $0.061\times25=1.525$
+:::
+:::::
+
+## Determining the P-value
+
+::::: columns
+::: {.column width="50%"}
+STEP 3: Determine *P*-value
+
+-   How likely are we to get 10 by chance alone if the *𝐻~0~* is true?
+
+-   To decide, we need the null distribution, the sampling distribution for the test statistic assuming that *𝐻~0~* is true
+
+$$ \operatorname{Pr}[X \text{ successes}] = \\ \binom{25}{X} (0.061)^{X} (1-0.061)^{25-X} $$
+:::
+
+::: {.column width="50%"}
+Now calculate chance of getting observed outcome or more extreme:
+
+$$ P=2 \times \operatorname{Pr}[\text{successes} \geq 10] $$
+
+$$
+= 2\times (9.9\times10^{-7})
+$$
+
+$$
+= 1.98 \times 10^{-6}
+$$
+:::
+:::::
+
+## Interpreting the results
+
+::::: columns
+::: {.column width="50%"}
+Decision criteria:
+
+-   If we use $\alpha=0.05$ then $p<\alpha$ so we reject the null hypothesis
+
+**Conclude that the proportion** $p$ **of successes in the population is not equal to** $p_0$
+:::
+
+::: {.column width="50%"}
+> Question
+>
+> If $p\ne0.061$ then what is $p$ ?
+>
+> Answer
+>
+> Estimate $p$ with $\hat{p}$ to find out
+:::
+:::::
+
+## Estimate the proportion of spermatogenesis genes on the X chromosme
+
+::::: columns
+::: {.column width="50%"}
+-   Our best estimate of the proportion of genes on the X chromosome is:
+
+$$ \hat{p}=\frac{X}{n}=\frac{10}{25}=0.40 $$
+
+-   Which is much greater than 0.061
+:::
+
+::: {.column width="50%"}
+-   We would report our findings like this:
+
+    > A disproportionately large proportion of spermatogenesis genes occur on the X chromosome (0.40, SE=0.10; binomial test, 𝑛=25, 𝑃\<0.001).
+:::
+:::::
+
+## Estimating proportions: highly irradiated radiologists
+
+::::: columns
+::: {.column width="50%"}
+-   Male radiologists have long suspected that they tend to have fewer sons than daughters.
+
+-   What is the proportion of males among the offspring of radiologists?
+
+-   In a sample of **87** offspring of “highly irradiated” male radiologists, **30** were male (Hama et al. 2001). Assume that this was a random sample.
+:::
+
+::: {.column width="50%"}
+-   Best estimate of proportion of male offspring:
+
+$$
+\hat{p}=\frac{X}{n}=\frac{30}{87}=0.345 
+$$
+
+-   Standard error of $\hat{p}$ :
+
+$$
+ \operatorname{SE}_\hat{p}=\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\\=\sqrt{\frac{0.345(1-0.345)}{87}}=0.051
+$$
+
+-   
+:::
+:::::
+
+## Applying the Agresti-Coull method to calculate an approximate 95% confidence interval
+
+::::: columns
+::: {.column width="25%"}
+$$
+p' = \frac{X + 2}{n + 4}\\=\frac{30+2}{87+4}\\=0.351
+$$
+:::
+
+::: {.column width="75%"}
+$$
+p' - 1.96 \sqrt{\frac{p'(1 - p')}{n + 4}}\;<\;p\;<\;p' + 1.96 \sqrt{\frac{p'(1 - p')}{n + 4}}
+$$
+
+$$
+0.351 - 1.96 \sqrt{\frac{0.228}{91}}\;<\;p\;<\;0.351 + 1.96 \sqrt{\frac{0.228}{91}}
+$$
+
+$$
+0.351 - 1.96 \times 0.098\;<\;p\;<\;0.351 + 1.96 \times0.098
+$$
+
+$$
+0.253\;<\;p\;<\;0.449
+$$
+:::
+:::::
