@@ -29,6 +29,13 @@ jobs:
           r-version: '4.5.2'
           use-public-rspm: false
       
+      - name: Install system libraries for units/sf
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            udunits-bin libudunits2-0 libudunits2-dev \
+            libgdal-dev libgeos-dev libproj-dev proj-data proj-bin
+
       - name: Install R Dependencies
         uses: r-lib/actions/setup-renv@v2
         with:
