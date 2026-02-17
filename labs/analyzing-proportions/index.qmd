@@ -39,7 +39,7 @@ Then, complete the following steps to make sure you are fully set up.
 
     -   palmerpenguins
 
-    -   lterdatasample
+    -   lterdatasampler
 
 4.  **Create an R Script**
 
@@ -85,7 +85,7 @@ In this worked example, we will use the `penguins` dataset to:
 -   Calculate a 95% CI for the proportion that are female
 -   Test the hypothesis that the population proportion of females is **p = 0.5**
 
-### Example R code (run all at once)
+### Example R code
 
 ```{r}
 
@@ -194,24 +194,8 @@ Using bison with non-missing `animal_sex`:
 
 Before leaving lab:
 
-1.  
+1.   Make sure your R script is saved in your Posit Cloud project and runs from top to bottom without errors.
 
-2.  
+2.  Verify you have completed the student task (estimate, CI, hypothesis test, and answer questions on worksheet).
 
-    Make sure your R script is saved in your Posit Cloud project and runs from top to bottom without errors.
-
-3.  
-
-4.  
-
-    Verify you have completed the student task (estimate, CI, hypothesis test, and short written summary).
-
-5.  
-
-Submit on D2L:
-
-3.  
-
-4.  
-
-    Submit your required deliverable(s) exactly as specified on D2L for Lab 7 (your outputs and written summary).
+3.  Show your worksheet, graph, and R script to an LA to get completion credit for the lab.
