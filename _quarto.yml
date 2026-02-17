@@ -23,6 +23,8 @@ website:
         text: Labs
       - href: project/index.qmd
         text: Project
+      - href: resources/index.qmd
+        text: Resources
   sidebar:
     style: "docked"
     search: true
@@ -48,6 +50,10 @@ website:
           - project/dryad-datasets.qmd
           - project/team-formation.qmd
           - project/data-readiness-check.qmd
+      - section: "Resources"
+        contents:
+          - resources/index.qmd
+          - resources/weekly-lab-setup.qmd
 format:
   html:
     toc: true
