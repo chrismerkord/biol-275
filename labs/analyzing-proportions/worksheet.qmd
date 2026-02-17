@@ -77,11 +77,11 @@ header-includes:
 **3. What is the name of the function that performs the hypothesis test on proportions?**
 \ab{1in}
 
-**4. Write the results of the hypothesis test on penguins, using a significance level of 0.05.**
+**4. Interpret the results of the hypothesis test on penguins, using a significance level of 0.05.**
 \ab{2in}
 
 **5. Write the estimated proportion and CI of male and female bison**
 \ab{2in}
 
-**6. Write the results of the hypothesis test on bison, using a significance level of 0.05.**
+**6. Interpret the results of the hypothesis test on bison, using a significance level of 0.05.**
 \ab{2in}
