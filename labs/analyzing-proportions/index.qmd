@@ -162,7 +162,7 @@ After running the code, you should be able to report:
 
 ## Student task: repeat the workflow with bison sex
 
-In this task, you will apply the same workflow to the `knz_bison` dataset, using `animal_sex`.
+In this task, you will apply the same workflow to the `knz_bison` dataset from the **lterdatasampler** package, using `animal_sex`.
 
 ### The `knz_bison` dataset
 
