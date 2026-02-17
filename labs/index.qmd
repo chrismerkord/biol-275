@@ -96,5 +96,18 @@ Using descriptive statistics and graphs to summarize, compare, and interpret bio
 :::
 ::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lab 7
+:::
+::: card-body
+##### Analyzing proportions {.card-title}
+
+[Lab 7](analyzing-proportions/)
+:::
+::::
+::::::
 :::::::::::
 

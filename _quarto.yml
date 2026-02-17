@@ -43,6 +43,7 @@ website:
           - labs/graphing-ggplot/index.qmd
           - labs/ggplot2-vis-challenge/index.qmd
           - labs/describing-data/index.qmd
+          - labs/analyzing-proportions/index.qmd
       - section: "Project"
         contents:
           - project/index.qmd
