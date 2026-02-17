@@ -68,6 +68,8 @@ header-includes:
 
 \vspace{0.25in}
 
+## Worked Example: Proportion of Female Penguins
+
 **1. Write the estimated proportion and CI of male and female penguins**
 \ab{2in}
 
@@ -79,6 +81,8 @@ header-includes:
 
 **4. Interpret the results of the hypothesis test on penguins, using a significance level of 0.05.**
 \ab{2in}
+
+## Student Task: Proportion of Female Bison
 
 **5. Write the estimated proportion and CI of male and female bison**
 \ab{2in}
