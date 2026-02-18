@@ -23,6 +23,8 @@ website:
         text: Labs
       - href: project/index.qmd
         text: Project
+      - href: resources/index.qmd
+        text: Resources
   sidebar:
     style: "docked"
     search: true
@@ -41,6 +43,7 @@ website:
           - labs/graphing-ggplot/index.qmd
           - labs/ggplot2-vis-challenge/index.qmd
           - labs/describing-data/index.qmd
+          - labs/analyzing-proportions/index.qmd
       - section: "Project"
         contents:
           - project/index.qmd
@@ -48,6 +51,10 @@ website:
           - project/dryad-datasets.qmd
           - project/team-formation.qmd
           - project/data-readiness-check.qmd
+      - section: "Resources"
+        contents:
+          - resources/index.qmd
+          - resources/weekly-lab-setup.qmd
 format:
   html:
     toc: true

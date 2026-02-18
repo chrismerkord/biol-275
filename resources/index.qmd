@@ -1,0 +1,28 @@
+---
+title: "Resources"
+format:
+  html:
+    toc: true
+    page-layout: full
+---
+
+::::::::::: {.grid .gap-3}
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Weekly Lab Setup
+:::
+
+::: card-body
+##### Introduction to R and RStudio {.card-title}
+
+Learn how to set up your lab project in Posit Cloud each week.
+
+[Weekly Lab Setup](weekly-lab-setup.qmd)
+:::
+:::::
+::::::
+
+
+:::::::::::
+

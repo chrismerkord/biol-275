@@ -1,0 +1,230 @@
+---
+title: "Setting Up a Project for a Lab Activity"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+---
+
+## Overview
+
+In this course, you will complete one Lab Activity most weeks. Your goal is to work in a way that is **reproducible** and **easy to debug**:
+
+-   You should be able to restart R and run your script from top to bottom with no errors.
+-   You will write your work in one or more **R scripts** inside the weekly assignment project.
+-   You will use a standard section structure so your code is organized and easy to grade.
+
+## Global options (set once per semester)
+
+These settings apply across projects. Set them once early in the semester.
+
+### Disable workspace saving
+
+Go to:
+
+**Tools → Global Options → General**
+
+Under **Workspace**, set:
+
+-   **Restore `.RData` into workspace at startup** → Unchecked
+-   **Save workspace to `.RData` on exit** → Never
+
+Under **History**, set:
+
+-   **Always save history (even when not saving `.RData`)** → Unchecked
+
+Why this matters: it prevents hidden objects from a previous session from making your code *appear* to work when it is actually incomplete.
+
+### Use the native pipe operator
+
+Go to:
+
+**Tools → Global Options → Code → Editing**
+
+Set:
+
+-   **Use native pipe operator (`|>`)** → Yes
+
+We will use the base R native pipe throughout the course.
+
+### Use Tab for multiline autocompletions
+
+Go to:
+
+**Tools → Global Options → Code → Completion**
+
+Enable:
+
+-   **Use tab for multiline autocompletions**
+
+This makes autocomplete behavior consistent and predictable.
+
+## Each weekly lab activity
+
+### Start the assignment project
+
+1.  Log in to Posit Cloud.
+2.  Open the course workspace.
+3.  Find the lab for the week and click **Start Assignment**.
+4.  Wait for the project to finish loading.
+
+### Install required packages (Console only)
+
+Install packages in the **Console**, not in your script.
+
+Example:
+
+``` r
+install.packages("tidyverse")
+```
+
+Rules:
+
+-   `install.packages()` never goes in an R script.
+-   `install.packages()` never goes in a QMD file.
+-   Package installation is a setup step you do in the Console once per project.
+
+### Create your R script
+
+Create a new R script and **save it immediately**.
+
+Recommended naming conventions:
+
+-   `lab-4.R`
+-   `lab-4-tutorial.R`
+-   `penguins-tutorial.R`
+-   `bison-activity.R`
+
+Use lowercase and hyphens. No spaces.
+
+Common mistakes:
+
+-   changing the `.R` extension when you rename an R script
+-   adding a period at the end of the file name (for example, while copy-pasting a filename from this website).
+
+## Suggested script structure
+
+You should use **RStudio section headers** inserted with:
+
+-   {{< kbd mac=Command-Shift-R win=Ctrl-Shift-R linux=Ctrl-Shift-R >}}, or
+-   **Code → Insert Section**
+
+Keep the default format, including the trailing `----` (this makes collapsible sections).
+
+In addition to making your script more readable, comments with trailing hyphens will also appear as headings in the Document Outline (show or hide by clicking the sloppy hamburger icon in the source pane).
+
+### Suggested sections (in order)
+
+Your script should contain the following sections:
+
+``` r
+# Lab 04 – Your Name ----
+
+# Load packages ----
+
+# Import data ----
+
+# Data inspection ----
+
+# Analysis ----
+
+# Graphs ----
+```
+
+The exact number and names of sections may vary from lab to lab, but these will go a long way towards making your script more human readable.
+
+Other tips:
+
+-   Use comments liberally to remind yourself what various bits of code do:
+
+```{r}
+# this is a comment
+# comments are ignored by the R compiler
+# any text after a pound sign is a comment
+# comments can be on their own line or at the end of a code line
+# comments make code easier to understand by human readers
+```
+
+### Libraries go in the first section
+
+All `library()` calls must appear in:
+
+``` r
+# Load packages ----
+```
+
+Example:
+
+``` r
+library(tidyverse)
+library(palmerpenguins)
+```
+
+Rules:
+
+-   Load all packages at the top.
+
+-   Do not scatter `library()` calls throughout the script.
+
+-   Do not put the same `library()` call multiple times
+
+-   Do not load tidyverse packages individually unless instructed to do so.
+
+    If your script uses, and of the following packages, load the entire tidyverse:
+
+    -   ggplot2
+    -   readr
+    -   dplyr, tidyr, purrr
+    -   lubridate, forcats, stringr
+
+## Restart and test before submitting
+
+Before you submit your work:
+
+1.  Restart R.
+
+    **Session → Restart R**
+
+2.  Run your script from top to bottom.
+
+3.  Fix any errors.
+
+If your script does not run in a clean session, it is not complete.
+
+### Writing reports
+
+Some lab activities will require you to create a lab report using a Quarto document (.qmd).
+
+The quarto document is a standalone document which does not rely on your R script to run. That means any commands required to make code work in your R script (e.g. loading packages, importing data) must exist in your Quarto document too.
+
+Always ensure your R script is working before you attempt to write your report.
+
+1.  Restart R.
+
+    **Session → Restart R**
+
+2.  Run your script from top to bottom.
+
+3.  Fix any errors.
+
+4.  Create R code chunks in your Quarto document in the right places.
+
+5.  Copy code from your R script into your Quarto document, one chunk at a time.
+
+## Checklist
+
+### Once per semester (Global Options)
+
+-   [ ] Workspace restore/save disabled
+-   [ ] Native pipe operator enabled (`|>`)
+-   [ ] Tab used for multiline autocompletions
+
+### Each lab
+
+-   [ ] Assignment project started (your own copy)
+-   [ ] Required packages installed (Console only)
+-   [ ] Script created and saved
+-   [ ] Section headers inserted with Ctrl+Shift+R
+-   [ ] Script includes all required sections (in order)
+-   [ ] `library()` calls are in **Load packages**
+-   [ ] Script runs after restarting R
