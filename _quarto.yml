@@ -44,7 +44,7 @@ website:
           - labs/ggplot2-vis-challenge/index.qmd
           - labs/describing-data/index.qmd
           - labs/analyzing-proportions/index.qmd
-          - labs/tranforming-data/index.qmd
+          - labs/transforming-data/index.qmd
       - section: "Project"
         contents:
           - project/index.qmd
