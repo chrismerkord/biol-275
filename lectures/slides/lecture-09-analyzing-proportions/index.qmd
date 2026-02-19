@@ -314,15 +314,7 @@ This **reduces self-fertilization ("selfing")**.
 -   For example, the probability of getting exactly six left-handed flowers is:
 
 $$
-\operatorname{Pr}[6 \text{ left-handed flowers}] = \binom{27}{6} (0.25)^{6} (1-0.25)^{27-6}
-$$
-
-$$
-= 296010 \times 0.000244 \times 0.002378
-$$
-
-$$
-=0.1719
+\operatorname{Pr}[6 \text{ left-handed flowers}] \\= \binom{27}{6} (0.25)^{6} (1-0.25)^{27-6}\\= 296010 \times 0.000244 \times 0.002378\\=0.1719
 $$
 
 -   Now, repeat to calculate the probability of each outcome
@@ -331,7 +323,7 @@ $$
 
 ## Filling out the sampling distribution
 
--   Repeat previous step to calculate the probability of each outcome.
+Repeat previous step to calculate the probability of each outcome.
 
 ::::::: columns
 ::: {.column width="25%"}
@@ -598,12 +590,21 @@ $$
 ::: {.column width="50%"}
 Decision criteria:
 
--   If we use $\alpha=0.05$ then $p<\alpha$ so we reject the null hypothesis
+-   Using $\alpha=0.05$ then $p<\alpha$ , we reject 𝐻~0~
+-   The proportion of spermatogenesis genes on the X chromosome is not equal to 0.061
 
-**Conclude that the proportion** $p$ **of successes in the population is not equal to** $p_0$
+Biological Interpretation:
+
+-   The observed proportion differs from the theoretical expectation.
+-   This suggests that spermatogenesis genes are not randomly distributed with respect to the X chromosome.
+-   Some biological process may be influencing their genomic location.
 :::
 
 ::: {.column width="50%"}
+Rejecting 𝐻0 does not tell us why the difference exists, only that the observed pattern is unlikely under the null model.
+
+Next step:
+
 > Question
 >
 > If $p\ne0.061$ then what is $p$ ?
@@ -614,7 +615,7 @@ Decision criteria:
 :::
 :::::
 
-## Estimate the proportion of spermatogenesis genes on the X chromosme
+## Estimate the proportion of spermatogenesis genes on the X chromosome
 
 ::::: columns
 ::: {.column width="50%"}
@@ -664,6 +665,8 @@ $$
 
 ::::: columns
 ::: {.column width="25%"}
+Uses an adjusted estimate $p'$ for constructing the interval
+
 $$
 p' = \frac{X + 2}{n + 4}\\=\frac{30+2}{87+4}\\=0.351
 $$
@@ -685,5 +688,33 @@ $$
 $$
 0.253\;<\;p\;<\;0.449
 $$
+:::
+:::::
+
+## From Confidence Interval to Hypothesis Test
+
+::::: columns
+::: {.column width="40%"}
+We estimated the proportion of male offspring:
+
+-   $\hat{p} = 0.345$
+-   95% CI ≈ (0.25, 0.45)
+:::
+
+::: {.column width="60%"}
+Now test:
+
+$H_0: p = 0.50$\
+$H_A: p \ne 0.50$
+
+**Question:**
+
+Does 0.50 fall inside the 95% confidence interval?
+
+**Conclusion:**
+
+Because 0.50 is not in the interval, we would reject $H_0$ at $\alpha = 0.05$.
+
+The data suggest the proportion of male offspring differs from 50%.
 :::
 :::::
