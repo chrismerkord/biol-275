@@ -6,7 +6,6 @@ format:
     code-link: true
 execute:
   echo: true
-code-annotations: hover
 ---
 
 ## Learning Objectives
