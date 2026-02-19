@@ -109,5 +109,18 @@ Lab 7
 :::
 ::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lab 8
+:::
+::: card-body
+##### Transforming  Data {.card-title}
+
+[Lab 8](transforming-data/)
+:::
+::::
+::::::
 :::::::::::
 
