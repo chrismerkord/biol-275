@@ -4,6 +4,7 @@ description: "Estimate population proportions and their uncertainty using confid
 format: html
 execute:
   echo: true
+code-annotations: hover
 ---
 
 ## Learning Objectives
@@ -91,21 +92,21 @@ In this worked example, we will use the `penguins` dataset to:
 
 # Load packages ----
 
-library(tidyverse)
-library(palmerpenguins)
+library(tidyverse)        # <1>
+library(palmerpenguins)   # <2>
 
 
 # Import and clean dataset ----
 
-penguins_clean <- 
-  penguins |> 
-  filter(!is.na(sex))
+penguins_clean <- # <3>
+  penguins |>  # <4>
+  filter(!is.na(sex)) # <5>
 
 
 # Analysis ----
 
-penguins_summary <-
-  penguins_clean |> 
+penguins_summary <- 
+  penguins_clean |>
   summarize(
     n_sex = n(),
     .by = sex
@@ -148,6 +149,12 @@ n_total <-
 prop.test(x = n_female, n = n_total, p = 0.5, correct = FALSE)
 ```
 
+1.  The **tidyverse** package loads several other packages, including dplyr and ggplot2, which are used in the following code
+2.  The **palmerpenguins** package contains the `penguins` dataset.
+3.  Create an object named `penguins_clean` and give it the following value...
+4.  Start with the `penguins` tibble from palmerpenguins, and...
+5.  Pick the rows (`filter`) that do not (`!`) have a missing value (`NA`) in the `sex` column.
+
 ### Interpreting the output (what you should be able to say)
 
 After running the code, you should be able to report:
@@ -168,13 +175,13 @@ In this task, you will apply the same workflow to the `knz_bison` dataset from t
 
 This dataset contains records of American bison sampled at Konza Prairie. For this lab you will focus on:
 
--    `animal_sex` (a categorical variable)
+-   `animal_sex` (a categorical variable)
 
 ### Your tasks
 
 Using bison with non-missing `animal_sex`:
 
-1.   Create a frequency table of `animal_sex` and report the **sample size** used.
+1.  Create a frequency table of `animal_sex` and report the **sample size** used.
 
 2.  Estimate the **proportion female** (and the proportion male, if present).
 
@@ -194,7 +201,7 @@ Using bison with non-missing `animal_sex`:
 
 Before leaving lab:
 
-1.   Make sure your R script is saved in your Posit Cloud project and runs from top to bottom without errors.
+1.  Make sure your R script is saved in your Posit Cloud project and runs from top to bottom without errors.
 
 2.  Verify you have completed the student task (estimate, CI, hypothesis test, and answer questions on worksheet).
 
