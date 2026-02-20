@@ -56,18 +56,18 @@ install.packages("tidyverse")
     ```
 
     ::: callout-warning
-    If you run `library(tidyverse)` before you install the tidyverse package, you will see an error message in the console. For example:
+    If you run `library(tidyverse)` before you install the tidyverse package, you will see an error message in the console like this:
 
     ```{r}
-    #| label: package-not-installed-example
-    #| echo: true
+    #| label: package-not-installed-error
+    #| eval: true
+    #| echo: false
     #| error: true
-    #| 
 
-    library(tidyverse_not_installed)
+    cat("Error in library(tidyverse) : there is no package called tidyverse")
     ```
 
-    Solution: install the package first, then load it with `library()`
+    The solution is to install the package first, then load it with `library()`.
     :::
 
 ## Overview: Introduction to importing data
