@@ -152,4 +152,20 @@ Introduces the binomial distribution for modeling binary outcomes and develops t
 :::
 :::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 10
+:::
+
+::: card-body
+##### Fitting Probability Models to Frequency Data {.card-title}
+
+Using proportional probability models and the chi-squared goodness-of-fit test to evaluate whether observed categorical frequency data fit expectations under a null hypothesis.
+
+[Go to Lecture](slides/lecture-09-analyzing-proportions/){.btn .btn-primary}
+:::
+:::::
+::::::
 :::::::::::::::::::

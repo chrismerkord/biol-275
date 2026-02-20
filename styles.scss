@@ -205,3 +205,20 @@ div.cell-output-stderr {
 .callout .callout-title b {
   color: var(--bs-callout-color);
 }
+
+.caption-text {
+  font-size: 0.8em;
+  line-height: 1.3;
+  color: #555555;
+  margin-top: 2em;
+  padding-top: 0.4em;
+  border-top: 1px solid #cccccc;
+}
+
+.reveal .slides section .fragment.highlight-current-red-emphasis.current-fragment {
+  background-color: color-mix(in srgb, #b00020 12%, transparent);
+  padding: .08em .35em;
+  border-radius: .3em;
+  color: #b00020;  /* deep, readable red */
+  font-weight: 600;
+}
