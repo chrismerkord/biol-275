@@ -4,7 +4,6 @@ description: "Estimate population proportions and their uncertainty using confid
 format: html
 execute:
   echo: true
-code-annotations: hover
 ---
 
 ## Learning Objectives
@@ -92,15 +91,15 @@ In this worked example, we will use the `penguins` dataset to:
 
 # Load packages ----
 
-library(tidyverse)        # <1>
-library(palmerpenguins)   # <2>
+library(tidyverse)
+library(palmerpenguins)
 
 
 # Import and clean dataset ----
 
-penguins_clean <- # <3>
-  penguins |>  # <4>
-  filter(!is.na(sex)) # <5>
+penguins_clean <-
+  penguins |> 
+  filter(!is.na(sex))
 
 
 # Analysis ----
@@ -148,12 +147,6 @@ n_total <-
 
 prop.test(x = n_female, n = n_total, p = 0.5, correct = FALSE)
 ```
-
-1.  The **tidyverse** package loads several other packages, including dplyr and ggplot2, which are used in the following code
-2.  The **palmerpenguins** package contains the `penguins` dataset.
-3.  Create an object named `penguins_clean` and give it the following value...
-4.  Start with the `penguins` tibble from palmerpenguins, and...
-5.  Pick the rows (`filter`) that do not (`!`) have a missing value (`NA`) in the `sex` column.
 
 ### Interpreting the output (what you should be able to say)
 
