@@ -1,9 +1,7 @@
 ---
 title: "Lab 8: Transforming Data"
 description: "Pick rows or columns, create new variables, and reshape data to prepare for analysis and visualization."
-format: 
-  html:
-    code-link: true
+format: html
 execute:
   echo: true
 ---
