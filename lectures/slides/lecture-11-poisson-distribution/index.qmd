@@ -96,10 +96,6 @@ $$
 
 -   $e$ is the base of the natural log, a constant ≈ 2.718
 
--   Alternative way of writing it:\
-    $$
-    \operatorname{Pr}[k \text{ events in interval}] = \frac{e^{-\lambda}\lambda^{k}}{k!}
-    $$
 :::
 :::::
 
