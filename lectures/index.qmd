@@ -168,4 +168,20 @@ Using proportional probability models and the chi-squared goodness-of-fit test t
 :::
 :::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 11
+:::
+
+::: card-body
+##### Using the Poisson Distribution to Test Randomness in Count Data {.card-title}
+
+Introduces the Poisson distribution as a model for random counts in time or space and shows how to test whether observed data fit this model using a chi-square goodness-of-fit test.
+
+[Go to Lecture](slides/lecture-11-poisson-distribution/){.btn .btn-primary}
+:::
+:::::
+::::::
 :::::::::::::::::::

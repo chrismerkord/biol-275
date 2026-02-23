@@ -1,0 +1,418 @@
+---
+title: |
+  | Lecture 11
+  | Using the Poisson Distribution 
+  | to Test Randomness in Count Data
+subtitle: "ABD 3e Chapter 8, Section 4"
+description: "Introduces the Poisson distribution as a model for random counts in time or space and shows how to test whether observed data fit this model using a chi-square goodness-of-fit test."
+format:
+  revealjs:
+    fig-width: 8
+    fig-height: 6
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+## Learning Objectives
+
+By the end of this lecture, you should be able to:
+
+- Identify when count data are appropriately modeled by a Poisson process.
+- State the assumptions of the Poisson model.
+- Explain how expected frequencies are generated under a Poisson null model.
+- Conduct and interpret a chi-square goodness-of-fit test for count data.
+- Use the variance-to-mean ratio to assess clumping or dispersion.
+
+## The [Poisson Distribution]{.keyword} models random counts in time or space
+
+::::: columns
+::: {.column width="50%"}
+-   The Poisson distribution models the number of events that occur in
+    fixed blocks of time or space
+    -   events occur independently of one another
+    -   events occur at a constant average rate
+    -   events are equally likely at any instant in time or point in
+        space
+-   If these assumptions hold, event counts follow a Poisson
+    distribution.
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-4030146903.png)
+:::
+:::::
+
+## Clumped and dispersed patterns violate Poisson assumptions
+
+::::: columns
+::: {.column width="50%"}
+If events are not independent or the rate is not constant, counts will
+not follow a Poisson distribution.
+
+Instead, events may appear:
+
+-   **Clumped** (distance between points within clumps is less than
+    distance between points in different clumps)
+-   **Dispersed** (points are near each other less often than you would
+    expect by random)
+
+The Poisson distribution therefore represents a model of **random
+spatial or temporal structure**.
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-1229547396.png)
+:::
+:::::
+
+## The Poisson Probability Formula Defines Event Likelihood
+
+::::: columns
+::: {.column width="50%"}
+Suppose events are randomly distributed in space:
+
+-   Divide the area into equal grid cells
+
+-   Count events in each cell
+
+-   Tabulate the frequencies of counts
+
+If events are random, the distribution of counts per cell will follow a
+Poisson distribution.
+:::
+
+::: {.column width="50%"}
+Once we assume a Poisson process, we can compute exact probabilities for
+observing different counts:
+
+$$
+\operatorname{Pr}[X \text{ successes}] = \frac{e^{-\mu}\mu^{X}}{X!}
+$$
+
+-   $\mu$ is the **mean** number of independent successes in time or
+    space (expressed as a count per unit time or a count per unit space,
+    making this is a **rate**)
+
+-   $e$ is the base of the natural log, a constant ≈ 2.718
+
+-   Alternative way of writing it:\
+    $$
+    \operatorname{Pr}[k \text{ events in interval}] = \frac{e^{-\lambda}\lambda^{k}}{k!}
+    $$
+:::
+:::::
+
+## Random spatial counts produce a characteristic Poisson shape
+
+::::: columns
+::: {.column width="50%"}
+-   Assume points are distributed randomly
+
+-   Divide area into a grid
+
+-   Count points per square
+
+-   Frequency of counts would follow a Poisson probability distribution
+:::
+
+::: {.column width="50%"}
+\[image of poisson distribution with various values of lambda\]
+:::
+:::::
+
+## We use the Poisson distribution to test for randomness
+
+::::: columns
+::: {.column width="50%"}
+So far, we have described a model.\
+\
+Now we use the Poisson distribution as a **null hypothesis**:
+
+-   $H_0$: Events occur randomly in time or space
+
+-   Observed counts follow a Poisson distribution
+
+This is a **Poisson Goodness-of-Fit Test**
+:::
+
+::: {.column width="50%"}
+Workflow when testing whether counts follow a Poisson distribution:
+
+1.  State hypotheses
+2.  Estimate the rate parameter (μ) from the data
+3.  Compute expected probabilities under the Poisson model
+4.  Convert probabilities to expected frequencies
+5.  Check chi-square assumptions
+6.  Compute chi-square statistic
+7.  Determine degrees of freedom
+8.  Make a statistical decision
+9.  Interpret biologically
+:::
+:::::
+
+## Assumptions of the Poisson Model
+
+For counts to follow a Poisson distribution:
+
+-   Events occur independently
+-   The average rate ( $\mu$ ) is constant
+-   Events are rare relative to the interval size
+-   Two events cannot occur at exactly the same instant
+
+If these assumptions fail, counts may be clumped or dispersed.
+
+## Case Study: Are Mass Extinctions Random Through Time?
+
+::::: columns
+::: {.column width="50%"}
+**Biological question:**
+
+> Do extinctions occur randomly through geological time, or are there
+> intervals with unusually high extinction rates?
+
+If extinctions are random, counts per time interval should follow a
+Poisson distribution.
+:::
+
+::: {.column width="50%"}
+![Summary of major extinction events through time, highlighting the
+newly identified Carnian Pluvial Episode at 233 million years ago. D.
+Bonadonna/MUSE, Trento/EurekAlert!, CNN](images/clipboard-683137720.png)
+:::
+:::::
+
+## Raup and Sapkowski (1982)
+
+::::: columns
+::: {.column width="40%"}
+-   Raup and Sepkoski (1982) measured extinction rate of marine
+    invertebrates in 76 blocks of time
+:::
+
+::: {.column width="60%"}
+![Figure from Raup DM, Sepkoski JT. 1982. Mass extinctions in the marine
+fossil record. Science 215:
+1501-1503.](images/raup-extinctions.png){width="80%"}
+:::
+:::::
+
+## Observed Extinction Counts Across 76 Time Intervals
+
+These are the observed counts we will compare to Poisson expectations.
+
+![](images/clipboard-2986885806.png)
+
+Raup DM, Sepkoski JT. 1982. Mass extinctions in the marine fossil
+record. Science 215: 1501-1503.
+
+## Formulating hypotheses about random extinction rates
+
+If extinction events are random in time:
+
+-   Counts per interval should follow a Poisson distribution
+
+Therefore:
+
+-   $H_0$: Extinctions per interval follow a Poisson distribution
+-   $H_A$: Extinctions per interval do not follow a Poisson distribution
+
+This is a **goodness-of-fit test**.
+
+## Estimate the mean rate ( $\mu$ ) from the observed data
+
+::::: columns
+::: {.column width="50%"}
+Step 1: Estimate the Poisson rate parameter ( $\mu$ ) under $H_0$.\
+\
+We estimate $\mu$ using the sample mean number of extinctions per
+interval.
+
+| Number of extinctions | Frequency |
+|-----------------------|-----------|
+| 0                     | 0         |
+| 1                     | 13        |
+| 2                     | 15        |
+| 3                     | 16        |
+| 4                     | 7         |
+| 5                     | 10        |
+| 6                     | 4         |
+| etc.                  | ...       |
+:::
+
+::: {.column width="50%"}
+$$
+\bar{X}=\frac{(0\times0)+(1\times13)+(2\times15)+\dots}{76}
+\\
+= 4.21
+$$
+
+We can use this expected mean $X$ in place of $\mu$ in the formula for
+the Poisson distribution to generate the expected frequencies
+:::
+:::::
+
+## Use the Poisson Model to Generate Expected Frequencies
+
+::::: columns
+::: {.column width="50%"}
+$$
+\operatorname{Pr}[X \text{ successes}] = \frac{e^{-\mu}\mu^{X}}{X!}
+$$
+
+$$
+\operatorname{Pr}[3 \text{ extinctions}] = \frac{e^{-4.21} \cdot 4.21^{3}}{3!}
+$$
+
+$$
+\operatorname{Pr}[3 \text{ extinctions}] = 0.1846
+$$
+
+$$
+\operatorname{E}[3 \text{ extinctions}] = 76 \times 0.1846 = 14.03
+$$
+:::
+
+::: {.column width="50%"}
+-   Step 2: Use the estimated μ to compute expected probabilities.
+    -   Example: The probability that a block of time has exactly 3
+        extinctions is 0.1846
+-   Step 3: Convert probabilities into expected frequencies.
+    -   Example: Therefore the expected number of blocks containing 3
+        extinctions is 14.03
+-   Now repeat these steps for each number of extinctions to obtain all
+    expected frequencies
+:::
+:::::
+
+## Comparing Observed and Expected Extinction Frequencies
+
+::::: columns
+::: {.column width="50%"}
+Step 4: Compare observed counts to expected counts.
+
+If differences are large relative to sampling variation, we reject
+$H_0$.
+
+![](images/clipboard-2013700554.png){width="70%"}
+:::
+
+::: {.column width="50%"}
+The frequency distribution of the number of extinctions (histogram)
+compared with the frequencies expected from the Poisson distribution
+having the same mean (curve).
+
+![](images/clipboard-1594994489.png)
+:::
+:::::
+
+## Chi-Square Assumptions Are Violated with Sparse Expected Counts
+
+::::: columns
+::: {.column width="50%"}
+Before computing the chi-square statistic, we must check assumptions:
+
+-   No expected value \< 1
+
+-   No more than 20% of expected counts \< 5
+
+These data violate those assumptions.
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-4011248335.png)
+:::
+:::::
+
+## Grouping Categories Resolves Chi-Square Assumption Violations
+
+::::: columns
+::: {.column width="50%"}
+-   To satisfy chi-square assumptions, we combine adjacent categories.
+
+-   This reduces small expected counts and allows valid inference.
+:::
+
+::: {.column width="50%"}
+![](images/grouped-frequencies.png)
+:::
+:::::
+
+## Degrees of Freedom Determine the Chi-Square Decision
+
+-   We subtract 1 degree of freedom because:
+
+    -   Probabilities must sum to 1
+
+    -   We estimated one parameter (μ) from the data
+
+-   This reduces the available independent information.
+
+$$
+df=(\operatorname{number of categories})-1-(\operatorname{number of parameters})
+\\
+df = 8 - 1 - 1 = 6
+$$
+
+-   Critical value for chi-square with 𝑑𝑓=6 at 𝛼=0.05 : 𝟏𝟐.𝟓𝟗
+
+-   Our chi-square test statistic: 𝟐𝟑.𝟗𝟑
+
+-   Do we reject $H_0$ or not?
+
+## Rejecting $H_0$ suggests extinction is not random
+
+::::: columns
+::: {.column width="50%"}
+-   Test statistic: 23.93
+
+-   Critical value (df = 6, α = 0.05): 12.59
+
+-   Because 23.93 \> 12.59:
+
+    -   We **reject** $H_0$
+:::
+
+::: {.column width="50%"}
+Statistical conclusion:
+
+-   Extinction counts do **not** fit a Poisson distribution.
+-   We do not know the exact alternative distribution, just that a
+    Poisson model is inadequate
+
+Biological interpretation:
+
+-   Extinctions are not occurring at a constant random rate.
+
+-   There are intervals with unusually high extinction rates.
+
+-   This pattern is consistent with episodic **mass extinction events**.
+:::
+:::::
+
+## Variance-to-Mean Ratio Reveals Clumping or Dispersion
+
+-   An alternative diagnostic for randomness:
+
+    Compare the variance to the mean.
+
+    -   Variance ≈ Mean → Consistent with Poisson
+
+    -   Variance \> Mean → Clumped pattern
+
+    -   Variance \< Mean → Dispersed pattern
+
+-   This provides a quick check before formal testing.
+
+## Where the Poisson Fits in Our Probability Toolkit
+
+Binomial distribution:
+
+- Fixed number of trials  
+- Probability of success per trial  
+
+Poisson distribution:
+
+- Counting events in time or space  
+- No fixed number of trials  
+- Models rates rather than proportions
