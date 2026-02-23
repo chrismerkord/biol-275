@@ -164,7 +164,7 @@ Lecture 10
 
 Using proportional probability models and the chi-squared goodness-of-fit test to evaluate whether observed categorical frequency data fit expectations under a null hypothesis.
 
-[Go to Lecture](slides/lecture-09-analyzing-proportions/){.btn .btn-primary}
+[Go to Lecture](slides/lecture-10-fitting-probability-models-to-frequency-data/){.btn .btn-primary}
 :::
 :::::
 ::::::
