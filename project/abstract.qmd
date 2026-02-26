@@ -1,0 +1,86 @@
+---
+title: "How to Write an Abstract and Title"
+subtitle: "Exploratory Data Analysis Project"
+format: html
+---
+
+## Overview
+
+Students in BIOL 275 will present the results of their Exploratory Data Analysis (EDA) Project at Minnesota State University Moorhead’s Andrew B. Conteh Student Academic Conference (SAC).
+
+The SAC is a one-day academic conference held each April that showcases student research, posters, presentations, and creative work. It provides an opportunity to present your work in a formal academic setting to faculty, administrators, peers, and members of the community.
+
+This page explains how to write the **abstract and title** for your EDA project poster.
+
+## How to Write an Abstract
+
+Your abstract should:
+
+- Be **one paragraph**
+- Be **100–250 words**
+- Clearly describe what your poster will be about
+
+Because this project is primarily an **exploratory data analysis**, your abstract will generally describe:
+
+- The question you plan to investigate  
+- The dataset you will use  
+- The analyses you intend to conduct  
+
+Unlike many research abstracts, you will not necessarily report final results. Instead, this abstract describes what your project will examine and how you will approach the analysis. Advanced students who choose to conduct inferential statistics or hypothesis testing may mention those plans, but that is optional.
+
+A typical structure might include 6–7 sentences:
+
+1. **Background (2 sentences)**  
+   Briefly explain the system or context of your study.
+
+2. **Research Question (1 sentence)**  
+   Clearly state the question you are asking.
+
+3. **Dataset (1 sentence)**  
+   Identify the dataset you will use and where it came from.
+
+4. **Planned Analysis (1–2 sentences)**  
+   Describe what you will do to answer your question.  
+   Indicate which variables you will compare or summarize.  
+   Unless you have a strong reason not to, you should use the phrase **“exploratory data analysis”** in this section.
+
+5. **Potential Significance (1 sentence)**  
+   Briefly explain what conclusions you might draw, what contribution this could make, how a decision-maker might use the information, or why the project matters.
+
+### Writing Style
+
+- Write in **first person, future tense**, for example:  
+  “We will examine…”  
+  “We will use exploratory data analysis to…”
+
+- Be concise and specific.
+- Avoid unnecessary detail.
+- Focus on clarity.
+
+- Carefully proofread your abstract for grammar, clarity, and concision.
+- Confirm that your abstract meets any word count limits imposed by the SAC.
+
+## Example Abstract (Exploratory Data Analysis)
+
+> **Title: Sleep Duration and Academic Performance in College Students**  
+>  
+> Sleep is widely recognized as an important factor influencing cognitive performance and overall health. Previous research suggests that inadequate sleep may negatively affect academic outcomes among college students. In this project, We will ask whether average nightly sleep duration is associated with GPA among undergraduate students in a publicly available college health dataset. I will use exploratory data analysis to summarize the distribution of sleep duration and GPA and to visualize their relationship using scatterplots and grouped summaries. I will compare GPA across categories of sleep duration and examine whether patterns differ by year in school. This analysis may help clarify whether sleep habits are meaningfully associated with academic performance and may inform future, more targeted research questions.
+
+## How to Write a Title
+
+Your abstract must have a title.
+
+The title should:
+
+- Be a **single phrase or sentence**
+- Be approximately **6–12 words** (flexible)
+- Include important **keywords related to your question**
+- Clearly indicate what the poster is about
+
+The title may be:
+
+- A neutral description, such as:  
+  *The Relationship Between X and Y*
+- A more specific or declarative statement.
+
+The title does not need to include every detail from your research question, but it should give the reader a clear sense of the topic and variables involved.

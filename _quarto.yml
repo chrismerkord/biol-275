@@ -52,6 +52,7 @@ website:
           - project/dryad-datasets.qmd
           - project/team-formation.qmd
           - project/data-readiness-check.qmd
+          - project/abstract.qmd
       - section: "Resources"
         contents:
           - resources/index.qmd
