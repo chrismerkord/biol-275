@@ -113,7 +113,60 @@ $$
 :::
 
 ::: {.column width="50%"}
-\[image of poisson distribution with various values of lambda\]
+```{r}
+#| label: fig-poisson-pmf
+#| fig-cap: "Poisson probability distribution for λ = 1, 4, and 10. Points show $\\operatorname{Pr}[X = k]$ for integer values of $k$, connected by lines to highlight distribution shape. As $\\lambda$ increases, the distribution shifts right and becomes more symmetric."
+#| fig-alt: "Plot of three Poisson probability mass functions with large colored points connected by lines. Lambda equals 1 is concentrated near zero, lambda equals 4 peaks around four, and lambda equals 10 peaks around ten and appears more symmetric."
+
+# Poisson PMF plot with direct point styling (Okabe–Ito colors)
+library(tidyverse)
+
+# Parameters
+lambdas <- c(1, 4, 10)
+k_max   <- 20
+
+# Okabe–Ito colors (subset)
+okabe_ito <- c(
+  "1"  = "#E69F00",  # orange
+  "4"  = "#CC79A7",  # reddish purple
+  "10" = "#56B4E9"   # sky blue
+)
+
+# Generate data
+dt <- tidyr::expand_grid(
+  k = 0:k_max,
+  lambda = lambdas
+) |>
+  dplyr::mutate(
+    p = dpois(k, lambda),
+    lambda_f = factor(lambda, levels = lambdas)
+  )
+
+# Plot
+ggplot(dt, aes(x = k, y = p)) +
+  geom_line(aes(group = lambda_f), linewidth = 2.0, color = "grey55") +
+  geom_point(
+    aes(fill = lambda_f),
+    shape = 21, size = 5, stroke = 1.2, color = "black"
+  ) +
+  scale_fill_manual(
+    values = okabe_ito,
+    labels = c(
+      expression(lambda == 1),
+      expression(lambda == 4),
+      expression(lambda == 10)
+    )
+  ) +
+  labs(x = "k", y = "Pr[X = k]", fill = NULL) +
+  coord_cartesian(expand = c(top = TRUE, left = TRUE, bottom=FALSE, right= TRUE)) +
+  theme_classic(base_size = 18) +
+  theme(
+    legend.position = c(0.98, 0.98),
+    legend.justification = c(1, 1),
+    legend.background = element_blank(),
+    legend.key = element_blank()
+  )
+```
 :::
 :::::
 
