@@ -184,4 +184,20 @@ Introduces the Poisson distribution as a model for random counts in time or spac
 :::
 :::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 12
+:::
+
+::: card-body
+##### Contingency Analysis 1: Risk and Odds {.card-title}
+
+Introduces methods for quantifying the strength of association between two categorical variables using 2×2 contingency tables. We develop conditional probability (risk), relative risk, odds, and the odds ratio, and discuss when each measure is appropriate based on study design.
+
+[Go to Lecture](slides/lecture-12-contingency-analysis-1/){.btn .btn-primary}
+:::
+:::::
+::::::
 :::::::::::::::::::

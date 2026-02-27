@@ -1,0 +1,588 @@
+---
+title: |
+  | Lecture 12
+  | Contingency Analysis Part 1:
+  | Odds and Risk
+subtitle: "ABD 3e Chapter 9, Sections 1-3"
+description: "Introduces methods for quantifying the strength of association between two categorical variables using 2×2 contingency tables. We develop conditional probability (risk), relative risk, odds, and the odds ratio, and discuss when each measure is appropriate based on study design."
+format:
+  revealjs:
+    fig-width: 8
+    fig-height: 6
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+## Learning Objectives
+
+## Contingency Analysis: Relationships Between Categorical Variables
+
+-   We now move from **one categorical variable** to **two categorical
+    variables**
+
+**Examples:**
+
+\- Treatment (Aspirin vs Placebo) × Cancer (Yes/No)\
+- Sex (Men/Women) × Survival (Yes/No)\
+- Smoking (Yes/No) × Lung Disease (Yes/No)
+
+**Core Question:**
+
+> Does the distribution of one variable depend on the other?
+
+If yes → **association**\
+If no → **independence**
+
+## Example: Does knowing a person’s sex tell you anything about the chance they survived the Titanic?
+
+![](images/titanic-sex-survival-mosaic-plots.jpg)
+
+## Two Complementary Goals
+
+::::: columns
+::: {.column width="50%"}
+### 1️⃣ Estimation
+
+How strong is the relationship?
+
+-   Relative Risk (RR)
+-   Odds Ratio (OR)
+
+These quantify the **magnitude** of association.
+:::
+
+::: {.column width="50%"}
+### 2️⃣ Hypothesis Testing
+
+Is the relationship statistically detectable?
+
+-   Chi-square contingency test
+
+This evaluates **evidence** for association.
+:::
+:::::
+
+**Important:**\
+Estimation and testing answer different questions.
+
+## Two-Part Framework for Contingency Analysis
+
+::::: columns
+::: {.column width="50%"}
+### Part 1 (Today): Estimation
+
+-   Construct a 2×2 contingency table
+-   Compute:
+    -   Risk
+    -   Relative Risk (RR)
+    -   Odds
+    -   Odds Ratio (OR)
+-   Interpret effect size
+
+We quantify **how much** the variables are associated.
+:::
+
+::: {.column width="50%"}
+### Part 2 (Next Lecture): Hypothesis Testing
+
+-   Null hypothesis: variables are independent
+-   Expected counts under independence
+-   Chi-square contingency test
+-   Good for more than 2x2 contingency tables
+
+We determine **whether** the observed association could be due to
+chance.
+:::
+:::::
+
+## What is a Contingency Table?
+
+::::: columns
+::: {.column width="50%"}
+-   A [contingency table]{.keyword} summarizes the joint distribution of
+    two categorical variables
+-   Rows = categories of one variable
+-   Columns = categories of the second variable
+-   Each cell = a **count (frequency)**
+-   Margins show row and column totals
+-   Allows us to:
+    -   Compare conditional proportions
+    -   Assess association vs independence
+    -   Compute relative risk and odds ratios
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-contingency-table
+#| fig-cap: "Summary of the Titanic data from Whitlock & Schluter"
+
+library(gt)
+
+titanic_path <- "http://www.zoology.ubc.ca/~schluter/WhitlockSchluter/wp-content/data/chapter09/chap09f1.1Titanic.csv"
+
+titanic_path |> 
+  readr::read_csv(show_col_types = FALSE) |> 
+  dplyr::mutate(
+    sex = factor(sex, levels = c("Men", "Women")),
+    survival = factor(survival, levels = c("Survived", "Died"))
+  ) |> 
+  dplyr::count(sex, survival) |> 
+  tidyr::pivot_wider(
+    names_from = "sex",
+    values_from = n
+  ) |> 
+  dplyr::mutate(Total = Men + Women) |> 
+  gt(rowname_col = "survival") |> 
+  tab_stubhead(label = "Survival") |> 
+  tab_spanner(label = "Sex", columns = c(Men, Women))|> 
+  cols_label(Total = "") |> 
+  grand_summary_rows(
+    columns = everything(),
+    fns = list(label = "", fn = "sum")
+  ) |>
+  cols_align(
+    align = "center",
+    columns = c(Men, Women)
+  ) |> 
+  # Color the stub (row labels) as one block color
+  tab_style(
+    style = cell_fill(color = "#56B4E9"),
+    locations = list(
+      cells_stub(rows = everything()),
+      cells_stubhead()
+    )
+  ) |>
+  
+  # Color the column spanner + column labels as one block color
+  tab_style(
+    style = cell_fill(color = "#E69F00"),
+    locations = list(
+      cells_column_spanners(),
+      cells_column_labels(columns = c(Men, Women))
+    )
+  ) |> 
+  tab_options(
+    table.width = pct(60),
+    table.font.size = px(40),
+    table.border.top.width = px(0),
+    table.border.bottom.width = px(0),
+    column_labels.border.top.width = px(0),
+    column_labels.border.bottom.width = px(0),
+    table_body.border.bottom.width = px(0),
+    table_body.border.top.width = px(0),
+    data_row.padding = px(16),
+    data_row.padding.horizontal = px(16),
+    column_labels.padding = px(8),
+    column_labels.padding.horizontal = px(16)
+  )|>
+  tab_style(
+    style = cell_borders(sides = "all", weight = px(0)),
+    locations = list(
+      cells_body(rows = everything()),
+      cells_stub(rows = everything()),
+      cells_grand_summary(),
+      cells_stub_grand_summary(),
+      cells_footnotes(),
+      cells_source_notes(),
+      cells_column_labels(),
+      cells_column_spanners()
+    )
+  ) |> 
+  tab_style(
+    style = cell_borders(sides = "left", weight = px(3), color = "black"),
+    locations = list(
+      cells_stub(),
+      cells_stubhead()
+    )
+  ) |> 
+  tab_style(
+    style = cell_borders(sides = "right", weight = px(3), color = "black"),
+    locations = list(
+      cells_column_spanners(),
+      cells_column_labels(columns = "Women"),
+      cells_body(columns = "Women"),
+      cells_stub(),
+      cells_stubhead()
+    )
+  ) |> 
+  tab_style(
+    style = cell_borders(sides = "bottom", weight = px(3), color = "black"),
+    locations = list(
+      cells_body(columns = c("Men", "Women"), rows = 2),
+      cells_stub(rows = 2)
+    )
+  ) |> 
+  tab_style(
+    style = cell_borders(sides = "top", weight = px(3), color = "black"),
+    locations = list(
+      cells_column_spanners(),
+      cells_stubhead(),
+      cells_body(columns = c("Men", "Women"), rows = 1)
+    )
+  ) |> 
+  tab_style(
+    style = cell_borders(sides = "top", weight = px(1.5), color = "gray70"),
+    locations = list(
+      cells_stub(rows = 1)
+    )
+  )
+
+
+  
+
+
+  
+
+```
+:::
+:::::
+
+## Example Study: Aspirin and Cancer Risk
+
+::::: columns
+::: {.column width="50%"}
+A large randomized study investigated whether regular aspirin use
+reduces cancer risk.
+
+Two categorical variables:
+
+-   **Treatment**: (Aspirin vs. Placebo)
+-   **Cancer Outcome**: Cancer, No Cancer
+
+Each participant falls into exactly one cell of a 2 × 2 contingency
+table.
+
+Our goal:
+
+> Does cancer risk differ between the aspirin and placebo groups?
+:::
+
+::: {.column width="50%"}
+![](images/aspirin-cancer-contingency-table.png){fig-align="center"
+width="500"}
+
+![](images/aspirin-cancer-mosaic-plot.png.jpg){fig-align="center"
+width="500"}
+:::
+:::::
+
+## Conditional Probability ([Risk]{.keyword})
+
+A **risk** is a conditional probability:
+
+$$
+\text{Risk} = \operatorname{Pr}(\text{Cancer} \mid \text{Group})
+$$
+
+We compute risk as a proportion by dividing:
+
+$$ p=\frac{\text{number with cancer in group}}{\text{total in group}} $$
+
+## Example: Risk of Cancer for each Group
+
+![](images/aspirin-cancer-contingency-table.png){fig-align="center"
+width="40%"}
+
+::::: columns
+::: {.column width="50%"}
+Risk of cancer in the aspirin group:
+
+$$
+\operatorname{Pr}(\text{Cancer} \mid \text{Aspirin}) 
+$$
+
+$$
+\hat{p}_1=\frac{1438}{1438+18496}=0.0721
+$$
+:::
+
+::: {.column width="50%"}
+Risk of cancer in the placebo group:
+
+$$  
+\operatorname{Pr}(\text{Cancer} \mid \text{Placebo}) 
+$$
+
+$$
+\hat{p}_2=\frac{1427}{1427+18515}=0.0716
+$$
+:::
+:::::
+
+## [Relative Risk]{.keyword} (RR)
+
+::::: columns
+::: {.column width="50%"}
+Now we compare risks across groups.
+
+Relative risk of aspirin:
+
+$$ RR =  \frac{ \operatorname{Pr}(\text{Cancer} \mid \text{Aspirin}) }{ \operatorname{Pr}(\text{Cancer} \mid \text{Placebo}) } $$
+
+$$ \hat{RR}=\frac{\hat{p}_1}{\hat{p}_2} $$
+
+$$ =\frac{0.0721}{0.0716}=1.007 $$
+:::
+
+::: {.column width="50%"}
+Interpretation:
+
+-   $RR = 1$ → same risk in both groups
+-   $RR > 1$ → higher risk in aspirin group
+-   $RR < 1$ → lower risk in aspirin group
+
+Relative risk measures the **magnitude of association** between
+treatment and outcome.
+:::
+:::::
+
+## Odds: A Different Way to Express Probability
+
+::::: columns
+::: column
+-   Risk compares outcome to total.
+
+-   Odds compare outcome to non-outcome.
+
+-   Odds are not bounded between 0 and 1.
+
+-   When to use: 2 variables, each with 2 categories
+:::
+
+::: column
+Risk (probability):
+
+$$
+\operatorname{Pr}(\text{Cancer})
+$$
+
+Odds:
+
+$$
+\frac{\operatorname{Pr}(\text{Cancer})}
+     {\operatorname{Pr}(\text{No Cancer})}
+$$
+
+$$
+=\frac{\operatorname{Pr}(\text{Cancer})}     {1 - \operatorname{Pr}(\text{Cancer})}
+$$
+:::
+:::::
+
+## Odds of developing cancer while taking aspirin
+
+::::: columns
+::: {.column width="50%"}
+![](images/aspirin-cancer-contingency-table.png){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+Success
+
+$$
+\hat{p}_1=\frac{1438}{1438+18496}=0.0721
+$$
+
+Failure
+
+$$
+1-\hat{p}_1=1-0.0721=0.9279
+$$
+
+Odds of success
+
+$$
+\hat{O}_1=\frac{\hat{p}_1}{1-\hat{p}_1}=\frac{0.0721}{0.9279}=0.0777
+$$
+:::
+:::::
+
+## Odds of developing cancer while taking placebo
+
+::::: columns
+::: {.column width="50%"}
+![](images/aspirin-cancer-contingency-table.png){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+Success
+
+$$
+\hat{p}_2=\frac{1427}{1427+18515}=0.0716
+$$
+
+Failure
+
+$$
+1-\hat{p}_2=1-0.0716=0.9274
+$$
+
+Odds of success
+
+$$
+\hat{O}_2=\frac{\hat{p}_2}{1-\hat{p}_2}=\frac{0.0721}{0.9284}=0.0771
+$$
+:::
+:::::
+
+## [Odds Ratio]{.keyword} (OR)
+
+::::: columns
+::: {.column width="50%"}
+The odds ratio compares two odds:
+
+$$ \hat{OR} = \frac{\text{Odds}(\text{Cancer} \mid \text{Aspirin})}      {\text{Odds}(\text{Cancer} \mid \text{Placebo})} $$
+
+Interpretation:
+
+-   $OR = 1$ → same odds in both groups
+-   $OR > 1$ → higher odds in numerator group
+-   $OR < 1$ → lower odds in numerator group
+:::
+
+::: {.column width="50%"}
+For the aspirin study:
+
+$$
+\hat{OR}
+=
+\frac{0.0777}{0.0771}
+=
+1.008
+$$
+
+The odds of cancer are essentially the same in the aspirin and placebo
+groups.
+:::
+:::::
+
+## Odds ratio shortcut
+
+The following is a shortcut formula where 𝑎, 𝑏, 𝑐, and 𝑑 refer to the
+observed frequencies in the cells of the contingency table:
+
+$$
+\hat{OR}=\frac{a/c}{b/d}=\frac{ad}{bc}
+$$
+
+![](images/odds-ratio-shortcut-table.png){fig-align="center"}
+
+## Standard error for odds ratio
+
+-   The sampling distribution for the odds ratio is highly skewed, so we
+    convert the odds ratio to its natural log,
+    $\operatorname{ln}(\hat{OR})$
+
+$$
+\operatorname{SE}[\operatorname{ln}(\hat{OR})]=\sqrt{\frac{1}{a}+\frac{1}{b}+\frac{1}{c}+\frac{1}{d}}
+$$
+
+-   This is called the standard error of the log-odds ratio
+
+For the aspirin example:
+
+$$
+\operatorname{SE}[\operatorname{ln}(\hat{OR})]=\sqrt{\frac{1}{1438}+\frac{1}{1427}+\frac{1}{18496}+\frac{1}{18515}}=0.03878
+$$
+
+## Confidence interval for odds ratio
+
+-   We can approximate a confidence interval for the log-odds ratio:
+
+$$
+\operatorname{ln}(\hat{OR}) \pm Z \times \operatorname{SE}[\operatorname{ln}(\hat{OR})]
+$$
+
+where $Z=1.96$ for a 95% CI and $Z=2.58$ for a 99% CI
+
+To get the CI for the odds ratio itself, you have to take the antilog of
+the upper and lower bounds:
+
+$$
+e^x < \operatorname{OR} < e^y
+$$
+
+## Odds ratio interpretation
+
+-   If OR=1 there is no association between exposure and outcome
+
+-   If 95% CI includes 1, results are not statistically significant
+
+## Relative Risk vs. Odds Ratio
+
+::::: columns
+::: column
+**Relative Risk (RR)**
+
+-   Requires estimating **risk (probability)**
+-   Risk requires a meaningful **numerator and denominator**:
+    -   number with outcome
+    -   total number at risk
+
+Best used when
+
+-   Cohort studies
+-   Randomized experiments
+-   The total population at risk is known
+:::
+
+::: column
+**Odds Ratio (OR)**
+
+-   Does not require estimating population risk
+-   Can be computed even when totals at risk are unknown
+
+Best used when
+
+-   Case-control studies
+-   Logistic regression
+
+If the outcome is rare, $OR \approx RR$
+:::
+:::::
+
+## [Case-Control Study]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+-   Investigates associations between an exposure and an outcome.
+
+-   Start with individuals who already have the outcome (**cases**)
+
+-   Select a comparison group without the outcome (**controls**)
+
+-   Look backward to determine prior exposure status
+
+-   The total population at risk is unknown, so risk cannot be estimated
+    directly. Use **odds ratio** instead.
+:::
+
+::: {.column width="50%"}
+![[deakin.libguides.com](https://deakin.libguides.com/quantitative-study-designs/case_control)](images/clipboard-3885282623.png)
+:::
+:::::
+
+## [Cohort Study]{.keyword}
+
+::::: columns
+::: {.column width="60%"}
+-   Follows individuals forward in time to assess whether an exposure is
+    associated with an outcome.
+-   Begin with individuals classified by exposure status (Exposed,
+    Unexposed)
+-   Follow both groups over time
+-   Record who develops the outcome
+-   The total number at risk in each group is known, so risk can be
+    estimated directly.
+-   We can compute **relative risk**.
+-   Types: Prospective or Retrospective (see diagram)
+:::
+
+::: {.column width="40%"}
+![A diagram explaining the differences between a case-control study, a
+prospective cohort study, and a retrospective cohort study.
+Jmarchn](images/ExplainingCaseControlSJW-en.svg.png){fig-align="center"
+width="539"}
+:::
+:::::
