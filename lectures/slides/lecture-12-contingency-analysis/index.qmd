@@ -1186,7 +1186,7 @@ eaten are **not independent**
     -   **Yates correction**: continuity adjustment sometimes
         recommended for 2 × 2 tables
     -   [Fisher’s exact test]{.keyword}: preferred when expected counts
-        are small
+        are small (any expected count < 5)
 -   Alternative framework
     -   **G-test (likelihood ratio test)**
         -   Based on likelihood ratios rather than squared deviations
