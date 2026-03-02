@@ -47,7 +47,7 @@ If no → **independence**
 
 ![](images/titanic-sex-survival-mosaic-plots.jpg)
 
-## Two Complementary Goals
+## Two Complementary Goals: Estimation and Hypothesis Testing Answer Difference Questions
 
 ::::: columns
 ::: {.column width="50%"}
@@ -59,6 +59,8 @@ How strong is the relationship?
 -   Odds Ratio (OR)
 
 These quantify the **magnitude** of association.
+
+Primarily defined for 2×2 tables (binary exposure × binary outcome)
 :::
 
 ::: {.column width="50%"}
@@ -69,39 +71,9 @@ Is the relationship statistically detectable?
 -   Chi-square contingency test
 
 This evaluates **evidence** for association.
-:::
-:::::
 
-**Important:**\
-Estimation and testing answer different questions.
-
-## Two-Part Framework for Contingency Analysis
-
-::::: columns
-::: {.column width="50%"}
-### Part 1: Estimation
-
--   Construct a 2×2 contingency table
--   Compute:
-    -   Risk
-    -   Relative Risk (RR)
-    -   Odds
-    -   Odds Ratio (OR)
--   Interpret effect size
-
-We quantify **how much** the variables are associated.
-:::
-
-::: {.column width="50%"}
-### Part 2: Hypothesis Testing
-
--   Null hypothesis: variables are independent
--   Expected counts under independence
--   Chi-square contingency test
--   Good for more than 2x2 contingency tables
-
-We determine **whether** the observed association could be due to
-chance.
+Applicable to any r × c contingency table (two categorical variables
+with two or more categories each)
 :::
 :::::
 
@@ -124,7 +96,7 @@ chance.
 ::: {.column width="50%"}
 ```{r}
 #| label: fig-contingency-table
-#| fig-cap: "Summary of the Titanic data from Whitlock & Schluter"
+#| fig-cap: "Contingency table summarizing the Titanic data from Whitlock & Schluter."
 
 library(gt)
 
@@ -1188,7 +1160,7 @@ eaten are **not independent**
     -   **Yates correction**: continuity adjustment sometimes
         recommended for 2 × 2 tables
     -   [Fisher’s exact test]{.keyword}: preferred when expected counts
-        are small (any expected count < 5)
+        are small (any expected count \< 5)
 -   Alternative framework
     -   **G-test (likelihood ratio test)**
         -   Based on likelihood ratios rather than squared deviations
