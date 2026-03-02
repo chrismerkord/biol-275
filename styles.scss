@@ -193,6 +193,11 @@ div.cell-output-stderr {
   font-size: 1.3em !important;
 }
 
+/* Restore default equation size inside specific columns */
+.reveal .normal-eq-column .MathJax_Display {
+  font-size: 1em !important;
+}
+
 .center-block {
   display: flex;
   justify-content: center;
@@ -221,4 +226,58 @@ div.cell-output-stderr {
   border-radius: .3em;
   color: #b00020;  /* deep, readable red */
   font-weight: 600;
+}
+
+.table-small-text {
+  font-size: 0.9em;
+}
+
+/* Thick solid green bottom border on header row */
+.thick-header-border thead tr:last-child th {
+  border-bottom: 4px solid #009E73; /* Okabe–Ito green */
+}
+
+/* Apply a thick solid green upper border to the last row */
+.thick-last-row-border tbody tr:last-child td {
+  border-top: 4px solid #b7b7b7;
+}
+
+/* Thick solid green left border on the last column */
+.thick-last-col thead tr th:last-child,
+.thick-last-col tbody tr td:last-child {
+  border-left: 4px solid #b7b7b7;
+}
+
+/* Bold text in the first column */
+.bold-first-col tbody tr td:first-child,
+.bold-first-col thead tr th:first-child {
+  font-weight: 700;
+}
+
+.reveal table.table-mb-2 {
+  margin-bottom: 3rem;
+}
+
+.no-row-borders tbody tr,
+.no-row-borders thead tr {
+  border: none;
+}
+
+/* Remove borders from cells within rows */
+.no-row-borders tbody tr td,
+.no-row-borders thead tr th {
+  border: none;
+}
+
+.reveal .slides .highlight-yellow {
+    font-weight: 600;
+    padding: .08em .35em;
+    border-radius: .3em;
+    background-color: #FFDE21;
+}
+
+.reveal .slides .orange-border {
+    border: 4px solid #c50;
+    padding: .08em .35em;
+    border-radius: .3em;
 }

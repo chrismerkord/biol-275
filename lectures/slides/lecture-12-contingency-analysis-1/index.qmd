@@ -228,12 +228,6 @@ titanic_path |>
     )
   )
 
-
-  
-
-
-  
-
 ```
 :::
 :::::
@@ -586,3 +580,613 @@ Jmarchn](images/ExplainingCaseControlSJW-en.svg.png){fig-align="center"
 width="539"}
 :::
 :::::
+
+# The $\chi^2$ contingency test
+
+## The $\chi^2$ contingency test is the most commonly used test of association between two categorical
+
+-   It tests the goodness of fit to the data of the null model of
+    independence of variables.
+
+-   RR and OR allow us to estimate magnitude of association, but do not
+    test whether an association may be caused by chance alone.
+
+## Example: Consider the life cycle of the trematode *E. californensis*
+
+::::: columns
+::: {.column width="50%"}
+1.  Trematode worms *Euhaplorchis californensis* use three hosts during
+    their life cycle
+2.  Mature worms in birds lay eggs that pass out in bird’s feces
+3.  Horn snails *Cerithidea californica* eat the eggs
+4.  Eggs hatch and grow to another life stage in the snail, sterilizing
+    it
+5.  Californa killifish *Fundulus parvipinnis* eat the snail
+6.  Parasite develops to the next life stage and encysts in the brain
+7.  Birds eat infected killifish, worm matures in the bird
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-3999905754.png)
+:::
+:::::
+
+## Research on fish behavior
+
+::::: columns
+::: {.column width="50%"}
+-   Researchers have observed that **infected fish** spend excessive
+    time near the water surface
+
+-   They may be **more vulnerable** to bird predation, which would
+    benefit the worm
+
+-   [Lafferty and Morris
+    (1996)](https://parasitology.msi.ucsb.edu/sites/default/files/docs/publications/Altered%20Behavior.pdf)
+    tested whether bird predation varies with **severity of infection**
+
+-   Fish placed into **outdoor pens** open to bird predation, with fish
+    of varying infection intensity:
+
+    -   highly infected
+
+    -   lightly infected
+
+    -   not infected
+:::
+
+::: {.column width="50%"}
+![Stylized depiction of experimental fish pens used to test whether bird
+predation varies with parasite infection intensity (after Lafferty &
+Morris
+1996).](images/lafferty-morris-experimental-design.png){fig-alt="Illustration of three rectangular mesh fish pens floating in a marsh channel. Each pen is labeled with a sign: “Highly Infected,” “Lightly Infected,” and “Uninfected.” The highly infected pen contains fish with numerous dark spots indicating heavy parasite loads; the lightly infected pen shows fish with fewer spots; the uninfected pen shows fish without spots. A large heron stands on the muddy bank at left, a kingfisher perches on a wire above the water at right, and a tern hovers overhead. The scene represents an experimental setup comparing bird predation across different infection intensities."
+fig-align="center"}
+:::
+:::::
+
+## Observed frequencies of fish eaten or not eaten by birds according to trematode infection level
+
+::::: columns
+::: {.column width="50%"}
+Table 1. Observed Frequencies.
+
+|                    | Not Infected | Lightly Infected | Highly Infected |
+|:------------------:|:------------:|:----------------:|:---------------:|
+|   Eaten by birds   |      1       |        10        |       37        |
+| Not eaten by birds |      49      |        35        |        9        |
+
+> Question:
+>
+> Is being eaten by birds (outcome) independent from infection level?
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-379590570.png)
+:::
+:::::
+
+## Steps to hypothesis testing
+
+1.  State hypotheses
+2.  Calculate test statistic ( $\chi_2$ )
+    a.  Calculate row, column, and grand totals
+    b.  Calculate expected proportions assuming independence
+    c.  Calculate expected frequencies assuming independence
+    d.  Calculate difference between observed and expected frequencies (
+        $\chi_2$ )
+3.  Calculate $P$-value
+4.  Interpret hypotheses (2 ways):
+    -   $P<\alpha$
+    -   $\chi^2_{df}>\chi^2_{crit}$
+
+## STEP 1: State the hypotheses
+
+::::: columns
+::: {.column width="50%"}
+$H_0$ : Parasite infection level and being eaten are **independent**
+
+$H_A$ : Parasite infection level and being eaten are **not independent**
+:::
+
+::: {.column width="50%"}
+![Great Blue Heron, a killifish
+predator.](images/clipboard-885061490.png){width="80%"}
+:::
+:::::
+
+## STEP 2: Calculate the test statistic ( $\chi^2$ )
+
+::::: columns
+::: {.column width="40%"}
+Goal: calculate the $\chi^2$ from the data to see how different the
+observed frequencies are from the expected frequencies
+
+Start with: **contingency table of observed frequencies**
+
+Next step: 2a. Calculate row, column, and grand totals
+:::
+
+::: {.column width="60%"}
+Table 1. Observed Frequencies.
+
+|                    | Not Infected | Lightly Infected | Highly Infected |
+|--------------------|--------------|------------------|-----------------|
+| Eaten by birds     | 1            | 10               | 37              |
+| Not eaten by birds | 49           | 35               | 9               |
+
+: {tbl-colwidths="\[37,21,21,21\]" .table-small-text
+.thick-header-border .no-row-borders .bold-first-col}
+:::
+:::::
+
+## STEP 2A: Calculate row, column, and grand totals
+
+::::: columns
+::: {.column width="40%"}
+-   Sum the values in each row to get row totals
+
+-   Sum the values in each column to get column totals
+
+-   Sum the row or column totals to get the grand total
+:::
+
+::: {.column width="60%"}
+Table 1. Observed Frequencies.
+
+|   | Not Infected | Lightly Infected | Highly Infected | Row total |
+|:--------------|:-------------:|:-------------:|:-------------:|:-------------:|
+| Eaten by birds | 1 | 10 | 37 | [48]{.fragment .highlight-yellow} |
+| Not eaten by birds | 49 | 35 | 9 | [93]{.fragment .highlight-yellow} |
+| Column Total | [50]{.fragment .highlight-yellow} | [45]{.fragment .highlight-yellow} | [46]{.fragment .highlight-yellow} | [141]{.fragment .highlight-yellow} |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .thick-last-row-border
+.bold-first-col .thick-last-col .table-mb-2}
+:::
+:::::
+
+## STEP 2B: Calculate expected proportions assuming independence
+
+::::: columns
+::: {.column width="40%"}
+-   Goal: calculate the values in table 2
+-   First, calculate the marginal values assuming independence
+    -   For each column or row, divide frequency by grand total to get
+        expected proportion
+:::
+
+::: {.column width="60%"}
+Table 1. Observed Frequencies.
+
+|                    | Not Infected | Lightly Infected | Highly Infected | Row total |
+|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+| Eaten by birds     |      1       |        10        |       37        |    48     |
+| Not eaten by birds |      49      |        35        |        9        |    93     |
+| Column Total       |      50      |        45        |       46        |    141    |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .thick-last-row-border
+.bold-first-col .thick-last-col .table-mb-2}
+
+Table 2. Expected Proportions.
+
+|                    | Not Infected | Lightly Infected | Highly Infected | Proportion |
+|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+| Eaten by birds     |              |                  |                 |            |
+| Not eaten by birds |              |                  |                 |            |
+| Proportion         |              |                  |                 |            |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .thick-last-row-border
+.bold-first-col .thick-last-col .table-mb-2}
+:::
+:::::
+
+## Example 1: Probability of being not infected
+
+::::: columns
+::: {.column width="40%"}
+$$
+\hat{\operatorname{Pr}}[\text{Not infected}]=
+$$
+
+$$
+\frac{50}{141}=
+$$
+
+$$
+0.3546
+$$
+:::
+
+::: {.column width="60%"}
+Table 1. Observed Frequencies.
+
+|   | Not Infected | Lightly Infected | Highly Infected | Row total |
+|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+| Eaten by birds | 1 | 10 | 37 | 48 |
+| Not eaten by birds | 49 | 35 | 9 | 93 |
+| Column Total | [50]{.orange-border} | 45 | 46 | [141]{.orange-border} |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .thick-last-row-border
+.bold-first-col .thick-last-col .table-mb-2}
+
+Table 2. Expected Proportions.
+
+|   | Not Infected | Lightly Infected | Highly Infected | Proportion |
+|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+| Eaten by birds |  |  |  |  |
+| Not eaten by birds |  |  |  |  |
+| Proportion | [0.3546]{.highlight-yellow} |  |  |  |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .thick-last-row-border
+.bold-first-col .thick-last-col .table-mb-2}
+:::
+:::::
+
+## Example 2: Probability of not being eaten by birds
+
+::::: columns
+::: {.column width="40%"}
+$$
+\hat{\operatorname{Pr}}[\text{Eaten by birds}]=
+$$
+
+$$
+\frac{48}{141}=
+$$
+
+$$
+0.3404
+$$
+:::
+
+::: {.column width="60%"}
+Table 1. Observed Frequencies.
+
+|   | Not Infected | Lightly Infected | Highly Infected | Row total |
+|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+| Eaten by birds | 1 | 10 | 37 | [48]{.orange-border} |
+| Not eaten by birds | 49 | 35 | 9 | 93 |
+| Column Total | 50 | 45 | 46 | [141]{.orange-border} |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .thick-last-row-border
+.bold-first-col .thick-last-col .table-mb-2}
+
+Table 2. Expected Proportions.
+
+|   | Not Infected | Lightly Infected | Highly Infected | Prop. |
+|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+| Eaten by birds |  |  |  | [0.3404]{.highlight-yellow} |
+| Not eaten by birds |  |  |  |  |
+| Proportion | 0.3546 |  |  |  |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .thick-last-row-border
+.bold-first-col .thick-last-col .table-mb-2}
+:::
+:::::
+
+## Repeat for all columns and rows
+
+::::: columns
+::: {.column width="40%"}
+:::
+
+::: {.column width="60%"}
+Table 1. Observed Frequencies.
+
+|                    | Not Infected | Lightly Infected | Highly Infected | Row total |
+|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+| Eaten by birds     |      1       |        10        |       37        |    48     |
+| Not eaten by birds |      49      |        35        |        9        |    93     |
+| Column Total       |      50      |        45        |       46        |    141    |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .thick-last-row-border
+.bold-first-col .thick-last-col .table-mb-2}
+
+Table 2. Expected Proportions.
+
+|   | Not Infected | Lightly Infected | Highly Infected | Prop. |
+|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+| Eaten by birds |  |  |  | [0.3404]{.highlight-yellow} |
+| Not eaten by birds |  |  |  | [0.6596]{.highlight-yellow} |
+| Proportion | [0.3546]{.highlight-yellow} | [0.3192]{.highlight-yellow} | [0.3262]{.highlight-yellow} |  |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .thick-last-row-border
+.bold-first-col .thick-last-col .table-mb-2}
+:::
+:::::
+
+## Calculate cell proportions by multiplying marginal proportions
+
+::::: columns
+::: {.column .normal-eq-column width="40%"}
+-   Use multiplication rule:
+
+    > If two events are **independent** (null hypothesis), probability
+    > of both occurring is probability of one times probability of the
+    > other
+
+$$
+\operatorname{Pr}[\text{not infected and eaten}]\\
+=\operatorname{Pr}[\text{not infected}]\times\operatorname{Pr}[\text{eaten}]\\
+=0.3546 \times 0.3404
+=0.1207
+$$
+:::
+
+::: {.column width="60%"}
+Table 1. Observed Frequencies.
+
+|                    | Not Infected | Lightly Infected | Highly Infected | Row total |
+|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+| Eaten by birds     |      1       |        10        |       37        |    48     |
+| Not eaten by birds |      49      |        35        |        9        |    93     |
+| Column Total       |      50      |        45        |       46        |    141    |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .thick-last-row-border
+.bold-first-col .thick-last-col .table-mb-2}
+
+Table 2. Expected Proportions.
+
+|   | Not Infected | Lightly Infected | Highly Infected | Prop. |
+|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+| Eaten by birds | [0.1207]{.highlight-yellow} |  |  | [0.3404]{.orange-border} |
+| Not eaten by birds |  |  |  | 0.6596 |
+| Proportion | [0.3546]{.orange-border} | 0.3192 | 0.3262 |  |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .thick-last-row-border
+.bold-first-col .thick-last-col .table-mb-2}
+:::
+:::::
+
+## Repeat for each cell proportion
+
+::::: columns
+::: {.column width="40%"}
+-   Use multiplication rule:
+
+    > If two events are **independent** (null hypothesis), probability
+    > of both occurring is probability of one times probability of the
+    > other
+:::
+
+::: {.column width="60%"}
+Table 1. Observed Frequencies.
+
+|                    | Not Infected | Lightly Infected | Highly Infected | Row total |
+|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+| Eaten by birds     |      1       |        10        |       37        |    48     |
+| Not eaten by birds |      49      |        35        |        9        |    93     |
+| Column Total       |      50      |        45        |       46        |    141    |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .thick-last-row-border
+.bold-first-col .thick-last-col .table-mb-2}
+
+Table 2. Expected Proportions.
+
+|   | Not Infected | Lightly Infected | Highly Infected | Prop. |
+|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+| Eaten by birds | [0.1207]{.highlight-yellow} | [0.1087]{.highlight-yellow} | [0.1110]{.highlight-yellow} | 0.3404 |
+| Not eaten by birds | [0.2339]{.highlight-yellow} | [0.2105]{.highlight-yellow} | [0.2152]{.highlight-yellow} | 0.6596 |
+| Proportion | 0.3546 | 0.3192 | 0.3262 |  |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .thick-last-row-border
+.bold-first-col .thick-last-col .table-mb-2}
+:::
+:::::
+
+## STEP 2C: Calculate expected **frequencies** assuming independence
+
+::::: columns
+::: {.column .normal-eq-column width="40%"}
+$$
+\operatorname{Expected}[\text{not infected and eaten}]=
+\\\operatorname{Pr}[\text{not infected and eaten}]\times G=
+\\0.1207 \times 141 =
+\\17.0
+$$
+
+Repeat for each cell
+:::
+
+::: {.column width="60%"}
+**Table 3. Expected Frequencies**
+
+|   | Not Infected | Lightly Infected | Highly Infected |   |
+|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+| Eaten by birds | [17.0]{.highlight-yellow} |  |  |  |
+| Not eaten by birds |  |  |  |  |
+|  |  |  |  | 141 |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .bold-first-col .table-mb-2}
+
+Table 2. Expected Proportions.
+
+|                    | Not Infected | Lightly Infected | Highly Infected |     |
+|--------------------|:------------:|:----------------:|:---------------:|:---:|
+| Eaten by birds     |    0.1207    |      0.1087      |     0.1110      |     |
+| Not eaten by birds |    0.2339    |      0.2105      |     0.2152      |     |
+|                    |              |                  |                 |     |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .bold-first-col .table-mb-2}
+:::
+:::::
+
+## STEP 2D: Calculate $\chi^2$ test statistic
+
+::::: columns
+::: {.column .normal-eq-column width="40%"}
+Use the tables for **Observed** and **Expected** frequencies to
+calculate the test statistic
+
+$$
+\chi^2 = \sum_{i=1}^{r} \sum_{j=1}^{c} \frac{(O_{ij} - E_{ij})^2}{E_{ij}}
+$$
+
+Where:
+
+-   $r$ is the number of rows
+-   $c$ is the number of columns
+-   $O_{ij}$ is the observed frequency in row $i$ and column $j$
+-   $E_{ij}$ is the expected frequency in row $i$ and column $j$
+:::
+
+::: {.column width="60%"}
+Table 3. Expected Frequencies
+
+|   | Not Infected | Lightly Infected | Highly Infected |   |
+|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+| Eaten by birds | [17.0]{.highlight-yellow} | 15.3 | 15.7 |  |
+| Not eaten by birds | 33.0 | 29.7 | 30.3 |  |
+|  |  |  |  |  |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .bold-first-col .table-mb-2}
+
+**Table 1. Observed Frequencies.**
+
+|                    | Not Infected | Lightly Infected | Highly Infected |     |
+|--------------------|:------------:|:----------------:|:---------------:|:---:|
+| Eaten by birds     |      1       |        10        |       37        |     |
+| Not eaten by birds |      49      |        35        |        9        |     |
+|                    |              |                  |                 |     |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .bold-first-col .table-mb-2}
+:::
+:::::
+
+## STEP 2D: Calculate $\chi^2$ test statistic
+
+::::: columns
+::: {.column .normal-eq-column width="40%"}
+Use the tables for **Observed** and **Expected** frequencies to
+calculate the test statistic
+
+$$ \chi^2 = \sum_{i=1}^{r} \sum_{j=1}^{c} \frac{(O_{ij} - E_{ij})^2}{E_{ij}} $$
+
+$$
+= \frac{(1-17)^2}{17} + \frac{(49-33)^2}{33} + \\
+\frac{(10-15.3)^2}{15.3} + \frac{(35-29.7)^2}{29.7} + \\
+\frac{(37-15.7)^2}{15.7} + \frac{(9-30.3)^2}{30.3}
+$$
+
+$$
+= 69.5
+$$
+:::
+
+::: {.column width="60%"}
+Table 3. Expected Frequencies
+
+|                    | Not Infected | Lightly Infected | Highly Infected |     |
+|--------------------|:------------:|:----------------:|:---------------:|:---:|
+| Eaten by birds     |     17.0     |       15.3       |      15.7       |     |
+| Not eaten by birds |     33.0     |       29.7       |      30.3       |     |
+|                    |              |                  |                 |     |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .bold-first-col .table-mb-2}
+
+**Table 1. Observed Frequencies.**
+
+|                    | Not Infected | Lightly Infected | Highly Infected |     |
+|--------------------|:------------:|:----------------:|:---------------:|:---:|
+| Eaten by birds     |      1       |        10        |       37        |     |
+| Not eaten by birds |      49      |        35        |        9        |     |
+|                    |              |                  |                 |     |
+
+: {tbl-colwidths="\[32,18,18,18,14\]" .table-small-text
+.thick-header-border .no-row-borders .bold-first-col .table-mb-2}
+:::
+:::::
+
+## STEPS 3-4: $P$-value and Interpretation
+
+1.  Decide *a priori* (beforehand) on a significance level, e.g.
+    $\alpha=0.05$, then...
+
+![](images/Picture3.png){style="padding-left: 12%;" fig-align="left"
+width="50%"}
+
+::::: columns
+::: {.column width="50%"}
+Method 1 - exact P-value
+
+2.  Calculate exact $P$-value using computer
+3.  If $P<\alpha$ then reject $H_0$
+:::
+
+::: {.column width="50%"}
+Method 2 - statistical table
+
+2.  Calculate degrees of freedom
+
+    $\operatorname{df}=(r-1)(c-1)$
+
+3.  Look up critical value in a table
+
+4.  If $\chi^2_{df}>\operatorname{critical value}$ then reject $H_0$
+:::
+:::::
+
+## How to look up a critical value in a chi-square table
+
+::::: columns
+::: {.column width="50%"}
+1.  See any chi-square distribution table
+2.  Know your 𝑑𝑓 and 𝛼
+3.  For example, at 𝑑𝑓=2 𝛼=0.05, The critical value is Χ\^2=5.991
+
+Decision rule: $\chi^2_{df}>\operatorname{critical value}$
+
+$$
+\chi^2 = 69.5
+$$
+
+$$
+\operatorname{critical value} = 5.994
+$$
+
+Therefore, reject $H_0$, conclude parasite infection level and being
+eaten are **not independent**
+:::
+
+::: {.column width="50%"}
+![](images/chi-sq-critical-value.png)
+:::
+:::::
+
+## Wrapping Up: Contingency Analysis
+
+-   Chi-square test of independence compares observed vs. expected
+    frequencies
+    -   Expected counts computed from row and column totals
+-   When assumptions are strained
+    -   **Yates correction**: continuity adjustment sometimes
+        recommended for 2 × 2 tables
+    -   [Fisher’s exact test]{.keyword}: preferred when expected counts
+        are small
+-   Alternative framework
+    -   **G-test (likelihood ratio test)**
+        -   Based on likelihood ratios rather than squared deviations
+        -   Extends more naturally to complex models and multiple
+            explanatory variables
+        -   Still sensitive to small expected counts
+-   Choose the method based on sample size, expected counts, and study
+    design
+-   Always interpret results in the biological context of the
+    association
