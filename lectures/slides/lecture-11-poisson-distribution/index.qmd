@@ -18,11 +18,14 @@ editor:
 
 By the end of this lecture, you should be able to:
 
-- Identify when count data are appropriately modeled by a Poisson process.
-- State the assumptions of the Poisson model.
-- Explain how expected frequencies are generated under a Poisson null model.
-- Conduct and interpret a chi-square goodness-of-fit test for count data.
-- Use the variance-to-mean ratio to assess clumping or dispersion.
+-   Identify when count data are appropriately modeled by a Poisson
+    process.
+-   State the assumptions of the Poisson model.
+-   Explain how expected frequencies are generated under a Poisson null
+    model.
+-   Conduct and interpret a chi-square goodness-of-fit test for count
+    data.
+-   Use the variance-to-mean ratio to assess clumping or dispersion.
 
 ## The [Poisson Distribution]{.keyword} models random counts in time or space
 
@@ -95,7 +98,6 @@ $$
     making this is a **rate**)
 
 -   $e$ is the base of the natural log, a constant ≈ 2.718
-
 :::
 :::::
 
@@ -457,11 +459,11 @@ Biological interpretation:
 
 Binomial distribution:
 
-- Fixed number of trials  
-- Probability of success per trial  
+-   Fixed number of trials\
+-   Probability of success per trial
 
 Poisson distribution:
 
-- Counting events in time or space  
-- No fixed number of trials  
-- Models rates rather than proportions
+-   Counting events in time or space\
+-   No fixed number of trials\
+-   Models rates rather than proportions
