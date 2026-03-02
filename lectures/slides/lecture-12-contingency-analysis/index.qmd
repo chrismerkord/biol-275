@@ -15,6 +15,14 @@ editor:
 
 ## Learning Objectives
 
+- Construct and interpret contingency tables.
+- Compute and interpret risk, relative risk (RR), odds, and odds ratio (OR).
+- Select RR vs. OR based on study design (cohort vs. case-control).
+- State and test hypotheses of independence using the chi-square test.
+- Calculate expected counts and the chi-square statistic.
+- Make decisions using $P$-values or critical values.
+- Identify when alternative tests (e.g., Fisher’s exact test) are appropriate.
+
 ## Contingency Analysis: Relationships Between Categorical Variables
 
 -   We now move from **one categorical variable** to **two categorical
