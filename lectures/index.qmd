@@ -196,7 +196,7 @@ Lecture 12
 
 Introduces methods for quantifying the strength of association between two categorical variables using 2×2 contingency tables. We develop conditional probability (risk), relative risk, odds, and the odds ratio, and discuss when each measure is appropriate based on study design.
 
-[Go to Lecture](slides/lecture-12-contingency-analysis-1/){.btn .btn-primary}
+[Go to Lecture](slides/lecture-12-contingency-analysis/){.btn .btn-primary}
 :::
 :::::
 ::::::
