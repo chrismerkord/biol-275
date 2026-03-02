@@ -70,7 +70,7 @@ Estimation and testing answer different questions.
 
 ::::: columns
 ::: {.column width="50%"}
-### Part 1 (Today): Estimation
+### Part 1: Estimation
 
 -   Construct a 2×2 contingency table
 -   Compute:
@@ -84,7 +84,7 @@ We quantify **how much** the variables are associated.
 :::
 
 ::: {.column width="50%"}
-### Part 2 (Next Lecture): Hypothesis Testing
+### Part 2: Hypothesis Testing
 
 -   Null hypothesis: variables are independent
 -   Expected counts under independence
