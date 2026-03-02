@@ -491,7 +491,7 @@ $$
 **Relative Risk (RR)**
 
 -   Requires estimating **risk (probability)**
--   Risk requires a meaningful **numerator and denominator**:
+-   Risk requires a meaningful **denominator**:
     -   number with outcome
     -   total number at risk
 
