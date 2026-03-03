@@ -221,7 +221,9 @@ Remove rows with missing values.
 
 Hints:
 
--   Use [`case_when()`](https://dplyr.tidyverse.org/reference/case_when.html).
+-   Use [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) to create a new variable.
+
+    -   Inside mutate, use [`case_when()`](https://dplyr.tidyverse.org/reference/case_when.html). to recode the values.
 
 -   Remove missing values with [`drop_na()`](https://tidyr.tidyverse.org/reference/drop_na.html).
 
