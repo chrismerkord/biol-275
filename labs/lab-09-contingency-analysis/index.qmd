@@ -183,8 +183,7 @@ Hints:
           var_name == "old value 2" ~ "new value 1",
           var_name == "old value 3" ~ "new value 1",
           var_name == "old value 4" ~ "new value 2",
-          var_name == "old value 5" ~ NA_character_,
-          .unmatched = "error"
+          var_name == "old value 5" ~ NA_character_
         )
         ```
 
