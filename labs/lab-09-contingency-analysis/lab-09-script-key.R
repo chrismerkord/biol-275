@@ -46,6 +46,7 @@ data <-
   print()
 
 tab <- table(data)
+tab
 
 risk_table <- prop.table(tab, margin = 1)
 risk_table
