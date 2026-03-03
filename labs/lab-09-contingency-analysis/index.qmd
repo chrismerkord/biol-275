@@ -79,9 +79,7 @@ Variable documentation:\
 <https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/DPQ_L.htm#DPQ020>
 
 **Question:**\
-\> “Over the last 2 weeks, how often have you been bothered by little interest or pleasure in doing things?”
-
-This is one item from the PHQ-9 depression screener.
+\> “\[Over the last 2 weeks, how often have you been bothered by the following problems:\] feeling down, depressed, or hopeless?"
 
 **Response codes:**
 
