@@ -122,5 +122,18 @@ Lab 8
 :::
 ::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lab 9
+:::
+::: card-body
+##### Transforming  Data {.card-title}
+
+[Lab 9](lab-09-contingency-analysis/)
+:::
+::::
+::::::
 :::::::::::
 
