@@ -9,14 +9,13 @@ dpq_data <-
   select(SEQN, DPQ020) |> 
   mutate(
     depressed = factor(
-      case_match(
-        DPQ020,
-        0 ~ "No",
-        1 ~ "Yes",
-        2 ~ "Yes",
-        3 ~ "Yes",
-        7 ~ NA_character_,
-        9 ~ NA_character_
+      case_when(
+        DPQ020 == 0 ~ "No",
+        DPQ020 == 1 ~ "Yes",
+        DPQ020 == 2 ~ "Yes",
+        DPQ020 == 3 ~ "Yes",
+        DPQ020 == 7 ~ NA_character_,
+        DPQ020 == 9 ~ NA_character_
       ),
       levels = c("No", "Yes")
     )
