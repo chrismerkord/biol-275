@@ -31,8 +31,8 @@ slq_data <-
   mutate(
     sleep = factor(
       case_when(
-        SLD012 <= 7 ~ "Short",
-        SLD012 > 7 ~ "Adequate"
+        SLD012 < 7 ~ "Short",
+        SLD012 >= 7 ~ "Adequate"
       ),
       levels = c("Short", "Adequate")
     ) 
