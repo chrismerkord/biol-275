@@ -715,7 +715,7 @@ Table 1. Observed Frequencies.
 Table 1. Observed Frequencies.
 
 |   | Not Infected | Lightly Infected | Highly Infected | Row total |
-|:--------------|:-------------:|:-------------:|:-------------:|:-------------:|
+|:---|:--:|:--:|:--:|:--:|
 | Eaten by birds | 1 | 10 | 37 | [48]{.fragment .highlight-yellow} |
 | Not eaten by birds | 49 | 35 | 9 | [93]{.fragment .highlight-yellow} |
 | Column Total | [50]{.fragment .highlight-yellow} | [45]{.fragment .highlight-yellow} | [46]{.fragment .highlight-yellow} | [141]{.fragment .highlight-yellow} |
@@ -740,7 +740,7 @@ Table 1. Observed Frequencies.
 Table 1. Observed Frequencies.
 
 |                    | Not Infected | Lightly Infected | Highly Infected | Row total |
-|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+|--------------------|:------------:|:----------------:|:---------------:|:---------:|
 | Eaten by birds     |      1       |        10        |       37        |    48     |
 | Not eaten by birds |      49      |        35        |        9        |    93     |
 | Column Total       |      50      |        45        |       46        |    141    |
@@ -752,7 +752,7 @@ Table 1. Observed Frequencies.
 Table 2. Expected Proportions.
 
 |                    | Not Infected | Lightly Infected | Highly Infected | Proportion |
-|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+|--------------------|:------------:|:----------------:|:---------------:|:----------:|
 | Eaten by birds     |              |                  |                 |            |
 | Not eaten by birds |              |                  |                 |            |
 | Proportion         |              |                  |                 |            |
@@ -784,7 +784,7 @@ $$
 Table 1. Observed Frequencies.
 
 |   | Not Infected | Lightly Infected | Highly Infected | Row total |
-|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+|----|:--:|:--:|:--:|:--:|
 | Eaten by birds | 1 | 10 | 37 | 48 |
 | Not eaten by birds | 49 | 35 | 9 | 93 |
 | Column Total | [50]{.orange-border} | 45 | 46 | [141]{.orange-border} |
@@ -796,7 +796,7 @@ Table 1. Observed Frequencies.
 Table 2. Expected Proportions.
 
 |   | Not Infected | Lightly Infected | Highly Infected | Proportion |
-|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+|----|:--:|:--:|:--:|:--:|
 | Eaten by birds |  |  |  |  |
 | Not eaten by birds |  |  |  |  |
 | Proportion | [0.3546]{.highlight-yellow} |  |  |  |
@@ -828,7 +828,7 @@ $$
 Table 1. Observed Frequencies.
 
 |   | Not Infected | Lightly Infected | Highly Infected | Row total |
-|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+|----|:--:|:--:|:--:|:--:|
 | Eaten by birds | 1 | 10 | 37 | [48]{.orange-border} |
 | Not eaten by birds | 49 | 35 | 9 | 93 |
 | Column Total | 50 | 45 | 46 | [141]{.orange-border} |
@@ -840,7 +840,7 @@ Table 1. Observed Frequencies.
 Table 2. Expected Proportions.
 
 |   | Not Infected | Lightly Infected | Highly Infected | Prop. |
-|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+|----|:--:|:--:|:--:|:--:|
 | Eaten by birds |  |  |  | [0.3404]{.highlight-yellow} |
 | Not eaten by birds |  |  |  |  |
 | Proportion | 0.3546 |  |  |  |
@@ -861,7 +861,7 @@ Table 2. Expected Proportions.
 Table 1. Observed Frequencies.
 
 |                    | Not Infected | Lightly Infected | Highly Infected | Row total |
-|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+|--------------------|:------------:|:----------------:|:---------------:|:---------:|
 | Eaten by birds     |      1       |        10        |       37        |    48     |
 | Not eaten by birds |      49      |        35        |        9        |    93     |
 | Column Total       |      50      |        45        |       46        |    141    |
@@ -873,7 +873,7 @@ Table 1. Observed Frequencies.
 Table 2. Expected Proportions.
 
 |   | Not Infected | Lightly Infected | Highly Infected | Prop. |
-|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+|----|:--:|:--:|:--:|:--:|
 | Eaten by birds |  |  |  | [0.3404]{.highlight-yellow} |
 | Not eaten by birds |  |  |  | [0.6596]{.highlight-yellow} |
 | Proportion | [0.3546]{.highlight-yellow} | [0.3192]{.highlight-yellow} | [0.3262]{.highlight-yellow} |  |
@@ -906,7 +906,7 @@ $$
 Table 1. Observed Frequencies.
 
 |                    | Not Infected | Lightly Infected | Highly Infected | Row total |
-|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+|--------------------|:------------:|:----------------:|:---------------:|:---------:|
 | Eaten by birds     |      1       |        10        |       37        |    48     |
 | Not eaten by birds |      49      |        35        |        9        |    93     |
 | Column Total       |      50      |        45        |       46        |    141    |
@@ -918,7 +918,7 @@ Table 1. Observed Frequencies.
 Table 2. Expected Proportions.
 
 |   | Not Infected | Lightly Infected | Highly Infected | Prop. |
-|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+|----|:--:|:--:|:--:|:--:|
 | Eaten by birds | [0.1207]{.highlight-yellow} |  |  | [0.3404]{.orange-border} |
 | Not eaten by birds |  |  |  | 0.6596 |
 | Proportion | [0.3546]{.orange-border} | 0.3192 | 0.3262 |  |
@@ -944,7 +944,7 @@ Table 2. Expected Proportions.
 Table 1. Observed Frequencies.
 
 |                    | Not Infected | Lightly Infected | Highly Infected | Row total |
-|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+|--------------------|:------------:|:----------------:|:---------------:|:---------:|
 | Eaten by birds     |      1       |        10        |       37        |    48     |
 | Not eaten by birds |      49      |        35        |        9        |    93     |
 | Column Total       |      50      |        45        |       46        |    141    |
@@ -956,7 +956,7 @@ Table 1. Observed Frequencies.
 Table 2. Expected Proportions.
 
 |   | Not Infected | Lightly Infected | Highly Infected | Prop. |
-|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+|----|:--:|:--:|:--:|:--:|
 | Eaten by birds | [0.1207]{.highlight-yellow} | [0.1087]{.highlight-yellow} | [0.1110]{.highlight-yellow} | 0.3404 |
 | Not eaten by birds | [0.2339]{.highlight-yellow} | [0.2105]{.highlight-yellow} | [0.2152]{.highlight-yellow} | 0.6596 |
 | Proportion | 0.3546 | 0.3192 | 0.3262 |  |
@@ -985,7 +985,7 @@ Repeat for each cell
 **Table 3. Expected Frequencies**
 
 |   | Not Infected | Lightly Infected | Highly Infected |   |
-|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+|----|:--:|:--:|:--:|:--:|
 | Eaten by birds | [17.0]{.highlight-yellow} |  |  |  |
 | Not eaten by birds |  |  |  |  |
 |  |  |  |  | 141 |
@@ -1029,7 +1029,7 @@ Where:
 Table 3. Expected Frequencies
 
 |   | Not Infected | Lightly Infected | Highly Infected |   |
-|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
+|----|:--:|:--:|:--:|:--:|
 | Eaten by birds | [17.0]{.highlight-yellow} | 15.3 | 15.7 |  |
 | Not eaten by birds | 33.0 | 29.7 | 30.3 |  |
 |  |  |  |  |  |
