@@ -214,7 +214,7 @@ Hint:
 Create a new variable that classifies:
 
 -   `< 7` hours → "Short"
--   `≥ 7` hours → "Adequate"
+-   `>= 7` hours → "Adequate"
 -   77 and 99 → missing (`NA`)
 
 Remove rows with missing values.
