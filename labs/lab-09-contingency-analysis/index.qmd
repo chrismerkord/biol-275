@@ -28,6 +28,7 @@ Then, complete the following steps to make sure you are fully set up.
 
     ```{r}
     #| label: load-packages
+    #| echo: true
 
     # load packages --------------------------------------------------------------
 
