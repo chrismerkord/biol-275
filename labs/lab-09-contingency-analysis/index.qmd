@@ -175,26 +175,24 @@ Then remove rows with missing values.
 
 Hints:
 
--   Use [`case_when()`](https://dplyr.tidyverse.org/reference/case_when.html) to recode. Briefly, this is coded as:
+-   Use [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) to create a new variable.
 
-    ``` r
-    case_when(
-      var_name == "old value 1" ~ "new value 1",
-      var_name == "old value 2" ~ "new value 1",
-      var_name == "old value 3" ~ "new value 1",
-      var_name == "old value 4" ~ "new value 2",
-      var_name == "old value 5" ~ NA_character_,
-      .unmatched = "error"
-    )
-    ```
+    -   Use [`case_when()`](https://dplyr.tidyverse.org/reference/case_when.html) to recode. Briefly, this is coded as:
 
-    See the function help page for details and examples. Use `NA_character_` instead of the simpler `NA` (this specifies a missing text value, rather than a generic missing value).
+        ``` r
+        case_when(
+          var_name == "old value 1" ~ "new value 1",
+          var_name == "old value 2" ~ "new value 1",
+          var_name == "old value 3" ~ "new value 1",
+          var_name == "old value 4" ~ "new value 2",
+          var_name == "old value 5" ~ NA_character_,
+          .unmatched = "error"
+        )
+        ```
+
+        See the function help page for details and examples. Use `NA_character_` instead of the simpler `NA` (this specifies a missing text value, rather than a generic missing value).
 
 -   Use [`drop_na()`](https://tidyr.tidyverse.org/reference/drop_na.html) to remove missing rows.
-
--   Convert the new variable to a factor using [`factor()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/factor.html).
-
-    -   Be sure to define the levels exactly as you have them defined in the `case_when()` above.
 
 > ##### Question 2
 >
