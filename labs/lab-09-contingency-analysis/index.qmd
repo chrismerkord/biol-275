@@ -1,6 +1,8 @@
 ---
-title: "contingency-analysis"
-format: html
+title: "Lab 9: Contingency Analysis"
+format: 
+  html:
+    toc-depth: 3
 ---
 
 ## Learning Objectives
@@ -30,6 +32,7 @@ Then, complete the following steps to make sure you are fully set up.
     # load packages --------------------------------------------------------------
 
     library(tidyverse)
+    library(haven)
     ```
 
 ::: callout-note
@@ -65,8 +68,6 @@ NHANES is a nationally representative survey of the civilian, non-institutionali
 
 We will use two variables:
 
-------------------------------------------------------------------------
-
 ### 1. Depressive Symptoms (`DPQ020`)
 
 **File:** Depression Questionnaire (`DPQ_L.xpt`)\
@@ -96,8 +97,6 @@ For this lab, you will recode this variable into a binary outcome:
 -   **Depressive symptom present** (1–3)
 
 Responses coded 7 or 9 will be treated as missing.
-
-------------------------------------------------------------------------
 
 ### 2. Sleep Duration (`SLD012`)
 
@@ -131,3 +130,234 @@ Responses coded 77 or 99 will be treated as missing.
 ### Research Question
 
 In this lab, you will examine whether adults who report **short sleep duration** have a higher risk of reporting **depressive symptoms** compared to adults who report adequate sleep.
+
+> ##### Question 1
+>
+> What is the name of the sleep variable? The depression variable? The variable that serves as the unique identifier for individuals?
+
+## Lab Activity: Sleep and Depressive Symptoms
+
+In this activity, you will investigate whether adults who report short sleep duration have a higher risk of reporting depressive symptoms compared to adults who report adequate sleep.
+
+Work through the sections in order. Write all code in your `lab-9-script.R` file. Run each section before moving on.
+
+## Part 1 — Prepare the Data
+
+**Statistical goal:** Create two clean binary variables:
+
+-   Sleep duration (risk factor)
+
+-   Depressive symptoms (outcome)
+
+### 1. Read in the depression dataset.
+
+-   Use the `read_xpt()` function from the **haven** package to read the DPQ file.
+-   Select only the variables you need (`SEQN` and `DPQ020`).
+
+Hint:
+
+-   Documentation: [`read_xpt()`](https://haven.tidyverse.org/reference/read_xpt.html)
+
+-   Don't download the data, just paste the URL to it directly into `read_xpt()`
+
+-   Use `select()` to keep only relevant columns: [`select()`](https://dplyr.tidyverse.org/reference/select.html)
+
+### 2. Recode depressive symptoms into a binary variable.
+
+Recode `DPQ020` as follows:
+
+-   0 → "No"
+-   1, 2, 3 → "Yes"
+-   7, 9 → missing (`NA`)
+
+Then remove rows with missing values.
+
+Hints:
+
+-   Use [`case_when()`](https://dplyr.tidyverse.org/reference/case_when.html) to recode. Briefly, this is coded as:
+
+    ``` r
+    case_when(
+      var_name == "old value 1" ~ "new value 1",
+      var_name == "old value 2" ~ "new value 1",
+      var_name == "old value 3" ~ "new value 1",
+      var_name == "old value 4" ~ "new value 2",
+      var_name == "old value 5" ~ NA_character_,
+      .unmatched = "error"
+    )
+    ```
+
+    See the function help page for details and examples. Use `NA_character_` instead of the simpler `NA` (this specifies a missing text value, rather than a generic missing value).
+
+-   Use [`drop_na()`](https://tidyr.tidyverse.org/reference/drop_na.html) to remove missing rows.
+
+-   Convert the new variable to a factor using [`factor()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/factor.html).
+
+    -   Be sure to define the levels exactly as you have them defined in the `case_when()` above.
+
+> ##### Question 2
+>
+> How many rows are there in the depression dataset (after removing rows with missing values)?
+
+### 3. Read in the sleep dataset.
+
+-   Use `read_xpt()` again to read the SLQ file.
+-   Select only `SEQN` and `SLD012`.
+
+Hint:
+
+-   Use [`select()`](https://dplyr.tidyverse.org/reference/select.html).
+
+### 4. Create a binary sleep variable.
+
+Create a new variable that classifies:
+
+-   `< 7` hours → "Short"
+-   `≥ 7` hours → "Adequate"
+-   77 and 99 → missing (`NA`)
+
+Remove rows with missing values.
+
+Hints:
+
+-   Use [`case_when()`](https://dplyr.tidyverse.org/reference/case_when.html).
+
+-   Remove missing values with [`drop_na()`](https://tidyr.tidyverse.org/reference/drop_na.html).
+
+> ##### Question 3
+>
+> How many rows are there in the sleep dataset (after removing rows with missing values)?
+
+### 5. Join the datasets.
+
+Join the cleaned depression and sleep datasets using `SEQN`. After joining, keep only your two new binary variables.
+
+Hint:
+
+-   Use [`inner_join()`](https://dplyr.tidyverse.org/reference/mutate-joins.html).
+
+-   Use `select()` to keep only the two new binary variables. Here the order matters, put the response variable (the health outcome) first, followed by the explanatory variable (risk factor).
+
+-   Assign the joined data a new name.
+
+> ##### Question 4
+>
+> How many rows are there in the joined dataset?
+
+## Part 2 — Construct the Contingency Table
+
+**Statistical goal:** Summarize the joint distribution of sleep and depressive symptoms.
+
+### 6. Create a contingency table.
+
+-   Put sleep (risk factor) in the rows.
+-   Put depressive symptoms (outcome) in the columns.
+
+Hint:
+
+-   Use [`table()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/table.html).
+
+-   If you already have a tibble with the outcome and risk factors in that order, you can just give that whole tibble to `table()` .
+
+Inspect the table carefully. Each cell represents a count of individuals in that category combination.
+
+> ##### Question 5
+>
+> Draw the contingency table here. (two columns, labeled; two rows, labeled)
+
+### 7. Convert counts to conditional proportions.
+
+We are interested in:
+
+$$
+\operatorname{Pr}(\text{Depressed} \mid \text{Sleep Group})
+$$
+
+Compute row-wise proportions.
+
+Hint:
+
+-   Use [`prop.table()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/prop.table.html).
+
+-   Set `margin = 1` to compute proportions within rows.
+
+## Part 3 — Estimate Relative Risk
+
+**Statistical goal:** Quantify the magnitude of association.
+
+### 8. Extract the risk of depression for each sleep group.
+
+Identify:
+
+-   Risk among short sleepers
+-   Risk among adequate sleepers
+
+Then compute the relative risk:
+
+$$
+RR = \frac{\text{Risk in Short Sleepers}}{\text{Risk in Adequate Sleepers}}
+$$
+
+Hint:
+
+-   Extract specific cells from your proportion table using indexing, e.g.
+
+    `short_risk <- risk_table["Short", "Yes"]`
+
+    In this example, the square brackets are used to extract a single cell. "Short" identifies the row, and "Yes" identifies the column. Use the row and column names found in your risk table, which may vary depending on how you recoded the variables when preparing the data.
+
+-   Division (`/`) computes the relative risk.
+
+> ##### Question 6
+>
+> What is the risk of depressive symptoms in short sleepers? Long sleepers?
+
+> ##### Question 7
+>
+> What is the relative risk? Interpret your result in a complete sentence.
+
+## Part 4 — Test for Independence
+
+**Statistical goal:** Determine whether the association is statistically significant.
+
+### 9. State the hypotheses.
+
+Write the null and alternative hypotheses in words.
+
+> ##### Question 8
+>
+> Write the null and alternative hypotheses in words
+
+### 10. Perform the chi-square test of independence.
+
+Use your contingency table to run the test.
+
+Hint:
+
+-   Use [`chisq.test()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/chisq.test.html).
+
+-   Give it the frequency table you calculated previously.
+
+### 11. Interpret the results.
+
+Report:
+
+-   The chi-square statistic
+-   The p-value
+-   Whether you reject or fail to reject the null hypothesis
+
+> ##### Question 9
+>
+> Write the $\chi^2$ test statistic, $P$-value, and whether you reject or fail to reject the null hypothesis.
+
+Then answer:
+
+> ##### Question 10
+>
+> Can we conclude that short sleep causes depression? Why or why not?
+
+## Wrap-up and Submission
+
+1.  Make sure your script is saved in your project on Posit Cloud.
+2.  Ask the instructor to explain anything you aren't sure about.
+3.  **Show your handout to a Learning Assistant for a completion grade before you leave lab**. You may do this as soon as you finish. Keep the handout for yourself.
