@@ -356,6 +356,30 @@ Then answer:
 >
 > Can we conclude that short sleep causes depression? Why or why not?
 
+## Part 5 (optional) — Mosaic Plot
+
+If you finish the previous sections with time to spare, try the following optional challenge:
+
+Create a mosaic plot of the contingency table.
+
+Hints:
+
+-   Use the base `mosaicplot()` function
+
+-   Give it the contingency table you created with `table()`
+
+-   You can spruce it up by adding
+
+    -   a title `main = "Title"`
+
+    -   x and y labels e.g. `xlab = "X Axis Label"`
+
+    -   rotating the y axis label with `las = 1`
+
+    -   colors, e.g. `color = c("#0072b2", "#e69f00")`
+
+If you get a beautiful, working graph, be sure the show the instructor, LAs, and your peers on every side. Great job!
+
 ## Wrap-up and Submission
 
 1.  Make sure your script is saved in your project on Posit Cloud.
