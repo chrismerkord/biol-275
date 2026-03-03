@@ -3,3 +3,131 @@ title: "contingency-analysis"
 format: html
 ---
 
+## Learning Objectives
+
+## Getting started
+
+Before you begin the lab activities, review the steps for setting up a project for a lab activity:
+
+-   [Weekly Lab Setup](../../resources/weekly-lab-setup.qmd)
+
+Then, complete the following steps to make sure you are fully set up.
+
+1.  **Get the Lab Worksheet.**
+
+    Pick up a physical copy of the lab worksheet, or print one if you are working outside of class.\
+    <a href="lab-09-worksheet.pdf" download class="btn btn-outline-primary mt-3">Download Lab Worksheet (PDF, if needed)</a>
+
+2.  **Open Posit Cloud and start Lab 9.**
+
+3.  Create a new R script and save it as **lab-9-script.R**.
+
+4.  Add the following code to your R script and save the script. Upon save, you should see a message in the source prompting you to install the package. Click "Install". Then run the line of code.
+
+    ```{r}
+    #| label: load-packages
+
+    # load packages --------------------------------------------------------------
+
+    library(tidyverse)
+    ```
+
+::: callout-note
+## Checkpoint
+
+At this point, you should have:
+
+-   These instructions open in a web browser.
+-   Your Lab 9 project open in Posit Cloud in another browser window.
+-   The required packages installed and loaded without errors
+-   The Lab 9 worksheet in front of you.
+
+Do not continue until all of the above steps are working correctly.
+:::
+
+## Overview
+
+In this lab, you will analyze the relationship between two categorical variables using **contingency analysis**. A contingency table summarizes the joint distribution of two categorical variables and allows us to estimate measures of association such as **relative risk (RR)** and **odds ratio (OR)**. These measures describe the magnitude and direction of an association between two binary variables. We will also conduct a **chi-square test of independence** to determine whether the observed association is statistically significant.
+
+You will use data from the National Health and Nutrition Examination Survey (NHANES), a large, nationally representative health survey conducted in the United States. For this lab, you will examine the relationship between sleep duration and depressive symptoms among adults.
+
+> Question 1
+>
+> What are two ways to measure the magnitude of an association between two binary categorical variables?
+
+## Dataset and Variables
+
+In this lab, you will use publicly available data from the **August 2021–August 2023 cycle** of the\
+[National Health and Nutrition Examination Survey (NHANES)](https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/default.aspx?Cycle=2021-2023), conducted by the\
+[Centers for Disease Control and Prevention (CDC)](https://www.cdc.gov/).
+
+NHANES is a nationally representative survey of the civilian, non-institutionalized U.S. population. It combines interviews, physical examinations, and laboratory testing to assess health and nutritional status.
+
+We will use two variables:
+
+------------------------------------------------------------------------
+
+### 1. Depressive Symptoms (`DPQ020`)
+
+**File:** Depression Questionnaire (`DPQ_L.xpt`)\
+Dataset:\
+<https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/DPQ_L.xpt>
+
+Variable documentation:\
+<https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/DPQ_L.htm#DPQ020>
+
+**Question:**\
+\> “Over the last 2 weeks, how often have you been bothered by little interest or pleasure in doing things?”
+
+This is one item from the PHQ-9 depression screener.
+
+**Response codes:**
+
+-   0 = Not at all
+-   1 = Several days
+-   2 = More than half the days
+-   3 = Nearly every day
+-   7 = Refused
+-   9 = Don’t know
+
+For this lab, you will recode this variable into a binary outcome:
+
+-   **No depressive symptom** (0)
+-   **Depressive symptom present** (1–3)
+
+Responses coded 7 or 9 will be treated as missing.
+
+------------------------------------------------------------------------
+
+### 2. Sleep Duration (`SLD012`)
+
+**File:** Sleep Disorders Questionnaire (`SLQ_L.xpt`)\
+Dataset:\
+<https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/SLQ_L.xpt>
+
+Variable documentation:\
+<https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/SLQ_L.htm#SLD012>
+
+**Question:**\
+\> “How much sleep do you usually get at night on weekdays or workdays?”
+
+**Response format:**
+
+-   3 to 13.5 = Reported in half hours
+-   2 = Less than 3 hours
+-   14 = 14 hours or more
+-   77 = Refused
+-   99 = Don’t know
+
+For this lab, you will create a binary exposure variable:
+
+-   **Short sleep (\< 7 hours)**
+-   **Adequate sleep (≥ 7 hours)**
+
+Responses coded as 2 or 14 will be treated as-is, even though they may represent larger or smaller values.
+
+Responses coded 77 or 99 will be treated as missing.
+
+### Research Question
+
+In this lab, you will examine whether adults who report **short sleep duration** have a higher risk of reporting **depressive symptoms** compared to adults who report adequate sleep.
