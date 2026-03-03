@@ -71,7 +71,7 @@ header-includes:
 **1. What is the name of the sleep variable? The depression variable? The variable that serves as the unique identifier for individuals?**
 \ab{1in}
 
-## Part I: Prepare the Data
+## Part I — Prepare the Data
 
 **2. How many rows are there in the depression dataset (after removing rows with missing values)?**
 \ab{0.5in}
