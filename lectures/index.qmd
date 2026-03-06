@@ -200,4 +200,20 @@ Introduces methods for exploring the association between two categorical variabl
 :::
 :::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 12
+:::
+
+::: card-body
+##### Contingency Analysis {.card-title}
+
+Introduces the normal distribution, its properties, and how Z-scores are used to calculate probabilities. Also explains the sampling distribution of the mean and how sample size affects its spread.
+
+[Go to Lecture](slides/lecture-13-normal-distribution/){.btn .btn-primary}
+:::
+:::::
+::::::
 :::::::::::::::::::

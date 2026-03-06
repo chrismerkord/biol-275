@@ -281,3 +281,9 @@ div.cell-output-stderr {
     padding: .08em .35em;
     border-radius: .3em;
 }
+
+/* for when i put each list item in its own fragment div */
+.reveal .slide div.fragment ol,
+.reveal .slide div.fragment ul {
+  margin-bottom: 0;
+}
