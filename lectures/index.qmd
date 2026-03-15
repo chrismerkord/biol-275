@@ -208,7 +208,7 @@ Lecture 13
 :::
 
 ::: card-body
-##### Contingency Analysis {.card-title}
+##### The Normal Distribution {.card-title}
 
 Introduces the normal distribution, its properties, and how Z-scores are used to calculate probabilities. Also explains the sampling distribution of the mean and how sample size affects its spread.
 
