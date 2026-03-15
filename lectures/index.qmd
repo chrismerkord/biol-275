@@ -204,7 +204,7 @@ Introduces methods for exploring the association between two categorical variabl
 :::::: {.g-col-12 .g-col-sm-4}
 ::::: {.card .h-100}
 ::: card-header
-Lecture 12
+Lecture 13
 :::
 
 ::: card-body
