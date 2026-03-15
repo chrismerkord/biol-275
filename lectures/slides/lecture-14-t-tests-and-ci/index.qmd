@@ -1,0 +1,28 @@
+---
+title: |
+  | Lecture 14
+  | Inference for Population Means: 
+  | Confidence Intervals and t-Tests
+subtitle: "ABD 3e Chapter 11"
+description: "Introduces statistical inference for normally distributed data, including confidence intervals for the mean and hypothesis tests (one-sample, independent two-sample, and paired t-tests) used to evaluate differences in population means."
+format:
+  revealjs:
+    fig-width: 8
+    fig-height: 6
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+## Learning Objectives
+
+By the end of this lecture, you should be able to:
+
+- Explain why the **t-distribution** is used instead of the normal distribution when the population standard deviation is unknown
+- Describe how **degrees of freedom** influence the shape of the t-distribution
+- Construct and interpret a **confidence interval for a population mean**
+- State null and alternative hypotheses for a **one-sample t-test**
+- Distinguish between **independent two-sample** and **paired t-tests**
+- Select the appropriate **t-test based on study design**
+- Interpret the results of a t-test using **t, degrees of freedom, p-value, and confidence interval**
+

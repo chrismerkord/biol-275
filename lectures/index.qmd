@@ -216,4 +216,22 @@ Introduces the normal distribution, its properties, and how Z-scores are used to
 :::
 :::::
 ::::::
+
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 14
+:::
+
+::: card-body
+##### Inference for Population Means {.card-title}
+[Confidence Intervals and t-Tests]{.card-subtitle}
+
+Introduces statistical inference for normally distributed data, including confidence intervals for the mean and hypothesis tests (one-sample, independent two-sample, and paired t-tests) used to evaluate differences in population means.
+
+[Go to Lecture](slides/lecture-14-t-tests-and-ci/){.btn .btn-primary}
+:::
+:::::
+::::::
 :::::::::::::::::::
