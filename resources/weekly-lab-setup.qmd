@@ -138,6 +138,7 @@ Other tips:
 -   Use comments liberally to remind yourself what various bits of code do:
 
 ```{r}
+#| label: comments
 # this is a comment
 # comments are ignored by the R compiler
 # any text after a pound sign is a comment
