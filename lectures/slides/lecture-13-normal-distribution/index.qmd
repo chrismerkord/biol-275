@@ -306,6 +306,24 @@ Note the change in scale from previous figures.
 
 # Practice Problem #1
 
+## Question
+
+::::: columns
+::: {.column width="50%"}
+The natural log of growth (change in radius per year in mm) of Engelmann
+spruce is approximately normally distributed with **mean of 0.037 log
+units** and **standard deviation 0.385**.
+
+Following these steps, determine the probability that a tree has a **bad
+year**, defined as having growth less than **−0.050 log units** in a
+year.
+:::
+
+::: {.column width="50%"}
+![](images/tree.jpg)
+:::
+:::::
+
 ## STEP 1: Sketch a normal distribution with $\mu=0.037$, $\operatorname{sd}=0.385$
 
 :::::::::::::: columns
