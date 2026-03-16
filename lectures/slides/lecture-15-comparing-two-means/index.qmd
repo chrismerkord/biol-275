@@ -18,6 +18,10 @@ format: html
 #| fig-cap: Distribution of bill length for Adelie and Gentoo penguins. Data from the Palmer Penguins dataset.
 #| fig-alt: Two stacked histograms showing bill length distributions for Adelie and Gentoo penguins. Each panel shows counts of bill length measurements in millimeters.
 
+library(dplyr)
+library(ggplot2)
+library(palmerpenguins)
+
 penguins |> 
   tidyr::drop_na(bill_length_mm) |> 
   filter(species %in% c("Adelie", "Gentoo")) |> 
