@@ -1,0 +1,134 @@
+---
+title: "index"
+format: html
+---
+
+## Comparing Two Means
+
+::::: columns
+::: {.column width="50%"}
+-   Many biological questions involve comparing the means of two groups.
+-   Examples include treatment versus control or habitat comparisons.
+-   Different study designs require different versions of the t test.
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-penguin-bill-length-comparison
+#| fig-cap: Distribution of bill length for Adelie and Gentoo penguins. Data from the Palmer Penguins dataset.
+#| fig-alt: Two stacked histograms showing bill length distributions for Adelie and Gentoo penguins. Each panel shows counts of bill length measurements in millimeters.
+
+penguins |> 
+  tidyr::drop_na(bill_length_mm) |> 
+  filter(species %in% c("Adelie", "Gentoo")) |> 
+  ggplot(
+    aes(x = bill_length_mm, fill = species)
+  ) +
+  geom_histogram(
+    bins = 25,
+    color = "white",
+    linewidth = 0.3
+  ) +
+  geom_vline(
+    aes(xintercept = bill_length_mm),
+    ~ summarize(
+      .x,
+      bill_length_mm = mean(bill_length_mm), 
+      .by = species
+    ),
+    color = "red",
+    linewidth = 1.5
+  ) +
+  facet_wrap(~ species, ncol = 1) +
+  see::scale_fill_oi(guide = "none") +
+  theme_minimal(base_size = 18) +
+  labs(
+    x = "Bill length (mm)",
+    y = "Count",
+  )
+```
+:::
+:::::
+
+## The [independent two-sample t test]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+1.  Used when observations in the two groups are independent.
+2.  The test evaluates whether the difference between group means is
+    greater than expected by chance.
+3.  Common example is a treatment group compared with a control group.
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-penguin-bill-length-comparison-means
+#| fig-cap: Distribution of bill length for Adelie and Gentoo penguins. Red vertical lines mark the sample mean bill length for each species. Data from the Palmer Penguins dataset.
+#| fig-alt: Two stacked histograms showing bill length distributions for Adelie and Gentoo penguins. Each panel shows counts of bill length measurements in millimeters, with a red vertical line indicating the mean bill length for that species.
+
+penguins |> 
+  tidyr::drop_na(bill_length_mm) |> 
+  filter(species %in% c("Adelie", "Gentoo")) |> 
+  ggplot(
+    aes(x = bill_length_mm, fill = species)
+  ) +
+  geom_histogram(
+    bins = 25,
+    color = "white",
+    linewidth = 0.3
+  ) +
+  geom_vline(
+    aes(xintercept = bill_length_mm),
+    ~ summarize(
+      .x,
+      bill_length_mm = mean(bill_length_mm), 
+      .by = species
+    ),
+    color = "red",
+    linewidth = 1.5
+  ) +
+  facet_wrap(~ species, ncol = 1) +
+  see::scale_fill_oi(guide = "none") +
+  theme_minimal(base_size = 18) +
+  labs(
+    x = "Bill length (mm)",
+    y = "Count",
+  )
+```
+:::
+:::::
+
+## The [paired t test]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+1.  Used when observations occur in natural pairs such as before–after
+    measurements.
+2.  The analysis focuses on the differences within each pair.
+3.  The mean of these differences is tested against zero.
+:::
+
+::: {.column width="50%"}
+![Paired measurements connected by lines illustrating before and after
+observations. Source: Whitlock & Schluter
+3e.](images/paired-t-test.png){#fig-paired-t-test
+fig-alt="Pairs of points connected by lines representing before and after measurements for the same subjects."}
+:::
+:::::
+
+## Choosing the Correct Test
+
+::::: columns
+::: {.column width="50%"}
+1.  The appropriate t test depends on the study design.
+2.  One-sample tests compare a mean to a hypothesized value.
+3.  Two-sample and paired tests compare means between groups.
+:::
+
+::: {.column width="50%"}
+![Decision tree for selecting one-sample, two-sample, or paired t tests.
+Source: Whitlock & Schluter
+3e.](images/t-test-decision-tree.png){#fig-t-test-decision-tree
+fig-alt="Flowchart guiding the choice between one-sample, independent two-sample, and paired t tests."}
+:::
+:::::
