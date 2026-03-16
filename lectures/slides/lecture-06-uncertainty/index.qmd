@@ -170,6 +170,8 @@ penguins |>
 ```{r}
 #| label: fig-penguin-random-samples
 #| fig-cap: "**Multiple random samples of penguin body masses (n = 15 per sample).** Each panel shows a different random sample drawn from the same population; vertical lines indicate the sample mean body mass, illustrating how estimates of the mean vary by chance across samples."
+#| fig-height: 5
+#| fig-width: 7
 
 library(dplyr)
 
@@ -220,6 +222,8 @@ ggplot(samples, aes(x = body_mass_g)) +
 ```{r}
 #| label: fig-penguin-sampling-distribution
 #| fig-cap: "Sampling distribution of the mean penguin body mass based on repeated random samples of size n = 15. Each value represents the mean body mass from one random sample."
+#| fig-height: 5
+#| fig-width: 7
 
 library(palmerpenguins)
 library(dplyr)
@@ -274,8 +278,8 @@ ggplot(sampling_means, aes(x = mean_mass)) +
 ::: column
 ```{r}
 #| label: fig-sampling-distribution-by-n
-#| fig-height: 9
-#| fig-width: 8
+#| fig-height: 6
+#| fig-width: 6
 #| fig-cap: "Sampling distributions of the mean penguin body mass for two sample sizes. Smaller samples (n = 10) produce more variable sample means than larger samples (n = 100)."
 
 set.seed(123)
@@ -354,15 +358,14 @@ ggplot(sampling_means, aes(x = mean_mass)) +
 ::::: columns
 ::: column
 -   The sampling distribution is **centered at the population mean**
-
 -   Its spread is **much smaller** than the spread of individual values
 :::
 
 ::: column
 ```{r}
 #| label: fig-population-vs-sampling-distribution
-#| fig-height: 9
-#| fig-width: 8
+#| fig-height: 7
+#| fig-width: 7
 #| fig-cap: "Population distribution of penguin body mass (top) compared to the sampling distribution of the sample mean for samples of size n = 25 (bottom). Vertical lines show the mean of each distribution."
 #| 
 
@@ -480,7 +483,7 @@ ggplot(plot_data, aes(x = value)) +
 ::: {.column width="50%"}
 ```{r}
 #| label: fig-many-confidence-intervals
-#| fig-height: 8
+#| fig-height: 7
 #| fig-width: 8
 #| fig-cap: "Repeated 95% confidence intervals for a population mean. Each horizontal line is a confidence interval from one sample; the vertical red line shows the true population mean. Most intervals include the true value, but some do not."
 
@@ -542,8 +545,8 @@ ggplot(ci_data, aes(y = factor(ci_id))) +
 
 ```{r}
 #| label: fig-ci-by-sample-size
-#| fig-height: 8
-#| fig-width: 15
+#| fig-height: 6
+#| fig-width: 14
 #| fig-cap: "Repeated 95% confidence intervals for a population mean at two sample sizes (n = 10 and n = 25). Each horizontal line is one CI; the vertical red line is the true population mean. Larger samples produce narrower intervals. Data Source: Palmer Penguins."
 
 library(tidyr)
@@ -608,8 +611,8 @@ ggplot(ci_data, aes(y = factor(ci_id))) +
 
 ```{r}
 #| label: fig-ci-90-vs-95
-#| fig-height: 8
-#| fig-width: 15
+#| fig-height: 6
+#| fig-width: 14
 #| fig-cap: "Confidence level affects confidence interval width. For the same set of random samples (n = 25), 95% confidence intervals are wider than 90% confidence intervals."
 
 set.seed(135)
@@ -882,7 +885,7 @@ penguins_sample |>
 [https://www.zoology.ubc.ca/\~whitlock/\
 Kingfisher/CIMean.htm](http://www.zoology.ubc.ca/~whitlock/Kingfisher/CIMean.htm){.uri}
 
-![Confidence intervals for the mean simulation. Interactive web app showing repeated random samples drawn from a population and the resulting confidence intervals, illustrating how sampling variability leads to uncertainty in estimates. Source: Whitlock and Schluter, The Analysis of Biological Data (3rd ed.) web app.](images/clipboard-1130178014.png){fig-alt="Screenshot of an interactive web app showing the distribution of repeated random samples and line ranges representing 95% confidence intervals calculated from each sample, used to demonstrate how confidence intervals are calculated from individual samples." fig-align="center"}
+![Confidence intervals for the mean simulation. Interactive web app showing repeated random samples drawn from a population and the resulting confidence intervals, illustrating how sampling variability leads to uncertainty in estimates. Source: Whitlock and Schluter, The Analysis of Biological Data (3rd ed.) web app.](images/clipboard-1130178014.png){#fig-ci-app fig-alt="Screenshot of an interactive web app showing the distribution of repeated random samples and line ranges representing 95% confidence intervals calculated from each sample, used to demonstrate how confidence intervals are calculated from individual samples." fig-align="center" width="80%"}
 :::
 
 :::: {.column width="50%"}
