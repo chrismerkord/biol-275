@@ -234,4 +234,20 @@ Introduces statistical inference for normally distributed data, including confid
 :::
 :::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 15
+:::
+
+::: card-body
+##### Comparing Two Means {.card-title}
+
+Introduces statistical methods for comparing two means, including Welch two-sample and paired t-tests, confidence intervals for mean differences, and appropriate study designs for two-sample inference.
+
+[Go to Lecture](slides/lecture-15-comparing-two-means/){.btn .btn-primary}
+:::
+:::::
+::::::
 :::::::::::::::::::

@@ -3,7 +3,7 @@ title: |
   | Lecture 15
   | Comparing Two Means
 subtitle: "ABD 3e Chapter 12"
-description: ""
+description: "Introduces statistical methods for comparing two means, including Welch two-sample and paired t-tests, confidence intervals for mean differences, and appropriate study designs for two-sample inference."
 format:
   revealjs:
     fig-width: 8
@@ -12,136 +12,416 @@ editor:
   markdown: 
     wrap: 72
 ---
+
+## Learning Objectives
+
+-   distinguish between paired and independent two-sample study designs
+-   estimate and interpret the difference between two population means
+-   explain how confidence intervals for the difference in means are
+    constructed and interpreted
+-   perform and interpret a Welch two-sample t-test
+-   perform and interpret a paired t-test
+-   identify the assumptions of two-sample and paired t-tests
+
 ## Comparing Two Means
 
+-   In a one-sample *t*-test, we asked whether a sample mean differs
+    from a known or hypothesized population mean.
+
+-   Often, however, we do **not** have a known population mean.
+
+-   Instead, we have **two samples**, each representing a different
+    group.
+
+-   Because these are samples, their means will **naturally differ** due
+    to random sampling variation.
+
+-   The key question:
+
+    > Is the difference between the sample means **small enough to be
+    > explained by sampling variation** if both groups come from
+    > populations with the same mean?
+    >
+    > Or is the difference **too large to be plausibly explained by
+    > chance alone**?
+
+-   To answer this question, we test whether the two populations have
+    the **same mean**.
+
+## Paired versus two independent samples
+
 ::::: columns
 ::: {.column width="50%"}
--   Many biological questions involve comparing the means of two groups.
--   Examples include treatment versus control or habitat comparisons.
--   Different study designs require different versions of the t test.
+Different statistical models are used depending on the relationship
+between the two samples:
+
+-   [Two-sample]{.keyword} (aka independent or unpaired) comparison:
+    -   Each treatment group is composed of an independent, random
+        sample of units
+-   [Paired]{.keyword} comparison:
+    -   Both treatments are applied to every sampled unit
+-   Paired designs are more powerful because they control for more
+    extraneous variations between units
 :::
 
 ::: {.column width="50%"}
-```{r}
-#| label: fig-penguin-bill-length-comparison
-#| fig-cap: Distribution of bill length for Adelie and Gentoo penguins. Data from the Palmer Penguins dataset.
-#| fig-alt: Two stacked histograms showing bill length distributions for Adelie and Gentoo penguins. Each panel shows counts of bill length measurements in millimeters.
+![Illustration of independent (two-sample) and paired sampling designs.
+In a two-sample design, observations in the two groups are independent.
+In a paired design, each observation in one group is matched with a
+corresponding observation in the other group. Whitlock & Schluter
+3e.](images/paired-vs-independent-samples.jpg){#fig-paired-vs-independent-samples
+fig-alt="Two-panel diagram comparing sampling designs. The left panel, labeled “Two-sample,” shows red and yellow points scattered independently, representing two separate groups of observations. The right panel, labeled “Paired,” shows red and yellow points arranged in pairs, indicating matched observations where each pair represents two measurements from the same unit or matched units."}
+:::
+:::::
 
-library(dplyr)
-library(ggplot2)
-library(palmerpenguins)
+## Examples of paired and unpaired scenarios
 
-penguins |> 
-  tidyr::drop_na(bill_length_mm) |> 
-  filter(species %in% c("Adelie", "Gentoo")) |> 
-  ggplot(
-    aes(x = bill_length_mm, fill = species)
-  ) +
-  geom_histogram(
-    bins = 25,
-    color = "white",
-    linewidth = 0.3
-  ) +
-  geom_vline(
-    aes(xintercept = bill_length_mm),
-    ~ summarize(
-      .x,
-      bill_length_mm = mean(bill_length_mm), 
-      .by = species
-    ),
-    color = "red",
-    linewidth = 1.5
-  ) +
-  facet_wrap(~ species, ncol = 1) +
-  see::scale_fill_oi(guide = "none") +
-  theme_minimal(base_size = 18) +
-  labs(
-    x = "Bill length (mm)",
-    y = "Count",
-  )
+::::: columns
+::: {.column width="50%"}
+### Unpaired (independent) samples
+
+-   Two separate groups of individuals
+-   Observations in one group are **not linked** to observations in the
+    other
+
+Examples:
+
+-   Mean plant biomass in **fertilized vs. unfertilized plots**
+-   Mean blood pressure in **patients receiving Drug A vs. Drug B**
+-   Mean time spent hiding in cover for fish from **ponds with predators
+    vs. ponds without predators**
+:::
+
+::: {.column width="50%"}
+### Paired (dependent) samples
+
+-   Each observation in one group is **linked to a specific
+    observation** in the other group
+-   Often the **same individual measured twice** or **matched pairs**
+
+Examples:
+
+-   Leaf nitrogen concentration in the **same plants before and after
+    fertilization**
+-   Blood pressure **before and after treatment** in the same patients
+-   **Time spent hiding in cover** for the **same fish measured with and
+    without predator cues** in an experimental tank
+:::
+:::::
+
+## Estimating the difference in means of [two independent samples]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+The best **estimate** of the difference between two means is the
+difference between the two sample means:
+
+$$
+\bar{Y}_1 - \bar{Y}_2
+$$
+
+Standard error:
+
+$$
+\operatorname{SE}_{(\bar{Y}_1 - \bar{Y}_2)} = \sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}
+$$
+:::
+
+::: {.column width="50%"}
+Where:
+
+-   $\bar{Y}_1$ and $\bar{Y}_2$ are the sample means
+-   $s_1^2$ and $s_2^2$ are the sample variances
+-   $n_1$ and $n_2$ are the sample sizes
+:::
+:::::
+
+## Confidence interval for the difference in two means
+
+::::: columns
+::: {.column width="50%"}
+If the populations are normally distributed (or sample sizes are large),
+the standardized difference has a $t$ distribution with $df$ degrees of
+freedom:
+
+$$
+t=\frac{(\bar{Y}_1 - \bar{Y}_2)-(\mu_1-\mu_2)}{\operatorname{SE}_{(\bar{Y}_1 - \bar{Y}_2)}}
+$$
+
+with a total degrees of freedom equal to
+
+$$
+df=df_1+df_2=n_1+n_2-2
+$$
+:::
+
+::: {.column width="50%"}
+Thus, the **confidence interval** for $\bar{Y}_1 - \bar{Y}_2$ would be:
+
+$$
+(\bar{Y}_1 - \bar{Y}_2) \pm t_{\alpha/2,df} \times \operatorname{SE}_{(\bar{Y}_1 - \bar{Y}_2)}
+$$
+:::
+:::::
+
+## Calculating estimates in R
+
+-   Calculate difference in means using `dplyr::summarize()`
+-   Calculate confidence interval using `t.test()`
+    -   Defaults to Welch's test, confidence level = 0.95
+
+``` {.r style="font-size: 2em"}
+# assume a data frame (tibble) with columns `value` and `group`
+
+# calculate the means
+summarize(example_data, group_mean = mean(value), .by = group)
+
+# calculate the confidence interval
+result <- t.test(value ~ group, data = example_data)
+result$conf.int
 ```
-:::
-:::::
 
-## The [independent two-sample t test]{.keyword}
+## The [Welch's two-sample $t$-test]{.keyword}
 
 ::::: columns
 ::: {.column width="50%"}
-1.  Used when observations in the two groups are independent.
-2.  The test evaluates whether the difference between group means is
-    greater than expected by chance.
-3.  Common example is a treatment group compared with a control group.
+The test evaluates whether the difference between population means is
+zero.
+
+$$
+H_0: \mu_1 = \mu_2
+$$
+
+$$
+H_A: \mu_1 \ne \mu_2
+$$
 :::
 
 ::: {.column width="50%"}
-```{r}
-#| label: fig-penguin-bill-length-comparison-means
-#| fig-cap: Distribution of bill length for Adelie and Gentoo penguins. Red vertical lines mark the sample mean bill length for each species. Data from the Palmer Penguins dataset.
-#| fig-alt: Two stacked histograms showing bill length distributions for Adelie and Gentoo penguins. Each panel shows counts of bill length measurements in millimeters, with a red vertical line indicating the mean bill length for that species.
+Test statistic:
 
-penguins |> 
-  tidyr::drop_na(bill_length_mm) |> 
-  filter(species %in% c("Adelie", "Gentoo")) |> 
-  ggplot(
-    aes(x = bill_length_mm, fill = species)
-  ) +
-  geom_histogram(
-    bins = 25,
-    color = "white",
-    linewidth = 0.3
-  ) +
-  geom_vline(
-    aes(xintercept = bill_length_mm),
-    ~ summarize(
-      .x,
-      bill_length_mm = mean(bill_length_mm), 
-      .by = species
-    ),
-    color = "red",
-    linewidth = 1.5
-  ) +
-  facet_wrap(~ species, ncol = 1) +
-  see::scale_fill_oi(guide = "none") +
-  theme_minimal(base_size = 18) +
-  labs(
-    x = "Bill length (mm)",
-    y = "Count",
-  )
-```
+$$
+t=\frac{\bar{Y}_1 - \bar{Y}_2}{\operatorname{SE}_{(\bar{Y}_1 - \bar{Y}_2)}}
+$$
+
+where:
+
+$$
+\operatorname{SE}_{(\bar{Y}_1 - \bar{Y}_2)} = \sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}
+$$
+
+The degrees of freedom are estimated using the Welch–Satterthwaite
+formula and computed automatically by statistical software.
 :::
 :::::
 
-## The [paired t test]{.keyword}
+## Assumptions of Welch's two-sample t-test
+
+-   The two groups are **independent random samples** from their
+    populations.
+
+-   The response variable is **numerical**.
+
+-   The variable is **approximately normally distributed in each
+    population** (or sample sizes are large).
+
+::: callout-note
+-   Another variation of the two-sample $t$-test assumes that the
+    variances of the two populations are equal (the **pooled-variance
+    t-test**).
+
+-   **Welch’s test does not assume equal variances**, and it maintains
+    the correct Type I error rate when the group variances or sample
+    sizes differ.
+
+-   Because Welch's test also performs well when variances are equal,
+    most modern statistical software uses **Welch's test by default**
+    (including `t.test()` in R).
+:::
+
+## Estimating mean differences of [paired]{.keyword} data: 3 steps
 
 ::::: columns
 ::: {.column width="50%"}
-1.  Used when observations occur in natural pairs such as before–after
-    measurements.
-2.  The analysis focuses on the differences within each pair.
-3.  The mean of these differences is tested against zero.
+1.  Calculate the differences between the values in each pair:
+
+$$
+d_i = (\text{first measurement of unit }i)-\\ (\text{second measurement of unit }i)
+$$
+
+2.  Calculate mean $\bar{d}$ and standard deviation $s_d$ of the
+    differences and figure out your sample size $n$
 :::
 
 ::: {.column width="50%"}
-![Paired measurements connected by lines illustrating before and after
-observations. Source: Whitlock & Schluter
-3e.](images/paired-t-test.png){#fig-paired-t-test
-fig-alt="Pairs of points connected by lines representing before and after measurements for the same subjects."}
+3.  Calculate the confidence interval:
+
+$$
+\bar{d} \pm  t_{\alpha/2,df} \times \operatorname{SE}_{\bar{d}}
+$$
+
+where:
+
+$$
+\operatorname{SE}_{\bar{d}} = \frac{s_d}{\sqrt{n}}
+$$
 :::
 :::::
 
-## Choosing the Correct Test
+## The [paired $t$-test]{.keyword}
 
 ::::: columns
 ::: {.column width="50%"}
-1.  The appropriate t test depends on the study design.
-2.  One-sample tests compare a mean to a hypothesized value.
-3.  Two-sample and paired tests compare means between groups.
+The test evaluates whether the mean **difference between paired
+observations** differs from a specified value (usually zero).
+
+$$ H_0: \mu_d=0 $$
+
+$$ H_A: \mu_d \ne 0 $$
 :::
 
 ::: {.column width="50%"}
-![Decision tree for selecting one-sample, two-sample, or paired t tests.
-Source: Whitlock & Schluter
-3e.](images/t-test-decision-tree.png){#fig-t-test-decision-tree
-fig-alt="Flowchart guiding the choice between one-sample, independent two-sample, and paired t tests."}
+Steps:
+
+1.  Calculate the differences $d$
+2.  Calculate the mean $\bar{d}$ and standard error
+    $\operatorname{SE}_{\bar{d}}$ of the differences
+3.  Continue with a one-sample $t$-test using this $t$-statistic:
+
+$$ t=\frac{\bar{d} - \mu_{d_0}}{\operatorname{SE}_{\bar{d}}} $$
 :::
 :::::
+
+## Assumptions of the paired $t$-test
+
+:::::: columns
+::: {.column width="50%"}
+Same as the assumptions for a one-sample 𝑡-test:
+
+1.  The sampling units are randomly sampled from the population
+
+2.  The paired differences have a normal distribution in populations
+:::
+
+:::: {.column width="50%"}
+::: callout-important
+The analysis makes no assumptions about the distribution of either of
+the two measurements made on each sampling unit, only their differences.
+:::
+::::
+::::::
+
+## The fallacy of indirect comparison
+
+::::: columns
+::: {.column width="60%"}
+-   Make comparisons between groups **directly**, not indirectly.
+
+-   Common mistake: compare **each group to the same reference value**
+    and then draw conclusions about the difference between groups.
+
+-   Example:
+
+    -   Group 1 significantly different from reference value.
+    -   Group 2 not significantly different from reference value.
+
+-   **This does not imply that the two groups differ from each other.**
+
+-   Instead, test or compare the difference between their means directly
+:::
+
+::: {.column width="40%"}
+![This figure shows the estimate of the mean for two independent groups.
+To tell if the means are statistically different, you must compare them
+to each other. Do not compare each mean to a third number (the red line)
+to determine if the two means are equal. Whitlock & Schluter
+3e.](images/indirect-comparison.png){#fig-indirect-comparison}
+:::
+:::::
+
+## Interpreting overlap of confidence intervals
+
+Comparing two means and confidence intervals visually yields the same
+results as a hypothesis test (t-test) in cases (a) and (b) below. In
+case (c) you would need to do the t-test to tell if the means are
+different.
+
+![Three examples illustrating how differences in means and variability
+affect hypothesis test results. Panel (a) shows two group means that are
+clearly separated relative to their variability, producing a
+statistically significant difference. Panel (b) shows a larger
+difference in means but with high variability, resulting in no
+statistically significant difference. Panel (c) shows overlapping
+uncertainty intervals, producing an inconclusive result. Whitlock &
+Schluter 3e](images/interpreting-overlap.png){#fig-interpreting-overlap
+fig-alt="Three-panel figure comparing means of two groups with error bars. In panel (a), the means are well separated with small error bars, indicating a statistically significant difference. In panel (b), the means differ more but the error bars are large and overlap, indicating no significant difference due to high variability. In panel (c), the means differ moderately with overlapping error bars, illustrating an unclear or inconclusive hypothesis test result."}
+
+## Comparing variances: estimation
+
+::::: columns
+::: {.column width="50%"}
+-   Sometimes you want to compare the variances of two populations
+
+-   Estimation is one option:
+
+    1.  Estimate the variances
+
+    2.  Estimate the confidence limits
+
+    3.  Plot
+:::
+
+::: {.column width="50%"}
+![Estimated variance for two groups with confidence intervals showing
+uncertainty in each estimate. Differences in variance between groups can
+be evaluated by comparing the magnitude of the estimates and the overlap
+of their confidence intervals. Whitlock & Schluter
+3e.](images/variance-estimates.png){#fig-variance-estimates
+fig-alt="Plot comparing variance estimates for two groups. Each group is represented by a point showing the estimated variance with vertical error bars indicating the confidence interval around that estimate. The estimate for Group 2 is higher than that for Group 1, though the confidence intervals overlap."
+fig-align="center"}
+:::
+:::::
+
+## Comparing variances: hypothesis testing
+
+::::::: columns
+::: {.column width="26%"}
+Hypothesis testing is another option:
+
+$$
+H_0: \sigma_1^2 = \sigma_2^2
+$$
+
+$$
+H_A: \sigma_1^2 \ne \sigma_2^2
+$$
+:::
+
+::: {.column width="37%"}
+### [$F$-test]{.keyword}
+
+-   Calculate test statistic $$F=s_1^2/s_2^2$$
+
+-   Is near 1 if variances are equal
+
+-   Has an $F$-distribution with $$df_1=n_1-1$$ $$df_2=n_2-1$$
+
+-   Assumes normality
+:::
+
+:::: {.column width="37%"}
+### [Levene's test]{.keyword}
+
+-   More robust to violations of the assumption of normality
+
+-   Most commonly used test, for this reason
+
+-   Can be applied to \> 2 groups, e.g.
+    $$H_0:\sigma_1^2=\sigma_2^2=\sigma_3^2$$
+
+::: callout-note
+These tests are for exploratory analysis, not required before Welch's
+$t$-test
+:::
+::::
+:::::::
