@@ -3,7 +3,7 @@ title: "SAC Application Instructions"
 format:
   html:
     toc: true
-    toc-depth: 2
+    toc-depth: 3
 ---
 
 ## Overview
