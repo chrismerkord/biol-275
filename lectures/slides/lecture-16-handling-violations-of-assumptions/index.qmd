@@ -1,0 +1,548 @@
+---
+title: |
+  | Lecture 16
+  | Handling Violations of Assumptions
+subtitle: "ABD 3e Chapter 13"
+description: "Handling violations of statistical assumptions, including when to proceed, transform data, or use alternative methods for non-normal data."
+format:
+  revealjs:
+    fig-width: 8
+    fig-height: 6
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+## Learning Objectives
+
+-   Identify when data deviate from normality
+-   Interpret histograms and normal quantile (Q–Q) plots
+-   Describe when it is reasonable to ignore assumption violations
+-   Explain the purpose of data transformations
+-   Recognize common transformations (e.g., log, square root)
+-   Describe nonparametric alternatives to $t$-tests
+-   Choose an appropriate approach when assumptions are violated
+
+## The animals haven’t read the books
+
+::::: columns
+::: {.column width="50%"}
+-   Many methods assume approximate normality of the data, especially
+    for small sample sizes.
+
+-   Often frequency distributions aren’t normal, and variances aren’t
+    equal
+
+-   What to do?
+:::
+
+::: {.column width="50%"}
+![Sea star on a coral reef, illustrating natural biological variation
+that may not follow ideal statistical
+assumptions.](images/starfish.png){#fig-starfish
+fig-alt="Bright orange sea star with patterned arms resting on a textured coral reef surface."}
+:::
+:::::
+
+## Options when assumptions are violated
+
+::::: columns
+::: {.column width="50%"}
+1.  Use a method that is **robust** to the violation
+    -   Many tests (e.g., $t$-tests) tolerate moderate departures from
+        normality, especially with larger sample sizes
+2.  Use a method designed for that **type of data**
+    -   Counts (e.g., number of individuals)
+    -   Proportions (e.g., survival rate)
+    -   Binary outcomes (0/1)
+    -   These often require different statistical approaches than
+        methods for normal data
+    -   Discussed later in lecture on multiple regression
+:::
+
+::: {.column width="50%"}
+3.  Transform the data
+    -   Apply a mathematical transformation (e.g., log, square root) to
+        better meet assumptions
+    -   Can improve symmetry and variance
+4.  Use a **nonparametric method**
+    -   Makes fewer assumptions about the distribution
+    -   Often based on ranks rather than raw values
+5.  Use **resampling methods**
+    -   Permutation tests or bootstrap methods
+    -   Do not rely on normality assumptions
+:::
+:::::
+
+## Detecting deviations from normality
+
+::::: columns
+::: {.column width="50%"}
+Graphical methods (eyeball test)
+
+-   Plot the data
+
+-   Histograms of variables
+
+-   Split into categories if you have them
+
+-   Make a normal quantile plot
+:::
+
+::: {.column width="50%"}
+![Histograms of data, all sampled from a perfect normal distribution
+using a computer. None resembles a normal distribution, but they are not
+so far off that we should give up on the assumption of
+normality.](images/samples-from-normal-population.png){#fig-samples-from-normal-population}
+:::
+:::::
+
+## Examples of samples drawn from non-normally-distributed populations
+
+::::: columns
+::: {.column width="50%"}
+-   Not all data follow a symmetric, bell-shaped distribution
+
+-   Common deviations:
+
+    -   Skewness (long tail left or right)
+    -   Heavy tails or outliers
+    -   Irregular or uneven shapes
+
+-   These deviations can affect statistical methods that assume
+    normality
+
+-   Next: how to detect and handle these situations
+:::
+
+::: {.column width="50%"}
+![Examples of samples drawn from non-normal distributions, showing
+skewness and departures from
+symmetry.](images/samples-from-non-normal-populations.png){#fig-samples-from-non-normal-populations
+fig-alt="Four panels showing different data distributions that deviate from normality, including skewed and uneven shapes rather than a symmetric bell curve."
+width="1014"}
+:::
+:::::
+
+## Normal quantile (Q–Q) plots identify non-normality
+
+::::: columns
+::: {.column width="50%"}
+-   Each point = one observation
+
+    -   X-axis: **expected values** if the data were normal with the
+        same mean and standard deviation
+
+    -   Y-axis: **observed values**, sorted from smallest to largest
+
+-   Interpretation:
+
+    -   Points on a straight line → approximately normal
+    -   Systematic curvature → non-normal (e.g., skew, heavy tails)
+    -   Points far from line → potential outliers
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-qq-plot
+#| fig-cap: Normal quantile (Q–Q) plot for data sampled from a normal distribution. Points fall near a straight line, indicating that the data are approximately normal.
+#| fig-alt: Scatterplot of sample quantiles versus theoretical normal quantiles. Points lie close to a diagonal reference line, indicating approximately normal data.
+
+library(ggplot2)
+
+# example data (replace with your variable)
+set.seed(1)
+y <- rlnorm(40, meanlog = 0.5, sdlog = 0.4)
+
+# compute theoretical and sample quantiles
+n <- length(y)
+p <- (1:n - 0.5) / n
+theoretical <- qnorm(p)                  # theoretical (normal) quantiles
+sample_q <- sort(y)                     # sample quantiles
+
+df <- data.frame(
+  theoretical = theoretical,
+  sample = sample_q
+)
+
+# fit reference line
+fit <- lm(sample ~ theoretical, data = df)
+
+ggplot(df, aes(x = theoretical, y = sample)) +
+  geom_point(size = 2, color = "red") +
+  geom_abline(
+    slope = coef(fit)[2],
+    intercept = coef(fit)[1]
+  ) +
+  labs(
+    x = "Theoretical quantiles (normal)",
+    y = "Sample quantiles",
+    title = "Normal quantile (Q–Q) plot"
+  ) +
+  theme_bw(base_size = 18)
+```
+:::
+:::::
+
+## Example: biomass ratio
+
+::::: columns
+::: {.column width="50%"}
+Halpern (2003) calculated biomass ratio as the total mass of all marine
+plants and animals per unit area of reserve divided by the same quantity
+in an unprotected control.
+
+![Brightly colored intertidal crab, an example of a species whose
+biomass may differ between protected and unprotected habitats. Whitlock
+& Schluter. *The Analysis of Biological Data 3e*. © 2020 W. H. Freeman
+and Company.](images/crab.png){#fig-crab width="80%"}
+:::
+
+::: {.column width="50%"}
+![Histogram and normal quantile (Q–Q) plot of biomass ratio data showing
+right-skewness and deviation from
+normality.](images/biomass-ratio-example.png){#fig-biomass-ratio-example
+fig-alt="Top panel shows a histogram of biomass ratio values with a long right tail. Bottom panel shows a Q–Q plot where points curve away from a straight line, indicating non-normal data."
+fig-align="center" width="350"}
+:::
+:::::
+
+## Formal test of normality
+
+::::: columns
+::: {.column width="50%"}
+-   A [Shapiro-Wilk test]{.keyword} evaluates the goodness-of-fit of a
+    normal distribution to a sample.
+
+-   Hypotheses:
+
+    -   H~A~: The data are sampled from a population not having a normal
+        distribution
+
+    -   H~0~: The data are samples from a population having a normal
+        distribution.
+:::
+
+::: {.column width="50%"}
+Warnings:
+
+-   A small sample size might not yield enough power to reject the null
+    even when data are non-normal
+
+-   With large samples, even small deviations from normality can lead to
+    rejection.
+
+-   BUT, as sample size increases, assumption of normality becomes less
+    important
+
+-   Take-home: plot the data and use common sense
+:::
+:::::
+
+## Option 1: When to **ignore** violations of assumptions
+
+::::: columns
+::: {.column width="50%"}
+-   Ignore violations of assumptions when:
+
+    -   The violations are not extreme
+
+    -   A statistical procedure is **robust**
+
+-   [Robust]{.keyword} procedures:
+
+    -   Answer is not sensitive to violations of the assumptions (some
+        methods are considered robust, others not, learn which)
+
+    -   Not unduly affected by outliers
+
+    -   Provide good performance even with small departures from normal
+        distributions
+:::
+
+::: {.column width="50%"}
+-   $t$-test is less robust when...
+
+    -   sample sizes are small
+
+    -   there are outliers
+
+    -   two distributions differ from normality in different ways
+
+    -   variances are unequal (pooled-variance $t$-test)
+
+-   For comparing variances:
+
+    -   $F$-test is not robust to non-normality
+
+    -   Levene's test is
+:::
+:::::
+
+## Option 2: [Data transformation]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+-   Sometimes we can take data and transform it so it better meets
+    assumptions
+
+-   A data transformation changes each measurement by the same
+    mathematical formula
+
+-   Use a “prime” mark ( $\prime$ ) to denote transformed data e.g.
+    $Y^\prime$
+
+    -   Pronounced “Y-prime”
+
+![](images/coach-prime.png){fig-align="center" width="60%"}
+:::
+
+::: {.column width="50%"}
+![Transforming non-normal data toward
+normality.](images/data-transformation.png){#fig-data-transformation
+fig-alt="Skewed histogram on the left with a crying emoji, arrow pointing to a bell-shaped histogram on the right with a heart-eyes emoji."}
+:::
+:::::
+
+## The log transformation
+
+::::: columns
+::: {.column width="50%"}
+-   The [log transformation]{.keyword} is the most common transformation
+    in biology
+
+-   Procedure:
+
+    -   Take the natural log of each measurement
+
+$$
+Y^\prime = \operatorname{ln}[Y]
+$$
+
+R code:
+
+``` r
+# transform a vector
+transformed <- log(y)
+
+# transform a variable in a dataset
+data |> 
+  mutate(transformed = log(y))
+```
+:::
+
+::: {.column width="50%"}
+![](images/log-transformation.png)
+:::
+:::::
+
+## When to use the log transformation
+
+::::: columns
+::: {.column width="50%"}
+-   Most likely to be useful when:
+
+    -   Measurements are ratios or products of variables
+
+    -   Frequency distribution of data is skewed right (long tail on
+        right)
+
+    -   The group having the larger mean (when comparing two groups)
+        also has the higher standard deviation
+
+    -   The data span several orders of magnitude
+:::
+
+::: {.column width="50%"}
+-   Commonly used for:
+
+    -   Measurements such as body size and body mass
+
+    -   Count data (e.g. number of individual organisms in an area)
+
+    -   If data contain zeros, you can’t take log. Sometimes a small
+        constant (e.g., +1) is added, but this should be justified.
+
+$$
+Y^\prime = \operatorname{ln}[Y+1]
+$$
+
+R code:
+
+``` r
+p_prime <- log1p(p)
+```
+:::
+:::::
+
+## Other transformations
+
+::::: columns
+::: {.column width="50%"}
+-   [Arcsine square root transformation]{.keyword} used on data that are
+    **proportions**
+
+$$
+p\prime = \operatorname{arcsin}[\sqrt{p}]
+$$
+
+-   [Square root transformation]{.keyword} used on **count** data ([more
+    info](https://quantifyinghealth.com/square-root-transformation/))
+
+$$
+Y^\prime = \sqrt{Y}
+$$
+:::
+
+::: {.column width="50%"}
+-   For **left-skewed** data try the [square transformation]{.keyword}
+    or [antilog transformation]{.keyword}
+
+$$
+Y^\prime = Y^2
+$$
+
+$$
+Y^\prime = e^Y
+$$
+
+-   For **right-skewed** data try the [reciprocal
+    transformation]{.keyword}
+
+$$
+Y^\prime = \frac{1}{Y}
+$$
+:::
+:::::
+
+## Confidence interval for the mean of a non-normally distributed variable
+
+::::: columns
+::: {.column width="50%"}
+-   Standard t-based confidence intervals assume approximate normality,
+    especially for small samples
+-   Steps for non-normal data:
+    -   Transform the raw data
+    -   Calculate confidence intervals using methods already discussed
+    -   Back-transform the upper and lower confidence limits so they are
+        on the original scale of the raw data
+-   Example: if you used log transformation before then back-transform
+    using antilog
+:::
+
+::: {.column width="50%"}
+Back-transformations
+
+| Transform           | Back-transform                                 |
+|---------------------|------------------------------------------------|
+| Log                 | Antilog                                        |
+| Arcsine square root | Sine square $(\operatorname{sin}[Y^\prime])^2$ |
+| Square root         | Square                                         |
+| Square              | Square root                                    |
+| Antilog             | Log                                            |
+| Reciprocal          | Reciprocal                                     |
+:::
+:::::
+
+## Other considerations when transforming data
+
+::::: columns
+::: {.column width="50%"}
+-   Interpretability can suffer (values no longer in original units,
+    harder to explain to others)
+
+-   Some transforms do not work well with zero, small numbers, or
+    negative numbers
+
+    -   Shifting values before transforming can help
+    -   E.g. add 1 before log transform, add 0.5 before square root
+        transform
+:::
+
+::: {.column width="50%"}
+-   Avoid multiple testing
+
+    -   Do not just try different transformations until you find one
+        that gives a $p$-value smaller than 0.05
+
+    -   This increases your chance of a Type I error
+
+    -   Instead, decide *a priori* (ahead of time) which transformation
+        best yields data that meet the assumptions of the statistical
+        method
+:::
+:::::
+
+## Option 3: Nonparametric alternatives
+
+::::: columns
+::: {.column width="50%"}
+[Parametric]{.keyword} methods
+
+-   Assume normality
+:::
+
+::: {.column width="50%"}
+[Nonparametric]{.keyword} methods
+
+-   Make fewer assumptions about the distribution of the variables
+
+    -   e.g. data does not have to be normal
+
+<!-- -->
+
+-   Usually based on [ranks]{.keyword} of the data points, not their
+    actual values
+:::
+:::::
+
+## Alternatives to **one-sample** $t$-tests
+
+These tests can be used instead of a one-sample or paired $t$-test when
+the variable is not normal.
+
+::::: columns
+::: {.column width="50%"}
+[Sign test]{.keyword}
+
+-   Compares median of a sample to a null hypothesis
+-   Makes no assumptions about the distribution of the measurement in
+    the population
+-   Not very powerful
+:::
+
+::: {.column width="50%"}
+[Wilcoxon signed-rank test]{.keyword}
+
+-   Assumes symmetric distribution (not robust)
+:::
+:::::
+
+## Alternative to **two-sample** $t$-tests
+
+::::: columns
+::: {.column width="50%"}
+[Mann-Whitney $U$-test]{.keyword} compares the distributions of two
+groups
+
+-   Requires fewer assumptions than a two-sample $t$-test
+
+-   Uses **ranks** instead of raw values
+
+-   Uses the $U$ distribution.
+:::
+
+::: {.column width="50%"}
+-   **Sensitive** to differences in shape of distributions in the two
+    groups, e.g. different variance and skew
+
+-   If distributions have similar shape, it can be interpreted as a
+    **test of medians**.
+
+-   If distributions have dissimilar shapes, a rejection of the null
+    hypothesis could be due to either differences in shape, or location,
+    of the data
+:::
+:::::
+
+## Nonparametric tests are typically **less powerful** than parametric tests

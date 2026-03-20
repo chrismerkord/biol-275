@@ -250,4 +250,20 @@ Introduces statistical methods for comparing two means, including Welch two-samp
 :::
 :::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 16
+:::
+
+::: card-body
+##### Handling Violations of Assumptions {.card-title}
+
+Handling violations of statistical assumptions, including when to proceed, transform data, or use alternative methods for non-normal data.
+
+[Go to Lecture](slides/lecture-16-handling-violations-of-assumptions/){.btn .btn-primary}
+:::
+:::::
+::::::
 :::::::::::::::::::
