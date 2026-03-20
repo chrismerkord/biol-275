@@ -1,0 +1,118 @@
+---
+title: "SAC Application Instructions"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+---
+
+## Overview
+
+To participate in the Student Academic Conference (SAC), you must submit an application using the online form.
+
+-   The application deadline is listed on the [SAC website](https://www.mnstate.edu/academics/opportunities/student-academic-conference) and the [Exploratory Data Analysis Project](index.qmd) page.
+-   Missing the deadline will prevent you from presenting and will negatively affect your course grade.
+
+## Key Requirements
+
+-   Submit your application before the deadline
+-   Your title and abstract must be approved by your instructor before submission
+-   Only one person per group submits the application
+-   You must include the required "Special Requests" text
+-   You must submit proof of your application (PDF) on D2L
+
+## Prerequisites
+
+Before starting the application:
+
+-   Read the [Exploratory Data Analysis Project](index.qmd) instructions
+-   Choose your dataset and complete the data readiness check
+-   Write your title and abstract
+-   Get your title and abstract approved by your instructor
+
+## Information to Prepare
+
+Have all of the following ready before starting the form.
+
+It is strongly suggested that you complete the application straight through (i.e. have all information on hand and enter it over the span of 30 minutes or less). Information may be lost if the application stays open for more than 30 minutes.
+
+| Item | Required for all groups? | Notes |
+|--------------------------------|------------------|-----------------------|
+| Dragon IDs for all group members (you can search by name) | Yes | Include whether each is an honors or graduate student |
+| Title | Yes | Must be approved and spell-checked |
+| Abstract (100–250 words) | Yes | Must be approved and spell-checked |
+| Mentor name | Yes | Chris Merkord |
+| Additional student coauthors not in BIOL 275 | If applicable | Include Dragon IDs and student status |
+| Additional faculty mentors | If applicable | Add in form if needed |
+| IRB or IACUC approval | If applicable | Only for research projects which required them. |
+
+## Application Process
+
+Read all steps before beginning.
+
+1.  Go to the [online application form](https://my.mnstate.edu/sac/form)
+
+2.  Read the guidelines and click **“I agree to these guidelines. Apply now.”**
+
+### Student Information
+
+3.  Add each group member:
+
+    -   Enter Dragon ID (search by name if needed)
+    -   Select **Yes** for “Will this person be presenting?”
+    -   Click **Add Student to List**
+    -   Repeat for all group members and any additional student coauthors
+
+    *Do not add your course instructor here.*
+
+### Presentation Details
+
+4.  Enter the **Title** (copy and paste)
+
+5.  Format: select **Poster**
+
+6.  IRB/IACUC approval:
+
+    -   Select **Not Applicable** unless your project required approval
+
+7.  Enter the **Abstract** (copy and paste)
+
+    -   Do not apply special formatting (except scientific names if needed)
+
+8.  Department: select **Biosciences**
+
+9.  Discipline: select **Biology**
+
+10. Mentor: select **Merkord, Chris**
+
+    -   Add additional mentors if applicable
+
+### Additional Fields
+
+11. Presenter lunch:
+    -   Check the box if you plan to attend
+
+### Special Requests (Required)
+
+12. Copy and paste the following into the **Special Requests** field:
+
+> [This presentation is for BIOL 275 Biostatistics. Please group it with other presentations for that course.]{style="color: darkred;"}
+
+If you are giving multiple presentations, you may also include:
+
+> I am also presenting another poster and an oral presentation. Please schedule these for \[(different times) or (the same time, next to each other)\].
+
+### Submit
+
+13. Click the **submit** button.
+
+By submitting this application you authorize the Student Academic Conference to publish your first and last name with your presentation in both print and online material and that you have made all group members aware of this, as well.
+
+## After You Submit
+
+1.  Save proof of your submission:
+
+-   Print the confirmation screen as a PDF **or**
+-   Save the confirmation email as a PDF
+
+2.  Submit the PDF on D2L under the **SAC Application Confirmation assignment**

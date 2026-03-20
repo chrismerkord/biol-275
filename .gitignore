@@ -60,3 +60,5 @@
 **/index_files/
 # knitr execution caches
 **/*_cache/
+
+/.quarto/

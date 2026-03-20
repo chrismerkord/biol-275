@@ -52,7 +52,8 @@ website:
           - project/dryad-datasets.qmd
           - project/team-formation.qmd
           - project/data-readiness-check.qmd
-          - project/abstract.qmd
+          - project/how-to-write-an-abstract.qmd
+          - project/sac-application-instructions.qmd
       - section: "Resources"
         contents:
           - resources/index.qmd
