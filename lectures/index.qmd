@@ -266,4 +266,20 @@ Handling violations of statistical assumptions, including when to proceed, trans
 :::
 :::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 17
+:::
+
+::: card-body
+##### Choosing a test {.card-title}
+
+Summarizes the decision process for choosing an appropriate statistical test based on the research question, data types, and study design. Provides a flowchart to guide test selection.
+
+[Go to Lecture](slides/lecture-17-choosing-a-test){.btn .btn-primary}
+:::
+:::::
+::::::
 :::::::::::::::::::
