@@ -148,10 +148,12 @@ You will:
 ```{r}
 #| echo: true
 
+library(PairedData)
 data(Shoulder)
 
 shoulder_data <- 
-  tibble(Shoulder) |> 
+  Shoulder |> 
+  as_tibble() |> 
   rowwise() |>
   mutate(
     strongarm = max(Left, Right),
