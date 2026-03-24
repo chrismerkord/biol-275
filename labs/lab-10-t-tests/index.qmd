@@ -82,7 +82,8 @@ In this activity, you will:
 Code
 
 ```{r}
-#| echo:true
+#| echo: true
+
 slq_data <-
   read_xpt("https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/SLQ_L.xpt") |> 
   drop_na(SLD012) |>
@@ -149,7 +150,7 @@ You will:
 #| echo: true
 
 library(PairedData)
-data(Shoulder)
+data("Shoulder")
 
 shoulder_data <- 
   Shoulder |> 
