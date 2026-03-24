@@ -84,8 +84,7 @@ Code
 ```{r}
 slq_data <-
   read_xpt("https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/SLQ_L.xpt") |> 
-  select(SLD012) |> 
-  drop_na() |>
+  drop_na(SLD012) |>
   slice_head(n = 100) |> 
   print()
 
