@@ -82,11 +82,11 @@ In this activity, you will:
 Code
 
 ```{r}
+#| echo:true
 slq_data <-
   read_xpt("https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/SLQ_L.xpt") |> 
   drop_na(SLD012) |>
-  slice_head(n = 100) |> 
-  print()
+  slice_head(n = 100)
 
 slq_data |>
   ggplot(aes(x = SLD012)) +
@@ -112,11 +112,11 @@ In this activity, you will:
 Use the following code:
 
 ```{r}
+#| echo: true
 bison_data <-
   knz_bison |> 
   drop_na(animal_sex, animal_weight) |>
-  slice_head(n = 100, by = animal_sex) |> 
-  print()
+  slice_head(n = 100, by = animal_sex)
 
 bison_data |>
   ggplot(aes(x = animal_weight)) +
@@ -146,6 +146,7 @@ You will:
 ### Code
 
 ```{r}
+#| echo: true
 
 data(Shoulder)
 
@@ -156,8 +157,7 @@ shoulder_data <-
     strongarm = max(Left, Right),
     weakarm = min(Left, Right)
   ) |>
-  ungroup() |>
-  print()
+  ungroup()
 
 shoulder_data |>
   ggplot(aes(x = strongarm)) +
