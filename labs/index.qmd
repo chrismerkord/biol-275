@@ -135,5 +135,19 @@ Lab 9
 :::
 ::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lab 10
+:::
+::: card-body
+##### t-tests {.card-title}
+
+[Lab 10](lab-10-t-tests/)
+:::
+::::
+::::::
+
 :::::::::::
 
