@@ -146,6 +146,9 @@ You will:
 ### Code
 
 ```{r}
+
+data(Shoulder)
+
 shoulder_data <- 
   tibble(Shoulder) |> 
   rowwise() |>
