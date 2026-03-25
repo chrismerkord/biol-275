@@ -51,26 +51,26 @@ fig-alt="Bright orange sea star with patterned arms resting on a textured coral 
 1.  Use a method that is **robust** to the violation
     -   Many tests (e.g., $t$-tests) tolerate moderate departures from
         normality, especially with larger sample sizes
-2.  Use a method designed for that **type of data**
+2.  Transform the data
+    -   Apply a mathematical transformation (e.g., log, square root) to
+        better meet assumptions
+    -   Can improve symmetry and variance
+3.  Use a **nonparametric method**
+    -   Makes fewer assumptions about the distribution
+    -   Often based on ranks rather than raw values
+:::
+
+::: {.column width="50%"}
+4.  Use **resampling methods**
+    4.  Permutation tests or bootstrap methods
+    5.  Do not rely on normality assumptions
+5.  Use a method designed for that **type of data**
     -   Counts (e.g., number of individuals)
     -   Proportions (e.g., survival rate)
     -   Binary outcomes (0/1)
     -   These often require different statistical approaches than
         methods for normal data
     -   Discussed later in lecture on multiple regression
-:::
-
-::: {.column width="50%"}
-3.  Transform the data
-    -   Apply a mathematical transformation (e.g., log, square root) to
-        better meet assumptions
-    -   Can improve symmetry and variance
-4.  Use a **nonparametric method**
-    -   Makes fewer assumptions about the distribution
-    -   Often based on ranks rather than raw values
-5.  Use **resampling methods**
-    -   Permutation tests or bootstrap methods
-    -   Do not rely on normality assumptions
 :::
 :::::
 
@@ -244,13 +244,9 @@ Warnings:
 ::::: columns
 ::: {.column width="50%"}
 -   Ignore violations of assumptions when:
-
     -   The violations are not extreme
-
     -   A statistical procedure is **robust**
-
 -   [Robust]{.keyword} procedures:
-
     -   Answer is not sensitive to violations of the assumptions (some
         methods are considered robust, others not, learn which)
 
@@ -262,17 +258,11 @@ Warnings:
 
 ::: {.column width="50%"}
 -   $t$-test is less robust when...
-
     -   sample sizes are small
-
     -   there are outliers
-
     -   two distributions differ from normality in different ways
-
     -   variances are unequal (pooled-variance $t$-test)
-
 -   For comparing variances:
-
     -   $F$-test is not robust to non-normality
 
     -   Levene's test is
@@ -332,7 +322,10 @@ data |>
 :::
 
 ::: {.column width="50%"}
-![](images/log-transformation.png)
+![Log transformation makes right-skewed distributions more symmetric and
+stabilizes differences between
+groups.](images/log-transformation.png){#fig-log-transformation
+fig-alt="Two panels comparing distributions before and after log transformation; left panel shows two right-skewed distributions, while the right panel shows their log-transformed versions appearing more symmetric and bell-shaped."}
 :::
 :::::
 
@@ -489,8 +482,6 @@ Back-transformations
 
     -   e.g. data does not have to be normal
 
-<!-- -->
-
 -   Usually based on [ranks]{.keyword} of the data points, not their
     actual values
 :::
@@ -498,23 +489,26 @@ Back-transformations
 
 ## Alternatives to **one-sample** $t$-tests
 
-These tests can be used instead of a one-sample or paired $t$-test when
-the variable is not normal.
+Use these when data are not approximately normal (for one-sample or
+paired comparisons).
 
 ::::: columns
 ::: {.column width="50%"}
 [Sign test]{.keyword}
 
--   Compares median of a sample to a null hypothesis
--   Makes no assumptions about the distribution of the measurement in
-    the population
--   Not very powerful
+-   Tests whether the median differs from a null value\
+-   Uses only the direction (+/–) of differences\
+-   Makes no assumptions about the distribution\
+-   Low power (less sensitive to differences)
 :::
 
 ::: {.column width="50%"}
 [Wilcoxon signed-rank test]{.keyword}
 
--   Assumes symmetric distribution (not robust)
+-   Tests whether the median differs from a null value\
+-   Uses ranks of differences (accounts for magnitude)\
+-   Assumes symmetric distribution of differences\
+-   More powerful than the sign test
 :::
 :::::
 
@@ -522,27 +516,78 @@ the variable is not normal.
 
 ::::: columns
 ::: {.column width="50%"}
-[Mann-Whitney $U$-test]{.keyword} compares the distributions of two
-groups
+[Wilcoxon Rank-Sum Test]{.keyword} (aka Mann-Whitney $U$-test) compares
+the distributions of two groups
 
--   Requires fewer assumptions than a two-sample $t$-test
-
--   Uses **ranks** instead of raw values
-
--   Uses the $U$ distribution.
+-   Compares the distributions of two groups\
+-   Uses **ranks** instead of raw values\
+-   Requires fewer assumptions than a two-sample $t$-test\
+-   Does not assume normality
 :::
 
 ::: {.column width="50%"}
--   **Sensitive** to differences in shape of distributions in the two
-    groups, e.g. different variance and skew
-
--   If distributions have similar shape, it can be interpreted as a
-    **test of medians**.
-
--   If distributions have dissimilar shapes, a rejection of the null
-    hypothesis could be due to either differences in shape, or location,
-    of the data
+-   Sensitive to differences in **location, spread, and shape**\
+-   If distributions have similar shape → can be interpreted as a **test
+    of medians**\
+-   If distributions differ in shape → difficult to attribute
+    differences to a single cause
 :::
 :::::
 
 ## Nonparametric tests are typically **less powerful** than parametric tests
+
+## Option 4: Resampling methods (no normality required)
+
+-   Do not assume normality
+-   Use the data to build distributions (null or sampling)
+-   Widely used in modern statistics
+
+::::: columns
+::: {.column width="50%"}
+[Permutation tests]{.keyword}
+
+-   Test hypotheses by simulating the null hypothesis using the data
+-   Shuffle labels (e.g., group membership) to represent “no effect”
+-   Recalculate the statistic many times → build a null distribution
+-   p-value = how extreme the observed result is relative to this
+    distribution
+:::
+
+::: {.column width="50%"}
+[Bootstrap]{.keyword}
+
+-   Estimate uncertainty by resampling the data (with replacement)
+-   Recalculate the statistic many times
+-   Use the distribution to estimate standard errors and confidence
+    intervals
+:::
+:::::
+
+## Option 5: Use methods designed for the type of data
+
+::::: columns
+::: {.column width="60%"}
+-   Some types of data require different models:
+
+    -   Counts (e.g., number of individuals) → Poisson or negative
+        binomial models
+    -   Proportions (e.g., survival rate) → Binomial models
+    -   Binary outcomes (0/1) → Logistic regression
+
+-   These are examples of [generalized linear models (GLMs)]{.keyword}
+
+    -   Specify a distribution for the response variable
+    -   Use a link function (e.g., log, logit) to relate variables
+
+-   Avoid forcing normality with transformations when a suitable model
+    exists
+:::
+
+::: {.column width="40%"}
+![Diagram of a generalized linear model showing how predictors are
+combined into a linear predictor, linked to the mean of the response,
+and connected to an appropriate distribution for the
+data.](images/glm-diagram.png){#fig-glm-diagram
+fig-alt="Flowchart showing predictor variables feeding into a linear predictor, then through a link function to the mean of the response, which is associated with a distribution and produces the response variable."}
+:::
+:::::
