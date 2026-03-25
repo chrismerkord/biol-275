@@ -15,6 +15,14 @@ editor:
 
 ## Learning Objectives
 
+-   Select an appropriate statistical test for a given research question and dataset  
+
+-   Use information about variables, study design, and number of groups to guide test selection  
+
+-   Evaluate whether the assumptions of a chosen method are reasonable  
+
+-   Apply a logical sequence of questions (a mental flow chart) to choose a test
+
 ## Which test should I use?
 
 ::::: columns
@@ -41,41 +49,44 @@ editor:
 :::
 :::::
 
-## Statistical tests for data on a [single categorial variable]{.keyword}
+## Goal: match the method to the data and study design
 
-+--------------------------------+-----------------------------------+
-| Goal                           | Test                              |
-+================================+===================================+
-| Use frequency data to test     | Binomial test ([Lecture           |
-| whether a population           | 9](../lecture%                    |
-| proportion equals a null       | 20-09-analyzing-%20proportions/)) |
-| hypothesized value             |                                   |
-|                                | $\chi^2$ g oodness-of-fit test    |
-|                                | with two categories (use if       |
-|                                | sample size is too large for the  |
-|                                | binomial test) ([Lecture 1        |
-|                                | 0](.                              |
-|                                | ./l%20ec%%202%2%20%2000t%2%200u%2 |
-|                                | 0%20%20re-%20%2%20010-fi%20%20%20 |
-|                                | t%%%2020%20%2020t%20i%20%20n%20g% |
-|                                | 20-%20%20pro%20%20bab%20%20%%%202 |
-|                                | 0%2%20020ili%%2020ty%20%%2020-%20 |
-|                                | mod%20e%20l%%2%2002%2%20%2000s-%2 |
-|                                | 0t%%2020o-fre%2%200%20q%%2020u%2% |
-|                                | 200e%20%%20%%202%20020ncy-data/)) |
-+--------------------------------+-----------------------------------+
-| Use frequency data to test the | $\chi^2$ g oodness-of-fit test    |
-| fit of a specific population   | ([Lecture 1                       |
-| model                          | 0](.                              |
-|                                | ./l%20ec%%202%2%20%2000t%2%200u%2 |
-|                                | 0%20%20re-%20%2%20010-fi%20%20%20 |
-|                                | t%%%2020%20%2020t%20i%20%20n%20g% |
-|                                | 20-%20%20pro%20%20bab%20%20%%%202 |
-|                                | 0%2%20020ili%%2020ty%20%%2020-%20 |
-|                                | mod%20e%20l%%2%2002%2%20%2000s-%2 |
-|                                | 0t%%2020o-fre%2%200%20q%%2020u%2% |
-|                                | 200e%20%%20%%202%20020ncy-data/)) |
-+--------------------------------+-----------------------------------+
+-   Start with the **question**
+-   Identify the data:
+    -   What type of variable is the response?
+    -   What type of variable is the explanatory variable?
+    -   Are samples independent or paired?
+    -   How many groups are being compared?
+-   Choose a method that matches the data and question
+-   Check whether the assumptions of that method are reasonable
+    -   If not, choose a better-suited method
+
+## Choosing a test follows a logical sequence of questions (a mental flow chart)
+
+![Flow chart illustrating how data type, number of groups, and study
+design guide the choice of a statistical test. Source: Osborne Nishimura
+Lab, Colorado State University (adapted from common statistical decision
+frameworks).](https://onishlab.colostate.edu/wp-content/uploads/2019/07/which_test_flowchart.png){#fig-which_test_flowchart
+fig-alt="Complex flow chart that begins with type of data (continuous, discrete, proportions) and branches through conditions such as number of groups and pairing to identify appropriate statistical tests like t-tests, ANOVA, chi-square, and nonparametric tests."
+width="80%"}
+
+## If you have [one categorical variable]{.keyword}...
+
++-----------------------------+-------------------------------+
+| Goal                        | Test                          |
++=============================+===============================+
+| Use frequency data to test  | Binomial test (Lecture 9)     |
+| whether a population        |                               |
+| proportion equals a null    | $\chi^2$ goodness-of-fit test |
+| hypothesized value          | with two categories (use if   |
+|                             | sample size is too large for  |
+|                             | the binomial test) (Lecture   |
+|                             | 10)                           |
++-----------------------------+-------------------------------+
+| Use frequency data to test  | $\chi^2$ goodness-of-fit test |
+| the fit of a specific       | (Lecture 10)                  |
+| population model            |                               |
++-----------------------------+-------------------------------+
 
 : Commonly used statistical tests for data on a single categorical
 variable. These methods test whether a population parameter equals the
@@ -83,46 +94,29 @@ value proposed in the null hypothesis or whether a specific probability
 model fits a frequency distribution. Adapted from Whitlock & Schluter
 3e. W.H. Freeman and Company.
 
-## Statistical tests for data on a [single numerical variable]{.keyword}
+## If you have [one numerical variable]{.keyword}...
 
-+------------------------------------+--------------------------------+
-| Goal                               | Test                           |
-+====================================+================================+
-| Test whether the mean equals a     | One-sample $t$-test ([Lecture  |
-| null hypothesized value when data  | 14](.%20./%20%%20%2020lect%20  |
-| are approximately normal (possibly | u%20r%%20%202%2%20%2000e-1%%20 |
-| only after a transformation) (13)  | %20204-t-t%20%20e%%20%2020s%20 |
-|                                    | t%20%%20%%20%202020s-and-ci/)) |
-+------------------------------------+--------------------------------+
-| Test whether the median equals a   | Sign test ([Lecture            |
-| null hypothesized value when data  | 16](.%2                        |
-| are not normal (even after         | %20%200./lec%20%20t%%%20%2020% |
-| transformation)                    | 2020u%20r%20%20%20e-%201%20%20 |
-|                                    | 6-h%20%20and%20%20%%20%2%20%20 |
-|                                    | 020lin%20g-%20%%20%2020viol%20 |
-|                                    | a%20t%%20%202%2%20%2000ion%%20 |
-|                                    | %2020s-of-%20%20a%%20%2020s%20 |
-|                                    | s%20%%20%%20%202020umptions/)) |
-+------------------------------------+--------------------------------+
-| Use frequency data to test the fit | $\chi^2$ goodness-of-fit test  |
-| of a discrete probability          | ([Lecture                      |
-| distribution                       | 11                             |
-|                                    | ](.%20%20./l%20%20%%20%2%20%20 |
-|                                    | 020ect%20ur%20%%20%2020e-11%20 |
-|                                    | -%20p%%20%202%2%20%2000ois%%20 |
-|                                    | %2020son-d%20%20i%%20%2020s%20 |
-|                                    | t%20%%20%%20%202020ribution/)) |
-+------------------------------------+--------------------------------+
-| Use data to test the fit of the    | Shapiro-Wilk test ([Lecture    |
-| normal distribution                | 16](.%2                        |
-|                                    | %20%200./lec%20%20t%%%20%2020% |
-|                                    | 2020u%20r%20%20%20e-%201%20%20 |
-|                                    | 6-h%20%20and%20%20%%20%2%20%20 |
-|                                    | 020lin%20g-%20%%20%2020viol%20 |
-|                                    | a%20t%%20%202%2%20%2000ion%%20 |
-|                                    | %2020s-of-%20%20a%%20%2020s%20 |
-|                                    | s%20%%20%%20%202020umptions/)) |
-+------------------------------------+--------------------------------+
++---------------------------------+-----------------------------+
+| Goal                            | Test                        |
++=================================+=============================+
+| Test whether the mean equals a  | One-sample $t$-test         |
+| null hypothesized value when    | (Lecture 14)                |
+| data are approximately normal   |                             |
+| (possibly only after a          |                             |
+| transformation) (13)            |                             |
++---------------------------------+-----------------------------+
+| Test whether the median equals  | Sign test (Lecture 16)      |
+| a null hypothesized value when  |                             |
+| data are not normal (even after |                             |
+| transformation)                 |                             |
++---------------------------------+-----------------------------+
+| Use frequency data to test the  | $\chi^2$ goodness-of-fit    |
+| fit of a discrete probability   | test (Lecture 11)           |
+| distribution                    |                             |
++---------------------------------+-----------------------------+
+| Use data to test the fit of the | Shapiro-Wilk test (Lecture  |
+| normal distribution             | 16)                         |
++---------------------------------+-----------------------------+
 
 : Commonly used statistical tests for data on a single numerical
 variable. These methods test whether a population parameter equals the
@@ -132,102 +126,74 @@ model fits a frequency distribution. Adapted from Whitlock & Schluter
 
 ## Tests of association between [two variables]{.keyword}
 
-+---------+-----------+----------------------+--------------------------------+
-|         |           | **Type of            |                                |
-|         |           | Explanatory          |                                |
-|         |           | Variable**           |                                |
-+---------+-----------+----------------------+--------------------------------+
-|         |           | **Categorical**      | **Numerical**                  |
-+---------+-----------+----------------------+--------------------------------+
-| **Type  | **Cate    | Contingency analysis | Logistic Regression (Lecture   |
-| of      | gorical** | ([Lecture            | 23)                            |
-| R       |           | 1                    |                                |
-| esponse |           | 2](../lecture-12-con |                                |
-| Var     |           | tingency-analysis/)) |                                |
-| iable** |           |                      |                                |
-+---------+-----------+----------------------+--------------------------------+
-|         | **Nu      | See next slide       | Linear C orrelation (Lecture   |
-|         | merical** |                      | 21) and Spearman's rank c      |
-|         |           |                      | orrelation (when data are not  |
-|         |           |                      | bivariate normal) (Lecture 21) |
-|         |           |                      |                                |
-|         |           |                      | Linear regression (Lecture 22) |
-|         |           |                      | and nonlinear regression       |
-|         |           |                      | (Lecture 23)                   |
-+---------+-----------+----------------------+--------------------------------+
++-------------+-------------+-------------+------------------------+
+|             |             | **Type of   |                        |
+|             |             | Explanatory |                        |
+|             |             | Variable**  |                        |
++-------------+-------------+-------------+------------------------+
+|             |             | **Ca        | **Numerical**          |
+|             |             | tegorical** |                        |
++-------------+-------------+-------------+------------------------+
+| **Type of   | **Ca        | Contingency | Logistic Regression    |
+| Response    | tegorical** | analysis    | (Lecture 23)           |
+| Variable**  |             | (Lecture    |                        |
+|             |             | 12)         |                        |
++-------------+-------------+-------------+------------------------+
+|             | **          | See next    | Linear Correlation     |
+|             | Numerical** | slide       | (Lecture 21) and       |
+|             |             |             | Spearman's rank        |
+|             |             |             | correlation (when data |
+|             |             |             | are not bivariate      |
+|             |             |             | normal) (Lecture 21)   |
+|             |             |             |                        |
+|             |             |             | Linear regression      |
+|             |             |             | (Lecture 22) and       |
+|             |             |             | nonlinear regression   |
+|             |             |             | (Lecture 23)           |
++-------------+-------------+-------------+------------------------+
 
 : Commonly used tests of association between two variables. Adapted from
 Whitlock & Schluter 3e. W.H. Freeman and Company.
 
 ## Comparing [group means]{.keyword}
 
-+----------------+----------------+----------------+
-| Number of      | Tests assuming | Tests not      |
-| treatments     | normal         | assuming       |
-|                | distribution   | normal         |
-|                |                | distributions  |
-+================+================+================+
-| Two treatments | Pooled         | Mann-Whitney   |
-| (independent   | variance       | $U$-test       |
-| samples)       | two-sample     | ([Lecture 1    |
-|                | $t$-test       | 6](            |
-|                | ([Lecture      | .%2%20%200./%2 |
-|                | 15](.%20./%2   | 0l%20%20ect%20 |
-|                | 0lec%20%20ture | %2%200u%20r%20 |
-|                | -%%202015-co%2 | %20%2%%2020%20 |
-|                | 0%20m%%2020p%2 | 0e-16-h%20%20a |
-|                | 0a%20r%20i%20n | n%20d%20%20%20 |
-|                | g-two-means/)) | %20%20%20ling% |
-|                | (assumes equal | 20%2%200-%20v% |
-|                | variances, not | 20io%20%%2020l |
-|                | commonly used) | at%%202%20%2%2 |
-|                |                | 000i%20%20ons- |
-|                | Welch's        | o%%2020f-%20%2 |
-|                | two-sample     | 0%20a%%2020s%2 |
-|                | $t$-test       | 0s%20%%20%%202 |
-|                | ([Lecture      | 020umptions/)) |
-|                | 15](.%20./%2   |                |
-|                | 0lec%20%20ture |                |
-|                | -%%202015-co%2 |                |
-|                | 0%20m%%2020p%2 |                |
-|                | 0a%20r%20i%20n |                |
-|                | g-two-means/)) |                |
-|                | (when          |                |
-|                | variances are  |                |
-|                | unequal in the |                |
-|                | two groups)    |                |
-|                | (always use    |                |
-|                | this one)      |                |
-+----------------+----------------+----------------+
-| Two treatments | Paired         | Sign test      |
-| (paired        | $t$-test       | ([Lecture 1    |
-| samples)       | ([Lecture      | 6](            |
-|                | 15](.%20./%2   | .%2%20%200./%2 |
-|                | 0lec%20%20ture | 0l%20%20ect%20 |
-|                | -%%202015-co%2 | %2%200u%20r%20 |
-|                | 0%20m%%2020p%2 | %20%2%%2020%20 |
-|                | 0a%20r%20i%20n | 0e-16-h%20%20a |
-|                | g-two-means/)) | n%20d%20%20%20 |
-|                |                | %20%20%20ling% |
-|                |                | 20%2%200-%20v% |
-|                |                | 20io%20%%2020l |
-|                |                | at%%202%20%2%2 |
-|                |                | 000i%20%20ons- |
-|                |                | o%%2020f-%20%2 |
-|                |                | 0%20a%%2020s%2 |
-|                |                | 0s%20%%20%%202 |
-|                |                | 020umptions/)) |
-+----------------+----------------+----------------+
-| More than two  | ANOVA (Lecture | Kruskal-Wallis |
-| treatments     | 20)            | test (Lecture  |
-|                |                | 20)            |
-+----------------+----------------+----------------+
-|                |                |                |
-+----------------+----------------+----------------+
++----------------+--------------------------+----------------------+
+| Number of      | Tests assuming normal    | Fewer assumptions    |
+| treatments     | distribution             | (do not require      |
+|                |                          | normality)           |
++================+==========================+======================+
+| Two treatments | Pooled variance          | Wilcoxon Rank-Sum    |
+| (independent   | two-sample $t$-test      | Test (Mann-Whitney   |
+| samples)       | (Lecture 15) (assumes    | $U$-test) (Lecture   |
+|                | equal variances, not     | 16)                  |
+|                | commonly used)           |                      |
+|                |                          |                      |
+|                | Welch's two-sample       |                      |
+|                | $t$-test (Lecture 15)    |                      |
+|                | (Preferred when          |                      |
+|                | variances are unequal    |                      |
+|                | (often the default in    |                      |
+|                | practice)                |                      |
++----------------+--------------------------+----------------------+
+| Two treatments | Paired $t$-test (Lecture | Sign test (Lecture   |
+| (paired        | 15)                      | 16)                  |
+| samples)       |                          |                      |
++----------------+--------------------------+----------------------+
+| More than two  | ANOVA (Lecture 20)       | Kruskal-Wallis test  |
+| treatments     |                          | (Lecture 20)         |
++----------------+--------------------------+----------------------+
 
 : A comparison of methods to test differences between group means
 according to whether the tests assume normal distributions. Adapted from
 Whitlock & Schluter 3e. W.H. Freeman and Company.
+
+## Summary: choosing a test
+
+-   Identify response variable type
+-   Identify explanatory variable(s)
+-   Determine study design (paired vs independent)
+-   Check assumptions
+-   Choose method that matches data and question
 
 ## Further resources
 
