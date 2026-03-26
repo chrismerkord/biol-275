@@ -234,7 +234,7 @@ Hint:
 
 -   Use [`inner_join()`](https://dplyr.tidyverse.org/reference/mutate-joins.html).
 
--   Use `select()` to keep only the two new binary variables. Here the order matters, put the response variable (the health outcome) first, followed by the explanatory variable (risk factor).
+-   Use `select()` to keep only the two new binary variables. Here the order matters, put the explanatory variable (risk factor) first, e.g. sleep, followed by the  response variable (the health outcome), e.g. depression.
 
 -   Assign the joined data a new name.
 
@@ -255,7 +255,7 @@ Hint:
 
 -   Use [`table()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/table.html).
 
--   If you already have a tibble with the outcome and risk factors in that order, you can just give that whole tibble to `table()` .
+-   If you already have a tibble with the outcome and risk factors in that order, you can just give that whole tibble to `table()` . The first variable will be in the rows of the contingency table, the second variable will be in the columns.
 
 Inspect the table carefully. Each cell represents a count of individuals in that category combination.
 
@@ -277,7 +277,7 @@ Hint:
 
 -   Use [`prop.table()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/prop.table.html).
 
--   Set `margin = 1` to compute proportions within rows.
+-   Set `margin = 1` to compute proportions within rows. This assumes your group variable (risk factor, i.e. sleep) is on the rows of your contingency table.
 
 ## Part 3 — Estimate Relative Risk
 
