@@ -282,4 +282,20 @@ Summarizes the decision process for choosing an appropriate statistical test bas
 :::
 :::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 18
+:::
+
+::: card-body
+##### Designing Experiments {.card-title}
+
+Introduces experimental design and explains how controls, random assignment, and blinding are used to reduce bias and support causal inference.
+
+[Go to Lecture](slides/lecture-18-designing-experiments/){.btn .btn-primary}
+:::
+:::::
+::::::
 :::::::::::::::::::

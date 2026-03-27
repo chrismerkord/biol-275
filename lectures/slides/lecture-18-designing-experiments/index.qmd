@@ -1,0 +1,423 @@
+---
+title: |
+  | Lecture 18
+  | Designing Experiments
+subtitle: "ABD 3e Chapter 14"
+description: "Introduces experimental design and explains how controls, random assignment, and blinding are used to reduce bias and support causal inference."
+format:
+  revealjs:
+    fig-width: 8
+    fig-height: 6
+editor: 
+  markdown: 
+    wrap: 72
+code-annotations: select
+---
+
+## Learning Objectives
+
+-   distinguish between association and causation
+-   explain why observational studies cannot establish causation
+-   define confounding and describe how it affects inference
+-   describe the role of controls in isolating treatment effects
+-   explain how random assignment reduces bias
+-   describe how blinding reduces bias in experiments
+
+# Experiments
+
+## Observations Are Not Enough
+
+::::: columns
+::: {.column width="50%"}
+-   [Observational studies]{.keyword}
+    -   Reveal patterns in real-world data
+    -   Researchers observe and measure variables as they naturally
+        occur
+-   But patterns alone do not tell us why they occur
+-   [Association]{.keyword}: two variables change together
+-   [Causation]{.keyword}: a change in one variable directly produces a
+    change in another
+-   Multiple explanations can produce the same association
+-   Association does not imply causation
+:::
+
+::: {.column width="50%"}
+![Correlation. Image: XKCD (CC BY-NC
+2.5)](https://imgs.xkcd.com/comics/correlation.png){#fig-correlation}
+:::
+:::::
+
+## Why Causal Inference Is Hard
+
+::::: columns
+::: {.column width="50%"}
+-   [Confounding]{.keyword}: a third variable influences both variables
+-   [Directionality]{.keyword}: cause and effect can be reversed
+-   These problems cannot be resolved with more data alone
+-   We need a way to isolate the effect of a single factor → experiments
+:::
+
+::: {.column width="50%"}
+![Confounding example: a third factor (summer conditions) increases both
+ice cream consumption and drowning deaths, creating a misleading
+association without a direct causal
+link.](images/spurious-correlation.png){#fig-spurious-correlation
+fig-alt="Triangle diagram showing “In the summer…” at the top with arrows pointing to “ice cream” and “drowning deaths.” A crossed-out arrow between ice cream and drowning deaths indicates no direct causal relationship."}
+:::
+:::::
+
+## Example: When Observational Studies Mislead
+
+::::: columns
+::: {.column width="50%"}
+-   Observational studies suggested that hormone replacement therapy
+    (HRT) reduced heart disease risk in women (Stamfer et al. 1991 New
+    England J Med)
+
+-   Women taking HRT had lower rates of heart disease
+
+-   Conclusion (at the time): HRT protects against heart disease
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-table-relative-risk
+#| fig-cap: Annotated table from Postmenopausal estrogen therapy and cardiovascular disease showing relative risk (RR) estimates for cardiovascular outcomes by hormone use. The magenta box highlights the RR column label, blue boxes mark the reference group (no hormone use, RR = 1.0), and orange boxes highlight reduced RR estimates among current hormone users in the observational data (Stamfer et al. 1991 New England J Med).
+#| fig-alt: Black-and-white table of cardiovascular disease outcomes by hormone use with colored annotations. A magenta box surrounds the "RR (95% CI)" column header. Blue boxes highlight RR values of 1.0 for the no hormone use group. Orange boxes highlight lower RR values for current hormone users across outcomes, indicating an apparent protective association.
+#| fig-width: 8
+#| fig-height: 3.387879
+
+library(ggplot2)
+library(jpeg)
+library(grid)
+
+img <- readJPEG("images/table-relative-risk-of-cardiovascular-disease.jpg")
+
+ggplot() +
+  annotation_custom(rasterGrob(img, interpolate = TRUE),
+                    xmin = 0, xmax = 1, ymin = 0, ymax = 1) +
+  # geom_rect(aes(xmin = 0.4, xmax = 0.56, ymin = .5, ymax = 0.8),
+  #           color = "red", fill = NA, linewidth = 1.2) +
+  # annotate("segment", )
+  annotate("rect", xmin = 0.04, xmax = .17, ymin = .13, ymax = 0.175,
+           color = "#CC79A7", fill = NA, linewidth = 1) +
+    annotate("rect", xmin = 0.28, xmax = .36, ymin = .625, ymax = 0.673,
+           color = "#CC79A7", fill = NA, linewidth = 1) +
+  annotate("rect", xmin = 0.023, xmax = .14, ymin = .558, ymax = 0.606,
+           color = "#0072B2", fill = NA, linewidth = 1) +  
+  annotate("rect", xmin = 0.30, xmax = .34, ymin = .558, ymax = 0.606,
+           color = "#0072B2", fill = NA, linewidth = 1) +
+    annotate("rect", xmin = 0.023, xmax = .17, ymin = .38, ymax = .552,
+           color = "#E69F00", fill = NA, linewidth = 1) +
+    annotate("rect", xmin = 0.265, xmax = .377, ymin = .415, ymax = 0.515,
+           color = "#E69F00", fill = NA, linewidth = 1) +
+  # annotate("text", x = 0.5, y = .5, label = "Example", size = 6,
+  #          color = "red") +
+  coord_fixed(
+    ratio = dim(img)[1] / dim(img)[2], 
+    xlim = c(0, 1), 
+    ylim = c(0, 1), 
+    expand = FALSE
+  ) +
+  theme_void()
+```
+:::
+:::::
+
+## What Was the Problem?
+
+-   Women who chose HRT differed in important ways:
+    -   Higher socioeconomic status
+    -   Better access to healthcare
+    -   Healthier lifestyles overall
+-   These differences (confounders) also reduce heart disease risk
+
+## What Happened in an Experiment?
+
+::::: columns
+::: {.column width="50%"}
+-   A randomized trial (Women’s Health Initiative) assigned HRT randomly
+
+-   Result: HRT did **not** reduce heart disease risk (and increased
+    some risks)
+
+-   The original association was due to confounding, not causation
+:::
+
+::: {.column width="50%"}
+![Kaplan–Meier Estimates of Cumulative Hazard Rates of CHD (Manson et
+al. 2003 New England J Med) showing similar rate of chronic hearth
+disease (CHD) among control and treatment
+groups.](images/clipboard-2143964736.png){#fig-kaplan-meier-chd
+fig-align="center" width="800"}
+:::
+:::::
+
+## What Is an [Experiment]{.keyword}?
+
+-   A study where researchers **actively impose conditions** on a system
+-   Researchers **assign different conditions (treatments)** to
+    experimental units
+-   Outcomes are then compared across those conditions
+-   This allows us to isolate the effect of a specific factor
+
+## Why Experiments Work
+
+-   Experiments are designed to support **causal inference**
+-   By controlling how conditions are assigned, we reduce alternative
+    explanations
+-   Properly designed experiments break the link between confounders and
+    treatment
+-   Differences in outcomes can be attributed to the treatment
+
+## Key Idea
+
+-   Observational studies measure what already exists
+-   Experiments **create conditions for comparison**
+-   This is what allows us to move from association → causation
+
+# Eliminating Bias
+
+## Be Wary of Bias in Your Design
+
+::::: columns
+::: {.column width="50%"}
+-   Biased experiments produce biased conclusions
+-   They tell you about your design, not the real world
+-   Bias must be addressed **before data are collected**
+    -   It cannot be fixed afterward
+-   Large $n$ does not solve bias
+    -   It can make biased results more convincing
+:::
+
+::: {.column width="50%"}
+![Comparison of sampling error and systematic error: each point
+represents a sample estimate, and the center of the target represents
+the true population value. Imprecision produces a wide spread of sample
+estimates centered on the truth, whereas bias produces tightly clustered
+estimates that are consistently offset from the
+truth.](images/bias.png){#fig-bias
+fig-alt="Two target diagrams side by side. In both, individual points represent sample estimates and the bullseye represents the true population value. The first target shows points widely scattered around the center, indicating sampling error or imprecision. The second shows a tight cluster of points located away from the center, indicating systematic error or bias."
+fig-align="center"}
+:::
+:::::
+
+## Design Features That Reduce Bias
+
+-   Three core strategies:
+    1.  [Controls]{.keyword}
+        -   Provide a baseline for comparison
+    2.  [Random assignment]{.keyword}
+        -   Breaks the link between confounders and treatment
+    3.  [Blinding]{.keyword}
+        -   Prevents subjects and researchers from influencing outcomes
+
+## Eliminating Bias: Strategy 1 — Use [Controls]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+-   A control group provides a **baseline for comparison**\
+-   Control units are treated as similarly as possible to treatment
+    units
+    -   Except for the treatment itself\
+-   This allows us to isolate the effect of the treatment\
+-   Without a control, we cannot determine cause and effect\
+:::
+
+::: {.column width="50%"}
+:::
+:::::
+
+## What Makes a Good Control?
+
+-   A good control matches the treatment group in all relevant ways\
+-   The only systematic difference should be the treatment\
+-   Poor controls introduce new differences (new confounding)\
+-   Doing nothing is not always an appropriate control
+
+## Control Example: [Placebo]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+-   Outcomes can change simply because a treatment is given
+
+    A placebo mimics the treatment without an active ingredient
+
+    Good placebo: indistinguishable from the treatment
+
+    Bad placebo: differs in noticeable ways (e.g., taste, side effects)
+:::
+
+::: {.column width="50%"}
+![Illustration of the placebo effect: a participant shows a positive
+response whether receiving an active drug or a placebo, demonstrating
+how expectations can produce similar perceived and reported outcomes in
+both groups.](images/placebo.png){#fig-placebo
+fig-alt="Side-by-side realistic images of the same man smiling while being given a pill. In one panel he receives a plain white pill (placebo), and in the other a colored capsule (drug). His expression is similarly positive in both, indicating a comparable response regardless of treatment."}
+:::
+:::::
+
+## Why Controls? Example: Independent Recovery
+
+-   People often seek treatment at their worst.
+
+-   Therefore, people often see their doctor when they are on their way
+    to recovery.
+
+-   To measure the effects of a new therapy, we need a comparable
+    control group.
+
+## Eliminating Bias: Strategy 2 — [Random Assignment]{.keyword}
+
+::::: columns
+::: {.column width="50%"}
+-   Random assignment: assign treatments to units **by chance**
+-   This breaks the link between confounders and treatment
+-   Known and unknown differences are balanced **on average** across
+    groups
+-   Prevents systematic differences between groups
+:::
+
+::: {.column width="50%"}
+:::
+:::::
+
+## Why Random Assignment Matters
+
+-   Without randomization, group differences can reflect confounding
+-   Non-random assignment can create bias
+-   Example: assign treatment by last name
+    -   May group family members or cultural backgrounds together
+    -   Creates systematic differences between groups
+-   Randomization prevents these patterns
+
+## How to randomly assign
+
+::::: columns
+::: {.column width="50%"}
+-   Identify the experimental units
+-   Assign treatments using a random process
+-   Goal: each unit has an equal chance of receiving each treatment
+-   In practice:
+    -   Use a random number generator
+    -   Use software (e.g., R)
+:::
+
+::: {.column width="50%"}
+``` r
+library(tidyverse)
+tibble(id = 1:10) |>                 # <1>
+  mutate(                            # <2>
+    treatment = sample(              # <3>
+      x = c("control", "treatment"), # <4>
+      size = n(),                    # <5>
+      replace = TRUE                 # <6>
+    )
+  )
+```
+
+1.  Create a tibble (data frame) with one variable `id` with values of 1
+    through 10
+2.  Modify the variables in the tibble
+3.  Add a new `treatment` variable using the `sample` function, which
+    randomly draws values
+4.  The values should consist of either `control` or `treatment`
+5.  `n()` ensures the number of values in the sample matches the number
+    of rows in the tibble
+6.  `replace=TRUE` ensures true random assignment (which means it allows
+    unequal counts)
+
+![Illustration of the results of random
+assignment.](images/clipboard-2471981232.png){#fig-random-assignment}
+:::
+:::::
+
+## Results of random assignment
+
+-   Randomization does not eliminate confounders
+-   It **removes systematic bias** by breaking their association with
+    treatment
+-   Remaining differences are due to chance (sampling error)
+
+## Eliminating Bias: Strategy 3 — [Blinding]{.keyword}
+
+-   Blinding: keeping participants and/or researchers unaware of
+    treatment assignment
+-   Prevents expectations from influencing outcomes
+    -   Participants may respond differently if they know their
+        treatment
+    -   Researchers may treat or measure subjects differently
+-   Reduces bias introduced during data collection
+
+## Types of Blinding
+
+::::: columns
+::: {.column width="50%"}
+-   [Single-blind]{.keyword}: participants do not know their treatment
+    -   Prevents subject expectations from influencing outcomes
+-   [Double-blind]{.keyword}: neither participants nor researchers know
+    -   Prevents both subject and researcher bias
+-   Stronger blinding → less opportunity for bias\
+:::
+
+::: {.column width="50%"}
+![Comparison of single-blind and double-blind study designs: in a
+single-blind study, the participant is unaware of treatment assignment,
+whereas in a double-blind study, both the participant and the researcher
+are unaware.](images/single-double-blind.png){#fig-single-double-blind
+fig-alt="A professional illustration showing a female researcher with black hair in a ponytail and a male participant seated at a table with pill and placebo bottles. Above, two labeled panels compare designs: under “Single Blind,” only the participant is blindfolded; under “Double Blind,” both the participant and researcher are blindfolded."
+fig-align="center" width="65%"}
+:::
+:::::
+
+## Why Blinding Matters
+
+::::: columns
+::: {.column width="50%"}
+-   Knowledge of treatment can influence:
+    -   Behavior
+    -   Reporting of symptoms
+    -   Measurement of outcomes
+-   Unblinded studies often show larger effects
+    -   These may reflect bias, not true treatment effects
+:::
+
+::: {.column width="50%"}
+![Illustration of lack of blinding: a participant believes they received
+a placebo and attributes their symptoms to it, showing how expectations
+can influence both perceived and reported
+outcomes.](images/blinding-effect.png){#fig-blinding-effect
+fig-alt="A realistic image of a woman with a frustrated expression, looking off to the side. A thought bubble above her head reads “No wonder I feel bad…” with a placebo symbol, indicating she believes she received a placebo and is interpreting and reporting her symptoms accordingly."}
+:::
+:::::
+
+## Blinding in Practice
+
+::::: columns
+::: {.column width="50%"}
+-   Blinding requires careful design
+
+    -   Treatments must be indistinguishable
+
+-   Placebos are often used to maintain blinding
+
+-   If blinding fails, bias can re-enter the study
+:::
+
+::: {.column width="50%"}
+![The limitations of blind trials are apparent when treatments are not
+indistinguishable. Image: XKCD (CC BY-NC
+2.5)](https://imgs.xkcd.com/comics/blind_trials.png){fig-align="center"
+width="650"}
+:::
+:::::
+
+# Sampling Error
+
+# Experiments with More Than One Factor
+
+# What if You Can’t Do an Experiment?
+
+# Choosing a Sample Size
+
+# Summary of Considerations in Experimental Design
