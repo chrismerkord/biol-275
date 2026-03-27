@@ -149,7 +149,7 @@ ggplot() +
 al. 2003 New England J Med) showing similar rate of chronic hearth
 disease (CHD) among control and treatment
 groups.](images/clipboard-2143964736.png){#fig-kaplan-meier-chd
-fig-align="center" width="800"}
+fig-align="center" width="707"}
 :::
 :::::
 
@@ -366,7 +366,7 @@ single-blind study, the participant is unaware of treatment assignment,
 whereas in a double-blind study, both the participant and the researcher
 are unaware.](images/single-double-blind.png){#fig-single-double-blind
 fig-alt="A professional illustration showing a female researcher with black hair in a ponytail and a male participant seated at a table with pill and placebo bottles. Above, two labeled panels compare designs: under “Single Blind,” only the participant is blindfolded; under “Double Blind,” both the participant and researcher are blindfolded."
-fig-align="center" width="65%"}
+fig-align="center" width="510"}
 :::
 :::::
 
@@ -407,12 +407,12 @@ fig-alt="A realistic image of a woman with a frustrated expression, looking off 
 ::: {.column width="50%"}
 ![The limitations of blind trials are apparent when treatments are not
 indistinguishable. Image: XKCD (CC BY-NC
-2.5)](https://imgs.xkcd.com/comics/blind_trials.png){fig-align="center"
-width="650"}
+2.5)](https://imgs.xkcd.com/comics/blind_trials.png){#fig-xkcd-blind-trials
+fig-align="center" width="526"}
 :::
 :::::
 
-# Sampling Error
+# Sampling Error (coming soon)
 
 # Experiments with More Than One Factor
 
