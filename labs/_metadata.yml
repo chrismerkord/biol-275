@@ -1,0 +1,16 @@
+format:
+  typst:
+    margin:
+      x: 0.5in
+      top: 1in
+      bottom: 0.5in
+    fontsize: 11pt
+    logo:
+      width: 1cm
+      location: right-bottom
+      padding-right: 1cm
+      padding-bottom: 0.5cm
+      alt: Logo
+    include-in-header: 
+      - ../../typst/lab-worksheet-header.typ
+      - ../../typst/answerbox.typ
