@@ -291,3 +291,12 @@ div.cell-output-stderr {
 .reveal pre code {
   font-size: 1.2em;
 }
+
+.reveal .footer a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.reveal .footer a:hover {
+  text-decoration: underline;
+}
