@@ -4,9 +4,14 @@ format:
   html:
     toc: true
     page-layout: full
-  pdf:
-    pdf-engine: xelatex
-    toc: true
+  typst:
+    toc: false
+    logo:
+      width: 1cm
+      location: right-bottom
+      padding-right: 1cm
+      padding-bottom: 0.5cm
+      alt: Logo
 ---
 
 BIOL 275 Biostatistics — Spring 2026
