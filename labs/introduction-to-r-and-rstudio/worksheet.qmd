@@ -1,0 +1,92 @@
+---
+title: "BIOL 275 Lab 1 R & RStudio Basics"
+format: typst
+output-file: lab-01-worksheet.pdf
+---
+
+## Posit Cloud Setup
+
+```{=typst}
+#v(6pt)
+```
+☐ I created a Posit Cloud account
+
+☐ I opened an RStudio project
+
+☐ I can see the Console, Script Editor, Environment, and Files panes
+
+## RStudio Orientation
+
+1\. What is the Console used for?
+
+```{=typst}
+#answerbox(height: 1in)
+```
+2\. What is an R script, and why is it useful?
+
+```{=typst}
+#answerbox(height: 1in)
+```
+3\. Which pane shows objects you have created?
+
+```{=typst}
+#answerbox(height: 0.7in)
+```
+4\. Which pane shows plots and figures?
+
+```{=typst}
+#answerbox(height: 0.7in)
+```
+## Assigning Values in R
+
+7\. Write R code that means: “x gets a value of 5.”
+
+```{=typst}
+#answerbox(height: 0.7in)
+#pagebreak()
+```
+8\. Translate the following R code into a human-readable sentence:
+
+``` r
+y <- 0.2
+```
+
+```{=typst}
+#answerbox(height: 0.7in)
+```
+## The Console and Command Prompt
+
+5\. What does a *clean* command prompt look like in the R console?
+
+```{=typst}
+#answerbox(height: 0.7in)
+```
+6\. Suppose you type the following into the console and press Enter (note the missing closing parenthesis).
+
+``` r
+sqrt(9
+```
+
+a\. What does the console prompt change to after running that code?
+
+```{=typst}
+#answerbox(height: 0.7in)
+```
+b\. What does this prompt mean? (1 short sentence)
+
+```{=typst}
+#answerbox(height: 0.7in)
+```
+c\. Describe *two different ways* to get back to a clean command prompt.
+
+```{=typst}
+#answerbox(height: 0.7in)
+```
+## Packages
+
+```{=typst}
+#v(6pt)
+```
+☐ I installed at least one R package.
+
+☐ I loaded that package using `library()`

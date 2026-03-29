@@ -33,7 +33,8 @@ These objectives correspond directly to questions on the lab handout.
 
 ## What You Need Before You Start
 
-- Your **Lab 1 handout** (paper copy)  ([download](handout.qmd))
+- Your **Lab 1 Worksheet** (paper copy)\
+  <a href="lab-01-worksheet.pdf" download class="btn btn-outline-primary mt-3">Download Lab Worksheet (PDF, if needed)</a>
 - A computer with internet access  
 - Your MSUM email address  
 

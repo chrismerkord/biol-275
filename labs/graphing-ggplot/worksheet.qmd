@@ -1,88 +1,47 @@
 ---
 title: "BIOL 275 Lab 4 Graphing with ggplot"
-format:
-  pdf:
-    output-file: lab-04-worksheet.pdf
-    pdf-engine: xelatex
-    fontsize: 11pt
-    geometry:
-      - letterpaper
-      - margin=0.6in
-    number-sections: false
-    toc: false
-header-includes:
-  - |
-    \usepackage[most]{tcolorbox}
-    \usepackage{enumitem}
-    \setlist[itemize]{nosep, topsep=8pt, leftmargin=*}
-    \setlist[enumerate]{nosep, topsep=8pt, leftmargin=*}
-    
-    % Pandoc tight lists: force list spacing
-    \providecommand{\tightlist}{%
-      \setlength{\itemsep}{0pt}%
-      \setlength{\parskip}{0pt}%
-      \setlength{\parsep}{0pt}%
-    }
-    
-    \pagestyle{empty}
-    
-    % Compact title without titling.sty
-    \makeatletter
-    \renewcommand{\maketitle}{
-      \begin{center}
-        {\Large\bfseries \@title \par}
-        \vspace{4pt}
-        \end{center}
-      \vspace{-1pt}
-    }
-    \makeatother
-    
-    % Tighten section spacing (template-safe; no titlesec)
-    \makeatletter
-    \renewcommand\section{\@startsection{section}{1}{\z@}%
-      {0.2\baselineskip}%
-      {0.2\baselineskip}%
-      {\normalfont\large\bfseries}}
-    \makeatother
-
-    % Answer box styles
-    \newtcolorbox{answerbox}[1][]{
-      enhanced,
-      sharp corners,
-      boxrule=0.6pt,
-      colback=white,
-      colframe=black,
-      left=6pt,right=6pt,top=6pt,bottom=6pt,
-      #1
-    }
-
-    % Convenience commands for fixed-height boxes
-    \newcommand{\ab}[1]{\begin{answerbox}[height=#1]\end{answerbox}}
+format: typst
+output-file: lab-04-worksheet.pdf
 ---
 
-\vspace{-0.15in}
+1.  In your own words, what does it mean to “build” a graph in ggplot2 rather than choosing a graph type?
 
-\begin{answerbox}
-\textbf{Name:} \hspace{2.5in} \textbf{Date:} \hspace{1.4in} \textbf{LA Initials:} \hspace{0.8in}
-\end{answerbox}
+```{=typst}
+#answerbox(height: 1.5in)
+```
+2.  What dataset is being used in this example? 
 
-**1. In your own words, what does it mean to “build” a graph in ggplot2 rather than choosing a graph type?**
-\ab{1in}
+```{=typst}
+#answerbox(height: 0.7in)
+```
 
-**2. What dataset is being used in this example?**
-\ab{0.5in}
+3.  Which variables are mapped to the x- and y-axes in this plot? 
 
-**3. Which variables are mapped to the x- and y-axes in this plot?**
-\ab{0.5in}
+```{=typst}
+#answerbox(height: 0.7in)
+```
 
-**4. In this lab, what type of geometry is used to create scatterplots? Give the exact function name.**
-\ab{0.5in}
+4.  In this lab, what type of geometry is used to create scatterplots? Give the exact function name. 
 
-**5. Do you need to manually define scales in order to make a useful plot? Why or why not?**
-\ab{1in}
+```{=typst}
+#answerbox(height: 0.7in)
+```
 
-**6. What changes and what stays the same when a plot is faceted.**
-\ab{1in}
+5.  Do you need to manually define scales in order to make a useful plot? Why or why not? 
 
-**7. List the variables you used for the x and y axes, for color, and for facetting in the gapminder scatterplot.**
-\ab{2in}
+```{=typst}
+#answerbox(height: 2in)
+#pagebreak()
+```
+
+6.  What changes and what stays the same when a plot is faceted. 
+
+```{=typst}
+#answerbox(height: 2in)
+```
+
+7.  List the variables you used for the x and y axes, for color, and for facetting in the gapminder scatterplot. 
+
+```{=typst}
+#answerbox(height: 3in)
+```

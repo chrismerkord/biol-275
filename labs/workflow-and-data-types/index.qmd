@@ -20,8 +20,9 @@ By the end of lab you should be able to:
 -   Explore the relationship between two numerical variables using a scatterplot.
 
 ::: callout-important
-**Paper handout:** You will answer questions on a paper [handout](handout.pdf "Download the lab 2 handout") as you move through this page.\
-This page will tell you exactly when to answer each question (e.g., **Handout Q1**).
+**Paper handout:** You will answer questions on a paper worksheet as you move through this page. This page will tell you exactly when to answer each question (e.g., **Worksheet Q1**).
+
+<a href="lab-01-worksheet.pdf" download class="btn btn-outline-primary mt-3">Download Lab Worksheet (PDF, if needed)</a>
 :::
 
 ------------------------------------------------------------------------
@@ -34,7 +35,7 @@ This page will tell you exactly when to answer each question (e.g., **Handout Q1
 2.  Sign in with your Posit Cloud account.
 3.  Join the course workspace. You will be redirected to a Welcome screen.
 
-> **Handout Q1**
+> **Worksheet Q1**
 >
 > Write down the name of the workspace you joined. You can see this in the left navigation bar under **Spaces**.
 
@@ -47,7 +48,7 @@ If you are already in the workspace, proceed to the next step.
 1.  In the course workspace, click the Content heading to see projects in the workspace.
 2.  Click the bluen START button the Lab 2 project. This will create your own copy of the project and open it.
 
-> **Handout Q2:**
+> **Worksheet Q2:**
 >
 > What is the name of your Lab 2 project?
 
@@ -100,7 +101,7 @@ library(tidyverse)      # tools for working with data
 library(palmerpenguins) # penguin dataset
 ```
 
-> **Handout Q3:**
+> **Worksheet Q3:**
 >
 > What is the difference between *installing* a package and *loading* a package?
 
@@ -139,7 +140,7 @@ Run this to print the `penguins` object in the console:
 penguins
 ```
 
-> **Handout Q4:**
+> **Worksheet Q4:**
 >
 > What does a *row* represent in the `penguins` dataset? What does a *column* represent?
 
@@ -162,7 +163,7 @@ nrow(penguins)
 ncol(penguins)
 ```
 
-> **Handout Q5:**
+> **Worksheet Q5:**
 >
 > How many rows and columns are in `penguins`?
 
@@ -191,7 +192,7 @@ This is the fastest way to see:
 glimpse(penguins)
 ```
 
-> **Handout Q6:**
+> **Worksheet Q6:**
 >
 > From `glimpse(penguins)`, list **three** variables in the penguins dataset.
 
@@ -206,7 +207,7 @@ count(penguins, species)
 count(penguins, island)
 ```
 
-> **Handout Q7:**
+> **Worksheet Q7:**
 >
 > Which species is most common in the dataset? How many rows are there for that species?
 
@@ -233,7 +234,7 @@ These two systems overlap, but they are not identical. This table is a practical
 | Discrete (numeric) | counts (0, 1, 2, …) | `integer`, sometimes `double` | `int` | counts can be stored as numeric even if “discrete” |
 | Continuous (numeric) | measured on a continuum | `double` / `numeric` | `dbl` | most measurements are `double` |
 
-> **Handout Q8:**
+> **Worksheet Q8:**
 >
 > Choose **two** variables in `penguins` and write their type using (a) lecture terminology and (b) R type from `glimpse()`.
 
@@ -256,7 +257,7 @@ summary(penguins)
 -   For numeric variables: min, quartiles, median, mean, max (plus `NA`s)
 -   For categorical variables: counts per category (plus `NA`s)
 
-> **Handout Q9:**
+> **Worksheet Q9:**
 >
 > Use `summary(penguins)` to answer: *Which variable(s) show missing values?*
 
@@ -272,7 +273,7 @@ In this section, you will explore the relationship between two penguin traits: *
 
 Before running any code, think about how these two variables might be related. If a penguin has a longer bill, do you expect it to also have a deeper bill, or might there be little or no relationship between them?
 
-> **Handout Q10**
+> **Worksheet Q10**
 >
 > Sketch your prediction by:
 >
@@ -320,7 +321,7 @@ ggplot(
   )
 ```
 
-> **Handout Q11:**
+> **Worksheet Q11:**
 >
 > Briefly interpret the plot:
 >
@@ -332,4 +333,4 @@ ggplot(
 ## Wrap-up and submission
 
 1.  Make sure your script is saved in your Lab 2 project.
-2.  Keep your handout and **show it to a Learning Assistant for a completion grade before you leave lab**. You may do this as soon as you finish.
+2.  Keep your worksheet and **show it to a Learning Assistant to have it initialed before you leave lab**. You may do this as soon as you finish.
