@@ -292,7 +292,7 @@ Lecture 18
 ::: card-body
 ##### Designing Experiments {.card-title}
 
-Introduces experimental design and explains how controls, random assignment, and blinding are used to reduce bias and support causal inference.
+Introduces how well-designed experiments enable causal inference by reducing bias and sampling error, while contrasting their strengths with observational studies and outlining practical strategies for study design and sample size planning
 
 [Go to Lecture](slides/lecture-18-designing-experiments/){.btn .btn-primary}
 :::

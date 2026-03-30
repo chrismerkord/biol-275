@@ -3,7 +3,7 @@ title: |
   | Lecture 18
   | Designing Experiments
 subtitle: "ABD 3e Chapter 14"
-description: "Introduces experimental design and explains how controls, random assignment, and blinding are used to reduce bias and support causal inference."
+description: "Introduces how well-designed experiments enable causal inference by reducing bias and sampling error, while contrasting their strengths with observational studies and outlining practical strategies for study design and sample size planning."
 format:
   revealjs:
     fig-width: 8
@@ -16,12 +16,21 @@ code-annotations: select
 
 ## Learning Objectives
 
--   distinguish between association and causation
--   explain why observational studies cannot establish causation
--   define confounding and describe how it affects inference
--   describe the role of controls in isolating treatment effects
--   explain how random assignment reduces bias
--   describe how blinding reduces bias in experiments
+-   Distinguish between association and causation and explain why
+    observational studies cannot establish causation
+-   Define confounding and explain how it biases inference
+-   Describe how controls, random assignment, and blinding reduce bias
+    in experiments
+-   Identify experimental units and distinguish true replication from
+    pseudoreplication
+-   Explain how replication, balance, and blocking reduce sampling error
+    and improve precision
+-   Interpret factorial designs and explain how interactions between
+    factors arise
+-   Describe how matching and adjustment reduce confounding in
+    observational studies
+-   Explain how sample size is chosen to achieve desired precision or
+    statistical power
 
 # Experiments
 
@@ -412,12 +421,953 @@ fig-align="center" width="526"}
 :::
 :::::
 
-# Sampling Error (coming soon)
+# Sampling Error
+
+## Reducing sampling error improves precision and power
+
+-   Even unbiased experiments have variability among individuals
+    (“noise”)
+-   This variability creates sampling error in estimates
+-   Sampling error reduces:
+    -   Precision of estimates
+    -   Power to detect treatment effects
+
+## Holding conditions constant reduces noise but limits generality
+
+-   Reduce noise by keeping conditions constant:
+    -   Environment (e.g., temperature, humidity)
+    -   Participant characteristics (e.g., age, sex, genotype)
+-   Tradeoff:
+    -   More control → less variability
+    -   But results may not generalize broadly
+
+## Overly narrow conditions can create bias in applicability
+
+-   Restricting study populations limits who results apply to
+-   Example:
+    -   Many clinical trials historically included only men
+    -   Results were applied broadly, including to women
+-   Design decisions affect external validity
+
+## Key design strategies reduce sampling error
+
+-   Key design strategies:
+
+    1.  Replication
+
+    2.  Balance
+
+    3.  Blocking
+
+    4.  Using extreme treatments
+
+-   Goal: reduce noise without sacrificing generality
+
+## Replication is essential to separate signal from noise
+
+-   [Replication]{.keyword}: applying each treatment to multiple
+    experimental units
+-   Without replication:
+    -   Cannot distinguish treatment effects from random variation
+-   More replication:
+    -   More information
+    -   Better estimates
+    -   Higher power to detect real effects
+
+## Replication depends on independent experimental units
+
+-   Replicates must be **independent units**
+-   Experimental unit:
+    -   The unit assigned a treatment independently
+-   Examples:
+    -   Individual organism (if assigned independently)
+    -   Group units: plot, cage, household, petri dish
+-   Key rule:
+    -   Individuals within the same unit are **not independent**
+
+## Replication is not just "more individuals"
+
+-   Multiple organisms ≠ multiple replicates
+-   If organisms share the same environment:
+    -   They are more similar to each other
+    -   They count as **one replicate**
+-   Must identify the correct experimental unit:
+    -   Critical for design and analysis
+
+## Example: Which designs are truly replicated?
+
+::::: columns
+::: {.column width="50%"}
+-   Two growth chambers:
+    -   Control vs Treatment (different light)
+-   Multiple plants per chamber
+    -   Share the same environment
+-   Experimental unit = **chamber**, not plant
+-   One chamber per treatment → **no replication**
+-   Lighting differs between chambers
+    -   Cannot separate treatment from chamber effect
+:::
+
+::: {.column width="50%"}
+![Two growth chambers comparing control and treatment conditions, each
+containing multiple Brassica rapa plants. Because all plants within a
+chamber share the same environment—and the chambers differ in light
+intensity—the chamber, not the plant, is the experimental unit. With
+only one chamber per treatment, this design is
+unreplicated.](images/growth-chambers.png){#fig-growth-chambers
+fig-alt="Illustration of three experimental setups using potted plants with two fertilizer treatments shown by different pot colors. The top row shows one plant per treatment (no replication). The middle row shows multiple plants per treatment grouped into separate chambers (not independent, still unreplicated). The bottom row shows individual plants randomly assigned to treatments and interspersed, representing proper replication with independent experimental units."
+fig-align="center"}
+:::
+:::::
+
+## [Interspersion]{.keyword} signals proper replication
+
+::::: columns
+::: {.column width="50%"}
+-   Proper replication shows **interspersion**:
+    -   Treatments mixed across units
+    -   Result of random assignment
+-   Lack of interspersion:
+    -   Warning sign of design problems
+    -   Likely non-independence
+:::
+
+::: {.column width="50%"}
+![Examples of good and poor experimental designs illustrating
+interspersion of treatments. Top rows show properly interspersed designs
+(completely randomized, randomized block, and systematic), while bottom
+rows show problematic designs where treatments are segregated, clumped,
+isolated, interdependent, or lack replication. Figure from Hurlbert
+(1984).](images/interspersing.png){#fig-interspersing
+fig-alt="Diagram comparing experimental layouts using black and white squares to represent two treatments. The top section labeled “Good design” shows treatments evenly mixed across units (completely randomized, randomized block, and systematic). The bottom section labeled “Poor design” shows treatments grouped or separated, including simple segregation, clumped segregation, isolation in separate chambers, interdependent replicates, and no replication."
+fig-align="center" width="80%"}
+:::
+:::::
+
+## [Pseudoreplication]{.keyword} leads to false precision
+
+-   Treating non-independent units as independent =
+    **pseudoreplication**
+-   Examples:
+    -   Treating plants within a chamber as separate replicates
+    -   Repeated measurements on same individual
+-   Consequences:
+    -   Standard errors too small
+    -   Overconfidence in results
+
+## Why replication reduces standard error
+
+$$
+\operatorname{SE}_{\bar{Y}_1 - \bar{Y}_2} = \sqrt{s_p^2 \left(\frac{1}{n_1} + \frac{1}{n_2}\right)}
+$$
+
+-   $n_1$, $n_2$ = number of independent replicates per treatment
+-   Increasing sample size ↓ standard error
+-   Lower standard error → clearer detection of differences
+
+## Replication has practical limits
+
+-   Increasing sample size improves inference
+-   But comes with costs:
+    -   Time
+    -   Money
+    -   Ethical considerations (e.g., animal use)
+-   Goal:
+    -   Sufficient replication to detect meaningful effects
+
+## [Balanced]{.keyword} designs minimize sampling error
+
+::::: columns
+::: {.column width="50%"}
+-   Balanced design = equal sample size in each treatment
+
+-   Unbalanced design = unequal sample sizes
+
+-   For a fixed total sample size:
+
+    -   Standard error is **smallest when group sizes are equal**
+    -   Balance optimizes precision of comparisons
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-balanced-design
+#| fig-cap: Balanced and unbalanced experimental designs illustrating allocation of sample size across treatments. In the balanced design, control and treatment groups have equal numbers of independent experimental units (n = 6 each). In the unbalanced design, most units are assigned to the control group (n = 10) and few to the treatment group (n = 2). Circles represent control units and squares represent treatment units.
+#| fig-alt: Diagram comparing balanced and unbalanced experimental designs. The balanced design shows equal numbers of units in control (circles) and treatment (squares). The unbalanced design shows many control units and few treatment units, illustrating unequal sample sizes across treatments.
+#| message: false
+
+library(ggplot2)
+library(dplyr)
+library(tibble)
+
+#-----------------------------
+# DATA
+#-----------------------------
+
+# Balanced: 6 vs 6
+balanced <- tibble(
+  panel = "Balanced design",
+  x = c(1:6, 8:13),
+  treatment = c(rep("Control", 6), rep("Treatment", 6))
+)
+
+# Unbalanced: 10 vs 2
+unbalanced <- tibble(
+  panel = "Unbalanced design",
+  x = c(1:10, 12:13),
+  treatment = c(rep("Control", 10), rep("Treatment", 2))
+)
+
+df <- bind_rows(balanced, unbalanced)
+
+labels <- df |> 
+  summarize(
+    x = mean(x),
+    label = paste0("n = ", n()),
+    .by = c(panel, treatment)
+  )
+
+ggplot(df, aes(x = x, y = 1)) +
+  geom_point(
+    aes(shape = treatment, fill = treatment),
+    size = 10, color = "black", stroke = 1
+  ) +
+  scale_shape_manual(values = c(21, 22), guide = "none") +
+  scale_fill_manual(values = c("#56B4E9", "#E69F00"), guide = "none") +
+  facet_wrap(~ panel, ncol = 1) +
+  geom_text(  # treatment labels
+    data = labels,
+    aes(label = treatment),
+    size = 9, position = position_nudge(y = -.5)
+  ) +
+  geom_text(  # n labels
+    data = labels,
+    aes(label = label),
+    size = 9, position = position_nudge(y = -1)
+  ) +
+  scale_x_continuous(expand = expansion(c(.1,.2),0)) +
+  scale_y_continuous(expand = expansion(c(.4,0.8),0)) +
+  theme_void() +
+  theme(
+    strip.text = element_text(size = 30, face = "bold"),
+    plot.margin = margin(t = 30),
+    panel.spacing = unit(2, "lines"),
+    strip.clip = "off"
+  )
+
+
+```
+:::
+:::::
+
+## Why balance improves precision
+
+::::: columns
+::: {.column width="50%"}
+$$
+\operatorname{SE}_{\bar{Y}_1 - \bar{Y}_2} = \sqrt{s_p^2 \left(\frac{1}{n_1} + \frac{1}{n_2}\right)}
+$$
+
+-   For fixed $n_1 + n_2$:
+    -   SE minimized when $n_1 = n_2$
+-   Example (total $n = 20$):
+    -   Balanced: $n_1=10$, $n_2=10$ → smaller SE
+    -   Unbalanced: $n_1=19$, $n_2=1$ → much larger SE
+:::
+
+::: {.column width="50%"}
+-   Estimating a difference requires:
+    -   Precise estimate of **both** means
+-   Unbalanced design:
+    -   One group well estimated
+    -   Other poorly estimated → weak comparison
+-   Balance allocates effort efficiently
+:::
+:::::
+
+## Balance is **optimal** but not strictly required
+
+-   Increasing sample size improves precision:
+    -   Even if added to only one group
+-   But for a fixed total sample size:
+    -   Equal allocation is **optimal**
+-   Additional benefit:
+    -   Statistical methods are more robust
+    -   Especially when variances differ between groups
+
+## Blocking reduces noise from known sources of variation
+
+-   [Blocking]{.keyword}: group similar experimental units into
+    **blocks**
+
+-   Units within a block:
+
+    -   Share location or other characteristics
+    -   Are more similar to each other than to units in other blocks
+
+-   Goal:
+
+    -   Remove variation not caused by the treatment
+    -   Increase precision and power
+
+## How blocking works
+
+::::: columns
+::: {.column width="50%"}
+-   Within each block:
+
+    -   Assign treatments **randomly**
+    -   Treatments are interspersed within the block
+
+-   Analyze differences **within blocks**, not across all units
+
+-   Conceptually:
+
+    -   Repeat the same experiment in each block
+    -   Compare treatments under similar conditions
+:::
+
+::: {.column width="50%"}
+![Comparison of experimental designs with and without blocking. Blocking
+groups similar individuals before random assignment, allowing treatment
+comparisons within blocks and reducing variation among groups. Image:
+JHK111 (CC0 1.0
+Universal)](images/blocking.jpg){fig-alt="Diagram comparing no blocking and blocking designs. In the no blocking design, all individuals are randomly divided into treatment and control. In the blocking design, individuals are first grouped into blocks, then treatments are randomly assigned within each block."}
+:::
+:::::
+
+## When is blocking useful?
+
+:::::: columns
+::: {.column width="40%"}
+-   Use blocking when:
+    -   Units differ due to known factors (e.g., location, time, group)
+-   Examples of blocks:
+    -   Field plots in the same area
+    -   Animals from the same litter
+    -   Patients from the same clinic
+    -   Experiments run on the same day
+-   Key condition:
+    -   Units within blocks are similar
+    -   Blocks differ from each other
+:::
+
+:::: {.column width="60%"}
+::: {#fig-elephants layout-ncol="2"}
+![Without blocking: diet pills vs placebo on weight loss. Individuals
+are not grouped, so variation among individuals obscures differences
+between treatments. Image: JHK111 (CC0 1.0
+Universal).](images/without-blocking.jpg){#fig-without-blocking
+fig-alt="Scatterplot of weight loss by individuals without blocking. Blue points represent placebo and green points represent diet pills, with substantial overlap between groups making treatment differences difficult to distinguish."
+fig-align="center" width="475"}
+
+![With blocking: diet pills vs placebo on weight loss. Individuals are
+grouped into blocks (females and males), and treatment differences are
+clearer within each block. Image: JHK111 (CC0 1.0
+Universal).](images/with-blocking.jpg){#fig-with-blocking
+fig-alt="Scatterplot of weight loss grouped into two blocks labeled females and males. Within each block, blue points represent placebo and green points represent diet pills, showing clearer separation between treatments compared to the unblocked design."
+fig-align="center" width="434"}
+
+Comparison of experimental designs with and without blocking. Without
+blocking, variation among individuals obscures treatment differences.
+With blocking, individuals are grouped into more similar subsets, making
+treatment effects easier to detect within each block.
+:::
+::::
+::::::
+
+## Example: Extreme treatments reveal nitrogen effects
+
+::::: columns
+::: {.column width="50%"}
+-   Clark and Tilman (2008) studied whether nitrogen addition reduces
+    plant diversity
+
+-   Typical (background) N deposition: \~1–10 kg N ha⁻¹ yr⁻¹
+
+-   Experimental treatments: Up to **100 kg N ha⁻¹ yr⁻¹** (extreme)
+
+-   Why use extreme levels?
+
+    -   Amplify the response
+    -   Make treatment effects easier to detect
+
+-   Result: Clear decline in species richness with higher N
+:::
+
+::: {.column width="50%"}
+![Relationship between nitrogen input and plant species loss in
+grassland ecosystems. Species loss increases with nitrogen addition,
+with stronger effects at higher (extreme) nitrogen levels. Points
+represent observations and lines show fitted trends. Adapted from Clark
+and Tilman
+(2008).](images/nitrogen-extreme-treatment.jpg){#fig-nitrogen-extreme-treatment
+fig-alt="Scatterplot showing species loss (proportion) versus nitrogen input rate. Points are scattered across increasing nitrogen levels, with fitted lines indicating an upward trend in species loss as nitrogen input increases, especially at higher application rates."
+fig-align="center"}
+:::
+:::::
+
+## Extreme treatments make effects easier to detect
+
+-   Treatment effects are easiest to detect when they are **large**
+
+-   Small differences:
+
+    -   Hard to distinguish from random variation
+    -   Require larger sample sizes
+
+-   Large differences:
+
+    -   Stand out against noise
+    -   Increase power to detect an effect
+
+-   Strategy:
+
+    -   Include **extreme treatment levels**
+
+## Extreme treatments increase power, but with tradeoffs
+
+-   Stronger treatments → larger response differences
+    -   Higher probability of detecting an effect
+-   Useful as a first step:
+    -   Does this variable affect the response at all?
+-   Caution:
+    -   Effects may not scale linearly
+    -   Extreme treatments may not reflect realistic conditions
+-   Balance:
+    -   Detection vs realism
 
 # Experiments with More Than One Factor
 
+## Experiments can include more than one factor
+
+::::: columns
+::: {.column width="50%"}
+-   A [factor]{.keyword}:
+    -   A single treatment variable of interest
+-   Many experiments include **multiple factors**
+    -   More efficient:
+        -   Answer multiple questions at once
+        -   Use time, materials, and effort more effectively
+-   Example idea:
+    -   Temperature + nutrients
+    -   Light + water
+:::
+
+::: {.column width="50%"}
+![Factorial design illustrating the combined effects of light and water
+on plant growth. Each panel represents a different combination of low
+and high levels of both factors, showing how growth depends on their
+interaction.](images/factorial-example.png){#fig-factorial-example
+fig-alt="A 2×2 grid showing plant growth under combinations of low and high light and water. Plants are smallest under low light and low water, larger with either factor increased, and largest when both light and water are high."}
+:::
+:::::
+
+## Factorial designs test combinations of factors
+
+::::: columns
+::: {.column width="50%"}
+-   [Factorial design]{.keyword}:
+    -   Includes **all combinations** of treatment levels
+-   Example structure (2 factors):
+    -   Factor A: A₁, A₂
+    -   Factor B: B₁, B₂
+-   Treatments:
+    -   A₁B₁, A₁B₂, A₂B₁, A₂B₂
+-   Key advantage:
+    -   Can test **interactions** between factors
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-factorial-table
+#| fig-cap: Factorial design with two variables (A and B), each with two levels. Rows represent levels of Variable A and columns represent levels of Variable B. Each cell shows a treatment combination (e.g., A₁B₁), representing one unique combination of factor levels included in the experiment.
+#| fig-alt: Table illustrating a 2×2 factorial design. Rows are labeled A₁ and A₂ for Variable A, and columns are labeled B₁ and B₂ for Variable B. Each cell contains a treatment combination (A₁B₁, A₁B₂, A₂B₁, A₂B₂), showing all possible combinations of the two factors.
+
+library(gt)
+library(tibble)
+
+factorial_tbl <- tibble(
+  group = "Variable A",
+  level_a = c("A₁", "A₂"),
+  b1 = c("A₁B₁", "A₂B₁"),
+  b2 = c("A₁B₂", "A₂B₂")
+)
+
+factorial_tbl |>
+  gt(
+    rowname_col = "level_a",
+    groupname_col = "group"
+  ) |>
+  tab_header(
+    title = "Factorial design: two factors with two levels each",
+  ) |>
+  tab_spanner(
+    label = "Variable B",
+    columns = c(b1, b2)
+  ) |>
+  cols_label(
+    b1 = "B₁",
+    b2 = "B₂"
+  ) |>
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = list(
+      cells_row_groups(groups = "Variable A"),
+      cells_column_spanners(spanners = "Variable B")
+    )
+  ) |>
+  tab_options(
+    table.font.size = px(28),
+    column_labels.font.size = px(28),
+    row_group.font.size = px(28),
+    stub.font.size = px(28),
+    data_row.padding = px(14),
+    column_labels.padding = px(14),
+    table.width = pct(70),
+    container.padding.y = px(40)
+  ) |>
+  cols_align(
+    align = "center",
+    columns = everything()
+  ) |>
+  opt_stylize(style = 6, color = "blue", add_row_striping = FALSE)
+
+
+```
+:::
+:::::
+
+## Interactions: when effects depend on each other
+
+::::: columns
+::: {.column width="50%"}
+-   [Interaction]{.keyword}: Effect of one factor depends on another
+    factor
+-   Without interaction:
+    -   Effects are independent and additive
+-   With interaction:
+    -   Combined effect differs from separate effects
+-   Only detectable with **factorial design**
+-   [Examples of types of interactions (Duda et al.
+    2023)](https://www.nature.com/articles/s41598-023-47057-0/figures/1)
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-interaction-example
+#| fig-cap: Hypothetical interaction between Variable A and Variable B. The effect of Variable B on the response differs depending on the level of Variable A, as shown by the non-parallel lines.
+#| fig-alt: Line graph showing response versus Variable B (B₁, B₂) with separate lines for Variable A (A₁, A₂). The line for A₁ increases from B₁ to B₂, while the line for A₂ decreases, illustrating a non-parallel interaction effect.
+
+library(ggplot2)
+library(tibble)
+
+# Hypothetical interaction data
+df <- tibble(
+  A = factor(rep(c("A1", "A2"), each = 2), levels = c("A1", "A2")),
+  B = factor(rep(c("B1", "B2"), times = 2), levels = c("B1", "B2")),
+  response = c(5, 9,   # A₁: increases with B
+               5, 2)   # A₂: decreases with B (interaction)
+)
+
+# Plot
+ggplot(df, aes(x = B, y = response, group = A, color = A)) +
+  geom_line(linewidth = 1.6) +
+  geom_point(size = 4) +
+  scale_color_manual(
+    values = c("A1" = "#0072B2", "A2" = "#D55E00"),
+    name = "Variable A"
+  ) +
+  labs(
+    title = "Interaction between Variable A and Variable B",
+    x = "Variable B",
+    y = "Response"
+  ) +
+  theme_classic(base_size = 18)
+```
+:::
+:::::
+
+## Example: 4-factor factorial experiment (smoking reduction)
+
+::::: columns
+::: {.column width="50%"}
+-   Study in Cook *et al.* (2015) *Addiction*
+
+-   Outcome: % reduction in cigarettes/day
+
+-   **4 factors (2 levels each: yes vs no):**
+
+    -   Nicotine patch
+    -   Nicotine gum
+    -   Motivational interviewing
+    -   Behavioral reduction
+
+-   Design: **2 × 2 × 2 × 2 = 16 combinations**
+
+-   Key idea: Effects depend on **combinations of treatments
+    (interactions)**
+:::
+
+::: {.column width="50%"}
+![Mean percent reduction in cigarettes per day for all combinations of
+four treatments (nicotine patch, nicotine gum, motivational
+interviewing, and behavioral reduction). Each panel represents a
+different combination of patch and motivational interviewing, with bars
+showing gum and behavioral reduction combinations. Results illustrate
+how treatment effects vary across combinations, indicating interactions
+among factors. Adapted from Cook et al.
+(2015).](images/factorial-example-smoking.png){#fig-factorial-example-smoking
+fig-alt="Multi-panel bar chart showing mean percent reduction in cigarettes per day across combinations of four treatments: nicotine patch, nicotine gum, motivational interviewing, and behavioral reduction. Each panel corresponds to patch and motivational interviewing conditions, with bars representing gum and behavioral reduction combinations. Differences among bars indicate that treatment effects depend on combinations of factors."
+width="75%"}
+:::
+:::::
+
 # What if You Can’t Do an Experiment?
+
+## When experiments are not possible
+
+-   Use [observational studies]{.keyword}
+    -   Researcher does **not assign treatments**
+    -   Subjects come as they are
+-   Strengths:
+    -   Detect real-world patterns
+    -   Generate hypotheses
+-   Limitation:
+    -   Cannot use **randomization**
+    -   → greater risk of bias
+
+## Observational studies still use good design principles
+
+-   Apply as many experimental design features as possible:
+    -   Controls
+    -   Blinding (when possible)
+    -   Replication, balance, blocking
+-   Key missing feature:
+    -   **Randomization**
+-   Biggest challenge:
+    -   [Confounding variables]{.keyword}
+
+## Strategy 1: Matching
+
+::::: columns
+::: {.column width="50%"}
+-   [Matching]{.keyword}: Pair each treated individual with a similar
+    control
+-   Match on known confounders:
+    -   Age, sex, weight, background, etc.
+-   Common in: **Case–control studies**
+-   Benefits:
+    -   Reduces bias
+    -   Reduces sampling error (like blocking)
+-   Limitation:
+    -   Only controls **known** confounders
+:::
+
+::: {.column width="50%"}
+![Illustration of matching in a case–control study. Individuals are
+paired so that cases and controls have the same characteristics (sex,
+race, and age), reducing confounding. From Dey et al. (2020) Chest
+J.](images/matching.jpg){#fig-matching
+fig-alt="Grid of human icons arranged in pairs connected by arrows. Each pair matches individuals with the same sex (male or female), race (light or dark shading), and age (with or without a cane), illustrating one-to-one matching on multiple confounding variables."
+fig-align="center" width="584"}
+:::
+:::::
+
+## Strategy 2: Adjustment
+
+::::: columns
+::: {.column width="50%"}
+-   [Adjustment]{.keyword}: Use statistical methods to control for
+    confounders
+-   Example approach:
+    -   Compare groups at the **same value** of a confounder (e.g., age)
+-   Methods:
+    -   Regression
+    -   Analysis of covariance (ANCOVA)
+-   Key requirement:
+    -   Groups must **overlap** in confounder values
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-adjustment-penguins
+#| fig-cap: Relationship between flipper length and body mass in Adelie penguins, with separate regression lines for males and females. Points show individual observations, and lines show fitted values from a model including sex and flipper length. The vertical line marks a common flipper length, and highlighted points show predicted (adjusted) body mass for each sex at that value, illustrating comparison after accounting for flipper length.
+#| fig-alt: Scatterplot of body mass versus flipper length for Adelie penguins, colored by sex, with separate regression lines for males and females. A dashed vertical line marks a common flipper length, and points on each line at that position indicate predicted body mass for each sex, showing adjusted comparison controlling for flipper length.
+#| fig-height: 5
+  
+library(tidyverse)
+library(palmerpenguins)
+library(see)
+
+# Data: Adelie only, remove missing values
+df <- penguins |>
+  filter(species == "Adelie") |>
+  drop_na(flipper_length_mm, body_mass_g, sex)
+
+# Fit ANCOVA model
+mod <- lm(body_mass_g ~ sex + flipper_length_mm, data = df)
+
+# Choose a common flipper length (approximate center of data)
+x_ref <- 190
+
+# Prediction data
+pred_df <- tibble(
+  sex = levels(df$sex),
+  flipper_length_mm = x_ref
+)
+
+# Add predicted values
+pred_df$body_mass_g <- predict(mod, newdata = pred_df)
+
+# Plot
+ggplot(df, aes(x = flipper_length_mm, y = body_mass_g, color = sex)) +
+  geom_point(alpha = 0.6) +
+  
+  # Regression lines from ANCOVA model
+  geom_smooth(method = "lm", se = FALSE) +
+  
+  # Vertical reference line
+  geom_vline(xintercept = x_ref, linetype = "dashed") +
+  
+  # Predicted means at common flipper length
+  geom_point(
+    data = pred_df,
+    aes(x = flipper_length_mm, y = body_mass_g, color = sex),
+    size = 4
+  ) +
+  
+  labs(
+    title = "ANCOVA: Adjusting for flipper length when\ncomparing sexes",
+    x = "Flipper length (mm)",
+    y = "Body mass (g)",
+    color = "Sex"
+  ) +
+  scale_color_oi() +
+  theme_minimal(base_size = 18)
+
+```
+:::
+:::::
+
+## Limits of observational studies
+
+-   Observational studies can reveal important patterns
+-   But without randomization:
+    -   Confounding cannot be fully eliminated
+-   Strongest inference:
+    -   Experiments \> observational studies
+-   Best use:
+    -   Identify relationships
+    -   Generate hypotheses for experiments
 
 # Choosing a Sample Size
 
+## Choosing a sample size matters
+
+-   Goal: Choose enough samples to get **useful results**
+-   Too small:
+    -   Cannot detect effects
+    -   Very wide confidence intervals
+-   Too large:
+    -   Wastes time, money, and resources
+    -   May raise ethical concerns
+-   Key question: How many replicates per treatment?
+
+## Two ways to plan sample size
+
+-   Plan for [precision]{.keyword}
+    -   Want a **narrow confidence interval**
+-   Plan for [power]{.keyword}
+    -   Want a high probability of detecting a real effect
+-   Focus here:
+    -   Comparing **two means**
+
+## Planning for precision
+
+-   Goal: Estimate the difference in means:
+
+$$
+\mu_1 - \mu_2
+$$
+
+-   Use sample estimate:
+
+$$
+\bar{Y}_1 - \bar{Y}_2
+$$
+
+-   Want a **95% confidence interval** with small width
+
+## Margin of error drives sample size
+
+-   Confidence interval form:
+
+$$
+(\bar{Y}_1 - \bar{Y}_2) \pm \text{margin of error}
+$$
+
+-   Margin of error ≈
+
+$$
+2 \times \operatorname{SE}
+$$
+
+-   Standard error:
+
+$$
+\operatorname{SE} = \sqrt{\frac{2\sigma^2}{n}}
+$$
+
+-   Larger $n$ → smaller SE → narrower interval
+
+## Sample size formula (approximate)
+
+-   Solve for sample size per group:
+
+$$
+n \approx \frac{8\sigma^2}{(\text{margin of error})^2}
+$$
+
+-   Interpretation:
+    -   Larger variability ($\sigma$) → need larger $n$
+    -   Higher precision (smaller margin) → need larger $n$
+
+## Practical challenge
+
+-   $\sigma$ is **unknown**
+    -   Use:
+        -   Pilot studies
+        -   Previous research
+        -   Educated guess
+-   Result:
+    -   Sample size planning is approximate
+
+## Choosing sample size for power
+
+::::: columns
+::: {.column width="50%"}
+-   Goal: Choose $n$ so you can **detect a meaningful effect**
+-   You must specify:
+    -   **Effect size** (what difference matters biologically)
+    -   **Variability** ($\sigma$; from pilot data or past studies)
+    -   **Significance level** ($\alpha$, usually 0.05)
+    -   **Desired power** (commonly **80%**)
+        -   80% chance of rejecting a false null
+        -   20% chance of missing a real effect (Type II error)
+:::
+
+::: {.column width="50%"}
+-   How you do it:
+    -   Use software (e.g., R, online calculators)
+    -   Input these values → solve for required $n$
+-   Key idea:
+    -   Larger effect → smaller $n$
+    -   Higher variability → larger $n$
+    -   Higher power → larger $n$
+:::
+:::::
+
+## More data improves precision
+
+::::: columns
+::: {.column width="50%"}
+-   Small sample size:
+    -   Very wide confidence intervals
+-   Increasing $n$:
+    -   Rapid improvement at first
+-   Large $n$:
+    -   Diminishing returns
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-sample-size-precision
+#| fig-cap: Relationship between sample size per treatment and expected precision of a 95% confidence interval for the difference in means. Precision is expressed as the margin of error divided by σ. Precision improves rapidly at small sample sizes and then more slowly, illustrating diminishing returns.
+#| fig-alt: Line graph showing expected margin of error divided by sigma versus sample size per treatment. The curve decreases steeply from small sample sizes and then levels off, indicating that increases in sample size lead to diminishing improvements in precision.
+
+library(tidyverse)
+
+# Sequence of sample sizes per group
+df <- tibble(
+  n = 2:20
+) |>
+  mutate(
+    df = 2 * n - 2,
+    t_crit = qt(0.975, df = df),
+    moe_over_sigma = t_crit * sqrt(2 / n)
+  )
+
+ggplot(df, aes(x = n, y = moe_over_sigma)) +
+  geom_line(linewidth = 1.1) +
+  geom_point(size = 3.8, color = "#D9481C") +
+  scale_x_continuous(
+    breaks = c(2, 5, 10, 15, 20),
+  ) +
+  scale_y_continuous(
+    breaks = 0:4,
+    limits = c(0, NA),
+    expand = expansion(c(0,.1))
+  ) +
+  labs(
+    x = expression("Sample size " * n * " in each treatment"),
+    y = expression("Expected margin of error / " * sigma),
+    title = "Precision improves with sample size",
+  ) +
+  theme_minimal(base_size = 22) +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_blank(),
+    axis.line = element_line(),
+    axis.ticks = element_line(),
+    axis.ticks.length = unit(0.25, "cm"),
+    axis.title.x = element_text(face = "bold", margin = margin(t = 16)),
+    axis.title.y = element_text(face = "bold", margin = margin(r = 16)),
+    plot.margin = margin(10, 20, 10, 10)
+  )
+
+```
+:::
+:::::
+
+## Diminishing returns
+
+-   Precision improves quickly at first:
+    -   e.g., $n = 2 \rightarrow 5$
+-   Then slows:
+    -   e.g., $n = 15 \rightarrow 20$
+-   Each additional replicate adds **less new information**
+-   Tradeoff:
+    -   Precision vs cost
+
 # Summary of Considerations in Experimental Design
+
+## Summary: Designing studies and making inference
+
+::::: columns
+::: {.column width="50%"}
+-   Experiments assign treatments and enable causal inference
+
+-   Bias is reduced through controls, randomization, and blinding
+
+-   Randomization balances confounding variables on average
+
+-   Observational studies lack randomization and have weaker inference
+
+-   Confounding in observational studies is reduced by matching and
+    adjustment
+:::
+
+::: {.column width="50%"}
+-   Sampling error is reduced by replication, balance, and blocking
+
+-   Extreme treatments increase the ability to detect effects
+
+-   Factorial designs test multiple factors and their interactions
+
+-   Sample size is planned for precision or power
+
+-   Study design involves tradeoffs among precision, cost, and
+    feasibility
+:::
+:::::
