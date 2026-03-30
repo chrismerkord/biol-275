@@ -731,8 +731,8 @@ $$
 ![Comparison of experimental designs with and without blocking. Blocking
 groups similar individuals before random assignment, allowing treatment
 comparisons within blocks and reducing variation among groups. Image:
-JHK111 (CC0 1.0
-Universal)](images/blocking.jpg){fig-alt="Diagram comparing no blocking and blocking designs. In the no blocking design, all individuals are randomly divided into treatment and control. In the blocking design, individuals are first grouped into blocks, then treatments are randomly assigned within each block."}
+JHK111 (CC0 1.0 Universal)](images/blocking.jpg){#fig-blocking
+fig-alt="Diagram comparing no blocking and blocking designs. In the no blocking design, all individuals are randomly divided into treatment and control. In the blocking design, individuals are first grouped into blocks, then treatments are randomly assigned within each block."}
 :::
 :::::
 
@@ -1201,6 +1201,9 @@ $$
 
 ## Margin of error drives sample size
 
+::::: columns
+::: {.column width="50%"}
+
 -   Confidence interval form:
 
 $$
@@ -1212,6 +1215,9 @@ $$
 $$
 2 \times \operatorname{SE}
 $$
+:::
+
+::: {.column width="50%"}
 
 -   Standard error:
 
@@ -1220,6 +1226,13 @@ $$
 $$
 
 -   Larger $n$ → smaller SE → narrower interval
+:::
+:::::
+
+
+
+
+
 
 ## Sample size formula (approximate)
 
