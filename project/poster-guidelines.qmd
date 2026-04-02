@@ -31,11 +31,13 @@ Use a 3-column SAC template. Organize content clearly and visually. Avoid large 
 
 ## General Design Guidelines
 
--   Use bullets only (no paragraphs)
+-   Use headings and bullets only (no paragraphs)
 -   Keep text concise and readable
 -   Prioritize figures and interpretation
 -   Avoid clutter; include only essential content
 -   Place figures with bullets directly next to them (not separated)
+-   Use font size 28 for text and 48 for headings
+-   Adjust margin between column borders and text boxes to 1 to 1.5 in. to improve readability
 
 ## Introduction
 
