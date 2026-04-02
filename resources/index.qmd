@@ -10,15 +10,32 @@ format:
 :::::: {.g-col-12 .g-col-sm-4}
 ::::: {.card .h-100}
 ::: card-header
-Weekly Lab Setup
+Labs
 :::
 
 ::: card-body
-##### Introduction to R and RStudio {.card-title}
+##### Weekly Lab Setup {.card-title}
 
 Learn how to set up your lab project in Posit Cloud each week.
 
 [Weekly Lab Setup](weekly-lab-setup.qmd)
+:::
+:::::
+::::::
+
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+EDA Project
+:::
+
+::: card-body
+##### How to Export a Graph from RStudio for a Poster {.card-title}
+
+A practical guide to making poster-ready figures in R with ggplot2 and exporting them at fixed dimensions using ggsave().
+
+[How to Export a Graph from RStudio for a Poster](export-ggplot.qmd)
 :::
 :::::
 ::::::

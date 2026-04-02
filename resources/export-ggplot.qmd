@@ -1,0 +1,362 @@
+---
+title: "How to Export a Graph from RStudio for a Poster"
+description: "A practical guide to making poster-ready figures in R with ggplot2 and exporting them at fixed dimensions using ggsave()."
+format:
+  html:
+    toc: true
+    toc-depth: 3
+---
+
+## Overview
+
+When creating a poster in PowerPoint, figures should be designed and exported from R at their final size rather than resized later.
+
+This requires a deliberate workflow that controls both the appearance of the plot and how it is saved.
+
+-   Create figures using `ggplot2`
+-   Use a large base font size suitable for posters
+-   Export figures with `ggsave()` using fixed dimensions (in inches)
+-   Insert into PowerPoint without major resizing
+
+This produces figures that are readable, properly scaled, and consistent across the poster.
+
+## The Problem
+
+A common issue is getting a figure from R into PowerPoint that is actually readable on a poster.
+
+Many students use approaches that seem convenient but produce poor results:
+
+-   copying a figure from the *Plots* tab in RStudio
+-   using the *Export* button in the *Plots* tab adjusting image size and font size
+-   taking a screenshot of the graph
+
+These approaches do not preserve control over:
+
+-   figure size
+-   text size
+-   resolution
+-   aspect ratio (length to width ratio)
+
+As a result, when the figure is placed into PowerPoint and resized:
+
+-   text becomes too small to read
+-   images appear blurry or pixelated
+-   plots become stretched or distorted
+-   facet panels become cramped
+-   figures look inconsistent across the poster
+
+## General Approach
+
+The solution is to design and export figures in R at the exact size they will appear in PowerPoint.
+
+This means:
+
+-   deciding how much space the figure will occupy (e.g., half-column or full-column)
+-   setting text size appropriate for poster viewing
+-   exporting the image with fixed width and height in inches
+-   avoiding major resizing after insertion into PowerPoint
+
+This approach ensures:
+
+-   readable text
+-   clean image quality
+-   correct proportions
+-   consistent layout across figures
+
+## Recommended workflow
+
+### 1. Create and store the graph
+
+-   Use `ggplot2` to build your figure
+-   Assign the plot to an object using a descriptive name (e.g., `penguin_scatter`)
+-   Build the full plot before saving (do not rely on the last displayed plot)
+-   Use clear, consistent naming for figure objects
+-   Preview the plot in RStudio to check appearance before exporting
+
+### 2. Choose a theme and set `base_size = 20`
+
+-   Start with your existing plot object (e.g., `penguin_scatter`)
+-   Add a theme layer with an appropriate base size, and assign the result to a new object (e.g., `fig1`)
+    -   Example: `fig1 <- penguin_scatter + theme_minimal(base_size = 20)`
+-   This ensures:
+    -   the plot is readable in the RStudio *Plots* tab
+    -   the saved image will also have appropriately sized text for a poster
+-   Recommended theme options:
+    -   `theme_minimal(base_size = 20)`
+    -   `theme_bw(base_size = 20)`
+    -   `theme_classic(base_size = 20)`
+    -   `theme_light(base_size = 20)`
+-   The `base_size` setting controls most text, including:
+    -   axis titles and labels
+    -   legend text
+    -   facet labels
+-   Adjust other visual elements directly in geoms as needed:
+    -   point size → `geom_point(size = ...)`
+    -   line width → `geom_line(linewidth = ...)`
+    -   text labels → `geom_text(size = ...)`, `geom_label(size = ...)`
+
+### 3. Export with `ggsave()`
+
+-   Use `ggsave()` to save your figure as a PNG file\
+-   Include the following arguments:
+    -   `filename =` (name of the output file, e.g., `"penguin_scatter.png"`)
+    -   `plot =` (the plot object, e.g., `fig1`)
+    -   `width =` (in inches)
+    -   `height =` (in inches)
+    -   `units = "in"`
+-   Choose width based on how the figure will be used in PowerPoint:
+    -   full-column figure: `width = 13.5`
+    -   half-column figure: `width = 6` to `7`
+-   Set height intentionally based on the content:
+    -   adjust to maintain good proportions
+    -   ensure text, points, and facets are not crowded
+    -   there is no single correct value; expect to iterate
+-   Use PNG format for clean, high-quality images suitable for posters
+
+### 4. Open and inspect the saved file
+
+-   Go to the *Files* tab in RStudio
+-   Locate the exported image file (e.g., `"penguin_scatter.png"`)
+-   Click the file to open it
+-   Check the figure carefully:
+    -   text size is readable
+    -   points and lines are appropriately sized
+    -   nothing looks crowded or cut off
+    -   proportions look correct (not stretched)
+-   If the figure does not look right:
+    -   adjust width and/or height in `ggsave()`
+    -   revise theme or geom sizes as needed
+    -   re-save and check again
+
+### 5. Insert the image into PowerPoint
+
+-   In RStudio, go to the *Files* tab
+-   Check the box next to your image file (e.g., `"penguin_scatter.png"`)
+-   Click **More → Export...**
+-   Save the file (typically to your *Downloads* folder)
+-   In PowerPoint:
+    -   Go to **Insert → Pictures → This Device**
+    -   Navigate to your *Downloads* folder
+    -   Select the image and insert it
+-   After inserting:
+    -   avoid large resizing (especially enlarging)
+    -   position the image in its intended space on the poster
+
+## Examples
+
+The example below uses the `penguins` dataset from the `palmerpenguins` package.
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(palmerpenguins)
+
+penguin_scatter <- 
+  penguins |>
+  drop_na() |>
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point(size = 3, alpha = 0.8) +
+  labs(
+    title = "Penguin body mass vs. flipper length",
+    x = "Flipper length (mm)",
+    y = "Body mass (g)",
+    color = "Species"
+  ) +
+  theme_bw()
+
+penguin_scatter
+```
+
+### Example 1: Full-column figure
+
+This example saves a figure that takes up the entire width of a poster column, 13.5 inches.
+
+Setting `base_size = 20` yields a good font size for this image.
+
+```{r}
+#| label: penguin-full-column
+#| eval: false
+
+fig1 <- 
+  penguin_scatter +
+  theme_bw(base_size = 20)
+
+ggsave(
+  filename = "fig1.png",
+  plot = fig1,
+  width = 13.5,
+  height = 9,
+  units = "in"
+)
+```
+
+### Example 2: Half-column figure
+
+This version uses the same graph but creates a smaller image suitable for half of a poster column.
+
+Because the image is smaller, there isn't as much room for text on the figure. You can alleviate this problem by moving the legend to the bottom of the graph.
+
+```{r}
+#| label: penguin-half-column
+#| fig-width: 4
+#| fig-height: 4
+
+penguin_scatter_half <-
+  penguin_scatter +
+  theme(legend.position = "bottom")
+
+penguin_scatter_half
+```
+
+Then save the image using `ggsave()`.
+
+-   Make the base font size smaller when saving the image (e.g. 16)
+-   Note: The `theme()` layer is repeated here because adding `theme_bw()` resets any theme elements that had been customized in the previous step.
+
+```{r}
+#| label: penguin-half-export
+#| eval: false
+
+fig2 <- 
+  penguin_scatter_half +
+  theme_bw(base_size = 16) +
+  theme(legend.position = "bottom")
+
+ggsave(
+  filename = "fig2.png", 
+  plot = fig2, 
+  width = 6.5, 
+  height = 5, 
+  units = "in"
+)
+```
+
+## Facetted graphs
+
+-   Facetted plots require additional layout control to remain readable on a poster
+-   Use `facet_wrap()` with the `ncol` argument to control the number of columns
+-   Adjust `ncol` based on the width of the figure:
+    -   half-column figure:
+        -   use `ncol = 1` or `ncol = 2`
+    -   full-column figure:
+        -   use `ncol = 3` or more
+-   Choose a layout that:
+    -   keeps each panel large enough to read
+    -   avoids overcrowding
+    -   makes efficient use of available space
+-   The best choice depends on:
+    -   the type of plot
+    -   the number of facets
+    -   how much detail each panel contains
+-   Expect to adjust both `ncol` and figure height to get a clean result
+
+### Example 3: Facetted figure
+
+This example uses facets and adjusts the facet layout with `ncol`.
+
+Note that the color legend can be removed because it is now redundant with the facet labels.
+
+```{r}
+#| label: facetted-setup
+#| message: false
+#| warning: false
+#| fig-asp: 0.45
+#| eval: true
+#| 
+penguin_scatter_facetted <- 
+  penguin_scatter +
+  facet_wrap(~species, ncol = 3) +
+  guides(color = "none")
+
+penguin_scatter_facetted
+```
+
+To export that image for a full column width:
+
+```{r}
+#| label: penguin-facet-full
+#| eval: false
+
+fig3 <- 
+  penguin_scatter_facetted +
+  theme_bw(base_size = 20)
+
+ggsave(
+  filename = "fig3.png",
+  plot = fig3,
+  width = 13.5,
+  height = 6,
+  units = "in"
+)
+```
+
+### Example 4: Facetted figure with vertical layout
+
+For a narrower version of the same facetted graph, you might change the facet layout to `ncol = 1`. This creates a vertical stack of panels that can be saved as a half-column figure.
+
+Like the half-column example above, the resulting figure will have a title that is too large and a color legend that takes up too much space on the side of the graph. Rather than making the base font size smaller on this graph (its still a large, featured graph, just vertically oriented), we can tweak some other elements:
+
+-   Keep the title from being too long, by giving the plot a new title using `labs()`:
+
+    -   Make the title shorter, e.g. `title = "Penguin Measurements"`
+
+    -   Move info to an optional subtitle, e.g. `subtitle = "Body mass vs. flipper length"`
+
+    -   Keep the original title, but put in a manual line break `\n`, e.g. `title = "Penguin body mass vs.\nflipper length"`
+
+-   Move the legend to the bottom of the graph, and style is so it looks nice there, using `theme()`:
+
+    -   Move it to the bottom with `legend.position = "bottom"`
+
+    -   Put the legend title above the legend with `legend.title.position = "top"`
+
+    -   Center the legend title with `legend.title = element_text(hjust = .5)`
+
+Here is the figure with a single column of facets, a wrapped title, and a repositioned legend:
+
+```{r}
+#| label: facetted-long-setup
+#| message: false
+#| warning: false
+#| fig-width: 4
+#| fig-asp: 2.25
+
+penguin_scatter_facetted_long <- 
+  penguin_scatter +
+  facet_wrap(~species, ncol = 1) +
+  labs(title = "Penguin body mass vs.\nflipper length") +
+  theme(
+    legend.position = "bottom",
+    legend.title.position = "top",
+    legend.title = element_text(hjust = .5)
+  )
+
+penguin_scatter_facetted_long
+```
+
+To export this version for a half-column width:
+
+```{r}
+#| label: penguin-half-column-facet 
+#| eval: false 
+
+fig4 <- 
+  penguin_scatter_facetted_long +
+  theme_bw(base_size = 20) +
+  theme(
+    legend.position = "bottom",
+    legend.title.position = "top",
+    legend.title = element_text(hjust = .5)
+  )
+
+ggsave(
+  filename = "fig4.png",
+  plot = fig4,
+  width = 6,
+  height = 13.5,
+  units = "in"
+)
+```

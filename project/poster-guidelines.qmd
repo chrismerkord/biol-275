@@ -121,6 +121,7 @@ This is the core of the poster.
     -   Refer to variables explicitly
     -   Maximum \~12–15 words per bullet, for readability
     -   Do not describe the plot mechanically (“this graph shows…”)
+-   For help with preparing images for your poster, see How to [How to Export a Graph from RStudio for a Poster](../resources/export-ggplot.qmd)
 
 ## Limitations & Next Steps
 
