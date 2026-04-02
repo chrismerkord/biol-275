@@ -61,56 +61,33 @@ This figure should provide context, not analysis.
 
 ## Research Focus
 
-### Format
-
--   2–4 bullets
--   Each bullet is a question
-
-### Content
-
-Questions should address:
-
--   Distribution (e.g., a single variable)
-
--   Comparison (differences among groups)
-
--   Relationships (between variables)
-
-### Example
-
--   What is the distribution of sleep duration?
--   How does sleep duration differ by age group?
--   What is the relationship between sleep and health status?
-
-### Rules
-
--   Be specific (name variables)
--   No hypotheses or predictions
--   No vague or overly broad questions
+-   2–4 bullets, each bullet is a question
+-   Questions should address:
+    -   Distribution (e.g., a single variable)
+    -   Comparison (differences among groups)
+    -   Relationships (between variables)
+-   Examples:
+    -   What is the distribution of sleep duration?
+    -   How does sleep duration differ by age group?
+    -   What is the relationship between sleep and health status?
+-   Rules:
+    -   Be specific (name variables)
+    -   No hypotheses or predictions
+    -   No vague or overly broad questions
 
 ## Data Description
 
-### Format
-
 -   4–6 bullets
--   No interpretation
-
-### Required content
-
--   Data source
--   Unit of observation (what one row represents)
--   Sample size (n)
--   Key variables (with sub-bullets)
--   Scope (time period and/or location)
-
-### Key variables format
-
--   Key variables:
-    -   *Human-readable variable name* — numeric or categorical
-    -   *Human-readable variable name* — numeric or categorical
-    -   *Human-readable variable name* — numeric or categorical
-
-Include units where relevant.
+    -   Data source name with in-text citation
+    -   Unit of observation (what one row represents)
+    -   Sample size (n)
+    -   Key variables (with sub-bullets); example:
+        -   Human-readable variable name — numeric or categorical
+        -   Human-readable variable name — numeric or categorical
+        -   Human-readable variable name — numeric or categorical
+    -   Scope (time period and/or location)
+-   Rules:
+    -   No interpretation
 
 ## Exploratory Findings
 
