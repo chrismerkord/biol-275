@@ -17,7 +17,16 @@ Unlike a traditional research poster, this is not hypothesis-driven. The goal is
 -   Communicate findings using clear, well-chosen visualizations
 -   Interpret patterns directly alongside figures
 
-Use a 3-column SAC template. Organize content clearly and visually. Avoid large blocks of text.
+Organize content clearly and visually. Avoid large blocks of text.
+
+## Poster Template
+
+Use one of the templates provided by the SAC:
+
+-   [Sample Poster Template: Grey 48" x 36"](https://www.mnstate.edu/globalassets/student-academic-conference/sample-poster-template-grey.pptx)
+-   [Sample Poster Template: Red 48" x 36"](https://www.mnstate.edu/globalassets/student-academic-conference/sample-poster-template-red.pptx)
+
+Copy the template to your OneDrive account and share it with your group members so everyone can edit it.
 
 ## Required Poster Sections
 
