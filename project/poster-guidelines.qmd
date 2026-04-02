@@ -52,9 +52,7 @@ Use a 3-column SAC template. Organize content clearly and visually. Avoid large 
 Include at least one non-graph figure, such as:
 
 -    Map (preferred for spatial data)
-
 -   Photo of organism/system
-
 -   Diagram of study system
 
 This figure should provide context, not analysis.
@@ -95,92 +93,77 @@ This is the core of the poster.
 
 ### Requirements
 
--   Include 2–4 well-chosen visualizations
--   At least one must be a histogram or bar chart showing a key variable distribution
--   Each figure must be paired with 2–3 bullets
-
-### Figure layout
-
--   Place bullets next to the figure (right, left, or below)
+-   Include 2–6 well-chosen visualizations
+    -   At least one must be a histogram or bar chart showing a key variable distribution
 -   Each figure should function as a self-contained analysis
-
-### Bullet structure (required)
-
-Each figure’s bullets must include:
-
--   Pattern: What is observed in the data
--   Interpretation: What the pattern suggests
--   Caveat (if applicable): Any limitations, outliers, or uncertainty
-
-### Example
-
--   Distribution is right-skewed with several high-value outliers
--   Most observations fall within a narrow lower range
--   Outliers may influence summary statistics
-
-### Rules
-
--   Write complete, specific statements
--   Refer to variables explicitly
--   Maximum \~12–15 words per bullet
--   Do not describe the plot mechanically (“this graph shows…”)
--   Include statistical tests or p-values here if they apply
--   Do not include a separate “Discussion” section
+    -   Each figure must be paired with 2–4 bullets (more if necessary)
+    -   Place bullets next to the figure (right, left, or below)
+    -   Each figure’s bullets should include:
+        -   Pattern (1-2 bullets): What is observed in the data
+        -   Inference (if applicable): report any parameter estimates or hypothesis test results, if any were done; for example if you have a graph comparing two means, you could give the estimates here and the results of a $t$-test
+        -   Interpretation: What the pattern suggests, or what the inference shows with regard to one or more of your Research Foci.
+        -   Implication (optional): How do these findings relate to the broader topic?
+        -   Caveats (if applicable): Any limitations, outliers, or uncertainty
+    -   Example:
+        -   Distribution of *Average number of hours of sleep per night* is right-skewed with several high-value outliers (14+ hours)
+        -   Most observations fall within a narrow lower range, from 5 to 9 hours
+        -   The mean was 7.8 hours, which is not significantly different from 8, the recommended number of hours of sleep for an adult (t=0.75, df=100, p=0.63).
+        -   Suggests people are getting enough sleep, on average, although there are a significant proportion who get more or less than recommended.
+        -   Note: Outliers may influence summary statistics
+-   Suggestions
+    -   Write complete, specific statements
+    -   Refer to variables explicitly
+    -   Maximum \~12–15 words per bullet
+    -   Do not describe the plot mechanically (“this graph shows…”)
+    -   Include statistical tests or p-values here if they apply
+    -   Do not include a separate “Discussion” section; include interpretation and discussion here.
 
 ## Limitations & Next Steps
 
-### Format
+This section takes the place of a traditional Discussion section.
 
--   2–4 bullets
-
-### Content
-
+-   4–6 bullets
 -   Data limitations (e.g., bias, missing data, sample size issues)
 -   Constraints of the analysis
--   Logical next steps (e.g., hypothesis testing, modeling, additional data)
+-   Logical next steps (e.g., hypothesis testing, modeling, additional data); 2-3 bullets
 
 ## References
 
-### Format
-
--   Bullet list of citations
+-   Bullet list of citations (typically 2-8)
 -   Use a consistent citation style
 -   Do not include bare URLs
+-   Citations to include:
+    -   Dataset citation (required)
+    -   Associated publications (if applicable)
+        -   For example, Dryad datasets are usually associated with a journal publication
+    -   tidyverse package (required); cite as a single package, do not cite individual packages such as dplyr, ggplot2
+    -   Any non-tidyverse packages you used
+    -   Any sources cited in the Introduction or Limitations & Next Steps sections
+-   Do not cite lecture slides, class notes, the class website, or the textbook.
 
-### Required references
+::: callout-tip
+## Getting citations for R packages
 
-Include:
+You can get the citation for any R package using the `citation()` function in R.
 
--   Dataset citation
--   Software:
-    -   R
-    -   tidyverse (cite as a single package)
--   Any sources cited in:
-    -   Introduction
-    -   Limitations & Next Steps
--   Associated publication(s), if applicable (e.g., Dryad datasets)
+For example:
 
-### Rules
+``` r
+citation("tidyverse")
+```
 
--   Do not cite lecture slides or class notes
--   Typical total: 5–8 references
+Format the resulting citation in the same style as other citations on your poster.
+:::
 
 ## Acknowledgements
 
-### Required content
-
 -   Instructor (Chris Merkord)
 -   Anyone who provided substantive help (e.g., data access, feedback)
-
-### Rules
-
--   Do not acknowledge authors already listed in References
 -   Only include individuals who provided direct assistance
-
-### Example
-
--   Acknowledgements: Chris Merkord for guidance on project design and analysis.
--   We thank Jane Doe for assistance with data access.
+-   Do not acknowledge authors already listed in References, unless they offered some direct assistant with the project beyond publishing the article or dataset
+-   Examples:
+    -   We thank Chris Merkord for guidance on project design and analysis.
+    -   We thank Jane Doe for assistance with data access.
 
 ## Summary of Expectations
 
