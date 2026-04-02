@@ -39,23 +39,19 @@ Use a 3-column SAC template. Organize content clearly and visually. Avoid large 
 
 ## Introduction
 
-### Content (3–5 bullets)
-
--   Study system: what/where/who is being studied
--   Why it matters: ecological, societal, or scientific relevance
--   Data source: dataset name or organization
--   Data scope: sample size, time frame, and/or geographic extent
--   Goal: what you aim to explore (not a hypothesis)
-
-### Visual requirement
-
-Include at least one non-graph figure, such as:
-
--    Map (preferred for spatial data)
--   Photo of organism/system
--   Diagram of study system
-
-This figure should provide context, not analysis.
+-   5-8 bullets, including the following:
+    -   Study system: what/where/who is being studied
+    -   Why it matters: ecological, societal, or scientific relevance
+    -   Data source: dataset name or organization
+    -   Data scope: sample size, time frame, and/or geographic extent
+    -   Goal: what you aim to explore (not a hypothesis)
+-   Visual requirement
+    -   Include at least one non-graph figure, such as:
+        -   Photo of organism/system
+        -   Diagram of study system
+        -   Maps that add context to your question (e.g. historical distribution of the study organism).
+    -   This figure should provide context, not analysis
+    -   Include a figure caption, with appropriate attribution of the image source.
 
 ## Research Focus
 
@@ -91,8 +87,6 @@ This figure should provide context, not analysis.
 
 This is the core of the poster.
 
-### Requirements
-
 -   Include 2–6 well-chosen visualizations
     -   At least one must be a histogram or bar chart showing a key variable distribution
 -   Each figure should function as a self-contained analysis
@@ -110,13 +104,12 @@ This is the core of the poster.
         -   The mean was 7.8 hours, which is not significantly different from 8, the recommended number of hours of sleep for an adult (t=0.75, df=100, p=0.63).
         -   Suggests people are getting enough sleep, on average, although there are a significant proportion who get more or less than recommended.
         -   Note: Outliers may influence summary statistics
--   Suggestions
+-   Do not include a figure caption or figure number, unless you refer to the figure elsewhere in your poster. Having the bullets next to the figure is sufficient.
+-   Suggestions:
     -   Write complete, specific statements
     -   Refer to variables explicitly
-    -   Maximum \~12–15 words per bullet
+    -   Maximum \~12–15 words per bullet, for readability
     -   Do not describe the plot mechanically (“this graph shows…”)
-    -   Include statistical tests or p-values here if they apply
-    -   Do not include a separate “Discussion” section; include interpretation and discussion here.
 
 ## Limitations & Next Steps
 
