@@ -13,20 +13,20 @@ format:
 This poster presents the results of an exploratory data analysis (EDA) project.\
 Unlike a traditional research poster, this is not hypothesis-driven. The goal is to:
 
--   Explore patterns in a dataset\
--   Communicate findings using clear, well-chosen visualizations\
+-   Explore patterns in a dataset
+-   Communicate findings using clear, well-chosen visualizations
 -   Interpret patterns directly alongside figures
 
 Use a 3-column SAC template. Organize content clearly and visually. Avoid large blocks of text.
 
 ## Required Poster Sections
 
--   Introduction\
--   Research Focus\
--   Data Description\
--   Exploratory Findings\
--   Limitations & Next Steps\
--   References\
+-   Introduction
+-   Research Focus
+-   Data Description
+-   Exploratory Findings
+-   Limitations & Next Steps
+-   References
 -   Acknowledgements
 
 ## General Design Guidelines
@@ -41,15 +41,21 @@ Use a 3-column SAC template. Organize content clearly and visually. Avoid large 
 
 ### Content (3–5 bullets)
 
--   Study system: what/where/who is being studied\
--   Why it matters: ecological, societal, or scientific relevance\
--   Data source: dataset name or organization\
--   Data scope: sample size, time frame, and/or geographic extent\
+-   Study system: what/where/who is being studied
+-   Why it matters: ecological, societal, or scientific relevance
+-   Data source: dataset name or organization
+-   Data scope: sample size, time frame, and/or geographic extent
 -   Goal: what you aim to explore (not a hypothesis)
 
 ### Visual requirement
 
-Include at least one non-graph figure, such as: - Map (preferred for spatial data) - Photo of organism/system - Diagram of study system
+Include at least one non-graph figure, such as:
+
+-    Map (preferred for spatial data)
+
+-   Photo of organism/system
+
+-   Diagram of study system
 
 This figure should provide context, not analysis.
 
@@ -57,17 +63,23 @@ This figure should provide context, not analysis.
 
 ### Format
 
--   2–4 bullets\
+-   2–4 bullets
 -   Each bullet is a question
 
 ### Content
 
-Questions should address: - Distribution (e.g., a single variable) - Comparison (differences among groups) - Relationships (between variables)
+Questions should address:
+
+-   Distribution (e.g., a single variable)
+
+-   Comparison (differences among groups)
+
+-   Relationships (between variables)
 
 ### Example
 
--   What is the distribution of sleep duration?\
--   How does sleep duration differ by age group?\
+-   What is the distribution of sleep duration?
+-   How does sleep duration differ by age group?
 -   What is the relationship between sleep and health status?
 
 ### Rules
@@ -80,22 +92,22 @@ Questions should address: - Distribution (e.g., a single variable) - Comparison 
 
 ### Format
 
--   4–6 bullets\
+-   4–6 bullets
 -   No interpretation
 
 ### Required content
 
--   Data source\
--   Unit of observation (what one row represents)\
--   Sample size (n)\
--   Key variables (with sub-bullets)\
+-   Data source
+-   Unit of observation (what one row represents)
+-   Sample size (n)
+-   Key variables (with sub-bullets)
 -   Scope (time period and/or location)
 
 ### Key variables format
 
 -   Key variables:
-    -   *Human-readable variable name* — numeric or categorical\
-    -   *Human-readable variable name* — numeric or categorical\
+    -   *Human-readable variable name* — numeric or categorical
+    -   *Human-readable variable name* — numeric or categorical
     -   *Human-readable variable name* — numeric or categorical
 
 Include units where relevant.
@@ -119,23 +131,23 @@ This is the core of the poster.
 
 Each figure’s bullets must include:
 
--   Pattern: What is observed in the data\
--   Interpretation: What the pattern suggests\
+-   Pattern: What is observed in the data
+-   Interpretation: What the pattern suggests
 -   Caveat (if applicable): Any limitations, outliers, or uncertainty
 
 ### Example
 
--   Distribution is right-skewed with several high-value outliers\
--   Most observations fall within a narrow lower range\
+-   Distribution is right-skewed with several high-value outliers
+-   Most observations fall within a narrow lower range
 -   Outliers may influence summary statistics
 
 ### Rules
 
--   Write complete, specific statements\
--   Refer to variables explicitly\
--   Maximum \~12–15 words per bullet\
--   Do not describe the plot mechanically (“this graph shows…”)\
--   Do not include statistical tests or p-values\
+-   Write complete, specific statements
+-   Refer to variables explicitly
+-   Maximum \~12–15 words per bullet
+-   Do not describe the plot mechanically (“this graph shows…”)
+-   Include statistical tests or p-values here if they apply
 -   Do not include a separate “Discussion” section
 
 ## Limitations & Next Steps
@@ -146,59 +158,59 @@ Each figure’s bullets must include:
 
 ### Content
 
--   Data limitations (e.g., bias, missing data, sample size issues)\
--   Constraints of the analysis\
+-   Data limitations (e.g., bias, missing data, sample size issues)
+-   Constraints of the analysis
 -   Logical next steps (e.g., hypothesis testing, modeling, additional data)
 
 ## References
 
 ### Format
 
--   Bullet list of citations\
--   Use a consistent citation style\
+-   Bullet list of citations
+-   Use a consistent citation style
 -   Do not include bare URLs
 
 ### Required references
 
 Include:
 
--   Dataset citation\
+-   Dataset citation
 -   Software:
-    -   R\
+    -   R
     -   tidyverse (cite as a single package)
 -   Any sources cited in:
-    -   Introduction\
-    -   Limitations & Next Steps\
+    -   Introduction
+    -   Limitations & Next Steps
 -   Associated publication(s), if applicable (e.g., Dryad datasets)
 
 ### Rules
 
--   Do not cite lecture slides or class notes\
+-   Do not cite lecture slides or class notes
 -   Typical total: 5–8 references
 
 ## Acknowledgements
 
 ### Required content
 
--   Instructor (Chris Merkord)\
+-   Instructor (Chris Merkord)
 -   Anyone who provided substantive help (e.g., data access, feedback)
 
 ### Rules
 
--   Do not acknowledge authors already listed in References\
+-   Do not acknowledge authors already listed in References
 -   Only include individuals who provided direct assistance
 
 ### Example
 
--   Acknowledgements: Chris Merkord for guidance on project design and analysis.\
--   We thank Jane Doe for assistance with data cleaning.
+-   Acknowledgements: Chris Merkord for guidance on project design and analysis.
+-   We thank Jane Doe for assistance with data access.
 
 ## Summary of Expectations
 
 A strong poster will:
 
--   Clearly describe the dataset and context\
--   Pose focused exploratory questions\
--   Use a small number of effective visualizations\
--   Provide direct interpretation alongside each figure\
+-   Clearly describe the dataset and context
+-   Pose focused exploratory questions
+-   Use a small number of effective visualizations
+-   Provide direct interpretation alongside each figure
 -   Communicate findings concisely and visually
