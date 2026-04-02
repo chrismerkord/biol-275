@@ -54,6 +54,7 @@ website:
           - project/data-readiness-check.qmd
           - project/how-to-write-an-abstract.qmd
           - project/sac-application-instructions.qmd
+          - project/poster-guidelines.qmd
       - section: "Resources"
         contents:
           - resources/index.qmd
