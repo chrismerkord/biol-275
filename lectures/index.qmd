@@ -298,4 +298,20 @@ Introduces how well-designed experiments enable causal inference by reducing bia
 :::
 :::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 19
+:::
+
+::: card-body
+##### Comparing means of more than two groups {.card-title}
+
+Introduces Analysis of Variance (ANOVA) as a method for comparing means across multiple groups by partitioning variation and testing whether between-group differences exceed within-group variation.
+
+[Go to Lecture](slides/lecture-19-comparing-more-than-two-means/){.btn .btn-primary}
+:::
+:::::
+::::::
 :::::::::::::::::::
