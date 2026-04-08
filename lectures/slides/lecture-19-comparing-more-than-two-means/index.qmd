@@ -580,11 +580,11 @@ $$
 :::
 
 ::: {.column width="50%"}
--   Mean squares (MS):
+-   [Mean squares (MS)]{.keyword}:
     -   average variation for each source
 -   If groups differ → $MS_{groups}$ is large relative to $MS_{error}$
 -   Larger $F$ → stronger evidence of differences among groups
--   P-value: probability of observing this $F$ if all group means are equal
+-   [P-value]{.keyword}: probability of observing this $F$ if all group means are equal
 :::
 :::::
 
