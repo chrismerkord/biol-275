@@ -34,7 +34,7 @@
 # ============================================================
 
 # internal Quarto build state used during rendering
-.quarto/
+/.quarto/
 # intermediate notebooks created when executing documents
 **/*.quarto_ipynb
 
@@ -60,5 +60,3 @@
 **/index_files/
 # knitr execution caches
 **/*_cache/
-
-/.quarto/
