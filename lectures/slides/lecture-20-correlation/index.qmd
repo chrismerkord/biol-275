@@ -110,7 +110,7 @@ animal_scatter +
 :::
 
 ::: {.column width="50%"}
-![Image: xkcd (CC BY-NC 2.5)](images/clipboard-2135930319.png){fig-align="center" width="800"}
+![Image: xkcd (CC BY-NC 2.5)](images/clipboard-2135930319.png){#fig-xkcd-correlation fig-align="center" width="800"}
 :::
 :::::
 
@@ -345,7 +345,7 @@ $$
 :::
 
 ::: {.column width="50%"}
-![Whitlock & Schluter 3e 2020.](images/clipboard-3736362675.png)
+![Whitlock & Schluter 3e 2020.](images/clipboard-3736362675.png){#fig-deviations}
 
 ```{r}
 #| eval:  false
@@ -399,41 +399,10 @@ $$
 #| label: fig-linear-vs-nonlinear-correlation
 #| fig-cap: "Pearson correlation measures linear relationships. A strong curved relationship can have a correlation near zero."
 #| fig-alt: "Two-panel scatterplot. Left panel shows points closely following an upward straight-line trend. Right panel shows points following an inverted U-shaped curve. Both panels illustrate relationships between X and Y, but only the left panel is linear."
-#| message: false
-#| warning: false
+#| fig-asp: .6
 
 library(tidyverse)
 
-set.seed(275)
-
-n <- 22
-
-linear_dat <- tibble(
-  x = seq(1, 10, length.out = n),
-  y = x + rnorm(n, sd = 0.55),
-  panel = "Linear relationship"
-)
-
-curve_dat <- tibble(
-  x = seq(1, 10, length.out = n),
-  y = -(x - 5.5)^2 + 18 + rnorm(n, sd = 0.55),
-  panel = "Nonlinear relationship"
-)
-
-plot_dat <- bind_rows(linear_dat, curve_dat)
-
-label_dat <- plot_dat |>
-  group_by(panel) |>
-  summarise(
-    x = min(x) + 0.4,
-    y = max(y) - 0.4,
-    r = round(cor(x, y), 2),
-    label = paste0("r = ", r),
-    .groups = "drop"
-  )
-
-ggplot(plot_dat, aes(x = x, y = y)) +
-  geom_point(size = 3, color = "firebrick") +
 set.seed(275)
 
 n <- 22
@@ -551,7 +520,7 @@ res
 :::
 
 ::: {.column width="50%"}
-![A bivariate normal distribution (left) and a sample scatterplot from that distribution (right). When assumptions are met, points form an elliptical cloud with a linear trend. Whitlock & Schluter 3e 2020.](images/clipboard-3026656537.png){fig-alt="Two-panel figure. Left panel shows a three-dimensional bell-shaped surface representing a bivariate normal distribution. Right panel shows a scatterplot with points forming an upward-sloping elliptical cloud."}
+![A bivariate normal distribution (left) and a sample scatterplot from that distribution (right). When assumptions are met, points form an elliptical cloud with a linear trend. Whitlock & Schluter 3e 2020.](images/clipboard-3026656537.png){#fig-assumptions fig-alt="Two-panel figure. Left panel shows a three-dimensional bell-shaped surface representing a bivariate normal distribution. Right panel shows a scatterplot with points forming an upward-sloping elliptical cloud."}
 :::
 :::::
 
@@ -566,7 +535,7 @@ res
 :::
 
 ::: {.column width="50%"}
-![Common departures from Pearson correlation assumptions: changing spread, outliers, and nonlinear relationships.](images/clipboard-4208481314.png){fig-alt="Three-panel figure labeled Funnel, Outlier, and Nonlinear. The first panel widens from left to right, the second contains an extreme point, and the third shows a curved pattern."}
+![Common departures from Pearson correlation assumptions: changing spread, outliers, and nonlinear relationships.](images/clipboard-4208481314.png){#fig-common-departures fig-alt="Three-panel figure labeled Funnel, Outlier, and Nonlinear. The first panel widens from left to right, the second contains an extreme point, and the third shows a curved pattern."}
 :::
 :::::
 
@@ -605,7 +574,7 @@ cor.test(
 :::
 
 ::: {.column width="50%"}
-![Restricting the range of X values can reduce the magnitude of the correlation coefficient. The full dataset shows a strong negative relationship, while the subset with a narrower range of body mass shows a weaker correlation.](images/clipboard-811765462.png){fig-alt="Two-panel figure of scatterplots comparing how correlation changes with range restriction. The top panel shows many species across a wide range of log body mass with a strong negative relationship between body mass and log population density, labeled r equals negative 0.77. Two dashed vertical lines mark a narrower middle range of body mass. The bottom panel replots only points from that restricted range and shows a weaker negative relationship, labeled r equals negative 0.26." fig-align="center" width="458"}
+![Restricting the range of X values can reduce the magnitude of the correlation coefficient. The full dataset shows a strong negative relationship, while the subset with a narrower range of body mass shows a weaker correlation.](images/clipboard-811765462.png){#fig-range-of-values fig-alt="Two-panel figure of scatterplots comparing how correlation changes with range restriction. The top panel shows many species across a wide range of log body mass with a strong negative relationship between body mass and log population density, labeled r equals negative 0.77. Two dashed vertical lines mark a narrower middle range of body mass. The bottom panel replots only points from that restricted range and shows a weaker negative relationship, labeled r equals negative 0.26." fig-align="center" width="425"}
 :::
 :::::
 
@@ -621,7 +590,7 @@ cor.test(
 :::
 
 ::: {.column width="50%"}
-![Measurement error can weaken the observed correlation between two variables. The left panel shows a very strong positive relationship with little measurement error. The middle panel adds error to one variable, reducing the correlation. The right panel adds error to both variables, further weakening the observed correlation.](images/clipboard-1255016841.png){fig-alt="Three-panel figure of scatterplots showing the effect of measurement error on correlation. All panels show positive relationships between X and Y. The left panel has tightly clustered points and is labeled r equals 0.96. The middle panel has more scatter and is labeled r equals 0.74. The right panel has the most scatter and is labeled r equals 0.56."}
+![Measurement error can weaken the observed correlation between two variables. The left panel shows a very strong positive relationship with little measurement error. The middle panel adds error to one variable, reducing the correlation. The right panel adds error to both variables, further weakening the observed correlation.](images/clipboard-1255016841.png){#fig-measurement-error fig-alt="Three-panel figure of scatterplots showing the effect of measurement error on correlation. All panels show positive relationships between X and Y. The left panel has tightly clustered points and is labeled r equals 0.96. The middle panel has more scatter and is labeled r equals 0.74. The right panel has the most scatter and is labeled r equals 0.56."}
 :::
 :::::
 
