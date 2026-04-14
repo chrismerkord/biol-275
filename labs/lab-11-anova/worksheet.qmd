@@ -9,19 +9,20 @@ output-file: lab-11-worksheet.pdf
 **1. Based on the graph and the table, would ANOVA be a valid method to test for differences between host species in cuckoo egg length? Briefly explain.**
 
 ```{=typst}
-#answerbox(height: 1in)
+#answerbox(height: 1.5in)
 ```
 
 **2. Use ANOVA to test for a difference between host species in mean cuckoo egg length. What is your conclusion? Include your p-value and significance level.**
 
 ```{=typst}
-#answerbox(height: 1.5in)
+#answerbox(height: 2in)
 ```
 
 **3. Assuming that ANOVA rejected the null hypothesis of no mean differences, use a Tukey-Kramer test to determine which pairs of host species are significantly different. What is your conclusion?**
 
 ```{=typst}
-#answerbox(height: 1.5in)
+#answerbox(height: 2.5in)
+#pagebreak()
 ```
 
 ## Question 2 — Malaria and Maize
@@ -30,7 +31,6 @@ output-file: lab-11-worksheet.pdf
 
 ```{=typst}
 #answerbox(height: 1in)
-#pagebreak()
 ```
 
 **5. Calculate the standard deviation of the log-transformed incidence rate for each level of maize yield. Does the log-transformed data better meet the assumptions of ANOVA than the untransformed data? Explain.**
@@ -39,10 +39,10 @@ output-file: lab-11-worksheet.pdf
 #answerbox(height: 1in)
 ```
 
-**10. Test for an association between maize yield and malaria incidence. State your conclusion.**
+**6. Test for an association between maize yield and malaria incidence. State your conclusion.**
 
 ```{=typst}
-#answerbox(height: 1in)
+#answerbox(height: 1.25in)
 ```
 
 ## Question 3 — Circadian Mutant Health
@@ -56,5 +56,5 @@ output-file: lab-11-worksheet.pdf
 **13. Use a Kruskal-Wallis test to ask whether lifespan differs between the three groups of flies. State your conclusion.**
 
 ```{=typst}
-#answerbox(height: 1in)
+#answerbox(height: 1.25in)
 ```
