@@ -1,0 +1,85 @@
+---
+title: "Lab 11: ANOVA"
+format: 
+  html:
+    toc-depth: 3
+---
+
+## Learning Objectives
+
+## Getting started
+
+Before you begin the lab activities, review the steps for setting up a project for a lab activity:
+
+-   [Weekly Lab Setup](../../resources/weekly-lab-setup.qmd)
+
+Then, complete the following steps to make sure you are fully set up.
+
+1.  **Get the Lab Worksheet.**
+
+    Pick up a physical copy of the lab worksheet, or print one if you are working outside of class.\
+    <a href="lab-11-worksheet.pdf" download class="btn btn-outline-primary mt-3">Download Lab Worksheet (PDF, if needed)</a>
+
+2.  **Open Posit Cloud and open the Lab 11 Assignment in the course workspace.**
+
+3.  Create a new R script in your project and save it with a clear name such as \`lab11-anova.R\`. You will use this script to complete your work for the lab.
+
+4.  At the top of your script, run the provided data import script so the three datasets are loaded into your environment.
+
+    ```{r}
+    #| eval: false
+
+    source("read-data.r")
+    ```
+
+::: callout-note
+## Checkpoint
+
+At this point, you should have:
+
+-   These instructions open in a web browser.
+-   Your Lab 11 project open in Posit Cloud in another browser window.
+-   Your Lab script open
+-   Three datasets in the RStudio Environment tab
+-   The Lab 11 worksheet in front of you.
+
+Do not continue until all of the above steps are done.
+:::
+
+## Overview
+
+In this lab, you will complete the ANOVA lab activity provided on the textbook website for The Analysis of Biological Data:
+
+<https://whitlockschluter3e.zoology.ubc.ca/RLabs/R_tutorial_ANOVA.html>
+
+The lab focuses on comparing the means of three or more groups using analysis of variance (ANOVA), a common method in biology for evaluating differences among treatments, categories, or populations.
+
+You will use R to explore data visually, calculate summary statistics, test for overall differences among groups with one-way ANOVA, and conduct post hoc comparisons when appropriate. You will also use the Kruskal-Wallis test as a nonparametric alternative when ANOVA assumptions are not well met.
+
+By the end of the lab, you should be able to run these analyses in R and interpret the results in biological context.
+
+## Lab Instructions
+
+Complete the assigned ANOVA lab activity and answer all required questions using your own R script.
+
+Use the provided datasets and the `read-data.r` file to begin your work. Save all code used for the assignment in your script and organize it with comments so each section clearly matches the corresponding exercise.
+
+Suggested workflow:
+
+1.  Read each question carefully before beginning.
+2.  Create the requested graphs and summary tables.
+3.  Run the appropriate statistical test in R.
+4.  Interpret the output in plain language.
+5.  State conclusions that answer the biological question.
+
+When asked whether assumptions are met, use your graphs and summary statistics to support your reasoning.
+
+Write clearly and keep your script organized so another person could follow your analysis.\
+
+## Turning In
+
+Before leaving lab, have a Learning Assistant (LA) review your work and check off your completed worksheet.
+
+Make sure your R script is saved and your analyses are complete before requesting a checkoff. Be prepared to explain your code, results, and conclusions if asked.
+
+Follow any additional submission instructions provided by your instructor.
