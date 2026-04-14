@@ -8,7 +8,7 @@ format:
 
 Lecture slide decks are available in html format.
 
-::::::::::::::::::: {.grid .gap-3}
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: {.grid .gap-3}
 :::::: {.g-col-12 .g-col-sm-4}
 ::::: {.card .h-100}
 ::: card-header
@@ -217,7 +217,6 @@ Introduces the normal distribution, its properties, and how Z-scores are used to
 :::::
 ::::::
 
-
 :::::: {.g-col-12 .g-col-sm-4}
 ::::: {.card .h-100}
 ::: card-header
@@ -226,6 +225,7 @@ Lecture 14
 
 ::: card-body
 ##### Inference for Population Means {.card-title}
+
 [Confidence Intervals and t-Tests]{.card-subtitle}
 
 Introduces statistical inference for normally distributed data, including confidence intervals for the mean and hypothesis tests (one-sample, independent two-sample, and paired t-tests) used to evaluate differences in population means.
@@ -314,4 +314,20 @@ Introduces Analysis of Variance (ANOVA) as a method for comparing means across m
 :::
 :::::
 ::::::
-:::::::::::::::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 20
+:::
+
+::: card-body
+##### Correlation between numerical variables {.card-title}
+
+Introduces correlation as a measure of the strength and direction of association between two numerical variables, including interpretation of Pearson’s r, confidence intervals and hypothesis tests, assumptions, common pitfalls, and correlation matrices.
+
+[Go to Lecture](slides/lecture-20-correlation/){.btn .btn-primary}
+:::
+:::::
+::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
