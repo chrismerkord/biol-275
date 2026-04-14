@@ -149,5 +149,18 @@ Lab 10
 ::::
 ::::::
 
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lab 11
+:::
+::: card-body
+##### ANOVA {.card-title}
+
+[Lab 11](lab-11-anova/)
+:::
+::::
+::::::
+
 :::::::::::
 
