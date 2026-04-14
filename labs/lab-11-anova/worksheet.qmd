@@ -1,0 +1,60 @@
+---
+title: "BIOL 275 Lab 11 ANOVA"
+format: typst
+output-file: lab-11-worksheet.pdf
+---
+
+## Question 1 — Cuckoo Eggs
+
+**1. Based on the graph and the table, would ANOVA be a valid method to test for differences between host species in cuckoo egg length? Briefly explain.**
+
+```{=typst}
+#answerbox(height: 1in)
+```
+
+**2. Use ANOVA to test for a difference between host species in mean cuckoo egg length. What is your conclusion? Include your p-value and significance level.**
+
+```{=typst}
+#answerbox(height: 1.5in)
+```
+
+**3. Assuming that ANOVA rejected the null hypothesis of no mean differences, use a Tukey-Kramer test to determine which pairs of host species are significantly different. What is your conclusion?**
+
+```{=typst}
+#answerbox(height: 1.5in)
+```
+
+## Question 2 — Malaria and Maize
+
+**4. Calculate the standard deviation of the incidence rate for each level of maize yield. Do these data seem to conform to the assumptions of ANOVA? Describe any violations of assumptions you identify.**
+
+```{=typst}
+#answerbox(height: 1in)
+#pagebreak()
+```
+
+**5. Calculate the standard deviation of the log-transformed incidence rate for each level of maize yield. Does the log-transformed data better meet the assumptions of ANOVA than the untransformed data? Explain.**
+
+```{=typst}
+#answerbox(height: 1in)
+```
+
+**10. Test for an association between maize yield and malaria incidence. State your conclusion.**
+
+```{=typst}
+#answerbox(height: 1in)
+```
+
+## Question 3 — Circadian Mutant Health
+
+**12. Based on the histograms, do these data match the assumptions of ANOVA? Briefly explain.**
+
+```{=typst}
+#answerbox(height: 1in)
+```
+
+**13. Use a Kruskal-Wallis test to ask whether lifespan differs between the three groups of flies. State your conclusion.**
+
+```{=typst}
+#answerbox(height: 1in)
+```
