@@ -45,6 +45,8 @@ website:
           - labs/describing-data/index.qmd
           - labs/analyzing-proportions/index.qmd
           - labs/transforming-data/index.qmd
+          - labs/lab-09-contingency-analysis/index.qmd
+          - labs/lab-10-t-tests/index.qmd
           - labs/lab-11-anova/index.qmd
       - section: "Project"
         contents:
