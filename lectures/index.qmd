@@ -330,4 +330,20 @@ Introduces correlation as a measure of the strength and direction of association
 :::
 :::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 21
+:::
+
+::: card-body
+##### Regression {.card-title}
+
+Introduces simple linear regression as a method for describing relationships between two numerical variables, fitting prediction lines, interpreting slope and intercept, and recognizing the risks of extrapolation.
+
+[Go to Lecture](slides/lecture-21-regression/){.btn .btn-primary}
+:::
+:::::
+::::::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
