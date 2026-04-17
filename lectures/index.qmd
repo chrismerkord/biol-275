@@ -340,7 +340,7 @@ Lecture 21
 ::: card-body
 ##### Regression {.card-title}
 
-Introduces simple linear regression as a method for describing relationships between two numerical variables, fitting prediction lines, interpreting slope and intercept, and recognizing the risks of extrapolation.
+Introduces simple linear regression for modeling relationships between two numerical variables, making and evaluating predictions, interpreting model results, checking assumptions, and recognizing common pitfalls such as extrapolation.
 
 [Go to Lecture](slides/lecture-21-regression/){.btn .btn-primary}
 :::

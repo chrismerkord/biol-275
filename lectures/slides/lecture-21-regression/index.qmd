@@ -3,7 +3,7 @@ title: |
   | Lecture 21
   | Regression
 subtitle: "ABD 3e Chapter 17"
-description: "Introduces simple linear regression as a method for describing relationships between two numerical variables, fitting prediction lines, interpreting slope and intercept, and recognizing the risks of extrapolation."
+description: "Introduces simple linear regression for modeling relationships between two numerical variables, making and evaluating predictions, interpreting model results, checking assumptions, and recognizing common pitfalls such as extrapolation."
 format:
   revealjs:
     fig-width: 8
@@ -13,12 +13,13 @@ code-annotations: hover
 
 ## Learning Objectives
 
--   Identify the explanatory variable and response variable in a regression study.
--   Recognize when a scatterplot suggests an approximately linear relationship.
--   Explain how the least squares regression line summarizes the relationship between two variables.
--   Interpret the slope of a regression line in context.
--   Use a regression equation to calculate and interpret predicted values within the observed data range.
--   Explain why predictions made beyond the observed range of the data can be unreliable.
+-   Identify the explanatory variable and response variable in a regression study
+-   Recognize when a scatterplot suggests an approximately linear relationship between two numerical variables
+-   Explain how the least squares regression line summarizes the relationship between variables
+-   Interpret the slope, intercept, and predicted values of a regression equation in context
+-   Distinguish confidence bands for the mean response from prediction intervals for individual outcomes
+-   Interpret the slope test, $R^2$, and other evidence beyond the p-value
+-   Use residual plots to assess linearity, constant variance, and unusual observations
 
 ## What is regression?
 
@@ -685,9 +686,552 @@ Very serious examples of extrapolation gone awry. Images: xkcd (CC BY-NC 2.5)
 ::::
 ::::::
 
+## Confidence in predictions
+
+-   A regression line gives the **best predicted mean value** of $Y$ for each value of $X$.
+
+-   Predictions are most reliable **within the observed range** of the explanatory variable.
+
+-   Every prediction includes uncertainty because the fitted line was estimated from sample data.
+
+-   Two common goals:
+
+    -   predict the **mean response** at a given $X$
+    -   predict a **single future observation** at that $X$
+
+## Mean response vs individual response
+
+-   These two questions are different:
+
+    -   What is the **average** value of $Y$ when $X= x$?
+
+    -   What value of $Y$ might one **individual case** have when $X= x$?
+
+-   Both use the same regression line.
+
+-   The prediction for an individual is less precise because individuals vary around the line.
+
+## Confidence bands vs prediction intervals
+
+::::: columns
+::: {.column width="60%"}
+[Confidence band]{.keyword} : interval for the **mean response**
+
+-   narrower
+-   uncertainty in the fitted line
+-   Used when studying the overall trend.
+
+[Prediction interval]{.keyword} : interval for a **single observation**
+
+-   wider
+-   includes uncertainty in the line **plus** individual variation
+-   Used when predicting one case.
+:::
+
+::: {.column width="40%"}
+```{r}
+#| label: fig-lion-confidence-vs-prediction
+#| fig-cap: Confidence bands and prediction intervals for lion age predicted from the proportion of black pigmentation on the nose.
+#| fig-alt: Two-panel figure using the lion nose data. The left panel shows the scatterplot with the fitted regression line and dashed confidence bands for the mean predicted age. The right panel shows the same scatterplot with the fitted regression line and wider dashed prediction intervals for individual lion ages.
+#| fig-height: 8.5
+#| fig-width: 5.5
+
+library(tidyverse)
+library(patchwork)
+
+lion_fit <- lm(ageInYears ~ proportionBlack, data = lion_noses)
+
+new_x <- tibble(
+  proportionBlack = seq(
+    min(lion_noses$proportionBlack),
+    max(lion_noses$proportionBlack),
+    length.out = 200
+  )
+)
+
+conf_band <- bind_cols(
+  new_x,
+  as_tibble(predict(lion_fit, newdata = new_x, interval = "confidence"))
+)
+
+pred_band <- bind_cols(
+  new_x,
+  as_tibble(predict(lion_fit, newdata = new_x, interval = "prediction"))
+)
+
+band_data <-
+  bind_rows(
+    `Confidence Bands` = conf_band,
+    `Prediction Interval` = pred_band,
+    .id = "panel"
+  )
+
+lion_scatterplot +
+  geom_line(
+    data = band_data,
+    aes(x = proportionBlack, y = fit),
+    inherit.aes = FALSE,
+    linewidth = 1
+  ) +
+  geom_line(
+    data = band_data,
+    aes(x = proportionBlack, y = lwr),
+    inherit.aes = FALSE,
+    linetype = "dashed",
+    linewidth = 0.9
+  ) +
+  geom_line(
+    data = band_data,
+    aes(x = proportionBlack, y = upr),
+    inherit.aes = FALSE,
+    linetype = "dashed",
+    linewidth = 0.9
+  ) +
+  facet_wrap(~ panel, ncol = 1) +
+  theme_classic(base_size = 22) +
+  theme(
+    strip.background = element_blank()
+  )
+
+
+```
+:::
+:::::
+
+## Uncertainty increases near the edges
+
+-   **Confidence bands** are narrowest near $\bar{X}$, the center of the observed $X$ values.
+-   Confidence bands widen toward the smallest and largest observed values of $X$.
+-   There is less information about the mean response at the extremes of the data.
+-   **Prediction intervals** are wider overall because they must also include individual variation.
+-   Prediction intervals may widen somewhat near the edges, but this is often less noticeable.
+
+## Testing whether the slope is zero
+
+-   A common hypothesis test in regression asks whether the population slope equals zero.
+
+$$
+H_0:\beta = 0
+$$
+
+$$
+H_A:\beta \ne 0
+$$
+
+-   If $\beta = 0$, there is no linear relationship between $X$ and the mean of $Y$
+
+-   If the p-value is small, we reject $H_0$
+
+    (small = less than significance level $\alpha$ )
+
+-   Usually called the *t-test for the slope of the regression line*
+
+-   Generated automatically in R when you use `summary(lm_object)`
+
+## Interpreting the slope test
+
+::::: columns
+::: {.column width="50%"}
+-   A significant result ($p<\alpha$) suggests evidence that $X$ is linearly associated with $Y$ and may help predict $Y$.
+
+-   It does **not** establish causation.
+
+-   Statistical significance does not necessarily mean a **strong** relationship or a **large slope**.
+
+-   A small slope can be statistically significant if the sample size is large.
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-significance-vs-sample-size
+#| fig-cap: Two example datasets showing that statistical significance can occur with either a strong relationship in a small sample or a weak relationship in a very large sample.
+#| fig-alt: Two-panel scatterplot. The left panel shows a small sample with a strong positive linear relationship and fitted regression line. The right panel shows a very large sample with a weak positive linear relationship and fitted regression line. Both panels include p-values from linear regression tests.
+#| fig-width: 9
+
+library(tidyverse)
+library(broom)
+
+set.seed(275)
+
+# 1) Strong relationship, large slope, small sample
+dat_small_strong <- tibble(
+  scenario = "Strong relationship,\nsmall sample",
+  x = seq(1, 10, length.out = 10),
+  y = 5 + 2.5 * x + rnorm(10, mean = 0, sd = 1.8)
+)
+
+# 2) Weak relationship, small slope, very large sample
+dat_large_weak <- tibble(
+  scenario = "Weak relationship,\nvery large sample",
+  x = runif(1000, min = 0, max = 10),
+  y = 5 + 0.12 * x + rnorm(1000, mean = 0, sd = 1.2)
+)
+
+dat_both <- bind_rows(dat_small_strong, dat_large_weak)
+
+# Run regression tests
+results <- dat_both |>
+  nest(.by = scenario) |>
+  mutate(
+    fit = map(data, ~ lm(y ~ x, data = .x)),
+    tidy = map(fit, tidy),
+    glance = map(fit, glance)
+  ) |>
+  mutate(
+    slope_p = map_dbl(tidy, ~ .x |> filter(term == "x") |> pull(p.value)),
+    slope = map_dbl(tidy, ~ .x |> filter(term == "x") |> pull(estimate)),
+    r2 = map_dbl(glance, "r.squared")
+  ) |>
+  select(scenario, slope, slope_p, r2)
+
+# results
+# Look at slope_p to confirm significance in both scenarios
+
+# Labels for the plot
+label_df <- results |>
+  mutate(
+    x = c(1.2, 0.5),
+    y = c(max(dat_small_strong$y), max(dat_large_weak$y)),
+    label = paste0(
+      "Slope = ", round(slope, 2),
+      "\nP = ", signif(slope_p, 3),
+      "\nR^2 = ", round(r2, 2)
+    )
+  )
+
+ggplot(dat_both, aes(x = x, y = y)) +
+  geom_point(alpha = 0.5, color = "#0072B2", size = .8) +
+  geom_smooth(method = "lm", se = FALSE, color = "gray40") +
+  geom_text(
+    data = label_df,
+    aes(x = x, y = y, label = label),
+    inherit.aes = FALSE,
+    hjust = 0,
+    vjust = 1,
+    size = 5
+  ) +
+  facet_wrap(~ scenario, scales = "free_y") +
+  labs(
+    x = "X",
+    y = "Y"
+  ) +
+  theme_classic(base_size = 20) +
+  theme(
+    strip.background = element_blank()
+  )
+```
+:::
+:::::
+
+## Beyond the p-value
+
+-   A $p$-value alone does not describe the size, precision, or practical importance of a relationship.
+
+-   Interpret the slope test together with other evidence from the model and the data.
+
+-   Always examine:
+
+    -   slope estimate (effect size)
+
+    -   confidence interval (precision)
+
+    -   scatterplot (pattern, outliers, linearity)
+
+    -   practical importance (real-world relevance)
+
+## Using $R^2$ to measure fit
+
+-   [$R^2$]{.keyword} measures the proportion of variation in $Y$ explained by the regression model
+
+$$
+0 \le R^2 \le 1
+$$
+
+-   Larger values mean points lie closer to the fitted line
+
+-   Smaller values mean more unexplained scatter
+
+-   Example: $R^2 = 0.22$ means 22% of variation is explained
+
+## Do not confuse these regression statistics
+
+-   **Correlation coefficient (**$r$)
+
+    -   measures strength and direction of a linear relationship
+
+    -   ranges from $-1$ to $1$
+
+-   **Coefficient of determination (**$R^2$)
+
+    -   measures the proportion of variation in $Y$ explained by the model
+
+    -   ranges from $0$ to $1$
+
+-   **P-value for the slope**
+
+    -   tests whether the population slope differs from zero
+
+    -   does not measure effect size or model fit
+
+-   These statistics are related, but they answer different questions.
+
+## Assumptions of linear regression
+
+::::: columns
+::: {.column width="50%"}
+-   Relationship between $X$ and mean $Y$ is approximately linear
+-   Residuals have similar spread across values of $X$
+-   Observations are independent
+-   Residuals are approximately normal (mainly important for tests and intervals)
+-   Use graphs to evaluate assumptions
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-regression-assumptions
+#| fig-cap: "Illustration of the assumptions of linear regression: at each value of X, the response variable is normally distributed around the true regression line with equal variance."
+#| fig-alt: Schematic figure showing four vertical violin-shaped distributions of Y at four X values. The centers of the distributions lie on an upward sloping regression line, and all four distributions have the same spread, illustrating linearity, normality of Y at each X, and equal variance.
+
+library(tidyverse)
+
+set.seed(275)
+
+# Four X values and their mean Y values on the true regression line
+assumption_means <- tibble(
+  x = factor(c("X[1]", "X[2]", "X[3]", "X[4]"),
+             levels = c("X[1]", "X[2]", "X[3]", "X[4]")),
+  x_num = 1:4,
+  mu = c(2.2, 3.6, 5.0, 6.4)
+)
+
+# Simulate normally distributed Y values with equal variance at each X
+assumption_data <- assumption_means |>
+  mutate(y = map(mu, ~ rnorm(1000, mean = .x, sd = 0.7))) |>
+  unnest(y)
+
+
+ggplot(assumption_data, aes(x = x_num, y = y, group = x)) +
+  geom_violin(
+    fill = "#8DA0E3",
+    color = "gray20",
+    alpha = 0.9,
+    width = 0.8,
+    linewidth = 0.6
+  ) +
+  geom_line(
+    data = assumption_means,
+    aes(x = x_num, y = mu),
+    inherit.aes = FALSE,
+    linewidth = 1.2,
+    color = "gray15"
+  ) +
+  geom_segment(
+    data = assumption_means,
+    aes(x = x_num - 0.28, xend = x_num + 0.28, y = mu, yend = mu),
+    inherit.aes = FALSE,
+    linewidth = 0.7,
+    color = "gray20"
+  ) +
+  annotate(
+    "text",
+    x = 4.2,
+    y = 6.7,
+    label = "italic(Y) == alpha + beta*italic(X)",
+    parse = TRUE,
+    hjust = 0,
+    size = 6
+  ) +
+  scale_x_continuous(
+    breaks = 1:4,
+    labels = parse(text = c("X[1]", "X[2]", "X[3]", "X[4]")),
+    limits = c(0.3, 5.3)
+  ) +
+  labs(
+    x = "X",
+    y = "Y"
+  ) +
+  theme_classic(base_size = 22) +
+  theme(
+    axis.title = element_text(face = "bold"),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank()
+  )
+```
+:::
+:::::
+
+## [Residual plots]{.keyword} help assess regression model assumptions
+
+::::: columns
+::: {.column width="50%"}
+-   A **residual** is the difference between the observed value and the predicted value:
+
+$$
+e_i = y_i - \hat{y}_i
+$$
+
+-   Positive residuals: points above the regression line
+
+-   Negative residuals: points below the line
+
+-   Plot residuals against $X$ or against fitted values ($\hat{y}$)
+
+-   Help assess linearity, constant variance, and unusual observations
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-residual-plots
+#| fig-cap: "Example residual plots used to assess model assumptions. In the left panel, residuals are centered around zero with a similar vertical spread across values of X, consistent with constant variance. In the right panel, the spread of residuals decreases as X increases, forming a funnel shape that suggests unequal variance (heteroscedasticity)."
+#| fig-alt: "Two-panel figure of residuals versus explanatory variable X. The left panel shows residuals scattered randomly around zero with a similar vertical spread across the full range of X, consistent with constant variance. The right panel shows residuals with a funnel shape: residuals have wide spread at low X values and narrower spread at high X values, indicating unequal variance."
+#| fig-width: 9.5
+#| fig-height: 5.5
+
+library(tidyverse)
+
+set.seed(275)
+
+# Residual plot with assumptions reasonably met
+dat_good <- tibble(
+  panel = "Assumptions look reasonable",
+  x = runif(120, 0, 10),
+  y = 3 + 1.2 * x + rnorm(120, mean = 0, sd = 1.2)
+)
+
+fit_good <- lm(y ~ x, data = dat_good)
+
+res_good <- dat_good |>
+  mutate(
+    residual = resid(fit_good)
+  )
+
+# Residual plot with unequal variance
+dat_bad <- tibble(
+  panel = "Unequal variance",
+  x = runif(120, 0, 10),
+  y = 3 + 1.2 * x + rnorm(120, mean = 0, sd = 3.2 - 0.25 * x)
+)
+
+fit_bad <- lm(y ~ x, data = dat_bad)
+
+res_bad <- dat_bad |>
+  mutate(
+    residual = resid(fit_bad)
+  )
+
+residual_data <- bind_rows(res_good, res_bad)
+
+ggplot(residual_data, aes(x = x, y = residual)) +
+  geom_hline(yintercept = 0, linewidth = 0.8, color = "gray40") +
+  geom_point(color = "#0072B2", size = 2.8, alpha = 0.8) +
+  facet_wrap(~ panel, nrow = 1) +
+  labs(
+    x = "X",
+    y = "Residual"
+  ) +
+  theme_classic(base_size = 22) +
+  theme(
+    strip.background = element_blank(),
+    panel.spacing = unit(2, "lines")
+  )
+```
+:::
+:::::
+
+## Detecting nonlinearity
+
+::::: columns
+::: {.column width="50%"}
+-   If the scatterplot bends or levels off, a straight-line model may be inappropriate.
+
+-   Residual plots can reveal curved patterns more clearly.
+
+-   A curved residual pattern suggests the line is not fitting well.
+
+-   Random scatter around zero is more consistent with a good linear fit.
+
+-   Do not force a straight line onto clearly curved data.
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-residual-plot-nonlinear
+#| fig-cap: "Residual plot showing a curved pattern caused by fitting a straight-line regression to a nonlinear relationship. Residuals tend to be positive at low and high values of X and negative in the middle, indicating that a linear model is inappropriate."
+#| fig-alt: "Single-panel residual plot of residuals versus explanatory variable X. Points form a curved U-shaped pattern around the horizontal zero line, with positive residuals at low and high X values and negative residuals in the middle, indicating nonlinearity."
+
+library(tidyverse)
+
+set.seed(275)
+
+# Create nonlinear data
+dat <- tibble(
+  x = seq(0, 10, length.out = 120),
+  y = 3 + 0.9 * x - 0.18 * (x - 5)^2 + rnorm(120, mean = 0, sd = 0.6)
+)
+
+# Incorrectly fit a linear model
+fit <- lm(y ~ x, data = dat)
+
+# Residuals
+dat_resid <- dat |>
+  mutate(
+    residual = resid(fit)
+  )
+
+ggplot(dat_resid, aes(x = x, y = residual)) +
+  geom_hline(yintercept = 0, linewidth = 0.8, color = "gray40") +
+  geom_point(
+    color = "#0072B2",
+    size = 2.8,
+    alpha = 0.8
+  ) +
+  labs(
+    x = "X",
+    y = "Residual"
+  ) +
+  theme_classic(base_size = 22) +
+  theme(
+    axis.title = element_text(face = "bold")
+  )
+```
+:::
+:::::
+
+## Transformations
+
+-   Transformations can improve linearity or stabilize variance.
+
+Common examples:
+
+-   $\log(Y)$
+
+-   $\log(X)$
+
+-   $\log(X)$ and $\log(Y)$
+
+-   $\sqrt{Y}$ for counts
+
+-   After transformation, interpret results on the transformed scale unless back-transformed.
+
+## Regression toward the mean
+
+-   Extremely high or low observations often appear closer to average when measured again
+
+-   This occurs when repeated measurements are imperfectly correlated and include random variation
+
+-   Example:
+
+    -   Very high cholesterol at a first visit often tends to be lower later, even without treatment
+
+-   Improvement after an extreme starting value does not necessarily mean the treatment worked
+
+-   A control group helps separate real treatment effects from regression toward the mean
+
 ## Summary
 
--   Regression predicts one numerical variable from another.
+::::: columns
+::: {.column width="50%"}
+-   Regression predicts one numerical variable from another
 
 -   Linear regression fits the least squares line:
 
@@ -695,8 +1239,24 @@ $$
 \hat{Y} = a + bX
 $$
 
--   Slope describes rate of change.
+-   Slope describes rate of change
 
--   Intercept gives predicted $Y$ when $X=0$.
+-   Intercept gives predicted $Y$ when $X=0$
 
--   Predictions are strongest within the data range.
+-   Predictions are strongest within the data range
+
+-   Confidence bands estimate the mean response; prediction intervals estimate individual outcomes
+:::
+
+::: {.column width="50%"}
+-   Slope test: $H_0: \beta = 0$
+
+-   $R^2$ : proportion of variation in $Y$ explained by the model
+
+-   Residual plots help assess linearity, constant variance, and unusual observations
+
+-   Curved patterns or unequal spread may require transformations or a different model
+
+-   Extreme values often move closer to average on remeasurement (regression toward the mean)
+:::
+:::::
