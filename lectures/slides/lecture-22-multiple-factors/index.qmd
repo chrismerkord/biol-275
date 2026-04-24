@@ -1,0 +1,311 @@
+---
+title: |
+  | Lecture 22
+  | Analyzing Multiple Factors
+subtitle: "ABD 3e Chapter 18"
+description: "Introduces linear models for analyzing response variables influenced by multiple explanatory variables, including categorical and numerical predictors, interactions, blocking, factorial designs, and ANCOVA."
+format:
+  revealjs:
+    fig-width: 8
+    fig-height: 6
+code-annotations: hover
+---
+
+## Learning Objectives
+
+-   Explain how linear models extend regression to analyze multiple explanatory variables
+-   Distinguish between numerical and categorical predictors and interpret common model terms such as main effects, interactions, blocks, and covariates
+-   Explain how factorial designs, blocking, and ANCOVA are represented in linear models
+-   Interpret F-tests used to evaluate whether adding a term improves model fit
+-   Evaluate model assumptions using residual plots and other graphical displays
+-   Explain why interaction terms and design-related variables should be removed cautiously
+
+# Linear Models
+
+## Why studies often include multiple factors
+
+::::: columns
+::: {.column width="50%"}
+-   Many studies measure more than one explanatory variable
+
+-   Real biological systems are influenced by multiple causes
+
+-   Can test several questions using one dataset
+
+-   Can reduce bias by accounting for other variables
+
+-   Examples:
+
+    -   fertilizer and sunlight on plant growth
+    -   habitat and sex on body mass
+    -   treatment while adjusting for age
+:::
+
+::: {.column width="50%"}
+![Conceptual diagram showing how multiple explanatory variables can jointly influence a single response variable, while additional unexplained variation is captured as random error.](images/fig-multiple-factors-concept.png){#fig-multiple-factors-concept fig-alt="Diagram with four explanatory variables on the left (sunlight, water availability, temperature, and soil nutrients) shown as separate boxes with arrows pointing to one response variable on the right labeled plant growth. A dashed arrow labeled random error also points to the response, indicating unexplained variation outside the model." fig-align="center"}
+:::
+:::::
+
+## Linear models provide one common framework
+
+::::: columns
+::: {.column .normal-eq-column width="50%"}
+-   Many methods are versions of the same idea
+-   A [linear model]{.keyword} relates a numerical response to one or more explanatory variables
+-   General form:
+
+$$
+\text{Response} = \text{systematic effects} +\\ \text{random error}
+$$
+
+-   Includes:
+    -   regression
+    -   ANOVA
+    -   ANCOVA
+    -   multiple regression
+:::
+
+::: {.column width="50%"}
+![Diagram showing how regression, ANOVA, ANCOVA, and multiple regression can all be viewed as special cases within the broader framework of linear models.](images/fig-linear-model-framework.png){#fig-linear-model-framework fig-alt="Flowchart with a central box labeled Linear Models connected to four branches: Regression, ANOVA, ANCOVA, and Multiple Regression. Each branch includes a small example graph and notes the type of explanatory variables used: one numerical predictor for regression, one categorical predictor for ANOVA, one numerical plus one categorical predictor for ANCOVA, and two or more numerical predictors for multiple regression."}
+:::
+:::::
+
+## Regression and ANOVA are closely related
+
+::::: columns
+::: {.column width="50%"}
+-   Both analyze a numerical response variable
+
+-   Both compare a model with a simpler null model
+
+-   Both use residual variation to judge fit
+
+-   Main difference is predictor type:
+
+-   [Regression]{.keyword}
+
+    -   **numerical** explanatory variable
+
+-   [ANOVA]{.keyword}
+
+    -   **categorical** explanatory variable
+:::
+
+::: {.column width="50%"}
+![Side-by-side comparison showing that regression and ANOVA use similar linear model logic but differ in the type of explanatory variable: numerical predictors for regression and categorical groups for ANOVA.](images/fig-regression-vs-anova.png){#fig-regression-vs-anova fig-alt="Two-panel graphic comparing regression and ANOVA. Left panel shows a scatterplot of plant height versus soil nitrogen with an upward sloping regression line, representing a numerical explanatory variable. Right panel shows three fertilizer groups (Low, Medium, High) with individual data points and horizontal mean lines, representing a categorical explanatory variable. Both panels emphasize that each method fits a model to explain variation in a numerical response."}
+:::
+:::::
+
+## Regression model example
+
+::::: columns
+::: {.column width="50%"}
+-   Predict exam score from study hours
+
+$$
+Y = a + bX
+$$
+
+-   $a$ = intercept
+
+-   $b$ = slope
+
+-   $X$ = explanatory variable
+
+-   $Y$ = predicted response
+:::
+
+::: {.column width="50%"}
+![Scatterplot illustrating a simple linear regression model in which exam scores tend to increase as weekly study hours increase, with a fitted line summarizing the average relationship.](images/fig-regression-example.png){#fig-regression-example fig-alt="Scatterplot with study hours per week on the horizontal axis and exam score percent on the vertical axis. Individual points show students with varying scores, and an upward sloping regression line runs through the cloud of points, indicating that students who study more hours generally earn higher exam scores."}
+:::
+:::::
+
+## ANOVA model example
+
+::::: columns
+::: {.column width="50%"}
+-   Compare mean growth among fertilizer groups
+
+$$
+Y = \mu + A
+$$
+
+-   $\mu$ = grand mean
+
+-   $A$ = group effect
+
+-   Tests whether group means differ
+:::
+
+::: {.column width="50%"}
+![Dotplot illustrating a one-way ANOVA comparing plant heights among three fertilizer groups, with horizontal lines marking each group mean.](images/fig-anova-example.png){#fig-anova-example fig-alt="Dotplot with fertilizer group on the horizontal axis (Low, Medium, High) and plant height in centimeters on the vertical axis. Each group contains multiple plant height observations shown as dots. Horizontal lines across each group indicate the sample mean, with higher average height in the High fertilizer group than in the Medium and Low groups."}
+:::
+:::::
+
+## Model statements in words
+
+::::: columns
+::: {.column .normal-eq-column width="50%"}
+-   We often describe models using variable names
+
+-   Example:
+
+$$
+GROWTH = CONSTANT + \\ FERTILIZER
+$$
+
+-   Easier to read than symbols
+-   Highlights study design
+-   Common in software formulas and output
+:::
+
+::: {.column width="50%"}
+![Example of a model statement written with variable names instead of symbols.](images/fig-model-statement.png){#fig-model-statement fig-alt="Diagram titled Model statement using words showing GROWTH = CONSTANT + FERTILIZER across the top. Arrows point downward from each term to labeled boxes explaining their roles: GROWTH as the response variable with a plant icon, CONSTANT as the intercept or baseline level, and FERTILIZER as the explanatory variable with a fertilizer bag icon. Additional text notes plant growth as an example response and fertilizer type or level as the predictor." fig-align="center" width="80%"}
+:::
+:::::
+
+## Multiple-factor model statements
+
+::::: columns
+::: {.column .normal-eq-column width="50%"}
+Two predictors:
+
+$$
+RESPONSE = CONSTANT \\ + A + B
+$$
+
+With interaction:
+
+$$
+RESPONSE = CONSTANT \\ + A + B + A \times B
+$$
+
+$A \times B$ means the effect of one variable depends on the other
+:::
+
+::: {.column width="50%"}
+![Annotated example of a linear model showing response, main effects, and an interaction term.](images/fig-model-statement-interactions.png){#fig-model-statement-interactions fig-alt="Diagram centered on the model statement GROWTH = CONSTANT + FERTILIZER + WEEK + FERTILIZER × WEEK. Colored labels identify each component: response variable, intercept, main effect of fertilizer, main effect of week, and interaction effect. Icons and arrows connect terms to explanations, and a small graph shows different growth lines over time to illustrate that the fertilizer effect changes across weeks."}
+:::
+:::::
+
+## Common analyses are all linear models
+
+::::: columns
+::: {.column .normal-eq-column width="35%"}
+-   Many named methods use the same linear model framework
+
+-   The method depends mainly on the type and number of explanatory variables
+
+-   Interactions can be added when one effect depends on another
+
+-   Different names, same core idea
+:::
+
+::: {.column width="65%"}
+| Method | Example Model | Predictors |
+|------------------------|------------------------|------------------------|
+| Regression | $Y = a + bX$ | one numerical |
+| One-way ANOVA | $Y = \mu + A$ | one categorical |
+| Two-way ANOVA | $Y = \mu + A + B + A*B$ | two categorical |
+| ANCOVA | $Y = \mu + X + A$ | one numerical, one categorical |
+| Multiple Regression | $Y = a + b_1X_1 + b_2X_2$ | two or more numerical |
+:::
+:::::
+
+# Comparing Models
+
+## Comparing models with the F-test
+
+::::: columns
+::: {.column width="50%"}
+-   Many questions ask whether adding a variable improves the model
+
+-   We compare:
+
+    -   [Null model]{.keyword}\
+        simpler model without the term
+
+    -   [Full model]{.keyword}\
+        includes the term of interest
+
+-   If fit improves enough, the term may matter
+:::
+
+::: {.column width="50%"}
+![Comparison of a null model and a fuller model. Here, $\beta_0$ is the intercept, $\beta_1$ is the effect of predictor $X$, and $\varepsilon$ represents random error.](images/fig-null-vs-full-model.png){#fig-null-vs-full-model fig-alt="Two-panel diagram comparing statistical models. Left panel shows a null model with scattered points around a horizontal mean line, representing an intercept-only model with no predictor. Right panel shows a full model with points following an upward trend and a fitted regression line, representing a model that includes an explanatory variable. An arrow between panels indicates comparing the two models."}
+:::
+:::::
+
+## Example: does fertilizer improve prediction?
+
+::::: columns
+::: {.column .normal-eq-column width="50%"}
+-   Null model:
+
+$$
+GROWTH = CONSTANT
+$$
+
+-   Full model:
+
+$$
+GROWTH = CONSTANT + FERTILIZER
+$$
+
+-   Ask whether fertilizer explains additional variation in growth
+:::
+
+::: {.column width="50%"}
+![Comparison of plant growth modeled with and without fertilizer as a predictor. The null model uses one overall mean, whereas the fuller model uses fertilizer level to explain differences in growth.](images/fig-fertilizer-model-compare.png){#fig-fertilizer-model-compare fig-alt="Two-panel diagram comparing models of plant growth. Left panel shows a null model with plant growth observations scattered around a single horizontal mean line, representing one average growth value for all plants regardless of fertilizer. Right panel shows a full model with an upward trend line relating fertilizer level to plant growth, indicating that higher fertilizer levels are associated with greater growth. Small plant icons below illustrate increasing plant size from low to high fertilizer."}
+:::
+:::::
+
+## The [F-statistic]{.keyword} asks whether the fuller model fits better
+
+::::: columns
+::: {.column width="50%"}
+-   Compare a simpler null model to a fuller model
+
+-   Ask whether adding the new term improves fit enough to matter
+
+-   Large F values suggest stronger evidence for improvement
+
+-   Small F values suggest little improvement
+:::
+
+::: {.column width="50%"}
+![Comparison of plant growth modeled with and without fertilizer as a predictor. The null model uses one overall mean, whereas the fuller model uses fertilizer level to explain differences in growth.](images/fig-fertilizer-model-compare.png){#fig-fertilizer-model-compare-2 fig-alt="Two-panel diagram comparing models of plant growth. Left panel shows a null model with plant growth observations scattered around a single horizontal mean line, representing one average growth value for all plants regardless of fertilizer. Right panel shows a full model with an upward trend line relating fertilizer level to plant growth, indicating that higher fertilizer levels are associated with greater growth. Small plant icons below illustrate increasing plant size from low to high fertilizer."}
+:::
+:::::
+
+## Interpreting the p-value
+
+::::: columns
+::: {.column width="50%"}
+-   The p-value asks:
+
+-   If the added term truly had no effect, how unusual is this F value?
+
+-   Small p-value:
+
+    -   evidence the added term improves the model
+
+-   Large p-value:
+
+    -   data are consistent with no meaningful improvement
+:::
+
+::: {.column width="50%"}
+![Right-skewed F distribution with the shaded upper-tail area representing the p-value for an observed F-statistic.](images/fig-f-distribution-pvalue.png){#fig-f-distribution-pvalue fig-alt="Graph of an F distribution with density on the vertical axis and F values on the horizontal axis. The curve rises quickly near zero and gradually tapers to the right, showing a right-skewed shape. A vertical dashed line marks the observed F-statistic, and the area under the curve to the right of that line is shaded to indicate the p-value."}
+:::
+:::::
+
+# Coming Soon
+
+-   Analyzing experiments with blocking
+
+-   Analyzing factorial designs
+
+-   Adjusting for the effects of a covariate
+
+-   Assumptions of linear models

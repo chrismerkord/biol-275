@@ -346,4 +346,20 @@ Introduces simple linear regression for modeling relationships between two numer
 :::
 :::::
 ::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 22
+:::
+
+::: card-body
+##### Analyzing Multiple Factors {.card-title}
+
+Introduces linear models for analyzing response variables influenced by multiple explanatory variables, including categorical and numerical predictors, interactions, blocking, factorial designs, and ANCOVA.
+
+[Go to Lecture](slides/lecture-22-multiple-factors/){.btn .btn-primary}
+:::
+:::::
+::::::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
