@@ -190,27 +190,17 @@ $A \times B$ means the effect of one variable depends on the other
 
 ## Common analyses are all linear models
 
-::::: columns
-::: {.column .normal-eq-column width="35%"}
--   Many named methods use the same linear model framework
+| Linear Model | Other name | Example study design |
+|-----------------------|---------------|---------------|
+| $Y = \mu + X$ | Linear regression | Dose-response |
+| $Y = \mu + A$ | One-way (single-factor) ANOVA | Completely randomized |
+| $Y = \mu + A + b$ | Two-way, fixed-effect ANOVA | Randomized block |
+| $Y = \mu + A + B + A*B$ | Two-way fixed-effects ANOVA | Factorial experiment |
+| $Y = \mu + A + b + A*b$ | Two-way mixed-effects ANOVA | Factorial experiment |
+| $Y = \mu + X + A$ | ANCOVA | Observational study |
+| $Y = \mu + X_1 + X_2 + X_1*X_2$ | Multiple regression | Dose-response |
 
--   The method depends mainly on the type and number of explanatory variables
-
--   Interactions can be added when one effect depends on another
-
--   Different names, same core idea
-:::
-
-::: {.column width="65%"}
-| Method | Example Model | Predictors |
-|------------------------|------------------------|------------------------|
-| Regression | $Y = a + bX$ | one numerical |
-| One-way ANOVA | $Y = \mu + A$ | one categorical |
-| Two-way ANOVA | $Y = \mu + A + B + A*B$ | two categorical |
-| ANCOVA | $Y = \mu + X + A$ | one numerical, one categorical |
-| Multiple Regression | $Y = a + b_1X_1 + b_2X_2$ | two or more numerical |
-:::
-:::::
+$\mu$ is a constant, $Y$ is the numerical response variable, $X$ is a numerical explanatory variable, $A$ and $B$ are fixed, categorical variables; $b$ is a blocking or other random-effect categorical variable
 
 # Comparing Models
 
@@ -308,4 +298,4 @@ $$
 
 -   Adjusting for the effects of a covariate
 
--   Assumptions of linear models
+-   Assumptions of linear models ::::::::::::::: ::::::::::::::::
