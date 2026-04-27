@@ -191,7 +191,7 @@ $A \times B$ means the effect of one variable depends on the other
 ## Common analyses are all linear models
 
 | Linear Model | Other name | Example study design |
-|-----------------------|---------------|---------------|
+|------------------------------|---------------------|---------------------|
 | $Y = \mu + X$ | Linear regression | Dose-response |
 | $Y = \mu + A$ | One-way (single-factor) ANOVA | Completely randomized |
 | $Y = \mu + A + b$ | Two-way, fixed-effect ANOVA | Randomized block |
@@ -290,12 +290,386 @@ $$
 :::
 :::::
 
-# Coming Soon
+# Analyzing experiments with blocking
 
--   Analyzing experiments with blocking
+## Blocking reduces background variation
 
--   Analyzing factorial designs
+::::: columns
+::: {.column width="50%"}
+-   Sometimes experimental units differ before treatment begins
 
--   Adjusting for the effects of a covariate
+-   Those pre-existing differences can add noise
 
--   Assumptions of linear models ::::::::::::::: ::::::::::::::::
+-   [Blocking]{.keyword} groups similar units together
+
+-   Treatments are then compared within each block
+
+-   Goal: improve ability to detect treatment effects
+:::
+
+::: {.column width="50%"}
+![](images/fig-blocking-concept.png)
+:::
+:::::
+
+## Randomized block design
+
+::::: columns
+::: {.column width="50%"}
+-   A randomized block design is like a paired design with more than two treatments
+
+-   Each block receives every treatment once
+
+-   Example:
+
+    -   5 lake locations = blocks
+
+    -   3 fish abundance treatments per location
+
+-   Compare treatments within location, not across mixed locations
+:::
+
+::: {.column width="50%"}
+![](images/fig-randomized-block-layout.png)
+:::
+:::::
+
+## Zooplankton diversity experiment
+
+::::: columns
+::: {.column width="40%"}
+-   Researchers tested whether fish abundance affects zooplankton diversity
+
+-   Treatments:
+
+    -   Control
+
+    -   Low fish abundance
+
+    -   High fish abundance
+
+-   Five lake locations were used as blocks
+
+-   Response variable: diversity index (Levin's $D$)
+:::
+
+::: {.column width="60%"}
+![Diagram of the randomized block design used by Svanbäck and Bolnick (2007), showing five lake locations (blocks), each containing Control, Low, and High fish abundance treatments.](images/fig-svanback-bolnick-study-design.png){#fig-svanback-bolnick-study-design fig-alt="Top-down diagram of an irregularly shaped lake with five labeled sampling locations distributed around the lake. Each location contains three small colored squares representing fish abundance treatments: Control, Low, and High. A legend identifies the treatment colors. The figure illustrates a randomized block design in which every block receives all three treatments."}
+:::
+:::::
+
+## Results of zooplankton diversity experiment
+
+![Zooplankton diversity D in three fish abundance treatments. Data from Svanbäck and Bolnick (2007), reproduced in Whitlock & Schluter (2020).](images/tbl-abd-table-18.2-1.jpeg){#tbl-abd-table-18.2-1 width="1600"}
+
+## Why not use one-way ANOVA only?
+
+::::: columns
+::: {.column width="50%"}
+-   Measurements from the same location are not independent
+
+-   Conditions may differ among lake locations
+
+-   Ignoring location mixes treatment effects with site differences
+
+-   Include BLOCK in the model instead
+:::
+
+::: {.column width="50%"}
+![Ignoring location mixes site differences with treatment comparisons, whereas blocking compares treatments within each location.](images/fig-blocking-vs-ignore-location.png){#fig-blocking-vs-ignore-location fig-alt="Two-panel diagram comparing analyses of a blocked experiment. Left panel shows five lake locations with treatment observations pooled into one mixed group, marked with a red X to indicate ignoring location. Right panel shows the same five locations with treatments compared separately within each location, marked with a green check to indicate blocking. Colored circles represent Control, Low, and High treatments."}
+:::
+:::::
+
+## Model statements with and without blocking
+
+<div>
+
+-   Tests whether adding ABUNDANCE improves fit
+-   If treatment matters, the full model fits better
+
+</div>
+
+::::: columns
+::: {.column .normal-eq-column width="50%"}
+### **Null model**
+
+-   Separate averages for each block
+
+$$
+\begin{aligned}
+\text{DIVERSITY} &= \text{CONSTANT} \\
+&\quad + \text{BLOCK}
+\end{aligned}
+$$
+:::
+
+::: {.column .normal-eq-column width="50%"}
+### **Full model**
+
+-   Keeps blocks and adds treatment effects
+
+$$
+\begin{aligned}
+\text{DIVERSITY} &= \text{CONSTANT} \\
+&\quad + \text{BLOCK} \\
+&\quad + \text{ABUNDANCE}
+\end{aligned}
+$$
+:::
+:::::
+
+## Results from the $F$-test
+
+::::: columns
+::: {.column width="50%"}
+-   Adding ABUNDANCE significantly improved model fit
+
+-   Reported result:
+
+    -   $F = 16.37$
+
+        -   compares 2 nested models
+
+        -   higher values = added term explains meaningful variation
+
+    -   $P = 0.001$
+
+-   Evidence that fish abundance affected zooplankton diversity
+:::
+
+::: {.column width="50%"}
+![ANOVA results for the blocked linear model testing whether fish abundance treatment affected zooplankton diversity after accounting for lake location. Data from Svanbäck and Bolnick (2007), as presented by Whitlock & Schluter (2020).](images/tbl-abd-table-18.2-2.png){#tbl-abd-table-18.2-2 fig-alt="ANOVA table with rows for BLOCK, ABUNDANCE, Residual, and Total. Columns include sum of squares, degrees of freedom, mean square, F statistic, and P value. The ABUNDANCE row shows F = 16.37 and P = 0.001, indicating that fish abundance treatment significantly improved model fit after accounting for block differences among locations." width="100%"}
+:::
+:::::
+
+## Interpreting the effect
+
+::::: columns
+::: {.column width="40%"}
+-   Predicted values suggest:
+
+    -   highest diversity in Control
+
+    -   intermediate in Low
+
+    -   lowest in High
+
+-   More fish reduced zooplankton diversity in this experiment
+:::
+
+::: {.column width="60%"}
+![Comparison of the null model and full blocked model fitted to zooplankton diversity data. The null model includes block effects only, whereas the full model also includes fish abundance treatment. Data from Svanbäck and Bolnick (2007), as presented by Whitlock & Schluter (2020).](images/fig-abd-figure-18.2-1.png){#fig-abd-figure-18.2-1 fig-alt="Two-panel plot of zooplankton diversity by fish abundance treatment (Control, Low, High). Left panel shows the null model with separate horizontal mean lines for each of five lake locations, representing block effects only. Right panel shows the full model with predicted means that vary by treatment while retaining block differences. Symbols identify the five blocks. Diversity is generally highest in Control, intermediate in Low, and lowest in High treatments."}
+:::
+:::::
+
+## Important principle about blocking
+
+-   BLOCK is included because of study design
+
+-   It is not the main biological question
+
+-   Keep blocking variables in the model even if not significant
+
+-   Blocking can still improve power
+
+# Analyzing factorial designs
+
+## Factorial designs study two factors at once
+
+::::: columns
+::: {.column width="50%"}
+-   A [factorial design]{.keyword} includes all combinations of two or more explanatory variables
+
+-   Each explanatory variable is a [factor]{.keyword}
+
+-   Factors are treatments of direct interest
+
+-   Allows us to test:
+
+    -   [main effects]{.keyword}
+
+    -   [interaction effects]{.keyword}
+:::
+
+::: {.column width="50%"}
+![Interaction plots of effects in a hypothetical experiment with two factors (variables) A and B, each having two treatment categories. The title of each panel indicates which effects are present. Dots represent means. Lines connect means of each B group between different A groups. An interaction between A and B is present in the data if the lines are not parallel.](images/fig-factorial-layout.png){#fig-factorial-layout}
+:::
+:::::
+
+## Two-factor linear model
+
+::::: columns
+::: {.column width="50%"}
+-   General model:
+
+$$
+Y = CONSTANT + A + B + A*B
+$$
+
+-   $A$ and $B$ are main effects terms
+
+-   $A*B$ is the interaction term
+:::
+
+::: {.column width="50%"}
+![Interaction plots of effects in a hypothetical experiment with two factors (variables) A and B, each having two treatment categories. The title of each panel indicates which effects are present. Dots represent means. Lines connect means of each B group between different A groups. An interaction between A and B is present in the data if the lines are not parallel.](images/fig-factorial-layout.png){#fig-factorial-layout-2}
+:::
+:::::
+
+## Main effects vs interaction
+
+::::: columns
+::: {.column width="50%"}
+-   [Main effect]{.keyword}: average effect of one factor across levels of the other factor
+
+-   [Interaction]{.keyword}: effect of one factor depends on the level of the other factor
+
+-   In interaction plots:
+
+    -   parallel lines suggest no interaction
+
+    -   nonparallel lines suggest interaction
+:::
+
+::: {.column width="50%"}
+![Interaction plots of effects in a hypothetical experiment with two factors (variables) A and B, each having two treatment categories. The title of each panel indicates which effects are present. Dots represent means. Lines connect means of each B group between different A groups. An interaction between A and B is present in the data if the lines are not parallel.](images/fig-factorial-layout.png){#fig-factorial-layout-3}
+:::
+:::::
+
+## Intertidal algae experiment
+
+::::: columns
+::: {.column width="50%"}
+-   Researchers tested effects of herbivores on algal cover
+
+-   Two factors:
+
+    -   Herbivory: Absent or Present
+
+    -   Height: Low or Mid intertidal zone
+
+-   Response: square-root algal surface area
+
+-   Balanced design with all treatment combinations
+:::
+
+::: {.column width="50%"}
+![Study design of the intertidal algae experiment by Harley (2003), showing plots placed at two shore heights with herbivore exclusion treatments applied using copper rings.](images/fig-algae-study-design.png){#fig-algae-study-design fig-alt="Overhead diagram of a rocky intertidal zone with dashed lines marking high tide and low tide. Six study plots are arranged at mid height between the tide lines and six plots are arranged just above the low tide line. Each plot is marked by a small red alga. Within each height treatment, three plots have copper rings around the algae indicating herbivore exclusion, and three plots have no ring. An inset shows an uncovered algae plot with limpets and snails labeled predators."}
+:::
+:::::
+
+## Means suggest an interaction
+
+::::: columns
+::: {.column width="50%"}
+-   At low height:
+
+    -   herbivores greatly reduced algae
+
+-   At mid height:
+
+    -   herbivory had little effect
+
+-   Suggests herbivory effect depends on height
+:::
+
+::: {.column width="50%"}
+![Mean algal surface area for each combination of herbivory treatment and shore height. Herbivores strongly reduced algae at low height but had little effect at mid height. Data from Harley (2003), as presented by Whitlock & Schluter (2020).](images/fig-abd-figure-18.3-2.png){#fig-abd-figure-18.3-2 fig-alt="Interaction plot with herbivory treatment on the horizontal axis (Absent, Present) and square-root algal surface area on the vertical axis. One line for Low height declines sharply from about 33 when herbivores are absent to about 10 when present. A second line for Mid height rises slightly from about 22 to about 26. Error bars show standard errors. The nonparallel lines indicate an interaction between herbivory and height."}
+:::
+:::::
+
+## Testing the interaction first
+
+::::: columns
+::: {.column .normal-eq-column width="50%"}
+Compare two models:
+
+-   Without interaction:
+
+$$
+\begin{aligned}
+\text{ALGAE} &= \text{CONSTANT} \\
+&\quad + \text{HERBIVORY} \\
+&\quad + \text{HEIGHT}
+\end{aligned}
+$$
+
+-   With interaction:
+
+$$
+\begin{aligned}
+\text{ALGAE} &= \text{CONSTANT} \\
+&\quad + \text{HERBIVORY} \\
+&\quad + \text{HEIGHT} \\
+&\quad + \text{HERBIVORY} * \text{HEIGHT}
+\end{aligned}
+$$
+:::
+
+::: {.column width="50%"}
+![Comparison of models fitted with and without the herbivory by height interaction term. Including the interaction better captures how herbivory effects differed between shore heights. Data from Harley (2003), as presented by Whitlock & Schluter (2020).](images/fig-abd-figure-18.3-3.png){#fig-abd-figure-18.3-3 fig-alt="Two-panel graph of algal surface area by herbivory treatment. Left panel shows a model without interaction, where fitted lines for Low and Mid heights are parallel. Right panel shows a model with interaction, where one fitted line declines strongly and the other rises slightly, allowing different herbivory effects at different heights. Points show individual observations for the two height groups."}
+:::
+:::::
+
+## ANOVA results
+
+::::: columns
+::: {.column width="50%"}
+-   Interaction term was significant
+
+    -   $F = 11.00$
+
+    -   $P = 0.002$
+
+-   Herbivory main effect also significant
+
+-   Height main effect not significant alone
+:::
+
+::: {.column width="50%"}
+![ANOVA results for the two-factor linear model testing effects of herbivory, shore height, and their interaction on algal cover. Data from Harley (2003), as presented by Whitlock & Schluter (2020).](images/tbl-abd-table-18.3-1.jpeg){#tbl-abd-table-18.3-1 fig-alt="ANOVA table with rows for HEIGHT, HERBIVORY, HERBIVORY × HEIGHT, Residual, and Total. Columns include sum of squares, degrees of freedom, mean square, F statistic, and P value. HERBIVORY has a significant main effect with F = 39.08 and P < 0.0001. The interaction HERBIVORY × HEIGHT is also significant with F = 11.00 and P = 0.002, indicating that the effect of herbivory depended on shore height. HEIGHT alone is not statistically significant with P = 0.219."}
+:::
+:::::
+
+## How to interpret a significant interaction
+
+::::: columns
+::: {.column width="50%"}
+-   Main effects alone can be misleading when interaction is present
+
+-   Height mattered because it changed the herbivory effect
+
+-   Use graphs to describe the biological pattern
+:::
+
+::: {.column width="50%"}
+![Mean algal surface area for each combination of herbivory treatment and shore height. Herbivores strongly reduced algae at low height but had little effect at mid height. Data from Harley (2003), as presented by Whitlock & Schluter (2020).](images/fig-abd-figure-18.3-2.png){#fig-abd-figure-18.3-2-2}
+:::
+:::::
+
+## Biological conclusion
+
+::::: columns
+::: {.column width="50%"}
+-   Herbivores strongly reduced algae at low height
+
+-   Herbivores had weaker effect at mid height
+
+-   Treatment effects depended on environmental context
+:::
+
+::: {.column width="50%"}
+![*Mazzaella parksii* exposed on a rocky intertidal shore at low tide. The photograph illustrates the type of habitat used in Harley’s (2003) experiment. Photo: © Carita Bergman ([CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/))](images/fig-rocky-shore-mazzaella-parksii.jpg){#fig-rocky-shore-mazzaella-parksii fig-alt="Photograph of a rocky ocean shoreline at low tide with waves in the background and wet exposed bedrock in the foreground. Reddish patches of Mazzaella parksii algae are visible attached to the rock surface in bands and clumps. Tide pools and dark seaweed patches are scattered across the shore under a cloudy sky." fig-align="center" width="600"}
+:::
+:::::
+
+## Points to remember about factorial designs
+
+-   Factorial designs test multiple factors simultaneously
+-   Always examine the interaction first
+-   Nonparallel lines often indicate interaction
+-   Graphs are essential for interpretation
+
+# Adjusting for the effects of a covariate
+
+# Assumptions of linear models
