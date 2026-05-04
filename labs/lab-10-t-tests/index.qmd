@@ -7,6 +7,14 @@ format:
 
 ## Learning Objectives
 
+By the end of this lab, you will be able to:
+
+-   use histograms to assess distribution shape and potential outliers
+-   choose and perform the appropriate test (t-test or Wilcoxon test) based on the data
+-   perform one-sample, two-sample, and paired comparisons in R
+-   extract and report p-values and confidence intervals from test output
+-   interpret test results in the context of the question
+
 ## Getting started
 
 Before you begin the lab activities, review the steps for setting up a project for a lab activity:
@@ -24,16 +32,18 @@ Then, complete the following steps to make sure you are fully set up.
 
 3.  Create a new R script and save it as **lab-10-script.R**.
 
-4.  Add the following code to your R script and save the script. Upon save, you should see a message in the source prompting you to install the package. Click "Install". Then run the line of code.
+4.  Add the following code to your R script and save the script. Upon save, you should see a message in the source prompting you to install the packages. Click "Install". Then run the line of code.
 
     ```{r}
     #| label: load-packages
     #| echo: true
 
-    # load packages --------------------------------------------------------------
+    # load packages ----------------------------------------------
 
     library(tidyverse)
     library(haven)
+    library(lterdatasampler)
+    library(PairedData)
     ```
 
 ::: callout-note
@@ -51,136 +61,133 @@ Do not continue until all of the above steps are working correctly.
 
 ## Overview
 
-In this lab, you will analyze the relationship between two categorical variables using **contingency analysis**. A contingency table summarizes the joint distribution of two categorical variables and allows us to estimate measures of association such as **relative risk (RR)** and **odds ratio (OR)**. These measures describe the magnitude and direction of an association between two binary variables. We will also conduct a **chi-square test of independence** to determine whether the observed association is statistically significant.
+In this lab, you will use statistical tests to compare means between groups and against a reference value. You will work with three common study designs:
 
-You will use data from the National Health and Nutrition Examination Survey (NHANES), a large, nationally representative health survey conducted in the United States. For this lab, you will examine the relationship between sleep duration and depressive symptoms among adults.
+-   a one-sample comparison (sleep duration vs a recommended value)
+-   a two-sample comparison (body mass between male and female bison)
+-   a paired comparison (differences within individuals in shoulder strength)
 
-## Prerequisites
+For each case, you will:
 
-In your R script, load the following packages:
+-   visualize the data using histograms
+-   assess whether assumptions for a t-test are reasonable\
+-   choose an appropriate test (e.g. t-test or Wilcoxon test)
+-   run the test in R
+-   interpret p-values and confidence intervals in context
 
-```{r}
+The goal is to connect data visualization, statistical testing, and interpretation so that you can justify your choice of method and clearly explain your conclusions.
 
-library(tidyverse) # for data manipulation and visualization
-library(haven) # for reading SAS XPT files
-library(palmerpenguins) # for penguin data
-library(lterdatasampler) # for bison data
-library(PairedData) # for shoulder data
+## Questions
 
-```
+### 1. Sleep duration: one-sample test
 
-## Sleep duration: one-sample test
+Public health guidelines often recommend that adults get about 8 hours of sleep per night. We can use sample data to evaluate whether typical sleep duration differs from this recommendation.
 
-In this activity, you will:
+The NHANES dataset contains self-reported sleep duration (in hours) for a sample of individuals. We will examine whether the average sleep duration in this sample differs from 8 hours.
 
--    read in NHANES sleep data and keep the first 100 observations
--    visualize the data using a histogram
--    assess the distribution to decide between a t-test and a Wilcoxon test
--    test whether mean (or median) sleep duration differs from 8 hours
--    interpret the result in plain language
-
-Code
+Use the code below to read in the data.
 
 ```{r}
+#| label: read-sleep-data
+#| code-fold: true
 #| echo: true
+#| eval: false
+
+# question 1 ----------------------------------------------
 
 slq_data <-
-  read_xpt("https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/SLQ_L.xpt") |> 
+  haven::read_xpt("https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/SLQ_L.xpt") |> 
   drop_na(SLD012) |>
-  slice_head(n = 100)
-
-slq_data |>
-  ggplot(aes(x = SLD012)) +
-  geom_histogram(binwidth = 1, boundary = 0) +
-  labs(
-    x = "Hours of sleep",
-    y = "Frequency",
-    title = "Distribution of sleep duration"
-  ) +
-  theme_minimal()
+  slice_head(n = 100) 
 ```
 
-## Bison body mass: two-sample comparison
+a.  Plot a histogram of sleep duration (variable `SLD012`). Use a binwidth of 1 and ensure the first bin starts at 0. Does the distribution appear approximately normal? Are there any strong deviations (e.g., skew or outliers) that would affect a t-test?
 
-In this activity, you will:
+b.  Write the R code to perform a one-sample t-test to test whether mean sleep duration differs from 8 hours.
 
--    read in the bison dataset and keep 100 observations for each sex
--    visualize body mass distributions for males and females using histograms
--    assess the distributions to decide between a t-test and a Mann–Whitney test
--    compare body mass between sexes using either `t.test()` or `wilcox.test()`
--    interpret the results in terms of differences between groups
+    Use the vector form of the `t.test()` function, with `slq_data$SLD012` as the data and `mu = 8`.
 
-Use the following code:
+c.  What is the 95% confidence interval for the mean sleep duration? Does this interval include 8 hours?
+
+d.  Based on your results, what do you conclude about whether average sleep duration differs from 8 hours in this sample?
+
+### 2. Bison body mass: two-sample comparison
+
+Body mass often differs between males and females in many animal species. We can use sample data to evaluate whether body mass differs between male and female bison.
+
+In this exercise, you will use the [Konza Prairie (KNZ) bison dataset](https://lter.github.io/lterdatasampler/articles/knz_bison_vignette.html). The dataset includes body mass (`animal_weight`) and sex (`animal_sex`) for individual bison.
+
+Use the code in the box below to read in the data.
 
 ```{r}
+#| label: read-bison-data
 #| echo: true
+#| code-fold: true
+#| eval: false
+
+# question 2 ----------------------------------------------
+
 bison_data <-
-  knz_bison |> 
+  lterdatasampler::knz_bison |> 
   drop_na(animal_sex, animal_weight) |>
   slice_head(n = 100, by = animal_sex)
-
-bison_data |>
-  ggplot(aes(x = animal_weight)) +
-  geom_histogram(binwidth = 50) +
-  facet_wrap(~animal_sex, ncol = 1)
 ```
 
-In this activity, you will work with a dataset of shoulder strength measurements.
+a.  Plot histograms of body mass (`animal_weight`) for males and females. Use a binwidth of 50 and display the groups in separate panels. Do the distributions appear approximately normal? Do the variances look similar between groups? Are there any strong deviations that would affect a t-test?
 
--    each row represents an individual
--    variables include **Left** and **Right** shoulder strength measurements
--    individuals are classified as **Swimmer** or **Control (non-swimmer)**
--    the goal is to compare strength **within individuals**, not between individuals
+b.  Which test is more appropriate? a two-sample t-test or a Wilcoxon rank-sum test?
 
-You will:
+c.  Write the R code to perform the test to compare body mass between males and females using either `t.test()` or `wilcox.test()`. Use the **formula form** of the function, with `animal_weight` as the response and `animal_sex` as the grouping variable.
 
--    calculate **strong arm** and **weak arm** for each individual
--    note that comparing **left vs right directly is misleading** because people are left- or right-handed
--    instead, compute **strong arm − weak arm** to create a meaningful paired comparison
--    perform **paired t-tests** comparing strong vs weak arm strength
--    run separate tests for:
-    -    swimmers
-    -    non-swimmers
--    optionally, test **left vs right in non-swimmers** to confirm the difference is near zero
--    interpret results in terms of within-individual differences
+    Remember that the formula form requires a data argument and a formula argument, e.g. `*.test(formula = grouping_variable ~ response_variable, data  = df)`.
 
-### Code
+d.  Run the test and report the p-value. Based on this value, do you conclude that body mass differs between males and females?
+
+### 3. Paired comparison: shoulder strength and swimming
+
+Dominant limbs are typically stronger than non-dominant limbs. However, activities such as swimming may lead to more balanced strength between arms. We can use paired measurements to evaluate whether individuals tend to have stronger dominant arms, and whether this pattern differs between swimmers and non-swimmers.
+
+The dataset contains shoulder strength measurements for the **left** and **right** arms of individuals, along with a grouping variable indicating whether each individual is a **Swimmer** or **Control (non-swimmer)**.
+
+Use the code in the box below to prepare the data, including calculating **strong arm** and **weak arm** for each individual.
 
 ```{r}
+#| label: load-swim-data
 #| echo: true
+#| code-fold: true
+#| eval: false
 
-library(PairedData)
-data("Shoulder")
+# question 3 ----------------------------------------------
 
-shoulder_data <- 
-  Shoulder |> 
+data("Shoulder", package = "PairedData")
+
+shoulder_data <-
+  Shoulder |>
   as_tibble() |> 
   rowwise() |>
   mutate(
     strongarm = max(Left, Right),
     weakarm = min(Left, Right)
-  ) |>
-  ungroup()
-
-shoulder_data |>
-  ggplot(aes(x = strongarm)) +
-  geom_histogram(bins = 10)
-  
-shoulder_data |>
-  ggplot(aes(x = weakarm)) +
-  geom_histogram(bins = 10)
+  )
 
 swimmers <- 
   shoulder_data |> 
-  filter(Group == "Swimmer") |>
-  print()
+  filter(Group == "Swimmer")
 
 nonswimmers <-
   shoulder_data |> 
-  filter(Group == "Control") |>
-  print()
-
+  filter(Group == "Control")
 ```
+
+a.  Explain why directly comparing left vs right arm strength may not be appropriate for this dataset. Why is it better to compare strong arm vs weak arm?
+
+b.  Write the R code to perform a paired t-test comparing strong arm and weak arm strength *for swimmers*. Use `paired = TRUE`.
+
+c.  Run the test *for swimmers*. Report the p-value. Based on this value, do swimmers tend to have a difference between strong and weak arm strength?
+
+d.  Repeat the paired t-test *for non-swimmers*. Report the p-value. Do non-swimmers show a difference between strong and weak arm strength?
+
+e.  Based on your results, what do you conclude about differences in arm strength within individuals, and how these patterns differ between swimmers and non-swimmers?
 
 ## Wrap-up and Submission
 

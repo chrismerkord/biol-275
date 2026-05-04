@@ -1,0 +1,77 @@
+---
+title: "BIOL 275 Lab 10 t-tests"
+format: typst
+output-file: lab-10-worksheet.pdf
+---
+
+## 1. Sleep duration: one-sample test
+
+a.  Does the distribution appear approximately normal? Are there any strong deviations (e.g., skew or outliers) that would affect a t-test?
+
+```{=typst}
+#answerbox(height: 0.7in)
+```
+b.  Write the R code to perform a one-sample t-test.
+
+```{=typst}
+#answerbox(height: 0.7in)
+```
+c.  What is the 95% confidence interval for the mean sleep duration? Does this interval include 8 hours?
+
+```{=typst}
+#answerbox(height: 0.7in)
+```
+d.  Based on your results, what do you conclude about whether average sleep duration differs from 8 hours in this sample?
+
+```{=typst}
+#answerbox(height: 0.7in)
+```
+## 2. Body mass: two-sample test
+
+a.  Based on the histogram, do the distributions appear approximately normal? Do the variances look similar between groups? Are there any strong deviations that would affect a t-test?
+
+```{=typst}
+#answerbox(height: 1.2in)
+```
+b.  Which test is more appropriate? a two-sample t-test or a Wilcoxon rank-sum test?
+
+```{=typst}
+#answerbox(height: 0.7in)
+```
+c.  Write the R code to perform the test to compare body mass between males and females. Use the formula form of either `t.test()` or `wilcox.test()`.
+
+```{=typst}
+#answerbox(height: 0.7in)
+```
+d.  Report the p-value. Based on this value, do you conclude that body mass differs between males and females?
+
+```{=typst}
+#answerbox(height: 1.0in)
+```
+### 3. Paired comparison: shoulder strength and swimming
+
+a.  Why is it better to compare strong arm vs weak arm?
+
+```{=typst}
+#answerbox(height: 0.7in)
+```
+b.  Write the R code to perform a paired t-test.
+
+```{=typst}
+#answerbox(height: 0.7in)
+```
+c.  Run the test for swimmers. Report the p-value. Based on this value, do swimmers tend to have a difference between strong and weak arm strength?
+
+```{=typst}
+#answerbox(height: 0.7in)
+```
+d.  Repeat the paired t-test for non-swimmers. Report the p-value. Do non-swimmers show a difference between strong and weak arm strength?
+
+```{=typst}
+#answerbox(height: 0.7in)
+```
+e.  Based on your results, what do you conclude about differences in arm strength within individuals, and how these patterns differ between swimmers and non-swimmers?
+
+```{=typst}
+#answerbox(height: 0.7in)
+```

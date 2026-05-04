@@ -4,7 +4,6 @@
 
 library(tidyverse) # for data manipulation and visualization
 library(haven) # for reading SAS XPT files
-library(palmerpenguins) # for penguin data
 library(lterdatasampler) # for bison data
 library(PairedData) # for shoulder data
 
@@ -16,9 +15,8 @@ library(PairedData) # for shoulder data
 # We will test whether the average number of hours of sleep is different from 8 hours.
 
 slq_data <-
-  read_xpt("https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/SLQ_L.xpt") |> 
-  select(SLD012) |> 
-  drop_na() |>
+  haven::read_xpt("https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/SLQ_L.xpt") |> 
+  drop_na(SLD012) |>
   slice_head(n = 100) |> 
   print()
 
@@ -30,6 +28,8 @@ slq_data |>
     y = "Frequency",
     title = "Distribution of sleep duration"
   ) +
+  scale_x_continuous(breaks = scales::breaks_width(1),
+                     minor_breaks = NULL) +
   theme_minimal()
 
 t.test(slq_data$SLD012, mu = 8)
@@ -38,7 +38,7 @@ t.test(slq_data$SLD012, mu = 8)
 # two-sample test ----------------------------------------------------------
 
 bison_data <-
-  knz_bison |> 
+  lterdatasampler::knz_bison |> 
   drop_na(animal_sex, animal_weight) |>
   slice_head(n = 100, by = animal_sex) |> 
   print()
@@ -54,6 +54,7 @@ wilcox.test(animal_weight ~ animal_sex, data = bison_data)
 
 
 # paired t-test -----------------------------------------------------------
+data(Shoulder)
 
 shoulder_data <- 
   tibble(Shoulder) |> 
