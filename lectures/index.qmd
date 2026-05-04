@@ -340,9 +340,25 @@ Lecture 21
 ::: card-body
 ##### Regression {.card-title}
 
-Introduces simple linear regression as a method for describing relationships between two numerical variables, fitting prediction lines, interpreting slope and intercept, and recognizing the risks of extrapolation.
+Introduces simple linear regression for modeling relationships between two numerical variables, making and evaluating predictions, interpreting model results, checking assumptions, and recognizing common pitfalls such as extrapolation.
 
 [Go to Lecture](slides/lecture-21-regression/){.btn .btn-primary}
+:::
+:::::
+::::::
+
+:::::: {.g-col-12 .g-col-sm-4}
+::::: {.card .h-100}
+::: card-header
+Lecture 22
+:::
+
+::: card-body
+##### Analyzing Multiple Factors {.card-title}
+
+Introduces linear models for analyzing response variables influenced by multiple explanatory variables, including categorical and numerical predictors, interactions, blocking, factorial designs, and ANCOVA.
+
+[Go to Lecture](slides/lecture-22-multiple-factors/){.btn .btn-primary}
 :::
 :::::
 ::::::
