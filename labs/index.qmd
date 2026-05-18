@@ -105,6 +105,8 @@ Lab 7
 ::: card-body
 ##### Analyzing proportions {.card-title}
 
+Estimate population proportions, construct confidence intervals, test hypotheses about proportions, and interpret the results using biological datasets in R.
+
 [Lab 7](analyzing-proportions/)
 :::
 ::::
@@ -118,6 +120,8 @@ Lab 8
 ::: card-body
 ##### Transforming  Data {.card-title}
 
+Use tidyverse tools to subset, reshape, join, and transform biological datasets into formats appropriate for analysis and visualization.
+
 [Lab 8](transforming-data/)
 :::
 ::::
@@ -129,7 +133,9 @@ Lab 8
 Lab 9
 :::
 ::: card-body
-##### Transforming  Data {.card-title}
+##### Contingency Analysis {.card-title}
+
+Analyze relationships between categorical variables using contingency tables, relative risk, odds ratios, and chi-square tests with NHANES health data.
 
 [Lab 9](lab-09-contingency-analysis/)
 :::
@@ -144,6 +150,8 @@ Lab 10
 ::: card-body
 ##### t-tests {.card-title}
 
+Compare means using one-sample, two-sample, and paired statistical tests while evaluating assumptions, selecting appropriate methods, and interpreting results in biological contexts.
+
 [Lab 10](lab-10-t-tests/)
 :::
 ::::
@@ -156,6 +164,8 @@ Lab 11
 :::
 ::: card-body
 ##### ANOVA {.card-title}
+
+Compare means among multiple groups using analysis of variance, evaluate model assumptions with residual plots, and identify differences among groups using post hoc tests.
 
 [Lab 11](lab-11-anova/)
 :::
