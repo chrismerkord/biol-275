@@ -33,9 +33,16 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            udunits-bin libudunits2-0 libudunits2-dev \
-            libgdal-dev libgeos-dev libproj-dev proj-data proj-bin \
-            librsvg2-dev
+            udunits-bin \
+            libudunits2-0 \
+            libudunits2-dev \
+            libgdal-dev \
+            libgeos-dev \
+            libproj-dev \
+            proj-data \
+            proj-bin \
+            librsvg2-dev \
+            libnode-dev
 
       - name: Install R Dependencies
         uses: r-lib/actions/setup-renv@v2
